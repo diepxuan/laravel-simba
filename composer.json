@@ -1,0 +1,22 @@
+{
+  "name": "diepxuan/laravel-magento",
+  "description": "Laravel Integration With Simba",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tran Ngoc Duc",
+      "email": "ductn@diepxuan.com"
+    }
+  ],
+  "require": {
+    "diepxuan/laravel-core": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Diepxuan\\Simba\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {}
+  }
+}
