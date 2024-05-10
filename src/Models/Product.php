@@ -8,16 +8,15 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-10 20:38:44
+ * @lastupdate 2024-05-10 21:04:02
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\Models\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends AbstractModel
 {
     use HasCompositePrimaryKey;
     use HasFactory;
@@ -38,13 +37,6 @@ class Product extends Model
      * @var bool
      */
     public $timestamps = true;
-
-    /**
-     * The connection name for the model.
-     *
-     * @var string
-     */
-    protected $connection = 'sqlsrv';
 
     /**
      * The table associated with the model.
@@ -83,16 +75,4 @@ class Product extends Model
      */
     protected $hidden = [
     ];
-
-    /**
-     * @param mixed $query
-     *
-     * @return mixed
-     */
-    public function scopeIsEnable($query)
-    {
-        return $query;
-
-        return $query->where('ksd', 0);
-    }
 }
