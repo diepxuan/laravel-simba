@@ -8,12 +8,13 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-10 21:04:02
+ * @lastupdate 2024-05-11 14:58:40
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\Models\Traits\HasCompositePrimaryKey;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends AbstractModel
@@ -75,4 +76,14 @@ class Product extends AbstractModel
      */
     protected $hidden = [
     ];
+
+    /**
+     * Get the Simba Product Id.
+     */
+    protected function id(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (mixed $value, array $attributes) => implode('_', [$attributes['ma_cty'], $attributes['ma_vt']]),
+        );
+    }
 }
