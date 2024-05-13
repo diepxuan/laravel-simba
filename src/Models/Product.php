@@ -8,14 +8,16 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-11 14:58:40
+ * @lastupdate 2024-05-13 22:48:32
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\Models\Traits\HasCompositePrimaryKey;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Product extends AbstractModel
 {
@@ -85,5 +87,15 @@ class Product extends AbstractModel
         return Attribute::make(
             get: static fn (mixed $value, array $attributes) => implode('_', [$attributes['ma_cty'], $attributes['ma_vt']]),
         );
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('firstCompany', static function (Builder $builder): void {
+            $builder->where('ma_cty', '001');
+        });
     }
 }
