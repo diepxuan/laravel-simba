@@ -9,6 +9,7 @@
     }
   ],
   "require": {
+    "diepxuan/php-charset": "*",
     "diepxuan/laravel-core": "*"
   },
   "autoload": {
