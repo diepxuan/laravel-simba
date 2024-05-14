@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-14 13:34:14
+ * @lastupdate 2024-05-14 13:34:30
  */
 
 namespace Diepxuan\Simba\Models;
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends AbstractModel
+class Category extends AbstractModel
 {
     use HasCompositePrimaryKey;
     use HasFactory;
@@ -46,14 +46,14 @@ class Product extends AbstractModel
      *
      * @var string
      */
-    protected $table = 'InDmVt';
+    protected $table = 'InDmNhvt';
 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = ['ma_cty', 'ma_vt'];
+    protected $primaryKey = ['ma_cty', 'ma_nhvt'];
 
     /**
      * The attributes that are mass assignable.
@@ -85,7 +85,7 @@ class Product extends AbstractModel
     protected function id(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => implode('_', [$attributes['ma_cty'], $attributes['ma_vt']]),
+            get: static fn (mixed $value, array $attributes) => implode('_', [$attributes['ma_cty'], $attributes['ma_nhvt']]),
         );
     }
 
