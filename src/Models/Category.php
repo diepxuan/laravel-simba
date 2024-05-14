@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-14 13:34:30
+ * @lastupdate 2024-05-14 15:27:15
  */
 
 namespace Diepxuan\Simba\Models;
@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends AbstractModel
 {
@@ -80,12 +81,44 @@ class Category extends AbstractModel
     ];
 
     /**
-     * Get the Simba Product Id.
+     * Get the Simba Category Id.
      */
     protected function id(): Attribute
     {
         return Attribute::make(
             get: static fn (mixed $value, array $attributes) => implode('_', [$attributes['ma_cty'], $attributes['ma_nhvt']]),
+        );
+    }
+
+    /**
+     * Get the Simba Category Sku.
+     */
+    protected function sku(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (mixed $value, array $attributes) => $attributes['ma_nhvt'],
+        );
+    }
+
+    /**
+     * Get the Simba Category name.
+     */
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (mixed $value, array $attributes) => $attributes['ten_nhvt'],
+        );
+    }
+
+    /**
+     * Get the Simba Category url_key.
+     */
+    protected function urlKey(): Attribute
+    {
+        $self = $this;
+
+        return Attribute::make(
+            get: static fn (mixed $value, array $attributes) => Str::of(vn_convert_encoding($self->name))->lower()->replace(' ', '-'),
         );
     }
 
