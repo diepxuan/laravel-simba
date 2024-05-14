@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-14 15:27:15
+ * @lastupdate 2024-05-14 17:03:28
  */
 
 namespace Diepxuan\Simba\Models;
@@ -101,6 +101,16 @@ class Category extends AbstractModel
     }
 
     /**
+     * Get the Simba Category parent.
+     */
+    protected function parent(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (mixed $value, array $attributes) => $attributes['nhom_me'],
+        );
+    }
+
+    /**
      * Get the Simba Category name.
      */
     protected function name(): Attribute
@@ -118,7 +128,7 @@ class Category extends AbstractModel
         $self = $this;
 
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => Str::of(vn_convert_encoding($self->name))->lower()->replace(' ', '-'),
+            get: static fn (mixed $value, array $attributes) => Str::of(vn_convert_encoding($self->name))->lower()->slug('-'),
         );
     }
 
