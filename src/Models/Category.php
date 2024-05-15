@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-14 17:03:28
+ * @lastupdate 2024-05-15 10:29:27
  */
 
 namespace Diepxuan\Simba\Models;
@@ -106,7 +106,7 @@ class Category extends AbstractModel
     protected function parent(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => $attributes['nhom_me'],
+            get: static fn (mixed $value, array $attributes) => $attributes['nhom_me'] ?: '',
         );
     }
 
