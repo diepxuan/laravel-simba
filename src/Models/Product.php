@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-17 15:16:56
+ * @lastupdate 2024-05-19 08:53:55
  */
 
 namespace Diepxuan\Simba\Models;
@@ -126,6 +126,16 @@ class Product extends AbstractModel
     {
         return Attribute::make(
             get: static fn (mixed $value, array $attributes) => $attributes['ma_nhvt'],
+        );
+    }
+
+    /**
+     * Get the Simba status.
+     */
+    protected function status(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (mixed $value, array $attributes) => 0 === $attributes['ksd'],
         );
     }
 
