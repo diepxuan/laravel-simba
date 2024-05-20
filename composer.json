@@ -14,7 +14,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Diepxuan\\Simba\\": "src/"
+      "Diepxuan\\Simba\\": "src/",
+      "Diepxuan\\Simba\\Database\\Factories\\": "database/factories/",
+      "Diepxuan\\Simba\\Database\\Seeders\\": "database/seeders/"
     }
   },
   "extra": {
