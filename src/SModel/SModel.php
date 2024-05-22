@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-20 14:18:42
+ * @lastupdate 2024-05-22 16:58:43
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -101,6 +101,21 @@ abstract class SModel extends Model
         return $query;
 
         return $query->where('ksd', 0);
+    }
+
+    /**
+     * Scope a query to only include the last n days records.
+     *
+     * @param Builder $query
+     * @param mixed   $fieldName
+     * @param mixed   $fromDate
+     * @param mixed   $todate
+     *
+     * @return Builder
+     */
+    public function scopeWhereDateBetween($query, $fieldName, $fromDate, $todate)
+    {
+        return $query->whereDate($fieldName, '>=', $fromDate)->whereDate($fieldName, '<=', $todate);
     }
 
     /**
