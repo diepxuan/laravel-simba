@@ -22,5 +22,6 @@
   },
   "extra": {
     "laravel": {}
-  }
+  },
+  "minimum-stability": "dev"
 }
