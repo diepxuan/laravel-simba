@@ -10,7 +10,8 @@
   ],
   "require": {
     "diepxuan/php-charset": "*",
-    "diepxuan/laravel-core": "*"
+    "diepxuan/laravel-core": "*",
+    "diepxuan/laravel-eloquent-composite": "*"
   },
   "autoload": {
     "psr-4": {

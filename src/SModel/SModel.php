@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-22 16:58:43
+ * @lastupdate 2024-05-23 11:51:26
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -109,13 +109,13 @@ abstract class SModel extends Model
      * @param Builder $query
      * @param mixed   $fieldName
      * @param mixed   $fromDate
-     * @param mixed   $todate
+     * @param mixed   $toDate
      *
      * @return Builder
      */
-    public function scopeWhereDateBetween($query, $fieldName, $fromDate, $todate)
+    public function scopeWhereDateBetween($query, $fieldName, $fromDate, $toDate)
     {
-        return $query->whereDate($fieldName, '>=', $fromDate)->whereDate($fieldName, '<=', $todate);
+        return $query->whereDate($fieldName, '>=', $fromDate)->whereDate($fieldName, '<=', $toDate);
     }
 
     /**

@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 14:19:17
+ * @lastupdate 2024-05-23 14:19:09
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -16,7 +16,7 @@ namespace Diepxuan\Simba\SModel;
 use Diepxuan\Models\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
-class InDmNhvt extends SModel
+class InDmKho extends SModel
 {
     use HasCompositePrimaryKey;
 
@@ -35,12 +35,24 @@ class InDmNhvt extends SModel
      *
      * @var string
      */
-    protected $table = 'InDmNhvt';
+    protected $table = 'InDmKho';
 
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = ['ma_cty', 'ma_nhvt'];
+    protected $primaryKey = ['ma_cty', 'ma_vt'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'ksd' => 'boolean',
+        ];
+    }
 }

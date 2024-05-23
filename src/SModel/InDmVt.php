@@ -8,12 +8,12 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-20 16:17:18
+ * @lastupdate 2024-05-23 14:19:36
  */
 
 namespace Diepxuan\Simba\SModel;
 
-use Diepxuan\Simba\Models\Traits\HasCompositePrimaryKey;
+use Diepxuan\Models\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
 class InDmVt extends SModel
@@ -43,4 +43,16 @@ class InDmVt extends SModel
      * @var string
      */
     protected $primaryKey = ['ma_cty', 'ma_vt'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'ksd' => 'boolean',
+        ];
+    }
 }
