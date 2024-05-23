@@ -8,12 +8,12 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 14:19:09
+ * @lastupdate 2024-05-23 17:39:12
  */
 
 namespace Diepxuan\Simba\SModel;
 
-use Diepxuan\Models\Traits\HasCompositePrimaryKey;
+use Diepxuan\Database\Eloquent\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
 class InDmKho extends SModel

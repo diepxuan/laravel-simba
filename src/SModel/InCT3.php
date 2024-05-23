@@ -8,12 +8,12 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 12:04:13
+ * @lastupdate 2024-05-23 17:39:08
  */
 
 namespace Diepxuan\Simba\SModel;
 
-use Diepxuan\Models\Traits\HasCompositePrimaryKey;
+use Diepxuan\Database\Eloquent\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
 class InCT3 extends SModel
