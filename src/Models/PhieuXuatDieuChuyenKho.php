@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 19:32:26
+ * @lastupdate 2024-05-24 13:46:47
  */
 
 namespace Diepxuan\Simba\Models;
@@ -42,14 +42,14 @@ class PhieuXuatDieuChuyenKho extends InPH3
     protected function ngayCt(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => Carbon::parse($attributes['ngay_ct'])->format('d/m/Y'),
+            get: static fn (mixed $value, array $attributes) => Carbon::parse($attributes['ngay_ct']),
         );
     }
 
     protected function ngayLct(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => Carbon::parse($attributes['ngay_lct'])->format('d/m/Y'),
+            get: static fn (mixed $value, array $attributes) => Carbon::parse($attributes['ngay_lct']),
         );
     }
 
