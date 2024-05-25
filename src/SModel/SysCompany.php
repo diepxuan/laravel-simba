@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-20 14:16:57
+ * @lastupdate 2024-05-25 10:34:41
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -44,4 +44,11 @@ class SysCompany extends SModel
      * @var string
      */
     protected $primaryKey = 'ma_cty';
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 }
