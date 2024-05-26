@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-20 16:17:27
+ * @lastupdate 2024-05-26 20:50:04
  */
 
 namespace Diepxuan\Simba\Models;
@@ -74,7 +74,7 @@ class Product extends InDmVt
     protected function status(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => 0 === $attributes['ksd'],
+            get: static fn (mixed $value, array $attributes) => !$attributes['ksd'],
         );
     }
 }
