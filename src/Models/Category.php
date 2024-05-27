@@ -8,14 +8,13 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-20 14:13:58
+ * @lastupdate 2024-05-27 11:28:17
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\SModel\InDmNhvt;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Support\Str;
 
 class Category extends InDmNhvt
 {
@@ -56,18 +55,6 @@ class Category extends InDmNhvt
     {
         return Attribute::make(
             get: static fn (mixed $value, array $attributes) => $attributes['ten_nhvt'],
-        );
-    }
-
-    /**
-     * Get the Simba Category url_key.
-     */
-    protected function urlKey(): Attribute
-    {
-        $self = $this;
-
-        return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => Str::of(vn_convert_encoding($self->name))->lower()->slug('-'),
         );
     }
 }

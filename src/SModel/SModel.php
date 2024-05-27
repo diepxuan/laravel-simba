@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 11:51:26
+ * @lastupdate 2024-05-27 17:49:16
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
 abstract class SModel extends Model
 {
     use HasFactory;
+
+    public const CTY = '001';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -124,7 +126,7 @@ abstract class SModel extends Model
     protected static function booted(): void
     {
         static::addGlobalScope('onlyFirstCompany', static function (Builder $builder): void {
-            $builder->where('ma_cty', '001');
+            $builder->where('ma_cty', static::CTY);
         });
     }
 }

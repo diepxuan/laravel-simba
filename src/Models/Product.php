@@ -8,16 +8,61 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-26 20:50:04
+ * @lastupdate 2024-05-27 19:21:43
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\SModel\InDmVt;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\DB;
 
 class Product extends InDmVt
 {
+    public function scopeWithQuantity($query)
+    {
+        $sql = <<<'EOF'
+            (
+                SELECT SUM(so_luong) AS so_luong
+                FROM incdvt
+                WHERE   ma_cty = ma_cty
+                    AND ma_vt = ma_vt
+                    AND nam = YEAR(GETDATE())
+                GROUP BY ma_vt
+            UNION ALL
+                SELECT SUM(sl_nhap_qd - sl_xuat_qd) AS so_luong
+                FROM inct
+                WHERE   ma_cty = ma_cty
+                    AND ma_vt = ma_vt
+                    AND ngay_ct >= DATEADD(YEAR, YEAR(GETDATE()) - 1900, '19000101')
+                GROUP BY ma_vt
+            ) AS so_luong
+            EOF;
+        $sql = <<<'EOF'
+            (SELECT  SUM(so_luong) AS so_luong
+            FROM(
+                SELECT ma_vt ,
+                    SUM(so_luong) AS so_luong
+                FROM incdvt icvt
+                WHERE   icvt.ma_cty = 001
+                    AND icvt.ma_vt = N'CCHT16'
+                    AND icvt.nam = YEAR(GETDATE())
+                GROUP BY ma_vt
+            UNION ALL
+                SELECT ma_vt ,
+                    SUM(sl_nhap_qd - sl_xuat_qd) AS so_luong
+                FROM inct
+                WHERE   ma_cty = 001
+                    AND ma_vt = N'CCHT16'
+                    AND ngay_ct >= DATEADD(YEAR, YEAR(GETDATE()) - 1900, '19000101')
+                GROUP BY ma_vt
+            ) gr
+            GROUP BY gr.ma_vt) AS quantity
+            EOF;
+
+        return $query->addSelect('*')->addSelect(DB::raw($sql));
+    }
+
     /**
      * Get the Simba Product Id.
      */
