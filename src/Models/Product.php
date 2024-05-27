@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-27 19:21:43
+ * @lastupdate 2024-05-27 20:09:56
  */
 
 namespace Diepxuan\Simba\Models;
@@ -22,41 +22,25 @@ class Product extends InDmVt
     public function scopeWithQuantity($query)
     {
         $sql = <<<'EOF'
-            (
-                SELECT SUM(so_luong) AS so_luong
-                FROM incdvt
-                WHERE   ma_cty = ma_cty
-                    AND ma_vt = ma_vt
-                    AND nam = YEAR(GETDATE())
-                GROUP BY ma_vt
-            UNION ALL
-                SELECT SUM(sl_nhap_qd - sl_xuat_qd) AS so_luong
-                FROM inct
-                WHERE   ma_cty = ma_cty
-                    AND ma_vt = ma_vt
-                    AND ngay_ct >= DATEADD(YEAR, YEAR(GETDATE()) - 1900, '19000101')
-                GROUP BY ma_vt
-            ) AS so_luong
-            EOF;
-        $sql = <<<'EOF'
-            (SELECT  SUM(so_luong) AS so_luong
+            (SELECT SUM(so_luong) AS so_luong
             FROM(
                 SELECT ma_vt ,
                     SUM(so_luong) AS so_luong
-                FROM incdvt icvt
-                WHERE   icvt.ma_cty = 001
-                    AND icvt.ma_vt = N'CCHT16'
-                    AND icvt.nam = YEAR(GETDATE())
+                FROM incdvt
+                WHERE ma_cty = ma_cty
+                    AND ma_vt = ma_vt
+                    AND nam = YEAR(GETDATE())
                 GROUP BY ma_vt
             UNION ALL
                 SELECT ma_vt ,
                     SUM(sl_nhap_qd - sl_xuat_qd) AS so_luong
                 FROM inct
-                WHERE   ma_cty = 001
-                    AND ma_vt = N'CCHT16'
+                WHERE ma_cty = ma_cty
+                    AND ma_vt = ma_vt
                     AND ngay_ct >= DATEADD(YEAR, YEAR(GETDATE()) - 1900, '19000101')
                 GROUP BY ma_vt
             ) gr
+            WHERE gr.ma_vt = InDmVt.ma_vt
             GROUP BY gr.ma_vt) AS quantity
             EOF;
 
@@ -121,5 +105,17 @@ class Product extends InDmVt
         return Attribute::make(
             get: static fn (mixed $value, array $attributes) => !$attributes['ksd'],
         );
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'quantity' => 'decimal:1',
+        ];
     }
 }
