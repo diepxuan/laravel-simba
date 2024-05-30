@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-24 13:46:47
+ * @lastupdate 2024-05-30 07:50:09
  */
 
 namespace Diepxuan\Simba\Models;
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PhieuXuatDieuChuyenKho extends InPH3
+class PhieuChuyenKho extends InPH3
 {
     public function scopeWhereNgayCt($query, $fromDate, $toDate)
     {
