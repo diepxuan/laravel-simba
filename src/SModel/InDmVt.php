@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 17:39:24
+ * @lastupdate 2024-06-14 21:29:20
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -45,14 +45,21 @@ class InDmVt extends SModel
     protected $primaryKey = ['ma_cty', 'ma_vt'];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'ksd' => 'boolean',
+    ];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
      */
     protected function casts(): array
     {
-        return [
-            'ksd' => 'boolean',
-        ];
+        return $this->casts;
     }
 }

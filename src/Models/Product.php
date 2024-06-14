@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-27 20:09:56
+ * @lastupdate 2024-06-14 21:30:37
  */
 
 namespace Diepxuan\Simba\Models;
@@ -19,6 +19,15 @@ use Illuminate\Support\Facades\DB;
 
 class Product extends InDmVt
 {
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'quantity' => 'decimal:1',
+    ];
+
     public function scopeWithQuantity($query)
     {
         $sql = <<<'EOF'
@@ -114,8 +123,6 @@ class Product extends InDmVt
      */
     protected function casts(): array
     {
-        return [
-            'quantity' => 'decimal:1',
-        ];
+        return $this->casts;
     }
 }
