@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-06-14 21:30:37
+ * @lastupdate 2024-07-02 15:21:29
  */
 
 namespace Diepxuan\Simba\Models;
@@ -28,8 +28,11 @@ class Product extends InDmVt
         'quantity' => 'decimal:1',
     ];
 
-    public function scopeWithQuantity($query)
+    public function scopeWithQuantity($query, $flag = true)
     {
+        if (!$flag) {
+            return $query;
+        }
         $sql = <<<'EOF'
             (SELECT SUM(so_luong) AS so_luong
             FROM(

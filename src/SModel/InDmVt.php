@@ -8,18 +8,13 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-06-14 21:29:20
+ * @lastupdate 2024-07-02 15:12:13
  */
 
 namespace Diepxuan\Simba\SModel;
 
-use Diepxuan\Database\Eloquent\Traits\HasCompositePrimaryKey;
-use Illuminate\Database\Eloquent\Model;
-
 class InDmVt extends SModel
 {
-    use HasCompositePrimaryKey;
-
     public const CREATED_AT = 'cDate';
     public const UPDATED_AT = 'lDate';
 
@@ -42,7 +37,7 @@ class InDmVt extends SModel
      *
      * @var string
      */
-    protected $primaryKey = ['ma_cty', 'ma_vt'];
+    protected $primaryKey = 'ma_vt';
 
     /**
      * The attributes that should be cast.
