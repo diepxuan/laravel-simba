@@ -8,11 +8,23 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-10 20:47:50
+ * @lastupdate 2024-12-12 22:47:13
+ */
+
+use Diepxuan\Simba;
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2024-12-12 22:15:20
  */
 
 return [
-    'name' => 'diepxuan/laravel-simba',
+    'name'      => 'diepxuan/laravel-simba',
+    'namespace' => Simba::class,
 
     /*
     |--------------------------------------------------------------------------
