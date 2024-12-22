@@ -8,18 +8,15 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-23 17:39:16
+ * @lastupdate 2024-12-22 11:55:03
  */
 
 namespace Diepxuan\Simba\SModel;
 
-use Diepxuan\Database\Eloquent\Traits\HasCompositePrimaryKey;
 use Illuminate\Database\Eloquent\Model;
 
 class InDmNhvt extends SModel
 {
-    use HasCompositePrimaryKey;
-
     public const CREATED_AT = 'cDate';
     public const UPDATED_AT = 'lDate';
 
@@ -42,5 +39,5 @@ class InDmNhvt extends SModel
      *
      * @var string
      */
-    protected $primaryKey = ['ma_cty', 'ma_nhvt'];
+    protected $primaryKey = 'ma_nhvt';
 }

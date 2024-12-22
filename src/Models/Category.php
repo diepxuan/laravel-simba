@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-27 11:28:17
+ * @lastupdate 2024-12-20 22:40:33
  */
 
 namespace Diepxuan\Simba\Models;
@@ -24,7 +24,7 @@ class Category extends InDmNhvt
     protected function id(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => implode('_', [$attributes['ma_cty'], $attributes['ma_nhvt']]),
+            get: fn (mixed $value, array $attributes) => implode('_', [$this->ma_cty, $this->ma_nhvt]),
         );
     }
 
@@ -34,7 +34,7 @@ class Category extends InDmNhvt
     protected function sku(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => $attributes['ma_nhvt'],
+            get: fn (mixed $value, array $attributes) => $this->ma_nhvt,
         );
     }
 
@@ -54,7 +54,7 @@ class Category extends InDmNhvt
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: static fn (mixed $value, array $attributes) => $attributes['ten_nhvt'],
+            get: fn (mixed $value, array $attributes) => $this->ten_nhvt,
         );
     }
 }
