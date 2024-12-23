@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-12-22 11:55:03
+ * @lastupdate 2024-12-22 20:34:05
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -40,4 +40,11 @@ class InDmNhvt extends SModel
      * @var string
      */
     protected $primaryKey = 'ma_nhvt';
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 }
