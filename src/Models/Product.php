@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-07-02 15:21:29
+ * @lastupdate 2024-12-24 17:27:03
  */
 
 namespace Diepxuan\Simba\Models;
@@ -126,6 +126,7 @@ class Product extends InDmVt
      */
     protected function casts(): array
     {
-        return $this->casts;
+        // return $this->casts;
+        return array_merge(parent::casts(), $this->casts);
     }
 }
