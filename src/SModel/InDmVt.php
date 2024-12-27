@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-07-02 15:12:13
+ * @lastupdate 2024-12-26 20:21:44
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -47,6 +47,13 @@ class InDmVt extends SModel
     protected $casts = [
         'ksd' => 'boolean',
     ];
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * Get the attributes that should be cast.
