@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-05-27 17:49:16
+ * @lastupdate 2025-03-30 00:43:16
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -125,8 +125,9 @@ abstract class SModel extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope('onlyFirstCompany', static function (Builder $builder): void {
-            $builder->where('ma_cty', static::CTY);
+        $table = (new static())->getTable();
+        static::addGlobalScope('onlyFirstCompany', static function (Builder $builder) use ($table): void {
+            $builder->where($table ? $table . '.ma_cty' : 'ma_cty', static::CTY);
         });
     }
 }
