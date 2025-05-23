@@ -8,12 +8,13 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-20 12:22:05
+ * @lastupdate 2025-05-23 15:52:04
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\SModel\SysUserInfo as Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class SysUserInfo extends Model
 {
@@ -45,5 +46,15 @@ class SysUserInfo extends Model
     public function scopeIsGrand($query)
     {
         return $query->where('grand', 1);
+    }
+
+    /**
+     * Get the Simba User Id.
+     */
+    protected function id(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => hash('sha256', $this->username),
+        );
     }
 }

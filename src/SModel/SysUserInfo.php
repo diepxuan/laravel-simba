@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-20 12:21:33
+ * @lastupdate 2025-05-21 22:07:35
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -47,4 +47,12 @@ class SysUserInfo extends SModel
      * @var string
      */
     protected $keyType = 'string';
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        // @TODO: check if this is needed
+    }
 }
