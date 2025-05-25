@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-20 09:41:12
+ * @lastupdate 2025-05-24 18:41:57
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -55,6 +55,13 @@ class SysLanguage extends SModel
      */
     protected $keyType = 'string';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     *
+     * @deprecated
+     */
     public static function updateCurrentCultureInfo(string $name): bool
     {
         $name     = $name ?: self::DEFAULT;

@@ -8,14 +8,14 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-24 19:21:45
+ * @lastupdate 2025-05-24 18:42:29
  */
 
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SysCompany extends SModel
+class SysCompanyResx extends SModel
 {
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -36,21 +36,7 @@ class SysCompany extends SModel
      *
      * @var string
      */
-    protected $table = 'sysCompany';
-
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'ma_cty';
-
-    /**
-     * The "type" of the primary key ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
+    protected $table = 'sysCompanyResx';
 
     /**
      * The "booted" method of the model.

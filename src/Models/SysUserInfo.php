@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-23 15:52:04
+ * @lastupdate 2025-05-24 12:44:10
  */
 
 namespace Diepxuan\Simba\Models;
@@ -18,6 +18,23 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class SysUserInfo extends Model
 {
+    public function companyRights()
+    {
+        return $this->hasMany(SysUserCompanyRight::class, 'Username', 'username');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany(
+            SysCompany::class,
+            'sysUserCompanyRight',
+            'Username',  // Foreign key on pivot (trỏ tới user)
+            'Ma_cty',    // Foreign key on pivot (trỏ tới company)
+            'username',  // Local key on this model
+            'ma_cty'     // Local key on SysCompany
+        );
+    }
+
     /**
      * is Enable scope.
      *
