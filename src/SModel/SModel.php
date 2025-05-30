@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-03-30 00:43:16
+ * @lastupdate 2025-05-27 17:49:07
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -83,6 +83,14 @@ abstract class SModel extends Model
     protected $connection;
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+    ];
+
+    /**
      * Create a new Eloquent model instance.
      */
     public function __construct(array $attributes = [])
@@ -129,5 +137,16 @@ abstract class SModel extends Model
         static::addGlobalScope('onlyFirstCompany', static function (Builder $builder) use ($table): void {
             $builder->where($table ? $table . '.ma_cty' : 'ma_cty', static::CTY);
         });
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        // return $this->casts;
+        return array_merge(parent::casts(), $this->casts);
     }
 }
