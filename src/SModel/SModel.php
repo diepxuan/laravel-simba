@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-27 17:49:07
+ * @lastupdate 2025-05-31 10:04:41
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -117,15 +117,42 @@ abstract class SModel extends Model
      * Scope a query to only include the last n days records.
      *
      * @param Builder $query
-     * @param mixed   $fieldName
      * @param mixed   $fromDate
      * @param mixed   $toDate
-     *
-     * @return Builder
+     * @param mixed   $fieldName
      */
-    public function scopeWhereDateBetween($query, $fieldName, $fromDate, $toDate)
+    public function scopeWhereDateBetween($query, $fromDate, $toDate, string $fieldName = 'ngay_ct'): Builder
     {
+        // return $query->whereBetween($fieldName, [$fromDate, $toDate]);
+
         return $query->whereDate($fieldName, '>=', $fromDate)->whereDate($fieldName, '<=', $toDate);
+    }
+
+    /** Filter theo khoảng ngày */
+    public function scopeFilterByNgayCt(Builder $query, string $from, string $to): Builder
+    {
+        return $query->whereDateBetween($from, $to, 'ngay_ct');
+    }
+
+    public function scopeFilterLikeList(Builder $query, string $column, string $csv): Builder
+    {
+        $items = array_filter(array_map('trim', explode(',', $csv)));
+
+        return $query->where(static function ($q) use ($items, $column): void {
+            foreach ($items as $item) {
+                $q->orWhere($column, 'like', $item . '%');
+            }
+        });
+    }
+
+    /** Filter theo mã công ty */
+    public function scopeFilterByMaCty(Builder $query, ?string $maCty = null, string $fieldName = 'ma_cty'): Builder
+    {
+        if (null === $maCty) {
+            $maCty = \CatalogService::company()->ma_cty ?? static::CTY;
+        }
+
+        return $query->where($fieldName, $maCty);
     }
 
     /**
