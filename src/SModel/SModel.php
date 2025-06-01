@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-31 10:04:41
+ * @lastupdate 2025-06-01 18:34:08
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -16,6 +16,7 @@ namespace Diepxuan\Simba\SModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 
 abstract class SModel extends Model
 {
@@ -160,9 +161,23 @@ abstract class SModel extends Model
      */
     protected static function booted(): void
     {
-        $table = (new static())->getTable();
-        static::addGlobalScope('onlyFirstCompany', static function (Builder $builder) use ($table): void {
-            $builder->where($table ? $table . '.ma_cty' : 'ma_cty', static::CTY);
+        static::addGlobalScope('onlyFirstCompany', static function (Builder $builder): void {
+            $tableName = (new static())->getTable();
+
+            if (!Schema::hasColumn($tableName, 'ma_cty')) {
+                return; // Không có cột ma_cty thì không thêm where
+            }
+
+            $column = $tableName ? $tableName . '.ma_cty' : 'ma_cty';
+            $maCty  = static::CTY;
+
+            if (class_exists(\CatalogService::class) && method_exists(\CatalogService::class, 'company')) {
+                $maCty = \CatalogService::company()?->ma_cty ?? $maCty;
+            }
+
+            if (null !== $maCty) {
+                $builder->where($column, $maCty);
+            }
         });
     }
 
