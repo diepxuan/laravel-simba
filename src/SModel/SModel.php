@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-01 18:34:08
+ * @lastupdate 2025-06-09 09:40:31
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -139,11 +139,19 @@ abstract class SModel extends Model
     {
         $items = array_filter(array_map('trim', explode(',', $csv)));
 
-        return $query->where(static function ($q) use ($items, $column): void {
+        if (0 === \count($items)) {
+            return $query;
+        }
+
+        if (1 === \count($items)) {
+            return $query->where('tk', 'like', $items[0] . '%');
+        }
+
+        return \count($items) > 1 ? $query->where(static function ($q) use ($items, $column): void {
             foreach ($items as $item) {
                 $q->orWhere($column, 'like', $item . '%');
             }
-        });
+        }) : $query;
     }
 
     /** Filter theo mã công ty */
@@ -162,9 +170,10 @@ abstract class SModel extends Model
     protected static function booted(): void
     {
         static::addGlobalScope('onlyFirstCompany', static function (Builder $builder): void {
-            $tableName = (new static())->getTable();
+            $tableName  = (new static())->getTable();
+            $connection = (new static())->getConnectionName() ?? config('database.default');
 
-            if (!Schema::hasColumn($tableName, 'ma_cty')) {
+            if (!Schema::connection($connection)->hasColumn($tableName, 'ma_cty')) {
                 return; // Không có cột ma_cty thì không thêm where
             }
 

@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-01 19:56:55
+ * @lastupdate 2025-06-03 16:15:07
  */
 
 namespace Diepxuan\Simba\Models;
@@ -61,6 +61,28 @@ class GlCt extends Model
     public function arDmKh()
     {
         return $this->belongsTo(ArDmKh::class, 'ma_kh', 'ma_kh');
+    }
+
+    /**
+     * Gọi stored procedure asCARptTMNH01 để lấy dữ liệu báo cáo tiền mặt ngân hàng.
+     *
+     * @return array
+     */
+    public static function getCARptTMNH01(array $params): Collection
+    {
+        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asCARptTMNH01
+            @pMa_Cty = :pMa_Cty,
+            @pNgay_Ct1 = :pNgay_Ct1,
+            @pNgay_Ct2 = :pNgay_Ct2,
+            @pTk = :pTk,
+            @pMa_Nt = :pMa_Nt
+        ', [
+            'pMa_Cty'   => $params['ma_Cty'] ?? '111',
+            'pTk'       => $params['tk'] ?? '111',
+            'pNgay_Ct1' => $params['ngay_Ct1'],
+            'pNgay_Ct2' => $params['ngay_Ct2'],
+            'pMa_Nt'    => $params['ma_Nt'] ?? 'VND',
+        ]));
     }
 
     /**
