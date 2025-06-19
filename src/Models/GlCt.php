@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-03 16:15:07
+ * @lastupdate 2025-06-19 22:18:54
  */
 
 namespace Diepxuan\Simba\Models;
@@ -88,7 +88,7 @@ class GlCt extends Model
     /**
      * Gọi stored procedure asGLRptNKC03 để lấy dữ liệu sổ nhật ký thu/chi.
      */
-    public static function getNKC03Report(array $params): Collection
+    public static function getGLRptNKC03(array $params): Collection
     {
         return collect(DB::connection((new static())->getConnectionName())->select('EXEC asGLRptNKC03
             @pMa_Cty = :pMa_Cty,
@@ -99,13 +99,13 @@ class GlCt extends Model
             @pMa_Bp = :pMa_Bp,
             @pMa_Nt = :pMa_Nt
         ', [
-            'pMa_Cty'    => $params['ma_cty'] ?? '',
-            'pNgay_Ct1'  => $params['ngay_ct1'] ?? '2000-01-01',
-            'pNgay_Ct2'  => $params['ngay_ct2'] ?? now(),
-            'pTk_List'   => $params['tk_list'] ?? '111,112',
-            'pTkdu_List' => $params['tkdu_list'] ?? '',
-            'pMa_Bp'     => $params['ma_bp'] ?? '',
-            'pMa_Nt'     => $params['ma_nt'] ?? 'VND',
+            'pMa_Cty'    => $params['pMa_Cty'] ?? '',
+            'pNgay_Ct1'  => $params['pNgay_Ct1'] ?? '2025-05-01',
+            'pNgay_Ct2'  => $params['pNgay_Ct2'] ?? now(),
+            'pTk_List'   => $params['pTk_List'] ?? '111,112',
+            'pTkdu_List' => $params['pTkdu_List'] ?? '',
+            'pMa_Bp'     => $params['pMa_Bp'] ?? '',
+            'pMa_Nt'     => $params['pMa_Nt'] ?? 'VND',
         ]));
     }
 }
