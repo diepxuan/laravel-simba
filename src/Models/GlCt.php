@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-19 22:18:54
+ * @lastupdate 2025-06-20 11:08:40
  */
 
 namespace Diepxuan\Simba\Models;
@@ -102,7 +102,7 @@ class GlCt extends Model
             'pMa_Cty'    => $params['pMa_Cty'] ?? '',
             'pNgay_Ct1'  => $params['pNgay_Ct1'] ?? '2025-05-01',
             'pNgay_Ct2'  => $params['pNgay_Ct2'] ?? now(),
-            'pTk_List'   => $params['pTk_List'] ?? '111,112',
+            'pTk_List'   => $params['pTk_List'] ?? '',
             'pTkdu_List' => $params['pTkdu_List'] ?? '',
             'pMa_Bp'     => $params['pMa_Bp'] ?? '',
             'pMa_Nt'     => $params['pMa_Nt'] ?? 'VND',
