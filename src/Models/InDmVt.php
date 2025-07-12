@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-05-31 09:07:05
+ * @lastupdate 2025-07-12 15:43:29
  */
 
 namespace Diepxuan\Simba\Models;
@@ -16,6 +16,7 @@ namespace Diepxuan\Simba\Models;
 use Diepxuan\Simba\SModel\InDmVt as Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class InDmVt extends Model
@@ -70,6 +71,26 @@ class InDmVt extends Model
             EOF;
 
         return $query->addSelect('*')->addSelect(DB::raw($sql));
+    }
+
+    /**
+     * Gọi stored procedure asINGetDMVT để lấy dữ Danh sách vật tư - hàng hóa.
+     *
+     * @return array
+     */
+    public static function getAsINGetDMVT(array $params): Collection
+    {
+        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asINGetDMVT
+            @pMa_Cty = :pMa_Cty,
+            @pMa_vt = :pMa_vt,
+            @pStruct = :pStruct,
+            @pLanguage = :pLanguage
+        ', [
+            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
+            'pMa_vt'    => $params['pMa_vt'] ?? null,
+            'pStruct'   => $params['pStruct'] ?? null,
+            'pLanguage' => $params['pLanguage'] ?? SysLanguage::DEFAULT,
+        ]));
     }
 
     /**
