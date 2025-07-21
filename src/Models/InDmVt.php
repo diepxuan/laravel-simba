@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-07-12 15:43:29
+ * @lastupdate 2025-07-14 21:49:21
  */
 
 namespace Diepxuan\Simba\Models;
@@ -90,6 +90,44 @@ class InDmVt extends Model
             'pMa_vt'    => $params['pMa_vt'] ?? null,
             'pStruct'   => $params['pStruct'] ?? null,
             'pLanguage' => $params['pLanguage'] ?? SysLanguage::DEFAULT,
+        ]));
+    }
+
+    /**
+     * Gọi stored procedure asINRptCD02 để lấy dữ Báo cáo tồn kho.
+     *
+     * @return array
+     */
+    public static function getAsINRptCD02(array $params): Collection
+    {
+        return collect(DB::connection((new static())->getConnectionName())->select('EXECUTE asINRptCD02
+            @pMa_Cty = :pMa_Cty,
+            @pMa_vt = :pMa_vt,
+            @pMa_kho = :pMa_kho,
+            @pMa_vitri = :pMa_vitri,
+            @pTk_vt = :pTk_vt,
+            @pMa_nhvt = :pMa_nhvt,
+            @pNgay = :pNgay,
+            @pDVT = :pDVT,
+            @pNgoai_te = :pNgoai_te,
+            @pDk_Ck = :pDk_Ck,
+            @pMa_lo = :pMa_lo,
+            @pQuaToiThieu = :pQuaToiThieu,
+            @pQuaToiDa = :pQuaToiDa
+        ', [
+            'pMa_Cty'      => $params['pMa_Cty'] ?? '',
+            'pMa_vt'       => $params['pMa_vt'] ?? '',
+            'pMa_kho'      => $params['pMa_kho'] ?? '',
+            'pMa_vitri'    => $params['pMa_vitri'] ?? '',
+            'pTk_vt'       => $params['pTk_vt'] ?? '',
+            'pMa_nhvt'     => $params['pMa_nhvt'] ?? '',
+            'pNgay'        => $params['pNgay'] ?? '',
+            'pDVT'         => $params['pDVT'] ?? '0',
+            'pNgoai_te'    => $params['pNgoai_te'] ?? '',
+            'pDk_Ck'       => $params['pDk_Ck'] ?? 1,
+            'pMa_lo'       => $params['pMa_lo'] ?? '',
+            'pQuaToiThieu' => $params['pQuaToiThieu'] ?? 0,
+            'pQuaToiDa'    => $params['pQuaToiDa'] ?? 0,
         ]));
     }
 
