@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-08-02 20:04:36
+ * @lastupdate 2025-08-02 20:51:14
  */
 
 namespace Diepxuan\Simba\Models;
@@ -83,15 +83,22 @@ class InDmNhvt extends Model
      */
     public static function getAsINGetDMNHVT(array $params): Collection
     {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXECUTE asINGetDMNHVT
-            @pMa_Cty = :pMa_Cty,
-            @pMa_nhvt = :pMa_nhvt,
-            @pStruct = :pStruct
-        ', [
-            'pMa_Cty'  => $params['pMa_Cty'] ?? '',
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pStruct'  => $params['pStruct'] ?? null,
-        ]));
+        \Debugbar::info($params);
+
+        return collect(DB::connection((new static())->getConnectionName())->select(
+            <<<'EOF'
+                EXECUTE asINGetDMNHVT
+                @pMa_Cty = :pMa_Cty,
+                @pMa_nhvt = :pMa_nhvt,
+                @pStruct = :pStruct
+                EOF
+            ,
+            [
+                'pMa_Cty'  => $params['pMa_Cty'] ?? '',
+                'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
+                'pStruct'  => $params['pStruct'] ?? null,
+            ]
+        ));
     }
 
     /**
