@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-12-22 20:34:05
+ * @lastupdate 2025-08-02 18:42:15
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -17,8 +17,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class InDmNhvt extends SModel
 {
-    public const CREATED_AT = 'cDate';
-    public const UPDATED_AT = 'lDate';
+    public const CREATED_AT = 'cdate';
+    public const UPDATED_AT = 'ldate';
 
     /**
      * Indicates if the IDs are auto-incrementing.
