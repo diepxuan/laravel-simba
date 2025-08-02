@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-08-02 20:51:14
+ * @lastupdate 2025-08-02 21:46:14
  */
 
 namespace Diepxuan\Simba\Models;
@@ -83,7 +83,7 @@ class InDmNhvt extends Model
      */
     public static function getAsINGetDMNHVT(array $params): Collection
     {
-        \Debugbar::info($params);
+        // \Debugbar::info($params);
 
         return collect(DB::connection((new static())->getConnectionName())->select(
             <<<'EOF'

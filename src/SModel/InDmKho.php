@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2024-06-14 21:29:56
+ * @lastupdate 2025-08-02 21:18:25
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -20,8 +20,8 @@ class InDmKho extends SModel
 {
     use HasCompositePrimaryKey;
 
-    public const CREATED_AT = 'cDate';
-    public const UPDATED_AT = 'lDate';
+    public const CREATED_AT = 'cdate';
+    public const UPDATED_AT = 'ldate';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -42,7 +42,14 @@ class InDmKho extends SModel
      *
      * @var string
      */
-    protected $primaryKey = ['ma_cty', 'ma_vt'];
+    protected $primaryKey = 'ma_kho';
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * The attributes that should be cast.
