@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-09 09:40:31
+ * @lastupdate 2026-01-12 00:14:24
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 
-abstract class SModel extends Model
+class SModel extends Model
 {
     use HasFactory;
 
