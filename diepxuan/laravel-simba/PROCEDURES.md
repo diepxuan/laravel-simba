@@ -4,7 +4,7 @@ Dự án chuyển đổi stored procedures từ Simba SQL Server sang class PHP 
 
 ## Tổng quan
 
-- **Tổng số procedures đã chuyển đổi**: 337 (cập nhật 2026-02-11)
+- **Tổng số procedures đã chuyển đổi**: 343 (cập nhật 2026-02-11)
 - **Tổng số procedures ước tính**: 1831 (theo số file as*.sql).
 - **Nhóm đã hoàn thành một phần**: Accounts Payable (asAP*), Accounts Receivable (asAR*), General Ledger (asGL*), Sales & Inventory (asSI*), Inventory (asIN*), Purchase Order (asPO*), Human Resources (asHR*), Fixed Assets (asFA*), Cost Accounting (asCA*), Banking (asBN*).
 
@@ -40,6 +40,7 @@ Dự án chuyển đổi stored procedures từ Simba SQL Server sang class PHP 
 | Recalculate | `asReCal*` | 17 | 17 | [procedures-recal.md](docs/procedures-recal.md) |
 | Check | `asCheck*` | 2 | 2 | [procedures-check.md](docs/procedures-check.md) |
 | Check (asChk*) | `asChk*` | 5 | 5 | [procedures-chk.md](docs/procedures-chk.md) |
+| Remaining (other) | various | ? | 6 | [procedures-remaining-1.md](docs/procedures-remaining-1.md) |
 
 ## Cấu trúc class
 
