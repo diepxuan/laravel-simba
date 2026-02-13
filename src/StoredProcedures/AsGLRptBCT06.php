@@ -16,14 +16,17 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
-class AsCTBCTC_SB
+class AsGLRptBCT06
 {
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('AsCTBCTC_SB', [
-            'pma_cty' => $params['pma_cty'] ?? null
+        return ProcedureCaller::call('asGLRptBCT06', [
+            'pMa_Cty' => $params['pMa_Cty'] ?? null,
+            'pNgay1' => $params['pNgay1'] ?? null,
+            'pNgay2' => $params['pNgay2'] ?? null,
+            'pMau' => $params['pMau'] ?? null
         ], $connection);
     }
 }

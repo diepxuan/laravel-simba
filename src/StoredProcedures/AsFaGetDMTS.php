@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-13 00:03:49
+ * @lastupdate 2026-02-13 00:00:12
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -16,14 +16,16 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
-class AsCTBCTC_SB
+class AsFaGetDMTS
 {
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('AsCTBCTC_SB', [
-            'pma_cty' => $params['pma_cty'] ?? null
+        return ProcedureCaller::call('asFaGetDMTS', [
+            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_ts' => $params['pMa_ts'] ?? null,
+            'pStruct' => $params['pStruct'] ?? null,
         ], $connection);
     }
 }

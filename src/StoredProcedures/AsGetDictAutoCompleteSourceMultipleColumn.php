@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-02-13 00:03:56
+ */
+
+namespace Diepxuan\Simba\StoredProcedures;
+
+use Diepxuan\Simba\SModel\SModel;
+use Illuminate\Support\Collection;
+
+class AsGetDictAutoCompleteSourceMultipleColumn
+{
+    public static function call(array $params): Collection
+    {
+        $connection = (new SModel())->getConnectionName();
+
+        return ProcedureCaller::call('asGetDictAutoCompleteSourceMultipleColumn', [
+            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pTableName' => $params['pTableName'] ?? null,
+            'pCodeName' => $params['pCodeName'] ?? null,
+            'pNameFName' => $params['pNameFName'] ?? null,
+            'pFieldList' => $params['pFieldList'] ?? null,
+            'pWhere' => $params['pWhere'] ?? null
+        ], $connection);
+    }
+}
