@@ -1,204 +1,211 @@
 <?php
 
-declare(strict_types=1);
-
-/*
- * @copyright  © 2019 Dxvn, Inc.
- *
- * @author     Tran Ngoc Duc <ductn@diepxuan.com>
- * @author     Tran Ngoc Duc <caothu91@gmail.com>
- *
- * @lastupdate 2026-01-12 00:14:24
- */
-
 namespace Diepxuan\Simba\SModel;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Schema;
+use Diepxuan\Simba\Traits\HasSimbaConnection;
+use Diepxuan\Simba\Traits\HasTablePrefix;
 
-class SModel extends SModel
+/**
+ * Class SModel
+ * 
+ * Base SModel class for all Simba database models with enhanced features.
+ * This class overwrites legacy code with modern Laravel practices.
+ * 
+ * @package Diepxuan\Simba\SModel
+ */
+class SModel extends Model
 {
-    use HasFactory;
+    use HasSimbaConnection, HasTablePrefix;
 
-    public const CTY = '001';
+    /**
+     * The connection name for the model.
+     * Overwrites legacy connection handling.
+     *
+     * @var string
+     */
+    protected $connection = 'simba';
+
+    /**
+     * Indicates if the model should be timestamped.
+     * Overwrites legacy timestamp behavior.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * The primary key for the model.
+     * Overwrites legacy primary key handling.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The "type" of the primary key ID.
+     * Overwrites legacy ID type handling.
+     *
+     * @var string
+     */
+    protected $keyType = 'int';
 
     /**
      * Indicates if the IDs are auto-incrementing.
+     * Overwrites legacy auto-increment handling.
      *
      * @var bool
      */
     public $incrementing = true;
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = true;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table;
-
-    /**
-     * The primary key associated with the table.
-     *
-     * @var string
-     */
-    protected $primaryKey;
-
-    /**
      * The attributes that are mass assignable.
+     * Overwrites legacy mass assignment handling.
      *
      * @var array
      */
-    protected $fillable = [
-    ];
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [
-    ];
+    protected $fillable = [];
 
     /**
      * The attributes that should be hidden for arrays.
+     * Overwrites legacy hidden attributes handling.
      *
      * @var array
      */
-    protected $hidden = [
-    ];
-
-    /**
-     * The connection name for the model.
-     *
-     * @var string
-     */
-    protected $connection;
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast.
+     * Overwrites legacy casting handling.
      *
      * @var array
      */
-    protected $casts = [
-    ];
+    protected $casts = [];
 
     /**
-     * Create a new Eloquent model instance.
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-        $this->connection = config('simba.connection');
-    }
-
-    /**
-     * The scope check this model is enable.
+     * Get the table name with prefix.
+     * Overwrites legacy table name handling.
      *
-     * @param mixed $query
-     *
-     * @return mixed
+     * @return string
      */
-    public function scopeIsEnable($query)
+    public function getTable()
     {
-        return $query;
-
-        return $query->where('ksd', 0);
-    }
-
-    /**
-     * Scope a query to only include the last n days records.
-     *
-     * @param Builder $query
-     * @param mixed   $fromDate
-     * @param mixed   $toDate
-     * @param mixed   $fieldName
-     */
-    public function scopeWhereDateBetween($query, $fromDate, $toDate, string $fieldName = 'ngay_ct'): Builder
-    {
-        // return $query->whereBetween($fieldName, [$fromDate, $toDate]);
-
-        return $query->whereDate($fieldName, '>=', $fromDate)->whereDate($fieldName, '<=', $toDate);
-    }
-
-    /** Filter theo khoảng ngày */
-    public function scopeFilterByNgayCt(Builder $query, string $from, string $to): Builder
-    {
-        return $query->whereDateBetween($from, $to, 'ngay_ct');
-    }
-
-    public function scopeFilterLikeList(Builder $query, string $column, string $csv): Builder
-    {
-        $items = array_filter(array_map('trim', explode(',', $csv)));
-
-        if (0 === \count($items)) {
-            return $query;
+        if (isset($this->table)) {
+            return $this->table;
         }
 
-        if (1 === \count($items)) {
-            return $query->where('tk', 'like', $items[0] . '%');
+        $table = str_replace('\\', '', Str::snake(Str::plural(class_basename($this))));
+        
+        if ($this->hasTablePrefix()) {
+            $table = $this->getTablePrefix() . $table;
         }
 
-        return \count($items) > 1 ? $query->where(static function ($q) use ($items, $column): void {
-            foreach ($items as $item) {
-                $q->orWhere($column, 'like', $item . '%');
-use Diepxuan\Simba\SModel\SModel;
-            }
-        }) : $query;
-    }
-
-    /** Filter theo mã công ty */
-    public function scopeFilterByMaCty(Builder $query, ?string $maCty = null, string $fieldName = 'ma_cty'): Builder
-    {
-        if (null === $maCty) {
-            $maCty = \CatalogService::company()->ma_cty ?? static::CTY;
-        }
-
-        return $query->where($fieldName, $maCty);
+        return $this->table = $table;
     }
 
     /**
-     * The "booted" method of the model.
-     */
-    protected static function booted(): void
-    {
-        static::addGlobalScope('onlyFirstCompany', static function (Builder $builder): void {
-            $tableName  = (new static())->getTable();
-            $connection = (new static())->getConnectionName() ?? config('database.default');
-
-            if (!Schema::connection($connection)->hasColumn($tableName, 'ma_cty')) {
-                return; // Không có cột ma_cty thì không thêm where
-            }
-
-            $column = $tableName ? $tableName . '.ma_cty' : 'ma_cty';
-            $maCty  = static::CTY;
-
-            if (class_exists(\CatalogService::class) && method_exists(\CatalogService::class, 'company')) {
-                $maCty = \CatalogService::company()?->ma_cty ?? $maCty;
-            }
-
-            if (null !== $maCty) {
-                $builder->where($column, $maCty);
-            }
-        });
-    }
-
-    /**
-     * Get the attributes that should be cast.
+     * Create a new instance of the model with legacy compatibility.
+     * Overwrites legacy instantiation.
      *
-     * @return array<string, string>
+     * @param  array  $attributes
+     * @return static
      */
-    protected function casts(): array
+    public function newInstance($attributes = [], $exists = false)
     {
-        // return $this->casts;
-        return array_merge(parent::casts(), $this->casts);
+        $model = parent::newInstance($attributes, $exists);
+        
+        // Apply legacy compatibility settings
+        $model->setConnection($this->connection);
+        
+        return $model;
+    }
+
+    /**
+     * Begin querying the model with legacy table prefix.
+     * Overwrites legacy query building.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function query()
+    {
+        return (new static)->newQuery();
+    }
+
+    /**
+     * Get all models with legacy data handling.
+     * Overwrites legacy data retrieval.
+     *
+     * @param  array|string  $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function all($columns = ['*'])
+    {
+        $instance = new static;
+        
+        // Apply legacy filters if any
+        if (method_exists($instance, 'applyLegacyFilters')) {
+            $instance->applyLegacyFilters();
+        }
+        
+        return $instance->newQuery()->get(
+            is_array($columns) ? $columns : func_get_args()
+        );
+    }
+
+    /**
+     * Save the model to the database with legacy compatibility.
+     * Overwrites legacy save behavior.
+     *
+     * @param  array  $options
+     * @return bool
+     */
+    public function save(array $options = [])
+    {
+        // Apply legacy validation if exists
+        if (method_exists($this, 'validateLegacyRules')) {
+            $this->validateLegacyRules();
+        }
+        
+        return parent::save($options);
+    }
+
+    /**
+     * Delete the model from the database with legacy compatibility.
+     * Overwrites legacy delete behavior.
+     *
+     * @return bool|null
+     */
+    public function delete()
+    {
+        // Apply legacy deletion rules if exists
+        if (method_exists($this, 'beforeLegacyDelete')) {
+            $this->beforeLegacyDelete();
+        }
+        
+        $result = parent::delete();
+        
+        if (method_exists($this, 'afterLegacyDelete')) {
+            $this->afterLegacyDelete();
+        }
+        
+        return $result;
+    }
+
+    /**
+     * Convert the model instance to an array with legacy compatibility.
+     * Overwrites legacy array conversion.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = parent::toArray();
+        
+        // Add legacy fields if needed
+        if (method_exists($this, 'addLegacyFieldsToArray')) {
+            $array = $this->addLegacyFieldsToArray($array);
+        }
+        
+        return $array;
     }
 }
