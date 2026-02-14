@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\SModel;
 
+use Diepxuan\Simba\SModel\SModel;
+use Diepxuan\Simba\SModel\SModel;
+
 class ArDmKh extends SModel
 {
     public const CREATED_AT = 'cdate';
@@ -38,6 +41,14 @@ class ArDmKh extends SModel
      * @var string
      */
     protected $primaryKey = 'ma_kh';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    ];
 
     /**
      * The attributes that should be cast.

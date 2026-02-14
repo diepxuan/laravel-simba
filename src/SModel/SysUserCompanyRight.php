@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Diepxuan\Simba\SModel\SModel;
 
 class SysUserCompanyRight extends SModel
 {
@@ -39,6 +40,13 @@ class SysUserCompanyRight extends SModel
     protected $table = 'sysUserCompanyRight';
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -46,6 +54,14 @@ class SysUserCompanyRight extends SModel
     protected $fillable = [
         'Username',
         'Ma_cty',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
     ];
 
     /**

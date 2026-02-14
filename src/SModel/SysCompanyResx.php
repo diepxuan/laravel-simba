@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Diepxuan\Simba\SModel\SModel;
 
 class SysCompanyResx extends SModel
 {
@@ -37,6 +38,29 @@ class SysCompanyResx extends SModel
      * @var string
      */
     protected $table = 'sysCompanyResx';
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+    ];
 
     /**
      * The "booted" method of the model.

@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class InDmKho extends SModel
 {
     use HasCompositePrimaryKey;
+use Diepxuan\Simba\SModel\SModel;
 
     public const CREATED_AT = 'cdate';
     public const UPDATED_AT = 'ldate';
@@ -43,6 +44,14 @@ class InDmKho extends SModel
      * @var string
      */
     protected $primaryKey = 'ma_kho';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    ];
 
     /**
      * The "type" of the primary key ID.

@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\SModel;
 
+use Diepxuan\Simba\SModel\SModel;
+
 class GlDmTk extends SModel
 {
     public const CREATED_AT = 'cDate';
@@ -38,6 +40,14 @@ class GlDmTk extends SModel
      * @var string
      */
     protected $primaryKey = 'tk';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    ];
 
     /**
      * The attributes that should be cast.

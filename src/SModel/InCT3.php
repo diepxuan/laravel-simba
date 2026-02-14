@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Diepxuan\Simba\SModel\SModel;
 
 class InCT3 extends SModel
 {
@@ -40,4 +41,20 @@ class InCT3 extends SModel
      * @var string
      */
     protected $primaryKey = 'stt_rec';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+    ];
 }

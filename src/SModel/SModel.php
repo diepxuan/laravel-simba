@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 
-class SModel extends Model
+class SModel extends SModel
 {
     use HasFactory;
 
@@ -150,6 +150,7 @@ class SModel extends Model
         return \count($items) > 1 ? $query->where(static function ($q) use ($items, $column): void {
             foreach ($items as $item) {
                 $q->orWhere($column, 'like', $item . '%');
+use Diepxuan\Simba\SModel\SModel;
             }
         }) : $query;
     }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Diepxuan\Simba\SModel\SModel;
 
 class SysCompany extends SModel
 {
@@ -44,6 +45,22 @@ class SysCompany extends SModel
      * @var string
      */
     protected $primaryKey = 'ma_cty';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+    ];
 
     /**
      * The "type" of the primary key ID.
