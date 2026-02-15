@@ -1,0 +1,224 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-02-15 00:36:46
+ */
+
+namespace Diepxuan\Simba\StoredProcedures;
+
+use Diepxuan\Simba\SModel\SModel;
+use Illuminate\Support\Collection;
+
+class AsPOUpdPH3
+{
+    /**
+     * Call stored procedure asPOUpdPH3
+     *
+     * @param array $params Procedure parameters
+     * @return Collection
+     */
+    public static function call(array $params): Collection
+    {
+        $connection = (new SModel())->getConnectionName();
+
+        return ProcedureCaller::call('asPOUpdPH3', [
+            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pStt_rec' => $params['pStt_rec'] ?? null,
+            'pMa_ct' => $params['pMa_ct'] ?? null,
+            'pMa_gd' => $params['pMa_gd'] ?? null,
+            'pmau_hd' => $params['pmau_hd'] ?? null,
+            'pMa_kh' => $params['pMa_kh'] ?? null,
+            'pDia_chi' => $params['pDia_chi'] ?? null,
+            'pNguoi_gd' => $params['pNguoi_gd'] ?? null,
+            'pMa_httt' => $params['pMa_httt'] ?? null,
+            'pTk_pt' => $params['pTk_pt'] ?? null,
+            'pDien_giai' => $params['pDien_giai'] ?? null,
+            'pSo_seri' => $params['pSo_seri'] ?? null,
+            'pSo_ct' => $params['pSo_ct'] ?? null,
+            'pNgay_ct' => $params['pNgay_ct'] ?? null,
+            'pNgay_lct' => $params['pNgay_lct'] ?? null,
+            'pKht_tain' => $params['pKht_tain'] ?? null,
+            'pNgay_pn' => $params['pNgay_pn'] ?? null,
+            'pSo_pn' => $params['pSo_pn'] ?? null,
+            'pNgay_hd' => $params['pNgay_hd'] ?? null,
+            'pSo_hd' => $params['pSo_hd'] ?? null,
+            'pMa_tt_po' => $params['pMa_tt_po'] ?? null,
+            'pHan_ck' => $params['pHan_ck'] ?? null,
+            'pTl_ck' => $params['pTl_ck'] ?? null,
+            'pHan_tt' => $params['pHan_tt'] ?? null,
+            'pLs_qh' => $params['pLs_qh'] ?? null,
+            'pMa_nt' => $params['pMa_nt'] ?? null,
+            'pTy_gia' => $params['pTy_gia'] ?? null,
+            'pT_tien_nt0' => $params['pT_tien_nt0'] ?? null,
+            'pT_tien0' => $params['pT_tien0'] ?? null,
+            'pT_thue_nk_nt' => $params['pT_thue_nk_nt'] ?? null,
+            'pT_thue_nk' => $params['pT_thue_nk'] ?? null,
+            'pT_thue_ttdb_nt' => $params['pT_thue_ttdb_nt'] ?? null,
+            'pT_thue_ttdb' => $params['pT_thue_ttdb'] ?? null,
+            'pT_cp_nt' => $params['pT_cp_nt'] ?? null,
+            'pT_cp' => $params['pT_cp'] ?? null,
+            'pT_tien_nt' => $params['pT_tien_nt'] ?? null,
+            'pT_tien' => $params['pT_tien'] ?? null,
+            'pT_thue_nt' => $params['pT_thue_nt'] ?? null,
+            'pT_thue' => $params['pT_thue'] ?? null,
+            'pTl_ck_hd' => $params['pTl_ck_hd'] ?? null,
+            'pT_ck' => $params['pT_ck'] ?? null,
+            'pT_ck_nt' => $params['pT_ck_nt'] ?? null,
+            'pT_tt' => $params['pT_tt'] ?? null,
+            'pT_tt_nt' => $params['pT_tt_nt'] ?? null,
+            'pT_so_luong' => $params['pT_so_luong'] ?? null,
+            'pSua_tien' => $params['pSua_tien'] ?? null,
+            'pSua_thue' => $params['pSua_thue'] ?? null,
+            'pSua_thue_nk' => $params['pSua_thue_nk'] ?? null,
+            'pSua_thue_ttdb' => $params['pSua_thue_ttdb'] ?? null,
+            'pSua_Tt' => $params['pSua_Tt'] ?? null,
+            'pTao_tu_pn' => $params['pTao_tu_pn'] ?? null,
+            'pTao_tu_dh' => $params['pTao_tu_dh'] ?? null,
+            'pTs_nk' => $params['pTs_nk'] ?? null,
+            'pTs_ttdb' => $params['pTs_ttdb'] ?? null,
+            'pGhi_chu' => $params['pGhi_chu'] ?? null,
+            'pPost2gl' => $params['pPost2gl'] ?? null,
+            'pTrang_thai' => $params['pTrang_thai'] ?? null,
+            'pLUser' => $params['pLUser'] ?? null,
+            'pRet' => $params['pRet'] ?? null
+        ], $connection);
+    }
+
+    /**
+     * Call stored procedure asPOUpdPH3 with named parameters
+     *
+     * @param string $Ma_cty
+     * @param string $Stt_rec
+     * @param string $Ma_ct
+     * @param string $Ma_gd
+     * @param string $mau_hd
+     * @param string $Ma_kh
+     * @param string $Dia_chi
+     * @param string $Nguoi_gd
+     * @param string $Ma_httt
+     * @param string $Tk_pt
+     * @param string $Dien_giai
+     * @param string $So_seri
+     * @param string $So_ct
+     * @param string $Ngay_ct
+     * @param string $Ngay_lct
+     * @param bool $Kht_tain
+     * @param string $Ngay_pn
+     * @param string $So_pn
+     * @param string $Ngay_hd
+     * @param string $So_hd
+     * @param string $Ma_tt_po
+     * @param float $Han_ck
+     * @param float $Tl_ck
+     * @param float $Han_tt
+     * @param float $Ls_qh
+     * @param string $Ma_nt
+     * @param float $Ty_gia
+     * @param float $T_tien_nt0
+     * @param float $T_tien0
+     * @param float $T_thue_nk_nt
+     * @param float $T_thue_nk
+     * @param float $T_thue_ttdb_nt
+     * @param float $T_thue_ttdb
+     * @param float $T_cp_nt
+     * @param float $T_cp
+     * @param float $T_tien_nt
+     * @param float $T_tien
+     * @param float $T_thue_nt
+     * @param float $T_thue
+     * @param float $Tl_ck_hd
+     * @param float $T_ck
+     * @param float $T_ck_nt
+     * @param float $T_tt
+     * @param float $T_tt_nt
+     * @param float $T_so_luong
+     * @param bool $Sua_tien
+     * @param bool $Sua_thue
+     * @param bool $Sua_thue_nk
+     * @param bool $Sua_thue_ttdb
+     * @param bool $Sua_Tt
+     * @param bool $Tao_tu_pn
+     * @param bool $Tao_tu_dh
+     * @param float $Ts_nk
+     * @param float $Ts_ttdb
+     * @param string $Ghi_chu
+     * @param bool $Post2gl
+     * @param string $Trang_thai
+     * @param string $LUser
+     * @param int $Ret
+     * @return Collection
+     */
+    public static function callWithParams(string $Ma_cty = null, string $Stt_rec = null, string $Ma_ct = null, string $Ma_gd = null, string $mau_hd = null, string $Ma_kh = null, string $Dia_chi = null, string $Nguoi_gd = null, string $Ma_httt = null, string $Tk_pt = null, string $Dien_giai = null, string $So_seri = null, string $So_ct = null, string $Ngay_ct = null, string $Ngay_lct = null, bool $Kht_tain = null, string $Ngay_pn = null, string $So_pn = null, string $Ngay_hd = null, string $So_hd = null, string $Ma_tt_po = null, float $Han_ck = null, float $Tl_ck = null, float $Han_tt = null, float $Ls_qh = null, string $Ma_nt = null, float $Ty_gia = null, float $T_tien_nt0 = null, float $T_tien0 = null, float $T_thue_nk_nt = null, float $T_thue_nk = null, float $T_thue_ttdb_nt = null, float $T_thue_ttdb = null, float $T_cp_nt = null, float $T_cp = null, float $T_tien_nt = null, float $T_tien = null, float $T_thue_nt = null, float $T_thue = null, float $Tl_ck_hd = null, float $T_ck = null, float $T_ck_nt = null, float $T_tt = null, float $T_tt_nt = null, float $T_so_luong = null, bool $Sua_tien = null, bool $Sua_thue = null, bool $Sua_thue_nk = null, bool $Sua_thue_ttdb = null, bool $Sua_Tt = null, bool $Tao_tu_pn = null, bool $Tao_tu_dh = null, float $Ts_nk = null, float $Ts_ttdb = null, string $Ghi_chu = null, bool $Post2gl = null, string $Trang_thai = null, string $LUser = null, int $Ret = null): Collection
+    {
+        $params = [
+            'pMa_cty' => $Ma_cty,
+            'pStt_rec' => $Stt_rec,
+            'pMa_ct' => $Ma_ct,
+            'pMa_gd' => $Ma_gd,
+            'pmau_hd' => $mau_hd,
+            'pMa_kh' => $Ma_kh,
+            'pDia_chi' => $Dia_chi,
+            'pNguoi_gd' => $Nguoi_gd,
+            'pMa_httt' => $Ma_httt,
+            'pTk_pt' => $Tk_pt,
+            'pDien_giai' => $Dien_giai,
+            'pSo_seri' => $So_seri,
+            'pSo_ct' => $So_ct,
+            'pNgay_ct' => $Ngay_ct,
+            'pNgay_lct' => $Ngay_lct,
+            'pKht_tain' => $Kht_tain,
+            'pNgay_pn' => $Ngay_pn,
+            'pSo_pn' => $So_pn,
+            'pNgay_hd' => $Ngay_hd,
+            'pSo_hd' => $So_hd,
+            'pMa_tt_po' => $Ma_tt_po,
+            'pHan_ck' => $Han_ck,
+            'pTl_ck' => $Tl_ck,
+            'pHan_tt' => $Han_tt,
+            'pLs_qh' => $Ls_qh,
+            'pMa_nt' => $Ma_nt,
+            'pTy_gia' => $Ty_gia,
+            'pT_tien_nt0' => $T_tien_nt0,
+            'pT_tien0' => $T_tien0,
+            'pT_thue_nk_nt' => $T_thue_nk_nt,
+            'pT_thue_nk' => $T_thue_nk,
+            'pT_thue_ttdb_nt' => $T_thue_ttdb_nt,
+            'pT_thue_ttdb' => $T_thue_ttdb,
+            'pT_cp_nt' => $T_cp_nt,
+            'pT_cp' => $T_cp,
+            'pT_tien_nt' => $T_tien_nt,
+            'pT_tien' => $T_tien,
+            'pT_thue_nt' => $T_thue_nt,
+            'pT_thue' => $T_thue,
+            'pTl_ck_hd' => $Tl_ck_hd,
+            'pT_ck' => $T_ck,
+            'pT_ck_nt' => $T_ck_nt,
+            'pT_tt' => $T_tt,
+            'pT_tt_nt' => $T_tt_nt,
+            'pT_so_luong' => $T_so_luong,
+            'pSua_tien' => $Sua_tien,
+            'pSua_thue' => $Sua_thue,
+            'pSua_thue_nk' => $Sua_thue_nk,
+            'pSua_thue_ttdb' => $Sua_thue_ttdb,
+            'pSua_Tt' => $Sua_Tt,
+            'pTao_tu_pn' => $Tao_tu_pn,
+            'pTao_tu_dh' => $Tao_tu_dh,
+            'pTs_nk' => $Ts_nk,
+            'pTs_ttdb' => $Ts_ttdb,
+            'pGhi_chu' => $Ghi_chu,
+            'pPost2gl' => $Post2gl,
+            'pTrang_thai' => $Trang_thai,
+            'pLUser' => $LUser,
+            'pRet' => $Ret
+        ];
+        
+        return self::call($params);
+    }
+}

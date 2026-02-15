@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-12 13:00:00
+ * @lastupdate 2026-02-15 00:37:04
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -18,17 +18,39 @@ use Illuminate\Support\Collection;
 
 class AsARRptBCCN011
 {
+    /**
+     * Call stored procedure asARRptBCCN011
+     *
+     * @param array $params Procedure parameters
+     * @return Collection
+     */
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARRptBCCN011', [
-            'ma_cty' => $params['pma_cty'] ?? $params['ma_cty'] ?? null,
-            'Ngay1' => $params['pNgay1'] ?? $params['Ngay1'] ?? null,
-            'Ngay2' => $params['pNgay2'] ?? $params['Ngay2'] ?? null,
-            'Tk' => $params['pTk'] ?? $params['Tk'] ?? null,
-            'ma_kh' => $params['pma_kh'] ?? $params['ma_kh'] ?? null,
-            'ma_nt' => $params['pma_nt'] ?? $params['ma_nt'] ?? null,
+            'pSysMsg1' => $params['pSysMsg1'] ?? null,
+            'pSysMsg2' => $params['pSysMsg2'] ?? null,
+            'pSysMsg3' => $params['pSysMsg3'] ?? null
         ], $connection);
+    }
+
+    /**
+     * Call stored procedure asARRptBCCN011 with named parameters
+     *
+     * @param string $SysMsg1
+     * @param string $SysMsg2
+     * @param string $SysMsg3
+     * @return Collection
+     */
+    public static function callWithParams(string $SysMsg1 = null, string $SysMsg2 = null, string $SysMsg3 = null): Collection
+    {
+        $params = [
+            'pSysMsg1' => $SysMsg1,
+            'pSysMsg2' => $SysMsg2,
+            'pSysMsg3' => $SysMsg3
+        ];
+        
+        return self::call($params);
     }
 }

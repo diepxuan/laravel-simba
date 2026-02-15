@@ -1,0 +1,110 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-02-15 00:36:16
+ */
+
+namespace Diepxuan\Simba\StoredProcedures;
+
+use Diepxuan\Simba\SModel\SModel;
+use Illuminate\Support\Collection;
+
+class AsPORptBK07
+{
+    /**
+     * Call stored procedure asPORptBK07
+     *
+     * @param array $params Procedure parameters
+     * @return Collection
+     */
+    public static function call(array $params): Collection
+    {
+        $connection = (new SModel())->getConnectionName();
+
+        return ProcedureCaller::call('asPORptBK07', [
+            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pNgay1' => $params['pNgay1'] ?? null,
+            'pNgay2' => $params['pNgay2'] ?? null,
+            'pTrang_thai' => $params['pTrang_thai'] ?? null,
+            'pMa_kh' => $params['pMa_kh'] ?? null,
+            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
+            'pMa_vt' => $params['pMa_vt'] ?? null,
+            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
+            'pMa_kho' => $params['pMa_kho'] ?? null,
+            'pMa_bp' => $params['pMa_bp'] ?? null,
+            'pMa_nt' => $params['pMa_nt'] ?? null,
+            'pMa_hd' => $params['pMa_hd'] ?? null,
+            'pSo_DH' => $params['pSo_DH'] ?? null,
+            'pSoct1' => $params['pSoct1'] ?? null,
+            'pSoct2' => $params['pSoct2'] ?? null,
+            'pMa_plkh1' => $params['pMa_plkh1'] ?? null,
+            'pMa_plkh2' => $params['pMa_plkh2'] ?? null,
+            'pMa_plkh3' => $params['pMa_plkh3'] ?? null,
+            'pGroupType' => $params['pGroupType'] ?? null,
+            'ParamDefines' => $params['ParamDefines'] ?? null,
+            'pMa_Cty' => $params['pMa_Cty'] ?? null
+        ], $connection);
+    }
+
+    /**
+     * Call stored procedure asPORptBK07 with named parameters
+     *
+     * @param string $Ma_cty
+     * @param string $Ngay1
+     * @param string $Ngay2
+     * @param string $Trang_thai
+     * @param string $Ma_kh
+     * @param string $Ma_nhkh
+     * @param string $Ma_vt
+     * @param string $Ma_nhvt
+     * @param string $Ma_kho
+     * @param string $Ma_bp
+     * @param string $Ma_nt
+     * @param string $Ma_hd
+     * @param string $So_DH
+     * @param string $Soct1
+     * @param string $Soct2
+     * @param string $Ma_plkh1
+     * @param string $Ma_plkh2
+     * @param string $Ma_plkh3
+     * @param string $GroupType
+     * @param string $ParamDefines
+     * @param string $Ma_Cty
+     * @return Collection
+     */
+    public static function callWithParams(string $Ma_cty = null, string $Ngay1 = null, string $Ngay2 = null, string $Trang_thai = null, string $Ma_kh = null, string $Ma_nhkh = null, string $Ma_vt = null, string $Ma_nhvt = null, string $Ma_kho = null, string $Ma_bp = null, string $Ma_nt = null, string $Ma_hd = null, string $So_DH = null, string $Soct1 = null, string $Soct2 = null, string $Ma_plkh1 = null, string $Ma_plkh2 = null, string $Ma_plkh3 = null, string $GroupType = null, string $ParamDefines = null, string $Ma_Cty = null): Collection
+    {
+        $params = [
+            'pMa_cty' => $Ma_cty,
+            'pNgay1' => $Ngay1,
+            'pNgay2' => $Ngay2,
+            'pTrang_thai' => $Trang_thai,
+            'pMa_kh' => $Ma_kh,
+            'pMa_nhkh' => $Ma_nhkh,
+            'pMa_vt' => $Ma_vt,
+            'pMa_nhvt' => $Ma_nhvt,
+            'pMa_kho' => $Ma_kho,
+            'pMa_bp' => $Ma_bp,
+            'pMa_nt' => $Ma_nt,
+            'pMa_hd' => $Ma_hd,
+            'pSo_DH' => $So_DH,
+            'pSoct1' => $Soct1,
+            'pSoct2' => $Soct2,
+            'pMa_plkh1' => $Ma_plkh1,
+            'pMa_plkh2' => $Ma_plkh2,
+            'pMa_plkh3' => $Ma_plkh3,
+            'pGroupType' => $GroupType,
+            'ParamDefines' => $ParamDefines,
+            'pMa_Cty' => $Ma_Cty
+        ];
+        
+        return self::call($params);
+    }
+}

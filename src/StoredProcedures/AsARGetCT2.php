@@ -1,0 +1,50 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-02-14 23:59:00
+ */
+
+namespace Diepxuan\Simba\StoredProcedures;
+
+use Diepxuan\Simba\SModel\SModel;
+use Illuminate\Support\Collection;
+
+class AsARGetCT2
+{
+    /**
+     * Call stored procedure asARGetCT2
+     *
+     * @param array $params Procedure parameters
+     * @return Collection
+     */
+    public static function call(array $params): Collection
+    {
+        $connection = (new SModel())->getConnectionName();
+
+        return ProcedureCaller::call('asARGetCT2', $params, $connection);
+    }
+
+    /**
+     * Call stored procedure asARGetCT2 with named parameters
+     *
+     * @param string $Ma_cty
+     * @param string $Stt_rec
+     * @return Collection
+     */
+    public static function callWithParams(string $Ma_cty = null, string $Stt_rec = null): Collection
+    {
+        $params = [
+            'pMa_cty' => $Ma_cty,
+            'pStt_rec' => $Stt_rec
+        ];
+        
+        return self::call($params);
+    }
+}

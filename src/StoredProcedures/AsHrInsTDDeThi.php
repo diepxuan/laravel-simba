@@ -1,0 +1,77 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-02-15 00:37:01
+ */
+
+namespace Diepxuan\Simba\StoredProcedures;
+
+use Diepxuan\Simba\SModel\SModel;
+use Illuminate\Support\Collection;
+
+class AsHrInsTDDeThi
+{
+    /**
+     * Call stored procedure asHrInsTDDeThi
+     *
+     * @param array $params Procedure parameters
+     * @return Collection
+     */
+    public static function call(array $params): Collection
+    {
+        $connection = (new SModel())->getConnectionName();
+
+        return ProcedureCaller::call('asHrInsTDDeThi', [
+            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_yctd' => $params['pMa_yctd'] ?? null,
+            'pVong_so' => $params['pVong_so'] ?? null,
+            'pMa_mon_thi' => $params['pMa_mon_thi'] ?? null,
+            'pTen_mon_thi' => $params['pTen_mon_thi'] ?? null,
+            'pDe_so' => $params['pDe_so'] ?? null,
+            'pTai_lieu' => $params['pTai_lieu'] ?? null,
+            'pGhi_chu' => $params['pGhi_chu'] ?? null,
+            'pCuser' => $params['pCuser'] ?? null,
+            'pRet' => $params['pRet'] ?? null
+        ], $connection);
+    }
+
+    /**
+     * Call stored procedure asHrInsTDDeThi with named parameters
+     *
+     * @param string $Ma_cty
+     * @param string $Ma_yctd
+     * @param string $Vong_so
+     * @param string $Ma_mon_thi
+     * @param string $Ten_mon_thi
+     * @param string $De_so
+     * @param string $Tai_lieu
+     * @param string $Ghi_chu
+     * @param string $Cuser
+     * @param int $Ret
+     * @return Collection
+     */
+    public static function callWithParams(string $Ma_cty = null, string $Ma_yctd = null, string $Vong_so = null, string $Ma_mon_thi = null, string $Ten_mon_thi = null, string $De_so = null, string $Tai_lieu = null, string $Ghi_chu = null, string $Cuser = null, int $Ret = null): Collection
+    {
+        $params = [
+            'pMa_cty' => $Ma_cty,
+            'pMa_yctd' => $Ma_yctd,
+            'pVong_so' => $Vong_so,
+            'pMa_mon_thi' => $Ma_mon_thi,
+            'pTen_mon_thi' => $Ten_mon_thi,
+            'pDe_so' => $De_so,
+            'pTai_lieu' => $Tai_lieu,
+            'pGhi_chu' => $Ghi_chu,
+            'pCuser' => $Cuser,
+            'pRet' => $Ret
+        ];
+        
+        return self::call($params);
+    }
+}

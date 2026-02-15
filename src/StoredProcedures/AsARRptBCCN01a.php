@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-12 13:00:00
+ * @lastupdate 2026-02-15 00:17:09
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -18,17 +18,31 @@ use Illuminate\Support\Collection;
 
 class AsARRptBCCN01a
 {
+    /**
+     * Call stored procedure asARRptBCCN01a
+     *
+     * @param array $params Procedure parameters
+     * @return Collection
+     */
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('asARRptBCCN01a', [
-            'ma_cty' => $params['pMa_cty'] ?? $params['ma_cty'] ?? null,
-            'Ngay1' => $params['pNgay1'] ?? $params['Ngay1'] ?? null,
-            'Ngay2' => $params['pNgay2'] ?? $params['Ngay2'] ?? null,
-            'Tk' => $params['pTk'] ?? $params['Tk'] ?? null,
-            'ma_kh' => $params['pMa_kh'] ?? $params['ma_kh'] ?? null,
-            'ma_nt' => $params['pMa_nt'] ?? $params['ma_nt'] ?? null,
-        ], $connection);
+        return ProcedureCaller::call('asARRptBCCN01a', $params, $connection);
+    }
+
+    /**
+     * Call stored procedure asARRptBCCN01a with named parameters
+     *
+     * @param string $SysMsg1
+     * @return Collection
+     */
+    public static function callWithParams(string $SysMsg1 = null): Collection
+    {
+        $params = [
+            'pSysMsg1' => $SysMsg1
+        ];
+        
+        return self::call($params);
     }
 }
