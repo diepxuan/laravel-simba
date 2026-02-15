@@ -3,8 +3,8 @@
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Diepxuan\Simba\Traits\HasSimbaConnection;
-use Diepxuan\Simba\Traits\HasTablePrefix;
 
 /**
  * Class SModel
@@ -16,7 +16,7 @@ use Diepxuan\Simba\Traits\HasTablePrefix;
  */
 class SModel extends Model
 {
-    use HasSimbaConnection, HasTablePrefix;
+    use HasSimbaConnection;
 
     /**
      * The connection name for the model.
@@ -83,7 +83,7 @@ class SModel extends Model
     protected $casts = [];
 
     /**
-     * Get the table name with prefix.
+     * Get the table name.
      * Overwrites legacy table name handling.
      *
      * @return string
@@ -94,13 +94,7 @@ class SModel extends Model
             return $this->table;
         }
 
-        $table = str_replace('\\', '', Str::snake(Str::plural(class_basename($this))));
-        
-        if ($this->hasTablePrefix()) {
-            $table = $this->getTablePrefix() . $table;
-        }
-
-        return $this->table = $table;
+        return $this->table = str_replace('\\', '', Str::snake(Str::plural(class_basename($this))));
     }
 
     /**
