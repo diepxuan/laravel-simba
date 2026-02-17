@@ -23,7 +23,7 @@ trait HasSimbaConnection
      */
     public function getSimbaConnectionName(): string
     {
-        return Config::get('database.simba_connection', 'simba');
+        return Config::get('simba.connection', 'sqlsrv');
     }
 
     /**

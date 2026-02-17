@@ -24,7 +24,7 @@ class SModel extends Model
      *
      * @var string
      */
-    protected $connection = 'simba';
+    protected $connection;
 
     /**
      * Indicates if the model should be timestamped.
@@ -81,6 +81,19 @@ class SModel extends Model
      * @var array
      */
     protected $casts = [];
+
+    /**
+     * Create a new Eloquent model instance.
+     * Overwrites legacy constructor with connection setup.
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->connection = $this->getSimbaConnectionName();
+    }
 
     /**
      * Get the table name.
