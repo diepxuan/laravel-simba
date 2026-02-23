@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\SModel;
 
 use Diepxuan\Simba\SModel\SModel;
-use Diepxuan\Simba\SModel\SModel;
 
 class ArDmKh extends SModel
 {

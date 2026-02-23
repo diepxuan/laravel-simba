@@ -19,6 +19,14 @@ class SModel extends Model
     use HasSimbaConnection;
 
     /**
+     * Default company code constant.
+     * Used as default value for pMa_cty parameters in stored procedures.
+     *
+     * @var string
+     */
+    public const CTY = '001';
+
+    /**
      * The connection name for the model.
      * Overwrites legacy connection handling.
      *
