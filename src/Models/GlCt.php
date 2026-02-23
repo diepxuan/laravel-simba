@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\SModel\GlCt as Model;
+use Diepxuan\Simba\StoredProcedures\AsCARptTMNH01;
+use Diepxuan\Simba\StoredProcedures\AsGLRptNKC03;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -70,19 +72,13 @@ class GlCt extends Model
      */
     public static function getCARptTMNH01(array $params): Collection
     {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asCARptTMNH01
-            @pMa_Cty = :pMa_Cty,
-            @pNgay_Ct1 = :pNgay_Ct1,
-            @pNgay_Ct2 = :pNgay_Ct2,
-            @pTk = :pTk,
-            @pMa_Nt = :pMa_Nt
-        ', [
-            'pMa_Cty'   => $params['pMa_Cty'],
-            'pTk'       => $params['pTk'],
-            'pNgay_Ct1' => $params['pNgay_Ct1'],
-            'pNgay_Ct2' => $params['pNgay_Ct2'],
+        return AsCARptTMNH01::call([
+            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
+            'pTk'       => $params['pTk'] ?? '',
+            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '',
+            'pNgay_ct2' => $params['pNgay_Ct2'] ?? '',
             'pMa_Nt'    => $params['ma_Nt'] ?? 'VND',
-        ]));
+        ]);
     }
 
     /**
@@ -90,15 +86,7 @@ class GlCt extends Model
      */
     public static function getGLRptNKC03(array $params): Collection
     {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asGLRptNKC03
-            @pMa_Cty = :pMa_Cty,
-            @pNgay_Ct1 = :pNgay_Ct1,
-            @pNgay_Ct2 = :pNgay_Ct2,
-            @pTk_List = :pTk_List,
-            @pTkdu_List = :pTkdu_List,
-            @pMa_Bp = :pMa_Bp,
-            @pMa_Nt = :pMa_Nt
-        ', [
+        return AsGLRptNKC03::call([
             'pMa_Cty'    => $params['pMa_Cty'] ?? '',
             'pNgay_Ct1'  => $params['pNgay_Ct1'] ?? '2025-05-01',
             'pNgay_Ct2'  => $params['pNgay_Ct2'] ?? now(),
@@ -106,6 +94,6 @@ class GlCt extends Model
             'pTkdu_List' => $params['pTkdu_List'] ?? '',
             'pMa_Bp'     => $params['pMa_Bp'] ?? '',
             'pMa_Nt'     => $params['pMa_Nt'] ?? 'VND',
-        ]));
+        ]);
     }
 }

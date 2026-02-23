@@ -20,6 +20,9 @@ class AsPostCaph3_glct
 {
     /**
      * Call stored procedure asPostCaph3_glct
+     * 
+     * Note: Stored procedure chỉ có 2 tham số (@pMa_cty, @pStt_rec)
+     * Các tham số khác được tính toán bên trong stored procedure
      *
      * @param array $params Procedure parameters
      * @return Collection
@@ -29,14 +32,8 @@ class AsPostCaph3_glct
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostCaph3_glct', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_cty' => $params['pMa_cty'] ?? SModel::CTY,
             'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pMa_nt0' => $params['pMa_nt0'] ?? null,
-            'pma_cty' => $params['pma_cty'] ?? null
         ], $connection);
     }
 
@@ -45,25 +42,13 @@ class AsPostCaph3_glct
      *
      * @param string $Ma_cty
      * @param string $Stt_rec
-     * @param int $NamTC
-     * @param int $ThangTC
-     * @param string $Ngay_ct
-     * @param string $Ngay_ks
-     * @param mixed $Ma_nt0
-     * @param mixed $ma_cty
      * @return Collection
      */
-    public static function callWithParams(string $Ma_cty = null, string $Stt_rec = null, int $NamTC = null, int $ThangTC = null, string $Ngay_ct = null, string $Ngay_ks = null, mixed $Ma_nt0 = null, mixed $ma_cty = null): Collection
+    public static function callWithParams(string $Ma_cty = null, string $Stt_rec = null): Collection
     {
         $params = [
             'pMa_cty' => $Ma_cty,
             'pStt_rec' => $Stt_rec,
-            'pNamTC' => $NamTC,
-            'pThangTC' => $ThangTC,
-            'pNgay_ct' => $Ngay_ct,
-            'pNgay_ks' => $Ngay_ks,
-            'pMa_nt0' => $Ma_nt0,
-            'pma_cty' => $ma_cty
         ];
         
         return self::call($params);
