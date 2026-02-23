@@ -113,6 +113,7 @@ class InDmKho extends Model
 
     /**
      * Tính tổng tồn kho theo vật tư
+     * Sử dụng class AsINRptCD02 thay vì gọi stored procedure trực tiếp
      */
     public function getInventoryByProduct(string $maVt, ?string $ngay = null): array
     {
@@ -123,34 +124,50 @@ class InDmKho extends Model
             'pNgay' => $ngay ?? date('Y-m-d'),
         ];
 
-        $result = DB::connection($this->getConnectionName())->select('EXEC asINRptCD02
-            @pMa_Cty = :pMa_Cty,
-            @pMa_vt = :pMa_vt,
-            @pMa_kho = :pMa_kho,
-            @pNgay = :pNgay
-        ', $params);
+        $result = \Diepxuan\Simba\StoredProcedures\AsINRptCD02::call([
+            'pMa_Cty' => $this->ma_cty,
+            'pMa_vt' => $maVt,
+            'pMa_kho' => $this->ma_kho,
+            'pNgay' => $ngay ?? date('Y-m-d'),
+            // Các tham số khác để null
+            'pMa_vitri' => null,
+            'pTk_vt' => null,
+            'pMa_nhvt' => null,
+            'pDVT' => null,
+            'pNgoai_te' => null,
+            'pDk_Ck' => null,
+            'pMa_lo' => null,
+            'pQuaToiThieu' => null,
+            'pQuaToiDa' => null,
+            'pSysMsg1' => null,
+        ]);
 
-        return $result ? (array) $result[0] : [];
+        return $result->isNotEmpty() ? (array) $result->first() : [];
     }
 
     /**
      * Lấy danh sách vật tư tồn kho
+     * Sử dụng class AsINRptCD02 thay vì gọi stored procedure trực tiếp
      */
     public function getInventoryList(?string $maNhvt = null, ?string $ngay = null): Collection
     {
-        $params = [
+        return \Diepxuan\Simba\StoredProcedures\AsINRptCD02::call([
             'pMa_Cty' => $this->ma_cty,
             'pMa_kho' => $this->ma_kho,
             'pMa_nhvt' => $maNhvt ?? '',
             'pNgay' => $ngay ?? date('Y-m-d'),
-        ];
-
-        return collect(DB::connection($this->getConnectionName())->select('EXEC asINRptCD02
-            @pMa_Cty = :pMa_Cty,
-            @pMa_kho = :pMa_kho,
-            @pMa_nhvt = :pMa_nhvt,
-            @pNgay = :pNgay
-        ', $params));
+            // Các tham số khác để null
+            'pMa_vt' => null,
+            'pMa_vitri' => null,
+            'pTk_vt' => null,
+            'pDVT' => null,
+            'pNgoai_te' => null,
+            'pDk_Ck' => null,
+            'pMa_lo' => null,
+            'pQuaToiThieu' => null,
+            'pQuaToiDa' => null,
+            'pSysMsg1' => null,
+        ]);
     }
 
     /**
@@ -170,39 +187,46 @@ class InDmKho extends Model
 
     /**
      * Gọi stored procedure asINGetDMKHO để lấy danh sách kho
+     * Sử dụng class AsINGetDMKHO thay vì gọi stored procedure trực tiếp
      */
     public static function getAsINGetDMKHO(array $params): Collection
     {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asINGetDMKHO
-            @pMa_Cty = :pMa_Cty,
-            @pMa_kho = :pMa_kho,
-            @pStruct = :pStruct,
-            @pLanguage = :pLanguage
-        ', [
+        // Sử dụng AsINGetDMKHO class để gọi stored procedure
+        // Class sẽ xử lý đúng số lượng tham số (3 tham số thực tế)
+        return \Diepxuan\Simba\StoredProcedures\AsINGetDMKHO::call([
             'pMa_Cty'   => $params['pMa_Cty'] ?? '',
             'pMa_kho'   => $params['pMa_kho'] ?? null,
             'pStruct'   => $params['pStruct'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? SysLanguage::DEFAULT,
-        ]));
+            'pLanguage' => $params['pLanguage'] ?? null, // Tham số này sẽ bị bỏ qua trong class
+        ]);
     }
 
     /**
      * Gọi stored procedure asINRptCD01 để lấy báo cáo tồn kho chi tiết
+     * Sử dụng class AsINRptCD01 thay vì gọi stored procedure trực tiếp
      */
     public static function getAsINRptCD01(array $params): Collection
     {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asINRptCD01
-            @pMa_Cty = :pMa_Cty,
-            @pMa_kho = :pMa_kho,
-            @pMa_vt = :pMa_vt,
-            @pNgay = :pNgay,
-            @pMa_Nt = :pMa_Nt
-        ', [
+        // Sử dụng AsINRptCD01 class để gọi stored procedure
+        // Map pMa_Nt to pNgoai_te (foreign currency)
+        return \Diepxuan\Simba\StoredProcedures\AsINRptCD01::call([
             'pMa_Cty' => $params['pMa_Cty'] ?? '',
             'pMa_kho' => $params['pMa_kho'] ?? '',
             'pMa_vt'  => $params['pMa_vt'] ?? '',
-            'pNgay'   => $params['pNgay'] ?? date('Y-m-d'),
-            'pMa_Nt'  => $params['pMa_Nt'] ?? 'VND',
-        ]));
+            'pNgay1'  => $params['pNgay'] ?? date('Y-m-d'), // Map pNgay to pNgay1
+            'pNgoai_te' => $params['pMa_Nt'] ?? 'VND', // Map pMa_Nt to pNgoai_te
+            // Các tham số khác để null
+            'pNgay2' => null,
+            'pLoai_bc' => null,
+            'pTk_vt' => null,
+            'pMa_nhvt' => null,
+            'pMa_vitri' => null,
+            'pma_plvt1' => null,
+            'pma_plvt2' => null,
+            'pma_plvt3' => null,
+            'pDVT' => null,
+            'pPSDC' => null,
+            'pSysMsg1' => null,
+        ]);
     }
 }
