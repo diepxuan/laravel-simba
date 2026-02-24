@@ -26,11 +26,11 @@ class ArDmKh extends Model
     }
 
     /**
-     * Gọi stored procedure asGetSoDuKh để lấy số dư khách hàng.
+     * Gọi stored procedure AsGetSoDuKh để lấy số dư khách hàng.
      *
-     * @return array
+     * @return float
      */
-    public static function getGetSoDuKh(array $params): Collection
+    public static function AsGetSoDuKh(array $params): float
     {
         return AsGetSoDuKh::call([
             'pMa_Cty' => $params['pMa_Cty'] ?? null,
