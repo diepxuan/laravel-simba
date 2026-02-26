@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-13 00:03:56
+ * @lastupdate 2026-02-25 23:50:18
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -16,14 +16,55 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
+/**
+ * Class AsGetCurrentCultureInfo.
+ *
+ * Stored procedure: asGetCurrentCultureInfo
+ * Mục đích: Lấy ngôn ngữ hiện tại được chọn (selected = '1') từ bảng sysLanguage.
+ * Procedure trả về tên ngôn ngữ (cột Name) của ngôn ngữ được đánh dấu là đang chọn (có thể dùng làm ngôn ngữ mặc định của hệ thống).
+ *
+ * Tham số:
+ * - Không có tham số.
+ *
+ * Giá trị trả về:
+ * - Procedure trả về một resultset với một cột:
+ *   - Name (string): Tên ngôn ngữ được chọn (ví dụ: 'vi-VN').
+ * - Không có output parameter.
+ *
+ * Logic chi tiết:
+ * 1. SELECT TOP 1 [Name] FROM [sysLanguage] WHERE selected = '1'.
+ * 2. Nếu có nhiều ngôn ngữ được chọn, chỉ lấy bản ghi đầu tiên (theo thứ tự không xác định).
+ *
+ * Ví dụ gọi:
+ * ```php
+ * $rows = AsGetCurrentCultureInfo::call();
+ * // Hoặc
+ * $rows = AsGetCurrentCultureInfo::call([]);
+ * if (!empty($rows)) {
+ *     $currentLanguage = $rows[0]->Name;
+ *     echo "Ngôn ngữ hiện tại: {$currentLanguage}";
+ * }
+ * ```
+ *
+ * Lưu ý:
+ * - Chỉ trả về một bản ghi (TOP 1). Nếu không có ngôn ngữ nào được chọn, resultset rỗng.
+ * - Cột selected = '1' là cờ đánh dấu ngôn ngữ được chọn (có thể do người dùng chọn hoặc mặc định).
+ * - Không có ORDER BY, nếu có nhiều ngôn ngữ selected, bản ghi nào được trả về là không xác định.
+ */
 class AsGetCurrentCultureInfo
 {
+    /**
+     * Gọi stored procedure asGetCurrentCultureInfo.
+     *
+     * @param array $params mảng tham số (không cần thiết)
+     *
+     * @return mixed kết quả trả về từ procedure (mảng các bản ghi)
+     */
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetCurrentCultureInfo', [
-
         ], $connection);
     }
 }

@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-15 00:37:03
+ * @lastupdate 2026-02-26 07:01:39
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -16,50 +16,83 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
+/**
+ * Class AsSiCopyVoucherBetween2SQLDB.
+ *
+ * Stored procedure: asSiCopyVoucherBetween2SQLDB
+ * Mục đích: Copy số liệu chứng từ từ một database SQL sang một database SQL khác (có cùng cấu trúc).
+ * Procedure thực hiện:
+ *   1. Xác định database đích (DestDB) từ bảng sisetup dựa trên mã công ty.
+ *   2. Xác định tên bảng chứng từ (ph_tbl_name, ct_tbl_name) từ bảng sidmct.
+ *   3. Dynamic SQL: chèn dữ liệu từ bảng chứng từ nguồn vào bảng chứng từ đích (chỉ các chứng từ chưa tồn tại trong đích).
+ * Điều kiện: hai database phải có cấu trúc giống nhau, mã công ty trùng nhau.
+ *
+ * Tham số:
+ * - @pMa_cty (string, bắt buộc): Mã công ty (3 ký tự). Dùng để lấy thông tin database đích và tên bảng.
+ * - @pNgay1 (datetime, bắt buộc): Ngày bắt đầu khoảng thời gian chứng từ.
+ * - @pNgay2 (datetime, bắt buộc): Ngày kết thúc khoảng thời gian chứng từ.
+ * - @pMa_ct (string, bắt buộc): Mã chứng từ (3 ký tự). (Tham số này không được sử dụng trong body procedure, có thể dự phòng).
+ *
+ * Giá trị trả về:
+ * - Procedure không trả về resultset, không có output parameter. Chỉ thực hiện insert dữ liệu.
+ * - Kết quả có thể kiểm tra qua số dòng bị ảnh hưởng (nếu cần).
+ *
+ * Ví dụ gọi:
+ * ```php
+ * $result = AsSiCopyVoucherBetween2SQLDB::call([
+ *     'pMa_cty' => '001',
+ *     'pNgay1' => '2025-01-01',
+ *     'pNgay2' => '2025-12-31',
+ *     'pMa_ct' => 'AP',
+ * ]);
+ * // Gọi thành công nếu không có lỗi SQL.
+ * ```
+ *
+ * Lưu ý:
+ * - Procedure sử dụng dynamic SQL với sp_executesql, xây dựng câu lệnh INSERT dựa trên tên database và bảng lấy từ cấu hình.
+ * - Chỉ copy các chứng từ có ngày chứng từ (ngay_ct) trong khoảng từ @pNgay1 đến @pNgay2 và chưa tồn tại trong database đích (kiểm tra qua stt_rec).
+ * - Tên database đích được lấy từ cột vat_db của bảng sisetup, tên bảng chứng từ từ cột ph của bảng sidmct (cả bảng ph và ct đều lấy từ cùng một cột ph, có thể là lỗi thiết kế).
+ * - Tham số @pMa_ct không được sử dụng trong logic, có thể là tham số dự phòng cho tính mở rộng.
+ * - Cần đảm bảo kết nối database hiện tại có quyền truy cập cả hai database (nguồn và đích).
+ */
 class AsSiCopyVoucherBetween2SQLDB
 {
     /**
-     * Call stored procedure asSiCopyVoucherBetween2SQLDB
+     * Gọi stored procedure asSiCopyVoucherBetween2SQLDB.
      *
+     * @param array $params mảng tham số với các khóa tương ứng tên tham số (có thể có tiền tố '@' hoặc không)
      * @param array $params Procedure parameters
-     * @return Collection
+     *
+     * @return mixed kết quả trả về từ procedure (có thể là kết quả của INSERT)
      */
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiCopyVoucherBetween2SQLDB', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
+            'pMa_cty'     => $params['pMa_cty'] ?? null,
+            'pNgay1'      => $params['pNgay1'] ?? null,
+            'pNgay2'      => $params['pNgay2'] ?? null,
+            'pMa_ct'      => $params['pMa_ct'] ?? null,
             'ph_tbl_name' => $params['ph_tbl_name'] ?? null,
-            'params' => $params['params'] ?? null
+            'params'      => $params['params'] ?? null,
         ], $connection);
     }
 
     /**
-     * Call stored procedure asSiCopyVoucherBetween2SQLDB with named parameters
-     *
-     * @param string $Ma_cty
-     * @param string $Ngay1
-     * @param string $Ngay2
-     * @param string $Ma_ct
-     * @param mixed $h_tbl_name
-     * @param string $arams
-     * @return Collection
+     * Call stored procedure asSiCopyVoucherBetween2SQLDB with named parameters.
      */
-    public static function callWithParams(string $Ma_cty = null, string $Ngay1 = null, string $Ngay2 = null, string $Ma_ct = null, mixed $h_tbl_name = null, string $arams = null): Collection
+    public static function callWithParams(?string $Ma_cty = null, ?string $Ngay1 = null, ?string $Ngay2 = null, ?string $Ma_ct = null, mixed $h_tbl_name = null, ?string $arams = null): Collection
     {
         $params = [
-            'pMa_cty' => $Ma_cty,
-            'pNgay1' => $Ngay1,
-            'pNgay2' => $Ngay2,
-            'pMa_ct' => $Ma_ct,
+            'pMa_cty'     => $Ma_cty,
+            'pNgay1'      => $Ngay1,
+            'pNgay2'      => $Ngay2,
+            'pMa_ct'      => $Ma_ct,
             'ph_tbl_name' => $h_tbl_name,
-            'params' => $arams
+            'params'      => $arams,
         ];
-        
+
         return self::call($params);
     }
 }

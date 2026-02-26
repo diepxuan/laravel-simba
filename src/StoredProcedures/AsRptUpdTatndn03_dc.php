@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-15 00:36:16
+ * @lastupdate 2026-02-26 07:14:34
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -16,13 +16,64 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
+/**
+ * Class AsRptUpdTatndn03_dc.
+ *
+ * Stored procedure: asRptUpdTatndn03_dc
+ * Mục đích: Cập nhật trường tiền (tien) trong bảng tatndn03_dc (báo cáo thuế thu nhập doanh nghiệp - mẫu 03 điều chỉnh).
+ * Procedure thực hiện cập nhật giá trị tiền cho một bản ghi cụ thể trong bảng điều chỉnh tatndn03_dc dựa trên các điều kiện:
+ * mã công ty, ngày bắt đầu, ngày kết thúc, mẫu số, mã số, số thứ tự.
+ *
+ * Tham số:
+ * - @pMa_Cty (string, bắt buộc): Mã công ty (3 ký tự).
+ * - @pNgay1 (datetime, bắt buộc): Ngày bắt đầu kỳ báo cáo (kiểu SMALLDATETIME).
+ * - @pNgay2 (datetime, bắt buộc): Ngày kết thúc kỳ báo cáo (kiểu SMALLDATETIME).
+ * - @pMau (string, tùy chọn, mặc định '01'): Mẫu số (3 ký tự). Mặc định là '01'.
+ * - @pMa_so (string, tùy chọn, mặc định ''): Mã số (20 ký tự). Mặc định rỗng.
+ * - @pTien (decimal, bắt buộc): Giá trị tiền cần cập nhật (DECIMAL(19,4)).
+ * - @pStt (string, bắt buộc): Số thứ tự (20 ký tự).
+ * - @pRet (int, output): Kết quả trả về. 0 thành công, khác 0 lỗi (mã lỗi SQL).
+ *
+ * Giá trị trả về:
+ * - Procedure không trả về resultset, chỉ thiết lập giá trị output parameter @pRet.
+ * - Cần đọc giá trị @pRet sau khi gọi để kiểm tra lỗi.
+ *
+ * Ví dụ gọi:
+ * ```php
+ * $result = AsRptUpdTatndn03_dc::call([
+ *     'pMa_Cty' => '001',
+ *     'pNgay1' => '2025-01-01',
+ *     'pNgay2' => '2025-03-31',
+ *     'pMau' => '01',
+ *     'pMa_so' => '03',
+ *     'pTien' => 5000000.00,
+ *     'pStt' => '1',
+ * ]);
+ * // Lấy giá trị output parameter
+ * $ret = $result['pRet'] ?? null;
+ * if ($ret === 0) {
+ *     // Cập nhật thành công
+ * } else {
+ *     // Có lỗi xảy ra
+ * }
+ * ```
+ *
+ * Lưu ý:
+ * - Bảng tatndn03_dc lưu trữ dữ liệu điều chỉnh của tờ khai thuế thu nhập doanh nghiệp mẫu 03.
+ * - Các điều kiện WHERE bao gồm tất cả các cột khóa: ma_cty, ngay1, ngay2, mau, ma_so, stt.
+ * - Giá trị tiền được cập nhật trực tiếp, không kiểm tra trước sự tồn tại của bản ghi.
+ * - Nếu không có bản ghi nào khớp điều kiện, không có dòng nào được cập nhật nhưng @pRet vẫn là 0 (vì không có lỗi SQL).
+ * - Sử dụng @@ERROR để lấy mã lỗi SQL sau lệnh UPDATE.
+ */
 class AsRptUpdTatndn03_dc
 {
     /**
-     * Call stored procedure asRptUpdTatndn03_dc
+     * Gọi stored procedure asRptUpdTatndn03_dc.
      *
+     * @param array $params mảng tham số với các khóa tương ứng tên tham số (có thể có tiền tố '@' hoặc không)
      * @param array $params Procedure parameters
-     * @return Collection
+     *
+     * @return mixed kết quả trả về từ procedure (có thể chứa output parameter)
      */
     public static function call(array $params): Collection
     {
@@ -30,45 +81,34 @@ class AsRptUpdTatndn03_dc
 
         return ProcedureCaller::call('asRptUpdTatndn03_dc', [
             'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pTien' => $params['pTien'] ?? null,
-            'pStt' => $params['pStt'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null
+            'pNgay1'  => $params['pNgay1'] ?? null,
+            'pNgay2'  => $params['pNgay2'] ?? null,
+            'pMau'    => $params['pMau'] ?? null,
+            'pMa_so'  => $params['pMa_so'] ?? null,
+            'pTien'   => $params['pTien'] ?? null,
+            'pStt'    => $params['pStt'] ?? null,
+            'pRet'    => $params['pRet'] ?? null,
+            'pMa_cty' => $params['pMa_cty'] ?? null,
         ], $connection);
     }
 
     /**
-     * Call stored procedure asRptUpdTatndn03_dc with named parameters
-     *
-     * @param string $Ma_Cty
-     * @param string $Ngay1
-     * @param string $Ngay2
-     * @param string $Mau
-     * @param string $Ma_so
-     * @param float $Tien
-     * @param string $Stt
-     * @param int $Ret
-     * @param mixed $Ma_cty
-     * @return Collection
+     * Call stored procedure asRptUpdTatndn03_dc with named parameters.
      */
-    public static function callWithParams(string $Ma_Cty = null, string $Ngay1 = null, string $Ngay2 = null, string $Mau = null, string $Ma_so = null, float $Tien = null, string $Stt = null, int $Ret = null, mixed $Ma_cty = null): Collection
+    public static function callWithParams(?string $Ma_Cty = null, ?string $Ngay1 = null, ?string $Ngay2 = null, ?string $Mau = null, ?string $Ma_so = null, ?float $Tien = null, ?string $Stt = null, ?int $Ret = null, mixed $Ma_cty = null): Collection
     {
         $params = [
             'pMa_Cty' => $Ma_Cty,
-            'pNgay1' => $Ngay1,
-            'pNgay2' => $Ngay2,
-            'pMau' => $Mau,
-            'pMa_so' => $Ma_so,
-            'pTien' => $Tien,
-            'pStt' => $Stt,
-            'pRet' => $Ret,
-            'pMa_cty' => $Ma_cty
+            'pNgay1'  => $Ngay1,
+            'pNgay2'  => $Ngay2,
+            'pMau'    => $Mau,
+            'pMa_so'  => $Ma_so,
+            'pTien'   => $Tien,
+            'pStt'    => $Stt,
+            'pRet'    => $Ret,
+            'pMa_cty' => $Ma_cty,
         ];
-        
+
         return self::call($params);
     }
 }

@@ -1,57 +1,27 @@
-# CA Procedures (Cash)
+# Nhóm Cost Accounting (asCA*) - Procedures
 
-## asCARptTMNH06
+Nhóm stored procedures liên quan đến Kế toán chi phí (Cost Accounting) trong hệ thống Simba ERP.
 
-- **Class:** AsCARptTMNH06
-- **Parameters:** pMa_cty, pNgay_ct1, pNgay_ct2, pTk, pMa_Ku, pMa_Nt
-- **Description:** Báo cáo tiền vay (sổ chi tiết tiền vay)
-- **SQL File:** `asCARptTMNH06.sql`
+## Danh sách procedures đã chuyển đổi
 
-## asCARptTMNH08
+| Procedure | Class | Parameters | Description |
+|-----------|-------|------------|-------------|
+| asCACalLaiKU | `AsCACalLaiKU` | `pMa_cty` (string), `pThang` (int), `pNam` (int), `pMa_ct` (string, default 'CA6'), `pMa_ku` (string, default ''), `pUser` (string, default ''), `pRet` (int, output) | Tính lãi khế ước trong kỳ. |
+| asCADelCDKU | `AsCADelCDKU` | `pMa_cty` (string), `pNam` (int), `pMa_ku` (string), `pRet` (int, output) | Xóa chi tiết khế ước theo mã công ty, năm, mã khế ước. |
+| asCADelCT1 | `AsCADelCT1` | `pMa_cty` (string), `pStt_rec` (string), `pRet` (int, output) | Xóa bản ghi trong bảng CACT1 theo mã công ty và số thứ tự record. |
+| asCADelCT2 | `AsCADelCT2` | `pMa_cty` (string), `pStt_rec` (string), `pRet` (int, output) | Xóa bản ghi trong bảng CACT2 theo mã công ty và số thứ tự record. |
+| asCADelCT3 | `AsCADelCT3` | `pMa_cty` (string), `pStt_rec` (string), `pRet` (int, output) | Xóa bản ghi trong bảng CACT3 theo mã công ty và số thứ tự record. |
+| asCADelDMKU | `AsCADelDMKU` | `pMa_cty` (string), `pMa_ku` (string), `pRet` (int, output) | Xóa danh mục khế ước, kiểm tra ràng buộc trước khi xóa. |
+| asCADelLaiKU | `AsCADelLaiKU` | `pMa_cty` (string), `pThang` (int), `pNam` (int), `pMa_ku` (string), `pRet` (int, output) | Xóa bản ghi lãi khế ước theo mã công ty, tháng, năm và mã khế ước (pattern). |
 
-- **Class:** AsCARptTMNH08
-- **Parameters:** pMa_Cty, pTk, pNgay_Ct1, pNgay_Ct2, pMa_Nt
-- **Description:** Sổ quỹ theo ngày
-- **SQL File:** `asCARptTMNH08.sql`
+## Tổng quan
 
-## asCAUpdCDKU
+- **Prefix**: `asCA*`
+- **Số lượng procedures ước tính**: 53 (theo thống kê file SQL).
+- **Số lượng đã chuyển đổi**: 7 (cập nhật 2026-02-11).
 
-- **Class:** AsCAUpdCDKU
-- **Parameters:** pMa_cty, pNam, pMa_ku, pTk, pMa_nt, pNgay_ku, pNgay_tt, pDa_vay, pDa_vay_nt, pDa_tt, pDa_tt_nt, pLUser
-- **Description:** Cập nhật chi tiết khoản vay (CADMKU)
-- **SQL File:** `asCAUpdCDKU.sql`
+## Ghi chú
 
-## asCAUpdDMKU
-
-- **Class:** AsCAUpdDMKU
-- **Parameters:** pMa_cty, pMa_ku, pTen_ku, pSo_ku, pNgay_vay, pNgay_ky, pThoi_han, pTinh_theo, pPhuong_phap, pKy_tt_goc, pKy_tt_lai, pNgay_dh, pMa_hd, pMa_nt, pTien_nt, pTien, pLai_suat, pLs_qh, pTk_vay, pTk_cp, pTk_cp_pt, pGhi_chu, pKsd, pLUser
-- **Description:** Cập nhật danh mục khoản vay
-- **SQL File:** `asCAUpdDMKU.sql`
-
-## asCAUpdLaiKu
-
-- **Class:** AsCAUpdLaiKu
-- **Parameters:** pMa_cty, pNgay_tra, pMa_ku, pNam, pThang, pTien_lai_tk, pTien_lai_tk_nt, pTien_goc_tk, pTien_goc_tk_nt, pTien_lai_qh, pTien_lai_qh_nt, pTien_goc_qh, pTien_goc_qh_nt, pSua_lai, pSua_goc, pLUser
-- **Description:** Cập nhật lãi vay
-- **SQL File:** `asCAUpdLaiKu.sql`
-
-## asCAUpdPH1
-
-- **Class:** AsCAUpdPH1
-- **Parameters:** pMa_cty, pStt_rec, pMa_ct, pSo_ct, pNgay_ct, pNgay_lct, pMa_kh, pDia_chi, pNguoi_gd, pDien_giai, pTk_no, pMa_nt, pTy_gia, pT_tien_nt, pT_tien, pTrang_thai, pPost2gl, pLUser
-- **Description:** Cập nhật phiếu thu (CAPH1)
-- **SQL File:** `asCAUpdPH1.sql`
-
-## asCAUpdPH3
-
-- **Class:** AsCAUpdPH3
-- **Parameters:** pMa_cty, pStt_rec, pMa_ct, pSo_ct, pNgay_ct, pNgay_lct, pKht_tain, pMa_kh, pDia_chi, pNguoi_gd, pDien_giai, pTk_co, pMa_nt, pTy_gia, pT_tien_nt, pT_tien, pT_Thue, pT_Tt_nt, pT_Tt, pTrang_thai, pPost2gl, pLUser
-- **Description:** Cập nhật phiếu chi (CAPH3)
-- **SQL File:** `asCAUpdPH3.sql`
-
-## asCAUpdTTHU
-
-- **Class:** AsCAUpdTTHU
-- **Parameters:** pMa_cty, pStt_rec, pMa_ct, pNgay_ct, pSo_ct, pMa_ct_tt, pStt_rec_tt, pNgay_ct_tt, pSo_ct_tt, pMa_KH, pTk_tu, pMa_nt, pTy_gia, pTien_pc, pTien_pc_nt, pTien_da_tt, pTien_da_tt_nt, pTat_toan, pDien_giai, pLUser
-- **Description:** Cập nhật thanh toán tạm ứng
-- **SQL File:** `asCAUpdTTHU.sql`
+- Nhóm Cost Accounting quản lý các khế ước vay, tính lãi, phân bổ chi phí.
+- Các procedures thường thao tác với các bảng: `cadmku` (danh mục khế ước), `cacdku` (chi tiết khế ước), `calaiku` (lãi khế ước), `glct` (chi tiết general ledger).
+- Một số procedures có sử dụng cursor để duyệt từng khế ước, cần lưu ý hiệu năng.

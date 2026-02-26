@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-01-11 22:57:58
+ * @lastupdate 2026-02-25 15:13:06
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -16,14 +16,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class ProcedureCaller.
+ *
+ * Cung cấp phương thức tĩnh để gọi stored procedures của Simba SQL Server.
+ * Sử dụng Laravel DB facade để thực thi câu lệnh SQL.
+ */
 class ProcedureCaller
 {
     /**
-     * Call a stored procedure and return results as a Collection.
+     * Gọi stored procedure với các tham số và return results as a Collection.
      *
-     * @param string      $name       Stored procedure name (without EXEC)
-     * @param array       $params     Named parameters in the form ['pName' => value]
+     * @param array       $params     mảng tham số với khóa là tên tham số (có hoặc không có tiền tố '@')
      * @param null|string $connection Optional connection name
+     *
+     * @return mixed kết quả trả về từ procedure (tùy thuộc vào procedure)
      */
     public static function call(string $name, array $params = [], ?string $connection = null): Collection
     {
@@ -39,5 +46,10 @@ class ProcedureCaller
         $rows = $conn->select($sql, $params);
 
         return collect($rows);
+        // Lấy giá trị của các tham số theo thứ tự
+        // $bindings = array_values($params);
+
+        // Thực thi stored procedure
+        // return DB::select($sql, $bindings);
     }
 }

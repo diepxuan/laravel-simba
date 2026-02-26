@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-11 12:08:00
+ * @lastupdate 2026-02-26 11:27:32
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -17,30 +17,31 @@ use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
 /**
- * Class AsGLCrtKC1
- * 
+ * Class AsGLCrtKC1.
+ *
  * Stored procedure: asGLCrtKC1
- * Purpose: Thực hiện thao tác tạo bút toán kết chuyển tự động (internal, được gọi bởi asGLCrtKC).
- * 
+ * Mục đích: Thực hiện thao tác tạo bút toán kết chuyển tự động chi tiết dựa trên thông tin danh mục và khoảng thời gian.
+ * Procedure này tính toán số phát sinh (nợ/có) của tài khoản nguồn, nhóm theo đối tượng (bộ phận, hợp đồng, sản phẩm công trình, phí) tùy theo cấu hình, sau đó tạo các bút toán kết chuyển chi tiết sang tài khoản đích.
+ *
  * Tham số:
- * - @pma_cty (nvarchar(3)): Mã công ty. Bắt buộc.
- * - @pstt (int): Số thứ tự kết chuyển (tham chiếu bảng gldmkc). Bắt buộc.
- * - @ptk (nvarchar(20)): Tài khoản nguồn. Bắt buộc.
- * - @ptk_du (nvarchar(20)): Tài khoản đích. Bắt buộc.
- * - @pten_bt (nvarchar(100)): Tên bút toán. Bắt buộc.
- * - @pkc_bp (nvarchar(1)): Kết chuyển theo bộ phận? ('0'/'1'). Bắt buộc.
- * - @pkc_hd (nvarchar(1)): Kết chuyển theo hợp đồng? ('0'/'1'). Bắt buộc.
- * - @pkc_spct (nvarchar(1)): Kết chuyển theo sản phẩm công trình? ('0'/'1'). Bắt buộc.
- * - @pkc_phi (nvarchar(1)): Kết chuyển theo phí? ('0'/'1'). Bắt buộc.
- * - @ploai_kc (nvarchar(1)): Loại kết chuyển ('1': ghi nợ, '2': ghi có, '3': kết chuyển lãi lỗ, '4': kết chuyển thuế GTGT). Bắt buộc.
- * - @pkc_dt_ps (nvarchar(1)): Kết chuyển theo đối tượng có phát sinh? ('0'/'1'). Bắt buộc.
- * - @pngay1 (smalldatetime): Ngày bắt đầu kỳ kết chuyển. Bắt buộc.
- * - @pngay2 (smalldatetime): Ngày kết thúc kỳ kết chuyển. Bắt buộc.
- * - @pstt_rec (nvarchar(20)): Số tham chiếu. Bắt buộc.
- * - @pma_ct (nvarchar(3)): Mã chứng từ. Bắt buộc.
- * - @pso_ct (nvarchar(12)): Số chứng từ. Bắt buộc.
- * - @puser (nvarchar(20)): Người dùng thực hiện. Bắt buộc.
- * 
+ * - @pma_cty (string, bắt buộc): Mã công ty (nvarchar(3)). Không có giá trị mặc định.
+ * - @pstt (int, bắt buộc): Số thứ tự danh mục kết chuyển (stt trong bảng gldmkc). Không có giá trị mặc định.
+ * - @ptk (string, bắt buộc): Tài khoản nguồn (nvarchar(20)). Không có giá trị mặc định.
+ * - @ptk_du (string, bắt buộc): Tài khoản đích (nvarchar(20)). Không có giá trị mặc định.
+ * - @pten_bt (string, bắt buộc): Tên bút toán (nvarchar(100)). Không có giá trị mặc định.
+ * - @pkc_bp (string, bắt buộc): Cờ kết chuyển theo bộ phận (nvarchar(1)). '1' có, '0' không. Không có giá trị mặc định.
+ * - @pkc_hd (string, bắt buộc): Cờ kết chuyển theo hợp đồng (nvarchar(1)). '1' có, '0' không. Không có giá trị mặc định.
+ * - @pkc_spct (string, bắt buộc): Cờ kết chuyển theo sản phẩm công trình (nvarchar(1)). '1' có, '0' không. Không có giá trị mặc định.
+ * - @pkc_phi (string, bắt buộc): Cờ kết chuyển theo phí (nvarchar(1)). '1' có, '0' không. Không có giá trị mặc định.
+ * - @ploai_kc (string, bắt buộc): Loại kết chuyển (nvarchar(1)). '1' ghi nợ, '2' ghi có, '3' kết chuyển lại lỗ, '4' kết chuyển thue GTGT. Không có giá trị mặc định.
+ * - @pkc_dt_ps (string, bắt buộc): Cờ kết chuyển theo đối tượng có phát sinh (nvarchar(1)). '1' chỉ kết chuyển các đối tượng có phát sinh, '0' kết chuyển tất cả. Không có giá trị mặc định.
+ * - @pngay1 (datetime, bắt buộc): Ngày bắt đầu kỳ kết chuyển (smalldatetime). Không có giá trị mặc định.
+ * - @pngay2 (datetime, bắt buộc): Ngày kết thúc kỳ kết chuyển (smalldatetime). Không có giá trị mặc định.
+ * - @pstt_rec (string, bắt buộc): Số chứng từ (20 ký tự). Không có giá trị mặc định.
+ * - @pma_ct (string, bắt buộc): Mã chứng từ (nvarchar(3)). Không có giá trị mặc định.
+ * - @pso_ct (string, bắt buộc): Số chứng từ (12 ký tự). Không có giá trị mặc định.
+ * - @puser (string, bắt buộc): Người thực hiện (nvarchar(20)). Không có giá trị mặc định.
+ *
  * Giá trị mặc định (trong class):
  * - pma_cty: mã công ty mặc định (SModel::CTY).
  * - pstt: 1.
@@ -59,13 +60,31 @@ use Illuminate\Support\Collection;
  * - pma_ct: null.
  * - pso_ct: null.
  * - puser: null.
- * 
- * Kết quả trả về: Không có result set (chỉ thực hiện tạo bút toán).
- * 
- * Example call:
+ *
+ * Giá trị trả về:
+ * - Procedure không trả về resultset.
+ * - Không có output parameter.
+ * - Tác động: tạo các bút toán kết chuyển trong bảng glct.
+ *
+ * Logic chi tiết:
+ * 1. Lấy tháng và năm kế toán từ ngày kết thúc.
+ * 2. Xác định tài khoản có chi tiết hay không (tk_isct, tk_du_isct) từ bảng gldmtk.
+ * 3. Tạo bảng tạm #slkc1 để tổng hợp phát sinh (nợ/có) của tài khoản nguồn trong kỳ, nhóm theo tài khoản và đối tượng (ma_bp, ma_hd, ma_spct, ma_phi).
+ * 4. Tạo trường xgroup để gom nhóm theo các cờ kết chuyển.
+ * 5. Chèn dữ liệu vào bảng tạm #slkc với việc nhóm theo xgroup (nếu @pkc_dt_ps = 1 thì chỉ lấy các nhóm có xgroup khác rỗng).
+ * 6. Áp dụng loại kết chuyển để điều chỉnh số liệu (zero out một bên nợ/có, xử lý kết chuyển lại lỗ, kết chuyển thue GTGT).
+ * 7. Duyệt qua từng dòng trong bảng tạm bằng cursor, với mỗi dòng:
+ *    - Xác định tài khoản đích chi tiết nếu tài khoản nguồn chi tiết.
+ *    - Tính toán lại số liệu nếu là kết chuyển thue GTGT (so sánh dư 133 và phát sinh 333).
+ *    - Xác định mã ngoại tệ của tài khoản nguồn.
+ *    - Tạo stt_rec0 theo thứ tự AAA, AAB, ...
+ *    - Nếu số phát sinh khác 0, tạo hai bút toán: xuôi (tk nguồn nợ/đích có) và đảo (tk đích nợ/nguồn có).
+ * 8. Mỗi cặp bút toán có cùng stt_rec0, cập nhật các thông tin diễn giải, ngày chứng từ, người tạo.
+ *
+ * Ví dụ gọi:
  * ```php
- * $params = [
- *     'pma_cty' => '001',
+ * AsGLCrtKC1::call([
+ *     'pma_cty' => 'A01',
  *     'pstt' => 1,
  *     'ptk' => '641',
  *     'ptk_du' => '511',
@@ -75,45 +94,54 @@ use Illuminate\Support\Collection;
  *     'pkc_spct' => '0',
  *     'pkc_phi' => '1',
  *     'ploai_kc' => '2',
- *     'pkc_dt_ps' => '0',
+ *     'pkc_dt_ps' => '1',
  *     'pngay1' => '2023-01-01',
  *     'pngay2' => '2023-01-25',
  *     'pstt_rec' => 'A01KCxxx',
  *     'pma_ct' => 'KCG',
  *     'pso_ct' => '000000KC',
- *     'puser' => 'admin',
- * ];
- * $result = AsGLCrtKC1::call($params);
+ *     'puser' => 'locpv',
+ * ]);
  * ```
+ *
+ * Lưu ý:
+ * - Procedure này được gọi bởi asGLCrtKC, không nên gọi trực tiếp trừ khi có đầy đủ thông tin danh mục.
+ * - Việc tính toán phát sinh dựa trên bảng glct, cần đảm bảo dữ liệu đã được cập nhật đúng.
+ * - Các bút toán được tạo ra sẽ ảnh hưởng đến sổ cái và báo cáo tài chính.
+ * - Bảng tạm và cursor được sử dụng có thể ảnh hưởng hiệu năng với dữ liệu lớn.
+ * - Kết chuyển thue GTGT có logic riêng liên quan đến tài khoản 133 và 333.
  */
-class AsGLCrtKC1
+class AsGLCrtKC1 extends StoredProcedure
 {
+    public const NAME = 'asGLCrtKC1';
+
+    /**
+     * Gọi stored procedure asGLCrtKC1.
+     *
+     * @param array $params mảng tham số với các khóa tương ứng tên tham số (có thể có tiền tố '@' hoặc không)
+     *
+     * @return mixed kết quả trả về từ procedure (không có resultset)
+     */
     public static function call(array $params): Collection
     {
-        $connection = (new SModel())->getConnectionName();
-
-        // Tính ngày đầu tháng và cuối tháng hiện tại nếu không cung cấp
-        $pngay1 = $params['pngay1'] ?? date('Y-m-01');
-        $pngay2 = $params['pngay2'] ?? date('Y-m-t');
-
-        return ProcedureCaller::call('asGLCrtKC1', [
-            'pma_cty'     => $params['pma_cty'] ?? SModel::CTY,
-            'pstt'        => $params['pstt'] ?? 1,
-            'ptk'         => $params['ptk'] ?? null,
-            'ptk_du'      => $params['ptk_du'] ?? null,
-            'pten_bt'     => $params['pten_bt'] ?? null,
-            'pkc_bp'      => $params['pkc_bp'] ?? '0',
-            'pkc_hd'      => $params['pkc_hd'] ?? '0',
-            'pkc_spct'    => $params['pkc_spct'] ?? '0',
-            'pkc_phi'     => $params['pkc_phi'] ?? '0',
-            'ploai_kc'    => $params['ploai_kc'] ?? '1',
-            'pkc_dt_ps'   => $params['pkc_dt_ps'] ?? '0',
-            'pngay1'      => $pngay1,
-            'pngay2'      => $pngay2,
-            'pstt_rec'    => $params['pstt_rec'] ?? null,
-            'pma_ct'      => $params['pma_ct'] ?? null,
-            'pso_ct'      => $params['pso_ct'] ?? null,
-            'puser'       => $params['puser'] ?? null,
-        ], $connection);
+        return parent::call(array_merge([
+            'pma_cty'   => $params['pma_cty'] ?? SModel::CTY,
+            'pstt'      => $params['pstt'] ?? 1,
+            'ptk'       => $params['ptk'] ?? null,
+            'ptk_du'    => $params['ptk_du'] ?? null,
+            'pten_bt'   => $params['pten_bt'] ?? null,
+            'pkc_bp'    => $params['pkc_bp'] ?? '0',
+            'pkc_hd'    => $params['pkc_hd'] ?? '0',
+            'pkc_spct'  => $params['pkc_spct'] ?? '0',
+            'pkc_phi'   => $params['pkc_phi'] ?? '0',
+            'ploai_kc'  => $params['ploai_kc'] ?? '1',
+            'pkc_dt_ps' => $params['pkc_dt_ps'] ?? '0',
+            'pngay1'    => $params['pngay1'] ?? date('Y-m-01'),
+            'pngay2'    => $params['pngay2'] ?? date('Y-m-t'),
+            'pstt_rec'  => $params['pstt_rec'] ?? null,
+            'pma_ct'    => $params['pma_ct'] ?? null,
+            'pso_ct'    => $params['pso_ct'] ?? null,
+            'puser'     => $params['puser'] ?? null,
+        ], $params));
     }
 }

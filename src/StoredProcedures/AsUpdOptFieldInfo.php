@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-15 00:37:11
+ * @lastupdate 2026-02-26 06:56:53
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -16,47 +16,89 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
+/**
+ * Class AsUpdOptFieldInfo.
+ *
+ * Stored procedure: asUpdOptFieldInfo
+ * Mục đích: Cập nhật thông tin trường tùy chọn (Optional Field) và xóa thiết lập nếu không sử dụng.
+ * Procedure cập nhật tiêu đề (caption) của một trường tùy chọn dựa trên số thứ tự (Stt), đồng thời kiểm tra nếu trường không còn sử dụng (ksd = 0) sẽ xóa các thiết lập liên quan.
+ *
+ * Tham số:
+ * - @pStt (int, bắt buộc): Số thứ tự (STT) của trường tùy chọn (INT). Đây là khóa điều kiện.
+ * - @pCaption (string, bắt buộc): Tiêu đề mới của trường (NVARCHAR(20)).
+ * - @pField (string, bắt buộc): Mã trường (NVARCHAR(10)). Dùng để kiểm tra và xóa thiết lập.
+ * - @pLUser (string, bắt buộc): Tên người dùng thực hiện cập nhật (NVARCHAR(20)).
+ * - @pRet (int, output): Kết quả thực thi. 0 thành công, khác 0 là mã lỗi SQL.
+ *
+ * Giá trị trả về:
+ * - Procedure không trả về resultset, chỉ thiết lập giá trị output parameter @pRet.
+ * - Cần đọc giá trị @pRet sau khi gọi để kiểm tra lỗi.
+ *
+ * Logic chi tiết:
+ * - UPDATE bảng sysOptFieldInfo: cập nhật Caption, Ldate (ngày hiện tại), Luser với điều kiện Stt = @pStt.
+ * - Kiểm tra số lượng bản ghi có ksd = '0' (không sử dụng) và Field = @pField. Nếu > 0, thực hiện DELETE từ bảng sysOptFieldsetup với điều kiện Field = @pField (xóa thiết lập của trường không dùng nữa).
+ * - Bắt lỗi: SET @pRet = @@error (lỗi của lệnh SQL cuối cùng).
+ *
+ * Ví dụ gọi:
+ * ```php
+ * $result = AsUpdOptFieldInfo::call([
+ *     'pStt' => 5,
+ *     'pCaption' => 'Ghi chú thêm',
+ *     'pField' => 'OPT1',
+ *     'pLUser' => 'admin',
+ * ]);
+ * $ret = $result['pRet'] ?? null;
+ * if ($ret === 0) {
+ *     // Cập nhật thành công
+ * } else {
+ *     // Có lỗi xảy ra
+ * }
+ * ```
+ *
+ * Lưu ý:
+ * - Tham số @pStt là số thứ tự duy nhất (có thể là khóa chính) trong bảng sysOptFieldInfo.
+ * - Cập nhật chỉ thay đổi Caption, Ldate, Luser; không thay đổi trường Field hay các thuộc tính khác.
+ * - Điều kiện xóa: nếu có bất kỳ bản ghi nào trong sysOptFieldInfo với cùng Field và ksd = '0' (không sử dụng), toàn bộ thiết lập trong sysOptFieldsetup của trường đó sẽ bị xóa.
+ * - Giá trị ksd là chuỗi '0' hoặc '1' (kiểu CHAR?) nhưng trong điều kiện so sánh với '0' (string). Cần đảm bảo kiểu dữ liệu nhất quán.
+ * - Lỗi @@error có thể là lỗi của lệnh UPDATE hoặc DELETE (lệnh sau cùng).
+ * - Nên đảm bảo rằng @pStt tồn tại trước khi cập nhật, nếu không có bản ghi nào khớp, UPDATE không ảnh hưởng nhưng DELETE vẫn có thể xảy ra nếu điều kiện thỏa mãn.
+ */
 class AsUpdOptFieldInfo
 {
     /**
-     * Call stored procedure asUpdOptFieldInfo
+     * Gọi stored procedure asUpdOptFieldInfo.
      *
+     * @param array $params mảng tham số với các khóa tương ứng tên tham số (có thể có tiền tố '@' hoặc không)
      * @param array $params Procedure parameters
-     * @return Collection
+     *
+     * @return mixed kết quả trả về từ procedure (có thể chứa output parameter)
      */
     public static function call(array $params): Collection
     {
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdOptFieldInfo', [
-            'pStt' => $params['pStt'] ?? null,
+            'pStt'     => $params['pStt'] ?? null,
             'pCaption' => $params['pCaption'] ?? null,
-            'pField' => $params['pField'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pField'   => $params['pField'] ?? null,
+            'pLUser'   => $params['pLUser'] ?? null,
+            'pRet'     => $params['pRet'] ?? null,
         ], $connection);
     }
 
     /**
-     * Call stored procedure asUpdOptFieldInfo with named parameters
-     *
-     * @param int $Stt
-     * @param string $Caption
-     * @param string $Field
-     * @param string $LUser
-     * @param int $Ret
-     * @return Collection
+     * Call stored procedure asUpdOptFieldInfo with named parameters.
      */
-    public static function callWithParams(int $Stt = null, string $Caption = null, string $Field = null, string $LUser = null, int $Ret = null): Collection
+    public static function callWithParams(?int $Stt = null, ?string $Caption = null, ?string $Field = null, ?string $LUser = null, ?int $Ret = null): Collection
     {
         $params = [
-            'pStt' => $Stt,
+            'pStt'     => $Stt,
             'pCaption' => $Caption,
-            'pField' => $Field,
-            'pLUser' => $LUser,
-            'pRet' => $Ret
+            'pField'   => $Field,
+            'pLUser'   => $LUser,
+            'pRet'     => $Ret,
         ];
-        
+
         return self::call($params);
     }
 }

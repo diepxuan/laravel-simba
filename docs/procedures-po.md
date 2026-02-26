@@ -1,47 +1,33 @@
-# PO Procedures
+# Purchase Order (asPO*) Stored Procedures
 
+Danh sách các stored procedure thuộc nhóm Purchase Order (asPO*) đã được chuyển đổi sang class PHP.
 
-## asPODelCP4
+| Procedure | Class | Parameters | Description |
+|-----------|-------|------------|-------------|
+| asPOChkRightStatusPO0 | `AsPoChkRightStatusPo0` | `pMa_cty`, `pStt_rec`, `pLanguage` | Kiểm tra trạng thái chứng từ trước khi sửa/xóa đơn đặt hàng. |
+| asPODelCP2 | `AsPoDelCp2` | `pMa_cty`, `pStt_rec`, `pRet` (output) | Xóa dữ liệu chi tiết chứng từ POCP2. |
+| asPODelCP3 | `AsPoDelCp3` | `pMa_cty`, `pStt_rec`, `pRet` (output) | Xóa dữ liệu chi tiết chứng từ POCP3. |
+| asPODelCP4 | `AsPoDelCp4` | `pMa_cty`, `pStt_rec`, `pRet` (output) | Xóa dữ liệu chi tiết chứng từ POCP4. |
+| asPODelCP8 | `AsPoDelCp8` | `pMa_cty`, `pStt_rec`, `pRet` (output) | Xóa dữ liệu chi tiết chứng từ POCP8. |
+| asPOFilt0 | `AsPoFilt0` | `pKeyPh`, `pKeyCt` | Lọc danh sách chứng từ POPH0 và POCT0 theo điều kiện dynamic SQL. |
+| asPOFilt1 | `AsPoFilt1` | `pKeyPh`, `pKeyCt` | Lọc danh sách chứng từ POPH1 và POCT1 theo điều kiện dynamic SQL. |
+| asPOGetCA4PO | `AsPoGetCa4Po` | `pMa_cty`, `pMa_ct`, `pStt_rec_hd` | Lấy thông tin chứng từ thanh toán từ phân hệ mua hàng. |
+| asPOGetCP2 | `AsPoGetCp2` | `pMa_cty`, `pStt_rec`, `pStruct` | Lấy danh sách chi phí POCP2 theo mã công ty và số tham chiếu. |
+| asPOGetCP3 | `AsPoGetCp3` | `pMa_cty`, `pStt_rec`, `pStruct` | Lấy danh sách chi phí POCP3 theo mã công ty và số tham chiếu. |
+| asPOGetCP4 | `AsPoGetCp4` | `pMa_cty`, `pStt_rec`, `pStruct` | Lấy danh sách chi phí POCP4 theo mã công ty và số tham chiếu. |
+| asPOGetCP8 | `AsPoGetCp8` | `pMa_cty`, `pStt_rec`, `pStruct` | Lấy danh sách chi phí POCP8 theo mã công ty và số tham chiếu. |
+| asPOGetCT0 | `AsPoGetCt0` | `pMa_cty`, `pStt_rec`, `pStruct` | Lấy danh sách chi tiết hàng hóa POCT0 theo mã công ty và số tham chiếu. |
+| asPOGetCT1 | `AsPoGetCt1` | `pMa_cty`, `pStt_rec`, `pStt_rec0`, `pStruct` | Lấy danh sách chi tiết hàng hóa POCT1 theo mã công ty, số tham chiếu và số thứ tự dòng. |
 
-- **Class:** AsPODelCP4
-- **Parameters:** pMa_cty, pStt_rec
-- **Description:** 
-- **SQL File:** `asPODelCP4.sql`
+## Ghi chú
 
-## asPostSoPh4_glct
+- Các class nằm trong namespace `Diepxuan\LaravelSimba\StoredProcedures`.
+- Sử dụng `ProcedureCaller::call()` để thực thi stored procedure.
+- Tham số output cần xử lý riêng (hiện chưa hỗ trợ đầy đủ).
+- Các tham số có giá trị mặc định đã được thiết lập trong phương thức `call()`.
 
-- **Class:** AsPostSoPh4_glct
-- **Parameters:** 
-- **Description:** 
-- **SQL File:** `asPostSoPh4_glct.sql`
+## Tiến độ chuyển đổi
 
-## asPOInsPH3
+Đã chuyển đổi: **14** procedures.
 
-- **Class:** AsPOInsPH3
-- **Parameters:** pMa_cty, pStt_rec, pMa_ct, pMa_gd, pMau_hd, pMa_kh, pDia_chi, pNguoi_gd, pMa_httt, pTk_pt, pDien_giai, pGhi_chu, pSo_seri, pSo_ct, pNgay_ct, pNgay_lct, pKht_tain, pNgay_pn, pSo_pn, pNgay_hd, pSo_hd, pMa_tt_po, pHan_ck, pTl_ck, pHan_tt, pLs_qh, pMa_nt, pTy_gia, pT_tien_nt0, pT_tien0, pT_thue_nk_nt, pT_thue_nk, pT_thue_ttdb_nt, pT_thue_ttdb, pT_cp_nt, pT_cp, pT_tien_nt, pT_tien, pT_thue_nt, pT_thue, pTl_ck_hd, pT_ck, pT_ck_nt, pT_tt, pT_tt_nt, pT_so_luong, pSua_tien, pSua_thue, pSua_thue_nk, pSua_thue_ttdb, pSua_tt, pTao_tu_pn, pTao_tu_dh, pTs_nk, pTs_ttdb, pPost2gl, pTrang_thai, pLUser
-- **Description:** Insert record into POPH3 table (Purchase Order Header 3).
-- **SQL File:** `asPOInsPH3.sql`
-
-## asPORptBCPT021
-
-- **Class:** AsPORptBCPT021
-- **Parameters:** pMa_cty, pngay1, pNgay2, pPOct1, pPOct2, pMa_kh, pMa_nhkh, pMa_plkh1, pMa_plkh2, pMa_plkh3, pMa_hd, pMa_nhhd, pMa_NT, pMa_vt, pMa_nhvt, pMa_plvt1, pMa_plvt2, pMa_plvt3, pma_tt_po, pStatus
-- **Description:** 
-- **SQL File:** `asPORptBCPT021.sql`
-
-## asPOInsPH4
-
-- **Class:** AsPOInsPH4
-- **Parameters:** pMa_cty, pStt_rec, pMa_ct, pMa_kh, pDia_chi, pNguoi_gd, pMa_httt, pTk_pt, pDien_giai, pSo_seri, pSo_ct, pNgay_ct, pNgay_lct, pSua_tt, pMa_tt_po, pHan_ck, pTl_ck, pHan_tt, pLs_qh, pMa_nt, pTy_gia, pT_tien_nt0, pT_tien0, pT_cp_nt, pT_cp, pT_thue_nt, pT_thue, pT_tt, pT_tt_nt, pT_so_luong, pPost2gl, pTrang_thai, pKht_tain, pLUser
-- **Description:** 
-- **SQL File:** `asPOInsPH4.sql`
-
-## asPODelCT4
-
-- **Class:** AsPODelCT4
-- **Parameters:** pMa_cty, pStt_rec
-- **Description:** 
-- **SQL File:** `asPODelCT4.sql`
-
-
-
+Cập nhật lần cuối: 2026-02-11
