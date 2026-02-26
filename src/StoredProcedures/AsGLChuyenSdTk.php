@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-25 23:52:33
+ * @lastupdate 2026-02-26 14:21:52
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -58,8 +58,10 @@ use Illuminate\Support\Collection;
  * - Gọi hàm afDuCuoiTk để lấy số dư cuối kỳ của tất cả tài khoản.
  * - Nếu ngày đầu năm sau <= ngày kế sách (ngay_ks trong sisetup) thì trả về lỗi 50012 (không cho phép chuyển).
  */
-class AsGLChuyenSdTk
+class AsGLChuyenSdTk extends StoredProcedure
 {
+    public const NAME = 'asGLChuyenSdTk';
+
     /**
      * Gọi stored procedure asGLChuyenSdTk.
      *
@@ -69,12 +71,9 @@ class AsGLChuyenSdTk
      */
     public static function call(array $params): Collection
     {
-        $connection = (new SModel())->getConnectionName();
-
-        return ProcedureCaller::call('asGLChuyenSdTk', [
+        return parent::call(array_merge([
             'pMa_cty'   => $params['pMa_cty'] ?? SModel::CTY,
             'pNgay_cnt' => $params['pNgay_cnt'] ?? null,
-            // pRet là output parameter, không truyền vào.
-        ], $connection);
+        ], $params));
     }
 }
