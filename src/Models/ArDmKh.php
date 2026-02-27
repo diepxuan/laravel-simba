@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-01-11 23:01:59
+ * @lastupdate 2026-02-27 15:03:13
  */
 
 namespace Diepxuan\Simba\Models;
@@ -16,10 +16,15 @@ namespace Diepxuan\Simba\Models;
 use Diepxuan\Simba\SModel\ArDmKh as Model;
 use Diepxuan\Simba\StoredProcedures\AsGetSoDuKh;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 
 class ArDmKh extends Model
 {
+    protected $casts = [
+        'isKh'  => 'boolean',
+        'isNcc' => 'boolean',
+        'isNv'  => 'boolean',
+    ];
+
     public function glCts(): HasMany
     {
         return $this->hasMany(GlCt::class, 'ma_kh', 'ma_kh');
@@ -27,8 +32,6 @@ class ArDmKh extends Model
 
     /**
      * Gọi stored procedure AsGetSoDuKh để lấy số dư khách hàng.
-     *
-     * @return float
      */
     public static function AsGetSoDuKh(array $params): float
     {
@@ -38,5 +41,20 @@ class ArDmKh extends Model
             'pNgay'   => $params['pNgay'] ?? null,
             'pTk'     => $params['pTk'] ?? null,
         ]);
+    }
+
+    public function getIsKhachHangAttribute(): bool
+    {
+        return (bool) $this->isKh;
+    }
+
+    public function getIsNhaCungCapAttribute(): bool
+    {
+        return (bool) $this->isNcc;
+    }
+
+    public function getIsNhanVienAttribute(): bool
+    {
+        return (bool) $this->isNv;
     }
 }

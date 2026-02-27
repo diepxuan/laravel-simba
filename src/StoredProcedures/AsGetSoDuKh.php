@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-25 23:51:04
+ * @lastupdate 2026-02-27 14:46:45
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -60,7 +60,7 @@ class AsGetSoDuKh
      *
      * @param array $params mảng tham số với các khóa tương ứng tên tham số (có thể có tiền tố '@' hoặc không)
      *
-     * @return Collection kết quả trả về từ procedure
+     * @return float kết quả trả về từ procedure
      */
     public static function call(array $params): float
     {

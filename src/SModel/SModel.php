@@ -1,18 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-02-27 15:02:25
+ */
+
 namespace Diepxuan\Simba\SModel;
 
+use Diepxuan\Simba\Traits\HasSimbaConnection;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Diepxuan\Simba\Traits\HasSimbaConnection;
 
 /**
- * Class SModel
- * 
+ * Class SModel.
+ *
  * Base SModel class for all Simba database models with enhanced features.
  * This class overwrites legacy code with modern Laravel practices.
- * 
- * @package Diepxuan\Simba\SModel
  */
 class SModel extends Model
 {
@@ -27,20 +38,28 @@ class SModel extends Model
     public const CTY = '001';
 
     /**
-     * The connection name for the model.
-     * Overwrites legacy connection handling.
-     *
-     * @var string
-     */
-    protected $connection;
-
-    /**
      * Indicates if the model should be timestamped.
      * Overwrites legacy timestamp behavior.
      *
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     * Overwrites legacy auto-increment handling.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * The connection name for the model.
+     * Overwrites legacy connection handling.
+     *
+     * @var string
+     */
+    protected $connection;
 
     /**
      * The primary key for the model.
@@ -57,14 +76,6 @@ class SModel extends Model
      * @var string
      */
     protected $keyType = 'int';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     * Overwrites legacy auto-increment handling.
-     *
-     * @var bool
-     */
-    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
@@ -93,9 +104,6 @@ class SModel extends Model
     /**
      * Create a new Eloquent model instance.
      * Overwrites legacy constructor with connection setup.
-     *
-     * @param  array  $attributes
-     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -122,16 +130,18 @@ class SModel extends Model
      * Create a new instance of the model with legacy compatibility.
      * Overwrites legacy instantiation.
      *
-     * @param  array  $attributes
+     * @param array $attributes
+     * @param mixed $exists
+     *
      * @return static
      */
     public function newInstance($attributes = [], $exists = false)
     {
         $model = parent::newInstance($attributes, $exists);
-        
+
         // Apply legacy compatibility settings
         $model->setConnection($this->connection);
-        
+
         return $model;
     }
 
@@ -139,31 +149,32 @@ class SModel extends Model
      * Begin querying the model with legacy table prefix.
      * Overwrites legacy query building.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public static function query()
     {
-        return (new static)->newQuery();
+        return (new static())->newQuery();
     }
 
     /**
      * Get all models with legacy data handling.
      * Overwrites legacy data retrieval.
      *
-     * @param  array|string  $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @param array|string $columns
+     *
+     * @return Collection|static[]
      */
     public static function all($columns = ['*'])
     {
-        $instance = new static;
-        
+        $instance = new static();
+
         // Apply legacy filters if any
         if (method_exists($instance, 'applyLegacyFilters')) {
             $instance->applyLegacyFilters();
         }
-        
+
         return $instance->newQuery()->get(
-            is_array($columns) ? $columns : func_get_args()
+            \is_array($columns) ? $columns : \func_get_args()
         );
     }
 
@@ -171,7 +182,6 @@ class SModel extends Model
      * Save the model to the database with legacy compatibility.
      * Overwrites legacy save behavior.
      *
-     * @param  array  $options
      * @return bool
      */
     public function save(array $options = [])
@@ -180,7 +190,7 @@ class SModel extends Model
         if (method_exists($this, 'validateLegacyRules')) {
             $this->validateLegacyRules();
         }
-        
+
         return parent::save($options);
     }
 
@@ -188,7 +198,7 @@ class SModel extends Model
      * Delete the model from the database with legacy compatibility.
      * Overwrites legacy delete behavior.
      *
-     * @return bool|null
+     * @return null|bool
      */
     public function delete()
     {
@@ -196,13 +206,13 @@ class SModel extends Model
         if (method_exists($this, 'beforeLegacyDelete')) {
             $this->beforeLegacyDelete();
         }
-        
+
         $result = parent::delete();
-        
+
         if (method_exists($this, 'afterLegacyDelete')) {
             $this->afterLegacyDelete();
         }
-        
+
         return $result;
     }
 
@@ -215,12 +225,25 @@ class SModel extends Model
     public function toArray()
     {
         $array = parent::toArray();
-        
+
         // Add legacy fields if needed
         if (method_exists($this, 'addLegacyFieldsToArray')) {
             $array = $this->addLegacyFieldsToArray($array);
         }
-        
+
         return $array;
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            ...parent::casts(),
+            ...$this->casts,
+        ];
     }
 }
