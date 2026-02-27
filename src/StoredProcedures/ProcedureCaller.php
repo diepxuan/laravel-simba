@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-25 15:13:06
+ * @lastupdate 2026-02-27 21:55:53
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -32,7 +32,7 @@ class ProcedureCaller
      *
      * @return mixed kết quả trả về từ procedure (tùy thuộc vào procedure)
      */
-    public static function call(string $name, array $params = [], ?string $connection = null): Collection
+    public static function call(string $name, array $params = [], ?string $connection = null)
     {
         $placeholders = '';
         if (!empty($params)) {

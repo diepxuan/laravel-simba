@@ -8,11 +8,12 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-26 14:21:52
+ * @lastupdate 2026-02-27 21:55:53
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Carbon\Carbon;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
@@ -69,11 +70,35 @@ class AsGLChuyenSdTk extends StoredProcedure
      *
      * @return mixed kết quả trả về từ procedure (có thể chứa output parameter)
      */
-    public static function call(array $params): Collection
+    public static function call(array $params)
     {
-        return parent::call(array_merge([
+        $params = [
             'pMa_cty'   => $params['pMa_cty'] ?? SModel::CTY,
-            'pNgay_cnt' => $params['pNgay_cnt'] ?? null,
-        ], $params));
+            'pNgay_cnt' => $params['pNgay_cnt'] ?? now()->endOfYear(),
+            'pRet'      => ['output' => true, 'type' => 'INT'],
+            ...$params,
+        ];
+        $ngayCnt = $params['pNgay_cnt'] ?? now()->endOfYear();
+
+        if ($ngayCnt instanceof Carbon) {
+            $ngayCnt = $ngayCnt->format('Y-m-d H:i:s');
+        }
+
+        $result = parent::call([
+            ...$params,
+            'pNgay_cnt' => $ngayCnt,
+        ]);
+
+        if ($result instanceof Collection && $result->isNotEmpty()) {
+            $firstItem = $result->first();
+            if (\is_object($firstItem) && property_exists($firstItem, 'pRet')) {
+                return (float) $firstItem->pRet;
+            }
+            if (\is_array($firstItem) && isset($firstItem['pRet'])) {
+                return (float) $firstItem['pRet'];
+            }
+        }
+
+        return 0;
     }
 }
