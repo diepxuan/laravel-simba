@@ -6,6 +6,10 @@ Tích hợp Laravel với Simba (phần mềm kế toán).
 
 Laravel Integration With Simba. Package cung cấp các model và stored procedure caller để tương tác với cơ sở dữ liệu Simba (ERP/kế toán), hỗ trợ composite primary key và xử lý charset.
 
+> ⚠️ **NGUYÊN TẮC BẤT BIẾN:** Package chỉ hỗ trợ **READ** trực tiếp qua Models. Mọi thao tác **INSERT/UPDATE/DELETE** phải thực hiện thông qua **Stored Procedures**. Không thao tác trực tiếp trên bảng.
+
+Xem chi tiết: [Database Access Policy](./docs/DATABASE_ACCESS_POLICY.md)
+
 ## Chức năng chính
 
 - Cung cấp các model (SModel) tương ứng với các bảng dữ liệu trong hệ thống Simba: SysLanguage, InCT3, SoPh3, GlDmTk, GlCt, GlCdTk, SysCompany, SysCompanyResx, InDmVt, InPH3, SiSetup, SysUserCompanyRight, ArDmKh, InDmKho, SysUserInfo, InDmNhvt, ...
