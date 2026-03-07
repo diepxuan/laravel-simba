@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-27 15:02:25
+ * @lastupdate 2026-03-06 01:02:28
  */
 
 namespace Diepxuan\Simba\SModel;
@@ -17,6 +17,7 @@ use Diepxuan\Simba\Traits\HasSimbaConnection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 /**
@@ -235,6 +236,20 @@ class SModel extends Model
     }
 
     /**
+     * The scope check this model is enable.
+     *
+     * @param mixed $query
+     *
+     * @return mixed
+     */
+    public function scopeIsEnable($query)
+    {
+        return $query;
+
+        return $query->where('ksd', 0);
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -245,5 +260,31 @@ class SModel extends Model
             ...parent::casts(),
             ...$this->casts,
         ];
+    }
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('onlyFirstCompany', static function (Builder $builder): void {
+            $tableName  = (new static())->getTable();
+            $connection = (new static())->getSimbaConnectionName();
+
+            if (!Schema::connection($connection)->hasColumn($tableName, 'ma_cty')) {
+                return; // Không có cột ma_cty thì không thêm where
+            }
+
+            $column = $tableName ? $tableName . '.ma_cty' : 'ma_cty';
+            $maCty  = static::CTY;
+
+            if (class_exists(\CatalogService::class) && method_exists(\CatalogService::class, 'company')) {
+                $maCty = \CatalogService::company()?->ma_cty ?? $maCty;
+            }
+
+            if (null !== $maCty) {
+                $builder->where($column, $maCty);
+            }
+        });
     }
 }
