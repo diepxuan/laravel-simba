@@ -1,12 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-03-11 16:10:00
+ */
+
 namespace Diepxuan\Simba\SModel;
 
-use Illuminate\Database\Eloquent\Model;
 use Diepxuan\Simba\SModel\SModel;
 
+/**
+ * Model ArDmKh - Danh mục khách hàng.
+ *
+ * Gộp từ ArDmKh.php và ArDmKhModel.php
+ */
 class ArDmKhModel extends SModel
 {
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
     /**
      * The table associated with the model.
      *
@@ -15,18 +37,26 @@ class ArDmKhModel extends SModel
     protected $table = 'ArDmKh';
 
     /**
-     * The primary key for the model.
+     * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'ma_kh';
+
+    /**
+     * The "type" of the primary key ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    public $timestamps = false;
+    public const CREATED_AT = 'cdate';
+    public const UPDATED_AT = 'ldate';
 
     /**
      * The attributes that are mass assignable.
@@ -72,7 +102,7 @@ class ArDmKhModel extends SModel
         'cdate',
         'cuser',
         'ldate',
-        'luser'
+        'luser',
     ];
 
     /**
@@ -81,17 +111,17 @@ class ArDmKhModel extends SModel
      * @var array
      */
     protected $casts = [
-        'gh_no' => 'float',
-        'han_ck' => 'float',
-        'tl_ck' => 'float',
-        'han_tt' => 'float',
-        'ls_qh' => 'float',
+        'gh_no'      => 'float',
+        'han_ck'     => 'float',
+        'tl_ck'      => 'float',
+        'han_tt'     => 'float',
+        'ls_qh'      => 'float',
         'tinh_dt_nb' => 'boolean',
-        'isKh' => 'boolean',
-        'isNcc' => 'boolean',
-        'isNv' => 'boolean',
-        'ksd' => 'boolean',
-        'cdate' => 'datetime',
-        'ldate' => 'datetime',
+        'isKh'       => 'boolean',
+        'isNcc'      => 'boolean',
+        'isNv'       => 'boolean',
+        'ksd'        => 'boolean',
+        'cdate'      => 'datetime',
+        'ldate'      => 'datetime',
     ];
 }
