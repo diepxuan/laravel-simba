@@ -1,12 +1,39 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-03-15 17:05:06
+ */
+
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
-use Diepxuan\Simba\SModel\SModel;
 
 class GlCtModel extends SModel
 {
+    public const CREATED_AT = 'cDate';
+    public const UPDATED_AT = 'lDate';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     /**
      * The table associated with the model.
      *
@@ -19,14 +46,7 @@ class GlCtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'id';
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+    protected $primaryKey = 'stt_rec';
 
     /**
      * The attributes that are mass assignable.
@@ -67,7 +87,7 @@ class GlCtModel extends SModel
         'cdate',
         'cuser',
         'ldate',
-        'luser'
+        'luser',
     ];
 
     /**
@@ -76,17 +96,17 @@ class GlCtModel extends SModel
      * @var array
      */
     protected $casts = [
-        'thang' => 'integer',
-        'nam' => 'integer',
-        'ngay_ct' => 'datetime',
+        'thang'    => 'integer',
+        'nam'      => 'integer',
+        'ngay_ct'  => 'datetime',
         'ngay_lct' => 'datetime',
-        'ngay_lo' => 'datetime',
+        'ngay_lo'  => 'datetime',
         'ps_no_nt' => 'float',
         'ps_co_nt' => 'float',
-        'ty_gia' => 'float',
-        'ps_no' => 'float',
-        'ps_co' => 'float',
-        'cdate' => 'datetime',
-        'ldate' => 'datetime',
+        'ty_gia'   => 'float',
+        'ps_no'    => 'float',
+        'ps_co'    => 'float',
+        'cdate'    => 'datetime',
+        'ldate'    => 'datetime',
     ];
 }

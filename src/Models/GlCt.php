@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\GlCt as Model;
+use Diepxuan\Simba\SModel\GlCtModel as Model;
 use Diepxuan\Simba\StoredProcedures\AsCARptTMNH01;
 use Diepxuan\Simba\StoredProcedures\AsGLRptNKC03;
 use Illuminate\Database\Eloquent\Builder;
