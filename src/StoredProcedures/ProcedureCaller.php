@@ -38,11 +38,13 @@ class ProcedureCaller
         $execParts  = [];
         $bindings   = [];
         $selectOut  = [];
+        $hasOutput  = false;
 
         foreach ($params as $key => $value) {
             // Nếu là OUTPUT param
             if (\is_array($value) && ($value['output'] ?? false)) {
                 $type = $value['type'] ?? 'INT';
+                $hasOutput = true;
 
                 $declareSql[] = "DECLARE @{$key} {$type}";
                 $execParts[]  = "@{$key} = @{$key} OUTPUT";
@@ -53,21 +55,23 @@ class ProcedureCaller
             }
         }
         $sql = '';
+        // Thêm SET NOCOUNT ON để tránh multiple result sets từ procedure
+        $sql .= "SET NOCOUNT ON;\n";
         if (!empty($declareSql)) {
             $sql .= implode(";\n", $declareSql) . ";\n";
         }
         $sql .= "EXEC {$name}\n    " . implode(",\n    ", $execParts);
+        
+        // Thêm SELECT để fetch output values (phải cùng batch với DECLARE)
         if (!empty($selectOut)) {
             $sql .= ";\nSELECT " . implode(', ', $selectOut);
         }
+        
         $conn = $connection ? DB::connection($connection) : DB::connection();
+        
+        // Dùng select() để execute toàn bộ batch và fetch kết quả
         $rows = $conn->select($sql, $bindings);
 
         return collect($rows);
-        // Lấy giá trị của các tham số theo thứ tự
-        // $bindings = array_values($params);
-
-        // Thực thi stored procedure
-        // return DB::select($sql, $bindings);
     }
 }

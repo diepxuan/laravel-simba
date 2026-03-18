@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-25 15:38:21
+ * @lastupdate 2026-03-18 23:38:43
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -101,6 +101,12 @@ class AsChkSoCt
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asChkSoCt', [
+            'pMa_cty'  => $params['pMa_cty'] ?? null,
+            'pMa_ct'   => $params['pMa_ct'] ?? null,
+            'pStt_rec' => $params['pStt_rec'] ?? null,
+            'pSo_ct'   => $params['pSo_ct'] ?? null,
+            'pNgay_Ct' => $params['pNgay_Ct'] ?? null,
+            'pRet'     => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 }

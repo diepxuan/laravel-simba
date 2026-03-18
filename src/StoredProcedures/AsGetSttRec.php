@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-13 00:03:56
+ * @lastupdate 2026-03-18 23:42:19
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -23,9 +23,9 @@ class AsGetSttRec
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetSttRec', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null
+            'pMa_cty'  => $params['pMa_cty'] ?? null,
+            'pMa_ct'   => $params['pMa_ct'] ?? null,
+            'pStt_rec' => ['type' => 'NVARCHAR(20)', 'output' => true],
         ], $connection);
     }
 }
