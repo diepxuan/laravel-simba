@@ -8,15 +8,16 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-27 22:01:36
+ * @lastupdate 2026-03-19 13:22:18
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Carbon\Carbon;
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-use Diepxuan\Simba\Helper\ParamHelper;
+
 /**
  * Class AsGLChuyenSdTk.
  *
@@ -72,13 +73,15 @@ class AsGLChuyenSdTk extends StoredProcedure
      */
     public static function call(array $params)
     {
+        $paramObj = ParamHelper::fromArray($params);
+
         $params = [
-            'pMa_cty'   => $params->pMa_cty ?? SModel::CTY,
-            'pNgay_cnt' => $params->pNgay_cnt ?? now()->endOfYear(),
+            'pMa_cty'   => $paramObj->pMa_cty ?? SModel::CTY,
+            'pNgay_cnt' => $paramObj->pNgay_cnt ?? now()->endOfYear(),
             'pRet'      => ['output' => true, 'type' => 'INT'],
             ...$params,
         ];
-        $ngayCnt = $params->pNgay_cnt ?? now()->endOfYear();
+        $ngayCnt = $paramObj->pNgay_cnt ?? now()->endOfYear();
 
         if ($ngayCnt instanceof Carbon) {
             $ngayCnt = $ngayCnt->format('Y-m-d H:i:s');

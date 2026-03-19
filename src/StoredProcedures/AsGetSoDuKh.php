@@ -8,14 +8,15 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-27 14:46:45
+ * @lastupdate 2026-03-19 13:22:20
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-use Diepxuan\Simba\Helper\ParamHelper;
+
 /**
  * Class AsGetSoDuKh.
  *
@@ -64,13 +65,14 @@ class AsGetSoDuKh
      */
     public static function call(array $params): float
     {
+        $paramObj   = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         $result = ProcedureCaller::call('asGetSoDuKh', [
-            'pMa_Cty' => $params->pMa_Cty ?? null,
-            'pMa_kh'  => $params->pMa_kh ?? null,
-            'pNgay'   => $params->pNgay ?? null,
-            'pTk'     => $params->pTk ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pMa_kh'  => $paramObj->pMa_kh ?? null,
+            'pNgay'   => $paramObj->pNgay ?? null,
+            'pTk'     => $paramObj->pTk ?? null,
         ], $connection);
 
         if ($result instanceof Collection && $result->isNotEmpty()) {
