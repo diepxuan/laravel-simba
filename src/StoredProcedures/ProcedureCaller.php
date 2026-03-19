@@ -72,6 +72,8 @@ class ProcedureCaller
         // Dùng select() để execute toàn bộ batch và fetch kết quả
         $rows = $conn->select($sql, $bindings);
 
+        \Debugbar::info('ProcedureCaller result:', $rows);
+
         return collect($rows);
     }
 }

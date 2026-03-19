@@ -22,10 +22,15 @@ class AsGetSttRec
     {
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('asGetSttRec', [
+        $result = ProcedureCaller::call('asGetSttRec', [
             'pMa_cty'  => $params['pMa_cty'] ?? null,
             'pMa_ct'   => $params['pMa_ct'] ?? null,
             'pStt_rec' => ['type' => 'NVARCHAR(20)', 'output' => true],
         ], $connection);
+
+        \Debugbar::info('AsGetSttRec ProcedureCaller result:', $result);
+        \Debugbar::info('AsGetSttRec input params:', $params);
+
+        return $result;
     }
 }
