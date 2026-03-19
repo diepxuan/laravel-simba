@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARGetPost2TT_ARTT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARGetPost2TT_ARTT', [
-            'pMa_cty'   => $params['pMa_cty'] ?? null,
-            'pStt_rec'  => $params['pStt_rec'] ?? null,
-            'pTk_pt'    => $params['pTk_pt'] ?? '131',
-            'pMa_kh'    => $params['pMa_kh'] ?? null,
-            'pNgay_ct'  => $params['pNgay_ct'] ?? null,
-            'pLoai'     => $params['pLoai'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? null,
+            'pStt_rec'  => $paramObj->pStt_rec ?? null,
+            'pTk_pt'    => $paramObj->pTk_pt ?? '131',
+            'pMa_kh'    => $paramObj->pMa_kh ?? null,
+            'pNgay_ct'  => $paramObj->pNgay_ct ?? null,
+            'pLoai'     => $paramObj->pLoai ?? null,
         ], $connection);
     }
 }

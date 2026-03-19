@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPORptBCPT011
 {
@@ -26,30 +27,31 @@ class AsPORptBCPT011
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPORptBCPT011', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pngay1' => $params['pngay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pPOct1' => $params['pPOct1'] ?? null,
-            'pPOct2' => $params['pPOct2'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pMa_plkh1' => $params['pMa_plkh1'] ?? null,
-            'pMa_plkh2' => $params['pMa_plkh2'] ?? null,
-            'pMa_plkh3' => $params['pMa_plkh3'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pMa_nhhd' => $params['pMa_nhhd'] ?? null,
-            'pMa_NT' => $params['pMa_NT'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_plvt1' => $params['pMa_plvt1'] ?? null,
-            'pMa_plvt2' => $params['pMa_plvt2'] ?? null,
-            'pMa_plvt3' => $params['pMa_plvt3'] ?? null,
-            'pma_tt_po' => $params['pma_tt_po'] ?? null,
-            'pStatus' => $params['pStatus'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pngay1' => $paramObj->pngay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pPOct1' => $paramObj->pPOct1 ?? null,
+            'pPOct2' => $paramObj->pPOct2 ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
+            'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
+            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pMa_nhhd' => $paramObj->pMa_nhhd ?? null,
+            'pMa_NT' => $paramObj->pMa_NT ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_plvt1' => $paramObj->pMa_plvt1 ?? null,
+            'pMa_plvt2' => $paramObj->pMa_plvt2 ?? null,
+            'pMa_plvt3' => $paramObj->pMa_plvt3 ?? null,
+            'pma_tt_po' => $paramObj->pma_tt_po ?? null,
+            'pStatus' => $paramObj->pStatus ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null
         ], $connection);
     }
 
@@ -104,7 +106,7 @@ class AsPORptBCPT011
             'pStatus' => $Status,
             'pNgay1' => $Ngay1
         ];
-        
+
         return self::call($params);
     }
 }

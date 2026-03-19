@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiInsertImExData
 {
@@ -26,25 +27,26 @@ class AsSiInsertImExData
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiInsertImExData', [
-            'pXmlData' => $params['pXmlData'] ?? null,
-            'pTable_name' => $params['pTable_name'] ?? null,
-            'pWs_id' => $params['pWs_id'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pProc' => $params['pProc'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pDel' => $params['pDel'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pDropTable' => $params['pDropTable'] ?? null,
-            'pColumnType' => $params['pColumnType'] ?? null,
-            'pComlumName' => $params['pComlumName'] ?? null,
-            'pStr' => $params['pStr'] ?? null,
-            'pCodeName' => $params['pCodeName'] ?? null,
-            'pSTT_rec' => $params['pSTT_rec'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null
+            'pXmlData' => $paramObj->pXmlData ?? null,
+            'pTable_name' => $paramObj->pTable_name ?? null,
+            'pWs_id' => $paramObj->pWs_id ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pProc' => $paramObj->pProc ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pDel' => $paramObj->pDel ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pDropTable' => $paramObj->pDropTable ?? null,
+            'pColumnType' => $paramObj->pColumnType ?? null,
+            'pComlumName' => $paramObj->pComlumName ?? null,
+            'pStr' => $paramObj->pStr ?? null,
+            'pCodeName' => $paramObj->pCodeName ?? null,
+            'pSTT_rec' => $paramObj->pSTT_rec ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsSiInsertImExData
             'pSTT_rec' => $STT_rec,
             'ParamDefines' => $ParamDefines
         ];
-        
+
         return self::call($params);
     }
 }

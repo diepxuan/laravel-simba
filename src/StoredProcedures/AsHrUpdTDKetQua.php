@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdTDKetQua
 {
@@ -26,31 +27,32 @@ class AsHrUpdTDKetQua
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdTDKetQua', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_yctd' => $params['pMa_yctd'] ?? null,
-            'pVong_so' => $params['pVong_so'] ?? null,
-            'pMa_mon_thi' => $params['pMa_mon_thi'] ?? null,
-            'pDe_so' => $params['pDe_so'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pHo_ten' => $params['pHo_ten'] ?? null,
-            'pHo_dem' => $params['pHo_dem'] ?? null,
-            'pTen' => $params['pTen'] ?? null,
-            'pNgay_sinh' => $params['pNgay_sinh'] ?? null,
-            'pGioi_tinh' => $params['pGioi_tinh'] ?? null,
-            'pSo_cmnd' => $params['pSo_cmnd'] ?? null,
-            'pNgay_hen' => $params['pNgay_hen'] ?? null,
-            'pGio_hen' => $params['pGio_hen'] ?? null,
-            'pPhut_hen' => $params['pPhut_hen'] ?? null,
-            'pKet_qua' => $params['pKet_qua'] ?? null,
-            'pXep_loai' => $params['pXep_loai'] ?? null,
-            'pNhan_xet' => $params['pNhan_xet'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_yctd' => $paramObj->pMa_yctd ?? null,
+            'pVong_so' => $paramObj->pVong_so ?? null,
+            'pMa_mon_thi' => $paramObj->pMa_mon_thi ?? null,
+            'pDe_so' => $paramObj->pDe_so ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pHo_ten' => $paramObj->pHo_ten ?? null,
+            'pHo_dem' => $paramObj->pHo_dem ?? null,
+            'pTen' => $paramObj->pTen ?? null,
+            'pNgay_sinh' => $paramObj->pNgay_sinh ?? null,
+            'pGioi_tinh' => $paramObj->pGioi_tinh ?? null,
+            'pSo_cmnd' => $paramObj->pSo_cmnd ?? null,
+            'pNgay_hen' => $paramObj->pNgay_hen ?? null,
+            'pGio_hen' => $paramObj->pGio_hen ?? null,
+            'pPhut_hen' => $paramObj->pPhut_hen ?? null,
+            'pKet_qua' => $paramObj->pKet_qua ?? null,
+            'pXep_loai' => $paramObj->pXep_loai ?? null,
+            'pNhan_xet' => $paramObj->pNhan_xet ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -107,7 +109,7 @@ class AsHrUpdTDKetQua
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

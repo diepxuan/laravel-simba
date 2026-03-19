@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsARInsDMDCKH
- * 
+ *
  * Stored procedure: asARInsDMDCKH
  * Purpose: Thêm mới địa chỉ khách hàng (danh mục địa chỉ khách hàng).
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pMa_kh (nvarchar(20)): Mã khách hàng. Bắt buộc.
@@ -35,11 +35,11 @@ use Illuminate\Support\Collection;
  * - @pDc_md (bit): Địa chỉ mặc định. Bắt buộc.
  * - @pLUser (nvarchar(20)): Người dùng thực hiện. Bắt buộc.
  * - @pRet (int output): Tham số output trả về mã lỗi (50011 nếu đã tồn tại, @@error nếu có lỗi).
- * 
+ *
  * Giá trị mặc định: pMa_cty mặc định lấy từ SModel::CTY.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện insert).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -62,20 +62,21 @@ class AsARInsDMDCKH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARInsDMDCKH', [
-            'pMa_cty'   => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_kh'    => $params['pMa_kh'] ?? null,
-            'pMa_dckh'  => $params['pMa_dckh'] ?? null,
-            'pTen_kh'   => $params['pTen_kh'] ?? null,
-            'pDia_chi'  => $params['pDia_chi'] ?? null,
-            'pTel'      => $params['pTel'] ?? null,
-            'pFax'      => $params['pFax'] ?? null,
-            'pNguoi_gd' => $params['pNguoi_gd'] ?? null,
-            'pKsd'      => $params['pKsd'] ?? null,
-            'pDc_md'    => $params['pDc_md'] ?? null,
-            'pLUser'    => $params['pLUser'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_kh'    => $paramObj->pMa_kh ?? null,
+            'pMa_dckh'  => $paramObj->pMa_dckh ?? null,
+            'pTen_kh'   => $paramObj->pTen_kh ?? null,
+            'pDia_chi'  => $paramObj->pDia_chi ?? null,
+            'pTel'      => $paramObj->pTel ?? null,
+            'pFax'      => $paramObj->pFax ?? null,
+            'pNguoi_gd' => $paramObj->pNguoi_gd ?? null,
+            'pKsd'      => $paramObj->pKsd ?? null,
+            'pDc_md'    => $paramObj->pDc_md ?? null,
+            'pLUser'    => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

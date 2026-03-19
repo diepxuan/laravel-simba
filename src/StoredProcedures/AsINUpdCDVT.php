@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINUpdCDVT
 {
@@ -26,23 +27,24 @@ class AsINUpdCDVT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINUpdCDVT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pTien_nt' => $params['pTien_nt'] ?? null,
-            'pTien' => $params['pTien'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pTien_nt' => $paramObj->pTien_nt ?? null,
+            'pTien' => $paramObj->pTien ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsINUpdCDVT
             'pRet' => $Ret,
             'pMa_Nt' => $Ma_Nt
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,24 +15,26 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOUpdDMTT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOUpdDMTT', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pma_tt_po' => $params['pma_tt_po'] ?? '',
-            'pMo_ta' => $params['pMo_ta'] ?? '',
-            'pHan_ck' => $params['pHan_ck'] ?? '',
-            'pTl_ck' => $params['pTl_ck'] ?? '',
-            'pHan_tt' => $params['pHan_tt'] ?? '',
-            'pLs_qh' => $params['pLs_qh'] ?? '',
-            'pkSd' => $params['pkSd'] ?? '',
-            'pLUser' => $params['pLUser'] ?? '',
-            'pRet' => $params['pRet'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pma_tt_po' => $paramObj->pma_tt_po ?? '',
+            'pMo_ta' => $paramObj->pMo_ta ?? '',
+            'pHan_ck' => $paramObj->pHan_ck ?? '',
+            'pTl_ck' => $paramObj->pTl_ck ?? '',
+            'pHan_tt' => $paramObj->pHan_tt ?? '',
+            'pLs_qh' => $paramObj->pLs_qh ?? '',
+            'pkSd' => $paramObj->pkSd ?? '',
+            'pLUser' => $paramObj->pLUser ?? '',
+            'pRet' => $paramObj->pRet ?? ''
         ], $connection);
     }
 }

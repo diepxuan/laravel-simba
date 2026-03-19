@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiRePostCt
 {
@@ -26,20 +27,21 @@ class AsSiRePostCt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiRePostCt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pTable' => $params['pTable'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pProc' => $params['pProc'] ?? null,
-            'pQuerry' => $params['pQuerry'] ?? null,
-            'pSTT_rec' => $params['pSTT_rec'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pTable' => $paramObj->pTable ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pProc' => $paramObj->pProc ?? null,
+            'pQuerry' => $paramObj->pQuerry ?? null,
+            'pSTT_rec' => $paramObj->pSTT_rec ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -74,7 +76,7 @@ class AsSiRePostCt
             'ParamDefines' => $ParamDefines,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGlCheckTkMe
 {
@@ -26,12 +27,13 @@ class AsGlCheckTkMe
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGlCheckTkMe', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsGlCheckTkMe
             'pTk' => $Tk,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

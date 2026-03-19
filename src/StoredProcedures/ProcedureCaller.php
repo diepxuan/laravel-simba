@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class ProcedureCaller.
  *
@@ -61,14 +61,14 @@ class ProcedureCaller
             $sql .= implode(";\n", $declareSql) . ";\n";
         }
         $sql .= "EXEC {$name}\n    " . implode(",\n    ", $execParts);
-        
+
         // Thêm SELECT để fetch output values (phải cùng batch với DECLARE)
         if (!empty($selectOut)) {
             $sql .= ";\nSELECT " . implode(', ', $selectOut);
         }
         
         $conn = $connection ? DB::connection($connection) : DB::connection();
-        
+
         // Dùng select() để execute toàn bộ batch và fetch kết quả
         $rows = $conn->select($sql, $bindings);
 

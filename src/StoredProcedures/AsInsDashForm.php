@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsDashForm.
  *
@@ -97,21 +97,22 @@ class AsInsDashForm
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsDashForm', [
-            'pUsername'   => $params['pUsername'] ?? null,
-            'pTitle'      => $params['pTitle'] ?? null,
-            'pFunctionID' => $params['pFunctionID'] ?? null,
-            'pFormat'     => $params['pFormat'] ?? null,
-            'pLocation'   => $params['pLocation'] ?? null,
-            'pX'          => $params['pX'] ?? null,
-            'pY'          => $params['pY'] ?? null,
-            'pH'          => $params['pH'] ?? null,
-            'pW'          => $params['pW'] ?? null,
-            'pType'       => $params['pType'] ?? null,
-            'pDashId'     => $params['pDashId'] ?? null,
-            'pRet'        => $params['pRet'] ?? null,
+            'pUsername'   => $paramObj->pUsername ?? null,
+            'pTitle'      => $paramObj->pTitle ?? null,
+            'pFunctionID' => $paramObj->pFunctionID ?? null,
+            'pFormat'     => $paramObj->pFormat ?? null,
+            'pLocation'   => $paramObj->pLocation ?? null,
+            'pX'          => $paramObj->pX ?? null,
+            'pY'          => $paramObj->pY ?? null,
+            'pH'          => $paramObj->pH ?? null,
+            'pW'          => $paramObj->pW ?? null,
+            'pType'       => $paramObj->pType ?? null,
+            'pDashId'     => $paramObj->pDashId ?? null,
+            'pRet'        => $paramObj->pRet ?? null,
         ], $connection);
     }
 

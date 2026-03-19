@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLInsCdTk
- * 
+ *
  * Stored procedure: asGLInsCdTk
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (nvarchar(3)): input parameter.
  * - @pTk (nvarchar(20)): input parameter.
@@ -37,11 +37,11 @@ use Illuminate\Support\Collection;
  * - @pDu_co (decimal(19,4)): input parameter.
  * - @pLUser (nvarchar(20)): input parameter.
  * - @pRet (int): output parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -54,22 +54,23 @@ class AsGLInsCdTk
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLInsCdTk', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pNam' => $params['pNam'] ?? 0,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pDu_no_nt00' => $params['pDu_no_nt00'] ?? 0.0,
-            'pDu_co_nt00' => $params['pDu_co_nt00'] ?? 0.0,
-            'pDu_no00' => $params['pDu_no00'] ?? 0.0,
-            'pDu_co00' => $params['pDu_co00'] ?? 0.0,
-            'pDu_no_nt' => $params['pDu_no_nt'] ?? 0.0,
-            'pDu_co_nt' => $params['pDu_co_nt'] ?? 0.0,
-            'pDu_no' => $params['pDu_no'] ?? 0.0,
-            'pDu_co' => $params['pDu_co'] ?? 0.0,
-            'pLUser' => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pNam' => $paramObj->pNam ?? 0,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pDu_no_nt00' => $paramObj->pDu_no_nt00 ?? 0.0,
+            'pDu_co_nt00' => $paramObj->pDu_co_nt00 ?? 0.0,
+            'pDu_no00' => $paramObj->pDu_no00 ?? 0.0,
+            'pDu_co00' => $paramObj->pDu_co00 ?? 0.0,
+            'pDu_no_nt' => $paramObj->pDu_no_nt ?? 0.0,
+            'pDu_co_nt' => $paramObj->pDu_co_nt ?? 0.0,
+            'pDu_no' => $paramObj->pDu_no ?? 0.0,
+            'pDu_co' => $paramObj->pDu_co ?? 0.0,
+            'pLUser' => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

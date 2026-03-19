@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINFilt2
 {
@@ -26,6 +27,7 @@ class AsINFilt2
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINFilt2', $params, $connection);
@@ -44,7 +46,7 @@ class AsINFilt2
             'pKeyPh' => $KeyPh,
             'pKeyCt' => $KeyCt
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsCOUpdDMSPCT.
  *
@@ -94,24 +94,25 @@ class AsCOUpdDMSPCT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCOUpdDMSPCT', [
-            'pMa_cty'     => $params['pMa_cty'] ?? '',
-            'pMa_spct'    => $params['pMa_spct'] ?? '',
-            'pTen_spct'   => $params['pTen_spct'] ?? '',
-            'pNgay_kc'    => $params['pNgay_kc'] ?? '',
-            'pNgay_kt'    => $params['pNgay_kt'] ?? '',
-            'pDu_toan'    => $params['pDu_toan'] ?? '',
-            'pDu_toan_NT' => $params['pDu_toan_NT'] ?? '',
-            'pDv_tc'      => $params['pDv_tc'] ?? '',
-            'pGhi_chu'    => $params['pGhi_chu'] ?? '',
-            'pDvt'        => $params['pDvt'] ?? '',
-            'pMa_nhspct'  => $params['pMa_nhspct'] ?? '',
-            'pSan_pham'   => $params['pSan_pham'] ?? '',
-            'pKsd'        => $params['pKsd'] ?? '',
-            'pLUser'      => $params['pLUser'] ?? '',
-            'pRet'        => $params['pRet'] ?? '',
+            'pMa_cty'     => $paramObj->pMa_cty ?? '',
+            'pMa_spct'    => $paramObj->pMa_spct ?? '',
+            'pTen_spct'   => $paramObj->pTen_spct ?? '',
+            'pNgay_kc'    => $paramObj->pNgay_kc ?? '',
+            'pNgay_kt'    => $paramObj->pNgay_kt ?? '',
+            'pDu_toan'    => $paramObj->pDu_toan ?? '',
+            'pDu_toan_NT' => $paramObj->pDu_toan_NT ?? '',
+            'pDv_tc'      => $paramObj->pDv_tc ?? '',
+            'pGhi_chu'    => $paramObj->pGhi_chu ?? '',
+            'pDvt'        => $paramObj->pDvt ?? '',
+            'pMa_nhspct'  => $paramObj->pMa_nhspct ?? '',
+            'pSan_pham'   => $paramObj->pSan_pham ?? '',
+            'pKsd'        => $paramObj->pKsd ?? '',
+            'pLUser'      => $paramObj->pLUser ?? '',
+            'pRet'        => $paramObj->pRet ?? '',
         ], $connection);
     }
 }

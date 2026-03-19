@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSoRptDMKM
 {
@@ -26,17 +27,18 @@ class AsSoRptDMKM
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSoRptDMKM', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pMa_km' => $params['pMa_km'] ?? null,
-            'pNgayBD' => $params['pNgayBD'] ?? null,
-            'pNgayKT' => $params['pNgayKT'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'pSysMsg2' => $params['pSysMsg2'] ?? null,
-            'pSysMsg3' => $params['pSysMsg3'] ?? null,
-            'pSysMsg4' => $params['pSysMsg4'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pMa_km' => $paramObj->pMa_km ?? null,
+            'pNgayBD' => $paramObj->pNgayBD ?? null,
+            'pNgayKT' => $paramObj->pNgayKT ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
+            'pSysMsg3' => $paramObj->pSysMsg3 ?? null,
+            'pSysMsg4' => $paramObj->pSysMsg4 ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsSoRptDMKM
             'pSysMsg3' => $SysMsg3,
             'pSysMsg4' => $SysMsg4
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetCODMPBCachTinhHS.
  *
@@ -78,13 +78,14 @@ class AsGetCODMPBCachTinhHS
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetCODMPBCachTinhHS', [
-            'pMa_cty'   => $params['pMa_cty'] ?? null,
-            'pKsd'      => $params['pKsd'] ?? null,
-            'pModuleId' => $params['pModuleId'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? null,
+            'pKsd'      => $paramObj->pKsd ?? null,
+            'pModuleId' => $paramObj->pModuleId ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null,
         ], $connection);
     }
 }

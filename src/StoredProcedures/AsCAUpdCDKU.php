@@ -15,26 +15,28 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsCAUpdCDKU
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAUpdCDKU', [
-            'pMa_cty'    => $params['pMa_cty'] ?? null,
-            'pNam'       => $params['pNam'] ?? null,
-            'pMa_ku'     => $params['pMa_ku'] ?? null,
-            'pTk'        => $params['pTk'] ?? null,
-            'pMa_nt'     => $params['pMa_nt'] ?? null,
-            'pNgay_ku'   => $params['pNgay_ku'] ?? null,
-            'pNgay_tt'   => $params['pNgay_tt'] ?? null,
-            'pDa_vay'    => $params['pDa_vay'] ?? null,
-            'pDa_vay_nt' => $params['pDa_vay_nt'] ?? null,
-            'pDa_tt'     => $params['pDa_tt'] ?? null,
-            'pDa_tt_nt'  => $params['pDa_tt_nt'] ?? null,
-            'pLUser'     => $params['pLUser'] ?? null,
+            'pMa_cty'    => $paramObj->pMa_cty ?? null,
+            'pNam'       => $paramObj->pNam ?? null,
+            'pMa_ku'     => $paramObj->pMa_ku ?? null,
+            'pTk'        => $paramObj->pTk ?? null,
+            'pMa_nt'     => $paramObj->pMa_nt ?? null,
+            'pNgay_ku'   => $paramObj->pNgay_ku ?? null,
+            'pNgay_tt'   => $paramObj->pNgay_tt ?? null,
+            'pDa_vay'    => $paramObj->pDa_vay ?? null,
+            'pDa_vay_nt' => $paramObj->pDa_vay_nt ?? null,
+            'pDa_tt'     => $paramObj->pDa_tt ?? null,
+            'pDa_tt_nt'  => $paramObj->pDa_tt_nt ?? null,
+            'pLUser'     => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

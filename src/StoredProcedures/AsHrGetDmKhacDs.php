@@ -15,21 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsHrGetDmKhacDs
- * 
+ *
  * Stored procedure: asHrGetDmKhacDs
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (NVARCHAR(3)): input parameter.
  * - @pCode_name (NVARCHAR(20)): input parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -42,11 +42,12 @@ class AsHrGetDmKhacDs
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrGetDmKhacDs', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pCode_name' => $params['pCode_name'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pCode_name' => $paramObj->pCode_name ?? null,
         ], $connection);
     }
 }

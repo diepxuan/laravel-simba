@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostPoPh4_PoCt
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostPoPh4_PoCt', [
-            'pMa_cty'  => $params['pMa_cty'] ?? SModel::CTY,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
         ], $connection);
     }
 }

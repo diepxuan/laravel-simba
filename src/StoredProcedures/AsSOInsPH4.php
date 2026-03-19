@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOInsPH4
 {
@@ -26,6 +27,7 @@ class AsSOInsPH4
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOInsPH4', $params, $connection);
@@ -154,7 +156,7 @@ class AsSOInsPH4
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

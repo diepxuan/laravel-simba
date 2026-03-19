@@ -15,17 +15,19 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class ZDropExtendedPropery
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('zDropExtendedPropery', [
-            'tblName'  => $params['tblName'] ?? '',
-            'colName'  => $params['colName'] ?? '',
-            'property' => $params['property'] ?? '',
+            'tblName'  => $paramObj->tblName ?? '',
+            'colName'  => $paramObj->colName ?? '',
+            'property' => $paramObj->property ?? '',
         ], $connection);
     }
 }

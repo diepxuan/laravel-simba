@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsMMDeldmlo
 {
@@ -26,12 +27,13 @@ class AsMMDeldmlo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asMMDeldmlo', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_lo_tp' => $params['pMa_lo_tp'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_lo_tp' => $paramObj->pMa_lo_tp ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsMMDeldmlo
             'pMa_lo_tp' => $Ma_lo_tp,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

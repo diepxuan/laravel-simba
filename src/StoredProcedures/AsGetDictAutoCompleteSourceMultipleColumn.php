@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetDictAutoCompleteSourceMultipleColumn
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetDictAutoCompleteSourceMultipleColumn', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTableName' => $params['pTableName'] ?? null,
-            'pCodeName' => $params['pCodeName'] ?? null,
-            'pNameFName' => $params['pNameFName'] ?? null,
-            'pFieldList' => $params['pFieldList'] ?? null,
-            'pWhere' => $params['pWhere'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTableName' => $paramObj->pTableName ?? null,
+            'pCodeName' => $paramObj->pCodeName ?? null,
+            'pNameFName' => $paramObj->pNameFName ?? null,
+            'pFieldList' => $paramObj->pFieldList ?? null,
+            'pWhere' => $paramObj->pWhere ?? null
         ], $connection);
     }
 }

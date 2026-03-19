@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSoLookupDhPx
 {
@@ -26,12 +27,13 @@ class AsSoLookupDhPx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSoLookupDhPx', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pKey' => $params['pKey'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pKey' => $paramObj->pKey ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSoLookupDhPx
             'pKey' => $Key,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

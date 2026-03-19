@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPostCAPh2CaTtHu.
  *
@@ -81,15 +81,15 @@ class AsPostCAPh2_CaTtHu extends StoredProcedure
     public static function call(array $params): Collection
     {
         return parent::call(array_merge([
-            'pMa_cty'  => $params['pMa_cty'] ?? SModel::CTY,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pNamTC'   => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pTk_tu'   => $params['pTk_tu'] ?? null,
-            'pma_cty'  => $params['pma_cty'] ?? null,
-            'pMa_Cty'  => $params['pMa_Cty'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pNamTC'   => $paramObj->pNamTC ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pTk_tu'   => $paramObj->pTk_tu ?? null,
+            'pma_cty'  => $paramObj->pma_cty ?? null,
+            'pMa_Cty'  => $paramObj->pMa_Cty ?? null,
         ], $params));
     }
 }

@@ -15,20 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPostSoPh4_glct
- * 
+ *
  * Stored procedure: asPostSoPh4_glct
  * Purpose: AsiaSoft, Sep  8 2005  9:18AM
- * 
+ *
  * Tham số:
 
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -41,6 +41,7 @@ class AsPostSoPh4_glct
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostSoPh4_glct', [

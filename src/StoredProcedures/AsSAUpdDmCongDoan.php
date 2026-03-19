@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsSAUpdDmCongDoan.
  *
@@ -100,15 +100,16 @@ class AsSAUpdDmCongDoan
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSAUpdDmCongDoan', [
-            'pMa_cty'      => $params['pMa_cty'] ?? null,
-            'pMa_congdoan' => $params['pMa_congdoan'] ?? null,
-            'pMa_sanpham'  => $params['pMa_sanpham'] ?? null,
-            'pTen_cd'      => $params['pTen_cd'] ?? null,
-            'pKsd'         => $params['pKsd'] ?? false,
-            'pLUser'       => $params['pLUser'] ?? null,
+            'pMa_cty'      => $paramObj->pMa_cty ?? null,
+            'pMa_congdoan' => $paramObj->pMa_congdoan ?? null,
+            'pMa_sanpham'  => $paramObj->pMa_sanpham ?? null,
+            'pTen_cd'      => $paramObj->pTen_cd ?? null,
+            'pKsd'         => $paramObj->pKsd ?? false,
+            'pLUser'       => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

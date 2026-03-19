@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOInsDMTT
 {
@@ -26,6 +27,7 @@ class AsPOInsDMTT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOInsDMTT', $params, $connection);
@@ -60,7 +62,7 @@ class AsPOInsDMTT
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

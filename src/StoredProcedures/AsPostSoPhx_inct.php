@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostSoPhx_inct
 {
@@ -26,6 +27,7 @@ class AsPostSoPhx_inct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostSoPhx_inct', $params, $connection);
@@ -46,7 +48,7 @@ class AsPostSoPhx_inct
             'pStt_rec' => $Stt_rec,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsINChuyenTonKho.
  *
@@ -68,13 +68,14 @@ class AsINChuyenTonKho
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINChuyenTonKho', [
-            'pma_cty'   => $params['pma_cty'] ?? null,
-            'pngay_cnt' => $params['pngay_cnt'] ?? null,
-            'pma_kho'   => $params['pma_kho'] ?? null,
-            'pRet'      => $params['pRet'] ?? null,
+            'pma_cty'   => $paramObj->pma_cty ?? null,
+            'pngay_cnt' => $paramObj->pngay_cnt ?? null,
+            'pma_kho'   => $paramObj->pma_kho ?? null,
+            'pRet'      => $paramObj->pRet ?? null,
         ], $connection);
     }
 

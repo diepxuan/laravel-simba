@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGlCtgsCrtNumOfVoucher.
  *
@@ -88,19 +88,20 @@ class AsGlCtgsCrtNumOfVoucher
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGlCtgsCrtNumOfVoucher', [
-            'pMa_cty'    => $params['pMa_cty'] ?? null,
-            'pMa_ct'     => $params['pMa_ct'] ?? null,
-            'pTk'        => $params['pTk'] ?? null,
-            'pTen_ct_gs' => $params['pTen_ct_gs'] ?? null,
-            'pSo_hieu'   => $params['pSo_hieu'] ?? null,
-            'pNgay_lo'   => $params['pNgay_lo'] ?? null,
-            'pNgay1'     => $params['pNgay1'] ?? null,
-            'pma_ct'     => $params['pma_ct'] ?? null,
-            'prevLen'    => $params['prevLen'] ?? null,
-            'pMa_Ct'     => $params['pMa_Ct'] ?? null,
+            'pMa_cty'    => $paramObj->pMa_cty ?? null,
+            'pMa_ct'     => $paramObj->pMa_ct ?? null,
+            'pTk'        => $paramObj->pTk ?? null,
+            'pTen_ct_gs' => $paramObj->pTen_ct_gs ?? null,
+            'pSo_hieu'   => $paramObj->pSo_hieu ?? null,
+            'pNgay_lo'   => $paramObj->pNgay_lo ?? null,
+            'pNgay1'     => $paramObj->pNgay1 ?? null,
+            'pma_ct'     => $paramObj->pma_ct ?? null,
+            'prevLen'    => $paramObj->prevLen ?? null,
+            'pMa_Ct'     => $paramObj->pMa_Ct ?? null,
         ], $connection);
     }
 

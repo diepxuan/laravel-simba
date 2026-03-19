@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSORptF5BCPT04
 {
@@ -26,24 +27,25 @@ class AsSORptF5BCPT04
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSORptF5BCPT04', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_Bp' => $params['pMa_Bp'] ?? null,
-            'pMa_Nvkd' => $params['pMa_Nvkd'] ?? null,
-            'pMa_Hd' => $params['pMa_Hd'] ?? null,
-            'pkhuyen_mai' => $params['pkhuyen_mai'] ?? null,
-            'pTra_ck' => $params['pTra_ck'] ?? null,
-            'pHang_ban' => $params['pHang_ban'] ?? null,
-            'pTra_lai' => $params['pTra_lai'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_Bp' => $paramObj->pMa_Bp ?? null,
+            'pMa_Nvkd' => $paramObj->pMa_Nvkd ?? null,
+            'pMa_Hd' => $paramObj->pMa_Hd ?? null,
+            'pkhuyen_mai' => $paramObj->pkhuyen_mai ?? null,
+            'pTra_ck' => $paramObj->pTra_ck ?? null,
+            'pHang_ban' => $paramObj->pHang_ban ?? null,
+            'pTra_lai' => $paramObj->pTra_lai ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null
         ], $connection);
     }
 
@@ -86,7 +88,7 @@ class AsSORptF5BCPT04
             'pNgay1' => $Ngay1,
             'pNgay2' => $Ngay2
         ];
-        
+
         return self::call($params);
     }
 }

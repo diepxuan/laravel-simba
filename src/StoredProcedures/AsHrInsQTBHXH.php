@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsQTBHXH
 {
@@ -26,39 +27,40 @@ class AsHrInsQTBHXH
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsQTBHXH', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtbhxh' => $params['pId_qtbhxh'] ?? null,
-            'pNgay_bd' => $params['pNgay_bd'] ?? null,
-            'pNgay_kt' => $params['pNgay_kt'] ?? null,
-            'pSo_thang' => $params['pSo_thang'] ?? null,
-            'pSo_nam' => $params['pSo_nam'] ?? null,
-            'pTong_so_thang' => $params['pTong_so_thang'] ?? null,
-            'pMa_cvcm' => $params['pMa_cvcm'] ?? null,
-            'pHe_so_luong' => $params['pHe_so_luong'] ?? null,
-            'pTong_phu_cap' => $params['pTong_phu_cap'] ?? null,
-            'pLuong_toi_thieu' => $params['pLuong_toi_thieu'] ?? null,
-            'pLuong_co_ban' => $params['pLuong_co_ban'] ?? null,
-            'pTong_luong' => $params['pTong_luong'] ?? null,
-            'pTl_BHXH_cty' => $params['pTl_BHXH_cty'] ?? null,
-            'pTien_BHXH_cty' => $params['pTien_BHXH_cty'] ?? null,
-            'pTl_BHYT_cty' => $params['pTl_BHYT_cty'] ?? null,
-            'pTien_BHYT_cty' => $params['pTien_BHYT_cty'] ?? null,
-            'pTl_BHTN_cty' => $params['pTl_BHTN_cty'] ?? null,
-            'pTien_BHTN_cty' => $params['pTien_BHTN_cty'] ?? null,
-            'pTl_BHXH_nv' => $params['pTl_BHXH_nv'] ?? null,
-            'pTien_BHXH_nv' => $params['pTien_BHXH_nv'] ?? null,
-            'pTl_BHYT_nv' => $params['pTl_BHYT_nv'] ?? null,
-            'pTien_BHYT_nv' => $params['pTien_BHYT_nv'] ?? null,
-            'pTl_BHTN_nv' => $params['pTl_BHTN_nv'] ?? null,
-            'pTien_BHTN_nv' => $params['pTien_BHTN_nv'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtbhxh' => $paramObj->pId_qtbhxh ?? null,
+            'pNgay_bd' => $paramObj->pNgay_bd ?? null,
+            'pNgay_kt' => $paramObj->pNgay_kt ?? null,
+            'pSo_thang' => $paramObj->pSo_thang ?? null,
+            'pSo_nam' => $paramObj->pSo_nam ?? null,
+            'pTong_so_thang' => $paramObj->pTong_so_thang ?? null,
+            'pMa_cvcm' => $paramObj->pMa_cvcm ?? null,
+            'pHe_so_luong' => $paramObj->pHe_so_luong ?? null,
+            'pTong_phu_cap' => $paramObj->pTong_phu_cap ?? null,
+            'pLuong_toi_thieu' => $paramObj->pLuong_toi_thieu ?? null,
+            'pLuong_co_ban' => $paramObj->pLuong_co_ban ?? null,
+            'pTong_luong' => $paramObj->pTong_luong ?? null,
+            'pTl_BHXH_cty' => $paramObj->pTl_BHXH_cty ?? null,
+            'pTien_BHXH_cty' => $paramObj->pTien_BHXH_cty ?? null,
+            'pTl_BHYT_cty' => $paramObj->pTl_BHYT_cty ?? null,
+            'pTien_BHYT_cty' => $paramObj->pTien_BHYT_cty ?? null,
+            'pTl_BHTN_cty' => $paramObj->pTl_BHTN_cty ?? null,
+            'pTien_BHTN_cty' => $paramObj->pTien_BHTN_cty ?? null,
+            'pTl_BHXH_nv' => $paramObj->pTl_BHXH_nv ?? null,
+            'pTien_BHXH_nv' => $paramObj->pTien_BHXH_nv ?? null,
+            'pTl_BHYT_nv' => $paramObj->pTl_BHYT_nv ?? null,
+            'pTien_BHYT_nv' => $paramObj->pTien_BHYT_nv ?? null,
+            'pTl_BHTN_nv' => $paramObj->pTl_BHTN_nv ?? null,
+            'pTien_BHTN_nv' => $paramObj->pTien_BHTN_nv ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -131,7 +133,7 @@ class AsHrInsQTBHXH
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

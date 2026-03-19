@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetSoCt
 {
@@ -22,10 +23,10 @@ class AsGetSoCt
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetSoCt', [
-            'pMa_Cty'  => $params['pMa_Cty'] ?? SModel::CTY,
-            'pMa_ct'   => $params['pMa_ct'] ?? null,
-            'pNgay_Ct' => $params['pNgay_Ct'] ?? now()->toDateString(),
-            'pSo_Ct'   => $params['pSo_Ct'] ?? null,
+            'pMa_Cty'  => $params->pMa_Cty ?? SModel::CTY,
+            'pMa_ct'   => $params->pMa_ct ?? null,
+            'pNgay_Ct' => $params->pNgay_Ct ?? now()->toDateString(),
+            'pSo_Ct'   => $params->pSo_Ct ?? null,
         ], $connection)->first()->SoCt;
     }
 }

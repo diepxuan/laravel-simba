@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGlRptDynamic
 {
@@ -26,18 +27,19 @@ class AsGlRptDynamic
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGlRptDynamic', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pSum2TkTH2' => $params['pSum2TkTH2'] ?? null,
-            'pSum2TkTH' => $params['pSum2TkTH'] ?? null,
-            'pre_col' => $params['pre_col'] ?? null,
-            'PivotColumn' => $params['PivotColumn'] ?? null,
-            'PivotSql' => $params['PivotSql'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pSum2TkTH2' => $paramObj->pSum2TkTH2 ?? null,
+            'pSum2TkTH' => $paramObj->pSum2TkTH ?? null,
+            'pre_col' => $paramObj->pre_col ?? null,
+            'PivotColumn' => $paramObj->PivotColumn ?? null,
+            'PivotSql' => $paramObj->PivotSql ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsGlRptDynamic
             'PivotColumn' => $PivotColumn,
             'PivotSql' => $PivotSql
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetCalcInfo.
  *
@@ -73,10 +73,11 @@ class AsGetCalcInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetCalcInfo', [
-            'pMenuID' => $params['pMenuID'] ?? null,
+            'pMenuID' => $paramObj->pMenuID ?? null,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInTaoCayVt
 {
@@ -26,13 +27,14 @@ class AsInTaoCayVt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInTaoCayVt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTblName' => $params['pTblName'] ?? null,
-            'pSumFList' => $params['pSumFList'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTblName' => $paramObj->pTblName ?? null,
+            'pSumFList' => $paramObj->pSumFList ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsInTaoCayVt
             'pSumFList' => $SumFList,
             'pSysMsg1' => $SysMsg1
         ];
-        
+
         return self::call($params);
     }
 }

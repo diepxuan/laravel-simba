@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFaCheckDgtsSauGiamTS
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFaCheckDgtsSauGiamTS', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ts' => $params['pMa_ts'] ?? null,
-            'pMa_ts_tgng' => $params['pMa_ts_tgng'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ts' => $paramObj->pMa_ts ?? null,
+            'pMa_ts_tgng' => $paramObj->pMa_ts_tgng ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
         ], $connection);
     }
 }

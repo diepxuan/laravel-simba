@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLRptBCTC03
- * 
+ *
  * Stored procedure: asGLRptBCTC03
  * Purpose: SET NOCOUNT ON
- * 
+ *
  * Tham số:
  * - @pMa_Cty (nvarchar): Mô tả tham số
  * - @pQd_cdkt (nvarchar): Mô tả tham số
@@ -43,7 +43,7 @@ use Illuminate\Support\Collection;
  * - @pMa_bp (nvarchar): Mô tả tham số
  * - @pMa_Nt (nvarchar): Mô tả tham số
  * - @pDest (nvarchar): Mô tả tham số
- * 
+ *
  * Giá trị mặc định:
  * - @pMa_Cty: null
  * - @pQd_cdkt: null
@@ -65,9 +65,9 @@ use Illuminate\Support\Collection;
  * - @pMa_bp: null
  * - @pMa_Nt: null
  * - @pDest: null
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -99,29 +99,30 @@ class AsGLRptBCTC03
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTC03', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pQd_cdkt' => $params['pQd_cdkt'] ?? null,
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? null,
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? null,
-            'pNgay_Ct01' => $params['pNgay_Ct01'] ?? null,
-            'pNgay_Ct02' => $params['pNgay_Ct02'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null,
-            'pDest' => $params['pDest'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pQd_cdkt' => $params['pQd_cdkt'] ?? null,
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? null,
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? null,
-            'pNgay_Ct01' => $params['pNgay_Ct01'] ?? null,
-            'pNgay_Ct02' => $params['pNgay_Ct02'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null,
-            'pDest' => $params['pDest'] ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pQd_cdkt' => $paramObj->pQd_cdkt ?? null,
+            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? null,
+            'pNgay_Ct2' => $paramObj->pNgay_Ct2 ?? null,
+            'pNgay_Ct01' => $paramObj->pNgay_Ct01 ?? null,
+            'pNgay_Ct02' => $paramObj->pNgay_Ct02 ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
+            'pDest' => $paramObj->pDest ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pQd_cdkt' => $paramObj->pQd_cdkt ?? null,
+            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? null,
+            'pNgay_Ct2' => $paramObj->pNgay_Ct2 ?? null,
+            'pNgay_Ct01' => $paramObj->pNgay_Ct01 ?? null,
+            'pNgay_Ct02' => $paramObj->pNgay_Ct02 ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
+            'pDest' => $paramObj->pDest ?? null,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdateReportResX
 {
@@ -26,18 +27,19 @@ class AsUpdateReportResX
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdateReportResX', [
-            'pmenuid' => $params['pmenuid'] ?? null,
-            'pma_mau' => $params['pma_mau'] ?? null,
-            'plang_id' => $params['plang_id'] ?? null,
-            'pformated_col_list' => $params['pformated_col_list'] ?? null,
-            'pvnd_nt' => $params['pvnd_nt'] ?? null,
-            'pPh_Ct' => $params['pPh_Ct'] ?? null,
-            'pUser' => $params['pUser'] ?? null,
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null
+            'pmenuid' => $paramObj->pmenuid ?? null,
+            'pma_mau' => $paramObj->pma_mau ?? null,
+            'plang_id' => $paramObj->plang_id ?? null,
+            'pformated_col_list' => $paramObj->pformated_col_list ?? null,
+            'pvnd_nt' => $paramObj->pvnd_nt ?? null,
+            'pPh_Ct' => $paramObj->pPh_Ct ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsUpdateReportResX
             'pMenuid' => $Menuid,
             'pMa_mau' => $Ma_mau
         ];
-        
+
         return self::call($params);
     }
 }

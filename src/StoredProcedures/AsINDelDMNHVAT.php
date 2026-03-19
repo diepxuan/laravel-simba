@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINDelDMNHVAT
 {
@@ -26,12 +27,13 @@ class AsINDelDMNHVAT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINDelDMNHVAT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_nhvat' => $params['pMa_nhvat'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_nhvat' => $paramObj->pMa_nhvat ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsINDelDMNHVAT
             'pMa_nhvat' => $Ma_nhvat,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

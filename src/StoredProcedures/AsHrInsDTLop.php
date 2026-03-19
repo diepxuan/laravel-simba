@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsDTLop
 {
@@ -26,23 +27,24 @@ class AsHrInsDTLop
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsDTLop', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kdt' => $params['pMa_kdt'] ?? null,
-            'pMa_ldt' => $params['pMa_ldt'] ?? null,
-            'pTen_ldt' => $params['pTen_ldt'] ?? null,
-            'pMa_gv' => $params['pMa_gv'] ?? null,
-            'pTen_gv' => $params['pTen_gv'] ?? null,
-            'pChuc_danh' => $params['pChuc_danh'] ?? null,
-            'pHoc_ham' => $params['pHoc_ham'] ?? null,
-            'pLich_hoc' => $params['pLich_hoc'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kdt' => $paramObj->pMa_kdt ?? null,
+            'pMa_ldt' => $paramObj->pMa_ldt ?? null,
+            'pTen_ldt' => $paramObj->pTen_ldt ?? null,
+            'pMa_gv' => $paramObj->pMa_gv ?? null,
+            'pTen_gv' => $paramObj->pTen_gv ?? null,
+            'pChuc_danh' => $paramObj->pChuc_danh ?? null,
+            'pHoc_ham' => $paramObj->pHoc_ham ?? null,
+            'pLich_hoc' => $paramObj->pLich_hoc ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsHrInsDTLop
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsARFilt1.
  *
@@ -107,11 +107,12 @@ class AsARFilt1
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARFilt1', [
-            'pKeyPh' => $params['pKeyPh'] ?? null,
-            'pKeyCt' => $params['pKeyCt'] ?? null,
+            'pKeyPh' => $paramObj->pKeyPh ?? null,
+            'pKeyCt' => $paramObj->pKeyCt ?? null,
         ], $connection);
     }
 }

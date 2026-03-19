@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsHrGetDTLop.
  *
@@ -58,12 +58,13 @@ class AsHrGetDTLop
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrGetDTLop', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kdt' => $params['pMa_kdt'] ?? null,
-            'pMa_ldt' => $params['pMa_ldt'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kdt' => $paramObj->pMa_kdt ?? null,
+            'pMa_ldt' => $paramObj->pMa_ldt ?? null,
         ], $connection);
     }
 

@@ -15,25 +15,27 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class ZSpupdglmauBcTc05
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_spupdglmauBcTc05', [
-            'pma_cty'     => $params['pma_cty'] ?? '',
-            'pmau'        => $params['pmau'] ?? '',
-            'pma_so'      => $params['pma_so'] ?? '',
-            'pstt'        => $params['pstt'] ?? 0,
-            'pchi_tieu'   => $params['pchi_tieu'] ?? '',
-            'pcach_tinh'  => $params['pcach_tinh'] ?? '',
-            'ptk_no'      => $params['ptk_no'] ?? '',
-            'ptk_co'      => $params['ptk_co'] ?? '',
-            'pbold'       => $params['pbold'] ?? 0,
-            'pin_ck'      => $params['pin_ck'] ?? 0,
-            'pma_so_ctu'  => $params['pma_so_ctu'] ?? 0,
+            'pma_cty'     => $paramObj->pma_cty ?? '',
+            'pmau'        => $paramObj->pmau ?? '',
+            'pma_so'      => $paramObj->pma_so ?? '',
+            'pstt'        => $paramObj->pstt ?? 0,
+            'pchi_tieu'   => $paramObj->pchi_tieu ?? '',
+            'pcach_tinh'  => $paramObj->pcach_tinh ?? '',
+            'ptk_no'      => $paramObj->ptk_no ?? '',
+            'ptk_co'      => $paramObj->ptk_co ?? '',
+            'pbold'       => $paramObj->pbold ?? 0,
+            'pin_ck'      => $paramObj->pin_ck ?? 0,
+            'pma_so_ctu'  => $paramObj->pma_so_ctu ?? 0,
         ], $connection);
     }
 }

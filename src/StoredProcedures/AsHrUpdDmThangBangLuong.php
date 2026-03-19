@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdDmThangBangLuong
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdDmThangBangLuong', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pMa_tbl' => $params['pMa_tbl'] ?? '',
-            'pTen_tbl' => $params['pTen_tbl'] ?? '',
-            'pKsd' => $params['pKsd'] ?? '',
-            'pLuser' => $params['pLuser'] ?? '',
-            'pRet' => $params['pRet'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pMa_tbl' => $paramObj->pMa_tbl ?? '',
+            'pTen_tbl' => $paramObj->pTen_tbl ?? '',
+            'pKsd' => $paramObj->pKsd ?? '',
+            'pLuser' => $paramObj->pLuser ?? '',
+            'pRet' => $paramObj->pRet ?? ''
         ], $connection);
     }
 }

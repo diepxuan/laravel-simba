@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLCrtKC1.
  *
@@ -125,23 +125,23 @@ class AsGLCrtKC1 extends StoredProcedure
     public static function call(array $params): Collection
     {
         return parent::call(array_merge([
-            'pma_cty'   => $params['pma_cty'] ?? SModel::CTY,
-            'pstt'      => $params['pstt'] ?? 1,
-            'ptk'       => $params['ptk'] ?? null,
-            'ptk_du'    => $params['ptk_du'] ?? null,
-            'pten_bt'   => $params['pten_bt'] ?? null,
-            'pkc_bp'    => $params['pkc_bp'] ?? '0',
-            'pkc_hd'    => $params['pkc_hd'] ?? '0',
-            'pkc_spct'  => $params['pkc_spct'] ?? '0',
-            'pkc_phi'   => $params['pkc_phi'] ?? '0',
-            'ploai_kc'  => $params['ploai_kc'] ?? '1',
-            'pkc_dt_ps' => $params['pkc_dt_ps'] ?? '0',
-            'pngay1'    => $params['pngay1'] ?? date('Y-m-01'),
-            'pngay2'    => $params['pngay2'] ?? date('Y-m-t'),
-            'pstt_rec'  => $params['pstt_rec'] ?? null,
-            'pma_ct'    => $params['pma_ct'] ?? null,
-            'pso_ct'    => $params['pso_ct'] ?? null,
-            'puser'     => $params['puser'] ?? null,
+            'pma_cty'   => $paramObj->pma_cty ?? SModel::CTY,
+            'pstt'      => $paramObj->pstt ?? 1,
+            'ptk'       => $paramObj->ptk ?? null,
+            'ptk_du'    => $paramObj->ptk_du ?? null,
+            'pten_bt'   => $paramObj->pten_bt ?? null,
+            'pkc_bp'    => $paramObj->pkc_bp ?? '0',
+            'pkc_hd'    => $paramObj->pkc_hd ?? '0',
+            'pkc_spct'  => $paramObj->pkc_spct ?? '0',
+            'pkc_phi'   => $paramObj->pkc_phi ?? '0',
+            'ploai_kc'  => $paramObj->ploai_kc ?? '1',
+            'pkc_dt_ps' => $paramObj->pkc_dt_ps ?? '0',
+            'pngay1'    => $paramObj->pngay1 ?? date('Y-m-01'),
+            'pngay2'    => $paramObj->pngay2 ?? date('Y-m-t'),
+            'pstt_rec'  => $paramObj->pstt_rec ?? null,
+            'pma_ct'    => $paramObj->pma_ct ?? null,
+            'pso_ct'    => $paramObj->pso_ct ?? null,
+            'puser'     => $paramObj->puser ?? null,
         ], $params));
     }
 }

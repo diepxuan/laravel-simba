@@ -15,28 +15,30 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINInsDMKHO
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINInsDMKHO', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pTen_kho' => $params['pTen_kho'] ?? null,
-            'pKho_dl' => $params['pKho_dl'] ?? null,
-            'pTk_dl' => $params['pTk_dl'] ?? null,
-            'pStt_ntxt' => $params['pStt_ntxt'] ?? null,
-            'pDia_chi' => $params['pDia_chi'] ?? null,
-            'pNguoi_lh' => $params['pNguoi_lh'] ?? null,
-            'pTel' => $params['pTel'] ?? null,
-            'pFax' => $params['pFax'] ?? null,
-            'pEmail' => $params['pEmail'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pTen_kho' => $paramObj->pTen_kho ?? null,
+            'pKho_dl' => $paramObj->pKho_dl ?? null,
+            'pTk_dl' => $paramObj->pTk_dl ?? null,
+            'pStt_ntxt' => $paramObj->pStt_ntxt ?? null,
+            'pDia_chi' => $paramObj->pDia_chi ?? null,
+            'pNguoi_lh' => $paramObj->pNguoi_lh ?? null,
+            'pTel' => $paramObj->pTel ?? null,
+            'pFax' => $paramObj->pFax ?? null,
+            'pEmail' => $paramObj->pEmail ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

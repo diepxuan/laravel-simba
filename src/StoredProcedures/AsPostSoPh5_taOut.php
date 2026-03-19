@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostSoPh5_taOut
 {
@@ -26,17 +27,18 @@ class AsPostSoPh5_taOut
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostSoPh5_taOut', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pLen_tenVT' => $params['pLen_tenVT'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNamTC' => $paramObj->pNamTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pLen_tenVT' => $paramObj->pLen_tenVT ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsPostSoPh5_taOut
             'pMa_cty' => $Ma_cty,
             'pLen_tenVT' => $Len_tenVT
         ];
-        
+
         return self::call($params);
     }
 }

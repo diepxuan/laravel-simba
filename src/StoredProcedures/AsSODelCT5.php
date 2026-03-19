@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSODelCT5
 {
@@ -26,12 +27,13 @@ class AsSODelCT5
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSODelCT5', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSODelCT5
             'pStt_rec' => $Stt_rec,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

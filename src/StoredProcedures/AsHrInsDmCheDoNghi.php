@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsDmCheDoNghi
 {
@@ -26,21 +27,22 @@ class AsHrInsDmCheDoNghi
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsDmCheDoNghi', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_cdn' => $params['pMa_cdn'] ?? null,
-            'pTen_cdn' => $params['pTen_cdn'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null,
-            'pTong' => $params['pTong'] ?? null,
-            'pMau_hien_thi' => $params['pMau_hien_thi'] ?? null,
-            'pY_te' => $params['pY_te'] ?? null,
-            'pCuoi_tuan' => $params['pCuoi_tuan'] ?? null,
-            'pLe_tet' => $params['pLe_tet'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cdn' => $paramObj->pMa_cdn ?? null,
+            'pTen_cdn' => $paramObj->pTen_cdn ?? null,
+            'pDvt' => $paramObj->pDvt ?? null,
+            'pTong' => $paramObj->pTong ?? null,
+            'pMau_hien_thi' => $paramObj->pMau_hien_thi ?? null,
+            'pY_te' => $paramObj->pY_te ?? null,
+            'pCuoi_tuan' => $paramObj->pCuoi_tuan ?? null,
+            'pLe_tet' => $paramObj->pLe_tet ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -77,7 +79,7 @@ class AsHrInsDmCheDoNghi
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetDmMaGd
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetDmMaGd', [
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 }

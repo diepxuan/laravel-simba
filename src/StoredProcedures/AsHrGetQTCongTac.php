@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrGetQTCongTac
 {
@@ -26,12 +27,13 @@ class AsHrGetQTCongTac
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrGetQTCongTac', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtct' => $params['pId_qtct'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtct' => $paramObj->pId_qtct ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsHrGetQTCongTac
             'pId' => $Id,
             'pId_qtct' => $Id_qtct
         ];
-        
+
         return self::call($params);
     }
 }

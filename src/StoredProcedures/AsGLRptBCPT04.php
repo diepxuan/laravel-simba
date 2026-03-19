@@ -15,21 +15,23 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLRptBCPT04
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCPT04', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pThang1' => $params['pThang1'] ?? null,
-            'pThang2' => $params['pThang2'] ?? null,
-            'pQuyThang' => $params['pQuyThang'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang1' => $paramObj->pThang1 ?? null,
+            'pThang2' => $paramObj->pThang2 ?? null,
+            'pQuyThang' => $paramObj->pQuyThang ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null
         ], $connection);
     }
 }

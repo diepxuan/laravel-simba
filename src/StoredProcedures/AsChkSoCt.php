@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsChkSoCt.
  *
@@ -98,14 +98,15 @@ class AsChkSoCt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asChkSoCt', [
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
-            'pMa_ct'   => $params['pMa_ct'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pSo_ct'   => $params['pSo_ct'] ?? null,
-            'pNgay_Ct' => $params['pNgay_Ct'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_ct'   => $paramObj->pMa_ct ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pSo_ct'   => $paramObj->pSo_ct ?? null,
+            'pNgay_Ct' => $paramObj->pNgay_Ct ?? null,
             'pRet'     => ['type' => 'INT', 'output' => true],
         ], $connection);
     }

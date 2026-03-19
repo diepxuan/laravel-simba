@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLInsBudget
- * 
+ *
  * Stored procedure: asGLInsBudget
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pStt_rec (NVARCHAR(20)): input parameter.
  * - @pMa_cty (NVARCHAR(3)): input parameter.
@@ -46,11 +46,11 @@ use Illuminate\Support\Collection;
  * - @pT11 (DECIMAL(19, 4)): input parameter.
  * - @pT12 (DECIMAL(19, 4)): input parameter.
  * - @pRet (INT OUT): input parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -63,32 +63,33 @@ class AsGLInsBudget
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLInsBudget', [
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? 0,
-            'pTk' => $params['pTk'] ?? null,
-            'pTk_du' => $params['pTk_du'] ?? null,
-            'pTtps_no_co' => $params['pTtps_no_co'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pUser' => $params['pUser'] ?? null,
-            'pT1' => $params['pT1'] ?? 0.0,
-            'pT2' => $params['pT2'] ?? 0.0,
-            'pT3' => $params['pT3'] ?? 0.0,
-            'pT4' => $params['pT4'] ?? 0.0,
-            'pT5' => $params['pT5'] ?? 0.0,
-            'pT6' => $params['pT6'] ?? 0.0,
-            'pT7' => $params['pT7'] ?? 0.0,
-            'pT8' => $params['pT8'] ?? 0.0,
-            'pT9' => $params['pT9'] ?? 0.0,
-            'pT10' => $params['pT10'] ?? 0.0,
-            'pT11' => $params['pT11'] ?? 0.0,
-            'pT12' => $params['pT12'] ?? 0.0,
-            'pRet' => $params['pRet'] ?? 0,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? 0,
+            'pTk' => $paramObj->pTk ?? null,
+            'pTk_du' => $paramObj->pTk_du ?? null,
+            'pTtps_no_co' => $paramObj->pTtps_no_co ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'pT1' => $paramObj->pT1 ?? 0.0,
+            'pT2' => $paramObj->pT2 ?? 0.0,
+            'pT3' => $paramObj->pT3 ?? 0.0,
+            'pT4' => $paramObj->pT4 ?? 0.0,
+            'pT5' => $paramObj->pT5 ?? 0.0,
+            'pT6' => $paramObj->pT6 ?? 0.0,
+            'pT7' => $paramObj->pT7 ?? 0.0,
+            'pT8' => $paramObj->pT8 ?? 0.0,
+            'pT9' => $paramObj->pT9 ?? 0.0,
+            'pT10' => $paramObj->pT10 ?? 0.0,
+            'pT11' => $paramObj->pT11 ?? 0.0,
+            'pT12' => $paramObj->pT12 ?? 0.0,
+            'pRet' => $paramObj->pRet ?? 0,
         ], $connection);
     }
 }

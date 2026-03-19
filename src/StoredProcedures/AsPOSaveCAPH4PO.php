@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOSaveCAPH4PO
 {
@@ -26,25 +27,26 @@ class AsPOSaveCAPH4PO
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOSaveCAPH4PO', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pStt_rec_hd' => $params['pStt_rec_hd'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pSo_ct' => $params['pSo_ct'] ?? null,
-            'pDia_chi' => $params['pDia_chi'] ?? null,
-            'pNguoi_gd' => $params['pNguoi_gd'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pTy_gia' => $params['pTy_gia'] ?? null,
-            'pT_tien_nt' => $params['pT_tien_nt'] ?? null,
-            'pT_tien' => $params['pT_tien'] ?? null,
-            'pTk_co' => $params['pTk_co'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pUser' => $params['pUser'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec_hd' => $paramObj->pStt_rec_hd ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pSo_ct' => $paramObj->pSo_ct ?? null,
+            'pDia_chi' => $paramObj->pDia_chi ?? null,
+            'pNguoi_gd' => $paramObj->pNguoi_gd ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pTy_gia' => $paramObj->pTy_gia ?? null,
+            'pT_tien_nt' => $paramObj->pT_tien_nt ?? null,
+            'pT_tien' => $paramObj->pT_tien ?? null,
+            'pTk_co' => $paramObj->pTk_co ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pUser' => $paramObj->pUser ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsPOSaveCAPH4PO
             'pMa_kh' => $Ma_kh,
             'pUser' => $User
         ];
-        
+
         return self::call($params);
     }
 }

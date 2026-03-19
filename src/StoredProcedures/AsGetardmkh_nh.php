@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetardmkh_nh
 {
@@ -26,6 +27,7 @@ class AsGetardmkh_nh
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetardmkh_nh', $params, $connection);
@@ -48,7 +50,7 @@ class AsGetardmkh_nh
             'pMa_ngh' => $Ma_ngh,
             'pSo_tk' => $So_tk
         ];
-        
+
         return self::call($params);
     }
 }

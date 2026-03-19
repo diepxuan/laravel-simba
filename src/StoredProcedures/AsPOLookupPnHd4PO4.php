@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOLookupPnHd4PO4
 {
@@ -26,6 +27,7 @@ class AsPOLookupPnHd4PO4
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOLookupPnHd4PO4', $params, $connection);
@@ -46,7 +48,7 @@ class AsPOLookupPnHd4PO4
             'pKey' => $Key,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

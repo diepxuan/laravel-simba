@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsDMCT
- * 
+ *
  * Stored procedure: asSIInsDMCT
  * Purpose: Thêm một loại chứng từ (danh mục chứng từ) trong module Sales & Inventory.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pMa_ct (nvarchar(3)): Mã chứng từ. Bắt buộc.
@@ -53,11 +53,11 @@ use Illuminate\Support\Collection;
  * - @pVn_width (int): Độ rộng số chứng từ. Bắt buộc.
  * - @pKieu_trung_so_ct (int): Kiểu trùng số chứng từ. Bắt buộc.
  * - @pRet (int output): Tham số output trả về mã lỗi (0 nếu thành công, @@error nếu có lỗi).
- * 
+ *
  * Giá trị mặc định: Tất cả tham số không có mặc định, phải cung cấp.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện insert).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -75,38 +75,39 @@ class AsInsDMCT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIInsDMCT', [
-            'pMa_cty'            => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_ct'             => $params['pMa_ct'] ?? null,
-            'pPhan_he'           => $params['pPhan_he'] ?? null,
-            'pMa_ct_me'          => $params['pMa_ct_me'] ?? null,
-            'pTen_ct'            => $params['pTen_ct'] ?? null,
-            'pTk_no'             => $params['pTk_no'] ?? null,
-            'pTk_co'             => $params['pTk_co'] ?? null,
-            'pMa_nt'             => $params['pMa_nt'] ?? null,
-            'pSo_lien'           => $params['pSo_lien'] ?? null,
-            'pStt_nkc'           => $params['pStt_nkc'] ?? null,
-            'pStt_ntxt'          => $params['pStt_ntxt'] ?? null,
-            'pCt_dc'             => $params['pCt_dc'] ?? null,
-            'pLoc_nsd'           => $params['pLoc_nsd'] ?? null,
-            'pVv'                => $params['pVv'] ?? null,
-            'pSpct'              => $params['pSpct'] ?? null,
-            'pPhi'               => $params['pPhi'] ?? null,
-            'pBp'                => $params['pBp'] ?? null,
-            'pLo'                => $params['pLo'] ?? null,
-            'pSp_post'           => $params['pSp_post'] ?? null,
-            'pSp_process'        => $params['pSp_process'] ?? null,
-            'pPh'                => $params['pPh'] ?? null,
-            'pSd'                => $params['pSd'] ?? null,
-            'pNxt'               => $params['pNxt'] ?? null,
-            'pMenuid'            => $params['pMenuid'] ?? null,
-            'pVn_prefix'         => $params['pVn_prefix'] ?? null,
-            'pVn_sequence'       => $params['pVn_sequence'] ?? null,
-            'pVn_pattern'        => $params['pVn_pattern'] ?? null,
-            'pVn_width'          => $params['pVn_width'] ?? null,
-            'pKieu_trung_so_ct'  => $params['pKieu_trung_so_ct'] ?? null,
+            'pMa_cty'            => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_ct'             => $paramObj->pMa_ct ?? null,
+            'pPhan_he'           => $paramObj->pPhan_he ?? null,
+            'pMa_ct_me'          => $paramObj->pMa_ct_me ?? null,
+            'pTen_ct'            => $paramObj->pTen_ct ?? null,
+            'pTk_no'             => $paramObj->pTk_no ?? null,
+            'pTk_co'             => $paramObj->pTk_co ?? null,
+            'pMa_nt'             => $paramObj->pMa_nt ?? null,
+            'pSo_lien'           => $paramObj->pSo_lien ?? null,
+            'pStt_nkc'           => $paramObj->pStt_nkc ?? null,
+            'pStt_ntxt'          => $paramObj->pStt_ntxt ?? null,
+            'pCt_dc'             => $paramObj->pCt_dc ?? null,
+            'pLoc_nsd'           => $paramObj->pLoc_nsd ?? null,
+            'pVv'                => $paramObj->pVv ?? null,
+            'pSpct'              => $paramObj->pSpct ?? null,
+            'pPhi'               => $paramObj->pPhi ?? null,
+            'pBp'                => $paramObj->pBp ?? null,
+            'pLo'                => $paramObj->pLo ?? null,
+            'pSp_post'           => $paramObj->pSp_post ?? null,
+            'pSp_process'        => $paramObj->pSp_process ?? null,
+            'pPh'                => $paramObj->pPh ?? null,
+            'pSd'                => $paramObj->pSd ?? null,
+            'pNxt'               => $paramObj->pNxt ?? null,
+            'pMenuid'            => $paramObj->pMenuid ?? null,
+            'pVn_prefix'         => $paramObj->pVn_prefix ?? null,
+            'pVn_sequence'       => $paramObj->pVn_sequence ?? null,
+            'pVn_pattern'        => $paramObj->pVn_pattern ?? null,
+            'pVn_width'          => $paramObj->pVn_width ?? null,
+            'pKieu_trung_so_ct'  => $paramObj->pKieu_trung_so_ct ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

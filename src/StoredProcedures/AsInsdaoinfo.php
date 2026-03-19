@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInsdaoinfo
 {
@@ -26,18 +27,19 @@ class AsInsdaoinfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsdaoinfo', [
-            'pTable_name' => $params['pTable_name'] ?? null,
-            'pGet_sp' => $params['pGet_sp'] ?? null,
-            'pIns_sp' => $params['pIns_sp'] ?? null,
-            'pUpd_sp' => $params['pUpd_sp'] ?? null,
-            'pDel_sp' => $params['pDel_sp'] ?? null,
-            'pSch_sp' => $params['pSch_sp'] ?? null,
-            'pChg_sp' => $params['pChg_sp'] ?? null,
-            'pDescription' => $params['pDescription'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pTable_name' => $paramObj->pTable_name ?? null,
+            'pGet_sp' => $paramObj->pGet_sp ?? null,
+            'pIns_sp' => $paramObj->pIns_sp ?? null,
+            'pUpd_sp' => $paramObj->pUpd_sp ?? null,
+            'pDel_sp' => $paramObj->pDel_sp ?? null,
+            'pSch_sp' => $paramObj->pSch_sp ?? null,
+            'pChg_sp' => $paramObj->pChg_sp ?? null,
+            'pDescription' => $paramObj->pDescription ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsInsdaoinfo
             'pDescription' => $Description,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

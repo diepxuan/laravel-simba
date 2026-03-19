@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostInPh9_inct
 {
@@ -26,16 +27,17 @@ class AsPostInPh9_inct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostInPh9_inct', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pPost2in' => $params['pPost2in'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pNamTC' => $paramObj->pNamTC ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pPost2in' => $paramObj->pPost2in ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsPostInPh9_inct
             'pNgay_ks' => $Ngay_ks,
             'pPost2in' => $Post2in
         ];
-        
+
         return self::call($params);
     }
 }

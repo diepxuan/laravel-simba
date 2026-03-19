@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINRptCTVT02
 {
@@ -26,24 +27,25 @@ class AsINRptCTVT02
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINRptCTVT02', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pDVT' => $params['pDVT'] ?? null,
-            'pPSDC' => $params['pPSDC'] ?? null,
-            'pNgoai_te' => $params['pNgoai_te'] ?? null,
-            'pMau_bc' => $params['pMau_bc'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'pMa_nt0' => $params['pMa_nt0'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pDVT' => $paramObj->pDVT ?? null,
+            'pPSDC' => $paramObj->pPSDC ?? null,
+            'pNgoai_te' => $paramObj->pNgoai_te ?? null,
+            'pMau_bc' => $paramObj->pMau_bc ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'pMa_nt0' => $paramObj->pMa_nt0 ?? null
         ], $connection);
     }
 
@@ -86,7 +88,7 @@ class AsINRptCTVT02
             'pSysMsg1' => $SysMsg1,
             'pMa_nt0' => $Ma_nt0
         ];
-        
+
         return self::call($params);
     }
 }

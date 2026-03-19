@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsUserGroup.
  *
@@ -95,14 +95,15 @@ class AsInsUserGroup
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsUserGroup', [
-            'pGroupName' => $params['pGroupName'] ?? null,
-            'pUserName'  => $params['pUserName'] ?? null,
-            'pDel'       => $params['pDel'] ?? null,
-            'pRet'       => $params['pRet'] ?? null,
-            'pusername'  => $params['pusername'] ?? null,
+            'pGroupName' => $paramObj->pGroupName ?? null,
+            'pUserName'  => $paramObj->pUserName ?? null,
+            'pDel'       => $paramObj->pDel ?? null,
+            'pRet'       => $paramObj->pRet ?? null,
+            'pusername'  => $paramObj->pusername ?? null,
         ], $connection);
     }
 

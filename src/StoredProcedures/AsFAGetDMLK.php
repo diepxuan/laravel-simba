@@ -15,17 +15,19 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFAGetDMLK
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFAGetDMLK', [
-            'pMa_cty'  => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_ts'   => $params['pMa_ts'] ?? null,
-            'pStruct'  => $params['pStruct'] ?? '0',
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_ts'   => $paramObj->pMa_ts ?? null,
+            'pStruct'  => $paramObj->pStruct ?? '0',
         ], $connection);
     }
 }

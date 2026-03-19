@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFaUpdDungKH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFaUpdDungKH', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ts' => $params['pMa_ts'] ?? null,
-            'pNgay_dung_kh' => $params['pNgay_dung_kh'] ?? null,
-            'pNgay_kh_lai' => $params['pNgay_kh_lai'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ts' => $paramObj->pMa_ts ?? null,
+            'pNgay_dung_kh' => $paramObj->pNgay_dung_kh ?? null,
+            'pNgay_kh_lai' => $paramObj->pNgay_kh_lai ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

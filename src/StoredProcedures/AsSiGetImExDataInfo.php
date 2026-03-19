@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiGetImExDataInfo
 {
@@ -26,11 +27,12 @@ class AsSiGetImExDataInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiGetImExDataInfo', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pCodeName' => $params['pCodeName'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pCodeName' => $paramObj->pCodeName ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsSiGetImExDataInfo
             'pMa_Cty' => $Ma_Cty,
             'pCodeName' => $CodeName
         ];
-        
+
         return self::call($params);
     }
 }

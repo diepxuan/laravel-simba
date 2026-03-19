@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInCalGiaFIFO
 {
@@ -26,16 +27,17 @@ class AsInCalGiaFIFO
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInCalGiaFIFO', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pNhom_vt' => $params['pNhom_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'px_gdd' => $params['px_gdd'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pNhom_vt' => $paramObj->pNhom_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'px_gdd' => $paramObj->px_gdd ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsInCalGiaFIFO
             'pMa_kho' => $Ma_kho,
             'px_gdd' => $x_gdd
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARRptBCCN05
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARRptBCCN05', [
-            'pMa_cty' => $params['pPMa_cty'] ?? $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pPNgay1'] ?? $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pPNgay2'] ?? $params['pNgay2'] ?? null,
-            'pTk' => $params['pPTk'] ?? $params['pTk'] ?? null,
-            'pMa_kh' => $params['pPMa_kh'] ?? $params['pMa_kh'] ?? null,
-            'pMa_nt' => $params['pPMa_nt'] ?? $params['pMa_nt'] ?? null,
+            'pMa_cty' => $paramObj->pPMa_cty ?? $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pPNgay1 ?? $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pPNgay2 ?? $paramObj->pNgay2 ?? null,
+            'pTk' => $paramObj->pPTk ?? $paramObj->pTk ?? null,
+            'pMa_kh' => $paramObj->pPMa_kh ?? $paramObj->pMa_kh ?? null,
+            'pMa_nt' => $paramObj->pPMa_nt ?? $paramObj->pMa_nt ?? null,
         ], $connection);
     }
 }

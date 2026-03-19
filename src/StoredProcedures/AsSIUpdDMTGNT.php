@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIUpdDMTGNT
 {
@@ -26,15 +27,16 @@ class AsSIUpdDMTGNT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIUpdDMTGNT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pNgay_tg' => $params['pNgay_tg'] ?? null,
-            'pTy_gia' => $params['pTy_gia'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pNgay_tg' => $paramObj->pNgay_tg ?? null,
+            'pTy_gia' => $paramObj->pTy_gia ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsSIUpdDMTGNT
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiGetDmCt4ReOrderVN
 {
@@ -26,13 +27,14 @@ class AsSiGetDmCt4ReOrderVN
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiGetDmCt4ReOrderVN', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsSiGetDmCt4ReOrderVN
             'pNgay2' => $Ngay2,
             'pLanguage' => $Language
         ];
-        
+
         return self::call($params);
     }
 }

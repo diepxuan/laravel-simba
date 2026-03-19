@@ -15,17 +15,19 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINFilt3
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINFilt3', [
-            'pKeyPh'  => $params['pKeyPh'] ?? null,
-            'pKeyCt'  => $params['pKeyCt'] ?? null,
-            'pKeyct'  => $params['pKeyct'] ?? null,
+            'pKeyPh'  => $paramObj->pKeyPh ?? null,
+            'pKeyCt'  => $paramObj->pKeyCt ?? null,
+            'pKeyct'  => $paramObj->pKeyct ?? null,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSODeldmgiaban
 {
@@ -26,14 +27,15 @@ class AsSODeldmgiaban
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSODeldmgiaban', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pNgay_ad' => $params['pNgay_ad'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pNgay_ad' => $paramObj->pNgay_ad ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -56,7 +58,7 @@ class AsSODeldmgiaban
             'pMa_nt' => $Ma_nt,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

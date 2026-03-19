@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsResetPassword
 {
@@ -26,13 +27,14 @@ class AsResetPassword
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asResetPassword', [
-            'pUserName' => $params['pUserName'] ?? null,
-            'pPassword' => $params['pPassword'] ?? null,
-            'pUser' => $params['pUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pUserName' => $paramObj->pUserName ?? null,
+            'pPassword' => $paramObj->pPassword ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsResetPassword
             'pUser' => $User,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

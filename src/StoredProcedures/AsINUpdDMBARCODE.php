@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsINUpdDMBARCODE
- * 
+ *
  * Stored procedure: asINUpdDMBARCODE
  * Purpose: ================================================
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Tham số đầu vào.
  * - @pMa_vt (nvarchar(20)): Tham số đầu vào.
@@ -29,11 +29,11 @@ use Illuminate\Support\Collection;
  * - @pKsd (bit): Tham số đầu vào.
  * - @pLUser (nvarchar(20)): Tham số đầu vào.
  * - @pRet (int OUTPUT): Tham số output (không được xử lý bởi ProcedureCaller hiện tại).
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện update).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -50,14 +50,15 @@ class AsINUpdDMBARCODE
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINUpdDMBARCODE', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_vach' => $params['pMa_vach'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_vach' => $paramObj->pMa_vach ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOUpdPH5
 {
@@ -26,42 +27,43 @@ class AsPOUpdPH5
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOUpdPH5', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pSo_seri_mhd' => $params['pSo_seri_mhd'] ?? null,
-            'pSo_seri' => $params['pSo_seri'] ?? null,
-            'pSo_ct' => $params['pSo_ct'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_lct' => $params['pNgay_lct'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pTen_kh_vat' => $params['pTen_kh_vat'] ?? null,
-            'pDia_chi_vat' => $params['pDia_chi_vat'] ?? null,
-            'pMa_so_thue' => $params['pMa_so_thue'] ?? null,
-            'pNguoi_gd' => $params['pNguoi_gd'] ?? null,
-            'pMa_httt' => $params['pMa_httt'] ?? null,
-            'pTk_pt' => $params['pTk_pt'] ?? null,
-            'pTk_thue' => $params['pTk_thue'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pTy_gia' => $params['pTy_gia'] ?? null,
-            'pT_tien' => $params['pT_tien'] ?? null,
-            'pT_tien_nt' => $params['pT_tien_nt'] ?? null,
-            'pT_thue' => $params['pT_thue'] ?? null,
-            'pT_thue_nt' => $params['pT_thue_nt'] ?? null,
-            'pT_tt' => $params['pT_tt'] ?? null,
-            'pT_tt_nt' => $params['pT_tt_nt'] ?? null,
-            'pT_so_luong' => $params['pT_so_luong'] ?? null,
-            'pGia_dd' => $params['pGia_dd'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pPost2gl' => $params['pPost2gl'] ?? null,
-            'pPost2in' => $params['pPost2in'] ?? null,
-            'pMa_gd' => $params['pMa_gd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pSo_seri_mhd' => $paramObj->pSo_seri_mhd ?? null,
+            'pSo_seri' => $paramObj->pSo_seri ?? null,
+            'pSo_ct' => $paramObj->pSo_ct ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_lct' => $paramObj->pNgay_lct ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pTen_kh_vat' => $paramObj->pTen_kh_vat ?? null,
+            'pDia_chi_vat' => $paramObj->pDia_chi_vat ?? null,
+            'pMa_so_thue' => $paramObj->pMa_so_thue ?? null,
+            'pNguoi_gd' => $paramObj->pNguoi_gd ?? null,
+            'pMa_httt' => $paramObj->pMa_httt ?? null,
+            'pTk_pt' => $paramObj->pTk_pt ?? null,
+            'pTk_thue' => $paramObj->pTk_thue ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pTy_gia' => $paramObj->pTy_gia ?? null,
+            'pT_tien' => $paramObj->pT_tien ?? null,
+            'pT_tien_nt' => $paramObj->pT_tien_nt ?? null,
+            'pT_thue' => $paramObj->pT_thue ?? null,
+            'pT_thue_nt' => $paramObj->pT_thue_nt ?? null,
+            'pT_tt' => $paramObj->pT_tt ?? null,
+            'pT_tt_nt' => $paramObj->pT_tt_nt ?? null,
+            'pT_so_luong' => $paramObj->pT_so_luong ?? null,
+            'pGia_dd' => $paramObj->pGia_dd ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pPost2gl' => $paramObj->pPost2gl ?? null,
+            'pPost2in' => $paramObj->pPost2in ?? null,
+            'pMa_gd' => $paramObj->pMa_gd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -140,7 +142,7 @@ class AsPOUpdPH5
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

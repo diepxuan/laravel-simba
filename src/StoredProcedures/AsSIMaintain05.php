@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIMaintain05
 {
@@ -26,6 +27,7 @@ class AsSIMaintain05
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIMaintain05', $params, $connection);
@@ -50,7 +52,7 @@ class AsSIMaintain05
             'pPathData' => $PathData,
             'pPathSys' => $PathSys
         ];
-        
+
         return self::call($params);
     }
 }

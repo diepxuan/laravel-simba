@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLRptBCTC04
- * 
+ *
  * Stored procedure: asGLRptBCTC04
  * Purpose: =======================================================
- * 
+ *
  * Tham số:
  * - @pMa_Cty (nvarchar(3)): Mô tả tham số
  * - @pQd_cdkt (nvarchar(10)): Mô tả tham số
@@ -31,7 +31,7 @@ use Illuminate\Support\Collection;
  * - @pNgay_Ct02 (smalldatetime): Mô tả tham số
  * - @pMau (char(30)): Mô tả tham số
  * - @pMa_nt (NVARCHAR(3)): Mô tả tham số
- * 
+ *
  * Giá trị mặc định:
  * - @pMa_Cty: null
  * - @pQd_cdkt: null
@@ -41,9 +41,9 @@ use Illuminate\Support\Collection;
  * - @pNgay_Ct02: null
  * - @pMau: ''
  * - @pMa_nt: ''
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -63,17 +63,18 @@ class AsGLRptBCTC04
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTC04', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pQd_cdkt' => $params['pQd_cdkt'] ?? null,
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? null,
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? null,
-            'pNgay_Ct01' => $params['pNgay_Ct01'] ?? null,
-            'pNgay_Ct02' => $params['pNgay_Ct02'] ?? null,
-            'pMau' => $params['pMau'] ?? '',
-            'pMa_nt' => $params['pMa_nt'] ?? '',
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pQd_cdkt' => $paramObj->pQd_cdkt ?? null,
+            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? null,
+            'pNgay_Ct2' => $paramObj->pNgay_Ct2 ?? null,
+            'pNgay_Ct01' => $paramObj->pNgay_Ct01 ?? null,
+            'pNgay_Ct02' => $paramObj->pNgay_Ct02 ?? null,
+            'pMau' => $paramObj->pMau ?? '',
+            'pMa_nt' => $paramObj->pMa_nt ?? '',
         ], $connection);
     }
 }

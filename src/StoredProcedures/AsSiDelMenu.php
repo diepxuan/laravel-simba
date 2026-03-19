@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiDelMenu
 {
@@ -26,11 +27,12 @@ class AsSiDelMenu
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiDelMenu', [
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsSiDelMenu
             'pMenuid' => $Menuid,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

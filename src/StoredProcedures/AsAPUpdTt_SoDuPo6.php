@@ -8,11 +8,12 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-12 09:16:00
+ * @lastupdate 2026-03-19 12:16:48
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
@@ -20,11 +21,12 @@ class AsAPUpdTt_SoDuPo6
 {
     public static function call(array $params): Collection
     {
+        $paramObj   = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asAPUpdTt_SoDuPo6', [
-            'pMa_cty'       => $params['pMa_cty'] ?? null,
-            'pStt_rec_hd'   => $params['pStt_rec_hd'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pStt_rec_hd' => $paramObj->pStt_rec_hd ?? null,
         ], $connection);
     }
 }

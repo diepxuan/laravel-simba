@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetVoucher2Post
 {
@@ -26,17 +27,18 @@ class AsGetVoucher2Post
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetVoucher2Post', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pSo_ct1' => $params['pSo_ct1'] ?? null,
-            'pSo_ct2' => $params['pSo_ct2'] ?? null,
-            'pMa_CtLst' => $params['pMa_CtLst'] ?? null,
-            'pPost2gl' => $params['pPost2gl'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pSo_ct1' => $paramObj->pSo_ct1 ?? null,
+            'pSo_ct2' => $paramObj->pSo_ct2 ?? null,
+            'pMa_CtLst' => $paramObj->pMa_CtLst ?? null,
+            'pPost2gl' => $paramObj->pPost2gl ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsGetVoucher2Post
             'pPost2gl' => $Post2gl,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

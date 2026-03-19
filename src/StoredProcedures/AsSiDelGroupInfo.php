@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiDelGroupInfo
 {
@@ -26,11 +27,12 @@ class AsSiDelGroupInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiDelGroupInfo', [
-            'pGroupname' => $params['pGroupname'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pGroupname' => $paramObj->pGroupname ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsSiDelGroupInfo
             'pGroupname' => $Groupname,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLCrtKC.
  *
@@ -92,20 +92,21 @@ class AsGLCrtKC
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         // Tính ngày đầu tháng và cuối tháng hiện tại nếu không cung cấp
-        $pNgay1 = $params['pNgay1'] ?? date('Y-m-01');
-        $pNgay2 = $params['pNgay2'] ?? date('Y-m-t');
+        $pNgay1 = $paramObj->pNgay1 ?? date('Y-m-01');
+        $pNgay2 = $paramObj->pNgay2 ?? date('Y-m-t');
 
         return ProcedureCaller::call('asGLCrtKC', [
-            'pMa_cty' => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_ct'  => $params['pMa_ct'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_ct'  => $paramObj->pMa_ct ?? null,
             'pNgay1'  => $pNgay1,
             'pNgay2'  => $pNgay2,
-            'pTk'     => $params['pTk'] ?? null,
-            'pTk_du'  => $params['pTk_du'] ?? null,
-            'pUser'   => $params['pUser'] ?? null,
+            'pTk'     => $paramObj->pTk ?? null,
+            'pTk_du'  => $paramObj->pTk_du ?? null,
+            'pUser'   => $paramObj->pUser ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

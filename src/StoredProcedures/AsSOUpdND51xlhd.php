@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOUpdND51xlhd
 {
@@ -26,27 +27,28 @@ class AsSOUpdND51xlhd
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOUpdND51xlhd', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pKieu_xl' => $params['pKieu_xl'] ?? null,
-            'pMa_tb' => $params['pMa_tb'] ?? null,
-            'pNgay_tb' => $params['pNgay_tb'] ?? null,
-            'pNoi_nhan' => $params['pNoi_nhan'] ?? null,
-            'pTen_tc' => $params['pTen_tc'] ?? null,
-            'pDai_dien' => $params['pDai_dien'] ?? null,
-            'pDia_chi' => $params['pDia_chi'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pGio_xl' => $params['pGio_xl'] ?? null,
-            'pPhut_xl' => $params['pPhut_xl'] ?? null,
-            'pNgay_xl' => $params['pNgay_xl'] ?? null,
-            'pGui_cqt' => $params['pGui_cqt'] ?? null,
-            'pNgay_guicqt' => $params['pNgay_guicqt'] ?? null,
-            'pLdate' => $params['pLdate'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pKieu_xl' => $paramObj->pKieu_xl ?? null,
+            'pMa_tb' => $paramObj->pMa_tb ?? null,
+            'pNgay_tb' => $paramObj->pNgay_tb ?? null,
+            'pNoi_nhan' => $paramObj->pNoi_nhan ?? null,
+            'pTen_tc' => $paramObj->pTen_tc ?? null,
+            'pDai_dien' => $paramObj->pDai_dien ?? null,
+            'pDia_chi' => $paramObj->pDia_chi ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pGio_xl' => $paramObj->pGio_xl ?? null,
+            'pPhut_xl' => $paramObj->pPhut_xl ?? null,
+            'pNgay_xl' => $paramObj->pNgay_xl ?? null,
+            'pGui_cqt' => $paramObj->pGui_cqt ?? null,
+            'pNgay_guicqt' => $paramObj->pNgay_guicqt ?? null,
+            'pLdate' => $paramObj->pLdate ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -95,7 +97,7 @@ class AsSOUpdND51xlhd
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

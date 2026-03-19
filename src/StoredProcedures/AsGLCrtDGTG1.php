@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLCrtDGTG1.
  *
@@ -127,33 +127,34 @@ class AsGLCrtDGTG1
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         // Tính ngày đầu tháng và cuối tháng hiện tại nếu không cung cấp
-        $pngay1 = $params['pngay1'] ?? date('Y-m-01');
-        $pngay2 = $params['pngay2'] ?? date('Y-m-t');
+        $pngay1 = $paramObj->pngay1 ?? date('Y-m-01');
+        $pngay2 = $paramObj->pngay2 ?? date('Y-m-t');
 
         return ProcedureCaller::call('asGLCrtDGTG1', [
-            'pma_cty'      => $params['pma_cty'] ?? SModel::CTY,
-            'pstt'         => $params['pstt'] ?? 1,
-            'pma_nt'       => $params['pma_nt'] ?? 'USD',
-            'ptk_dgtg'     => $params['ptk_dgtg'] ?? '11221',
-            'ptk_lai_cltg' => $params['ptk_lai_cltg'] ?? '515',
-            'ptk_lo_cltg'  => $params['ptk_lo_cltg'] ?? '635',
-            'ptk_cltg_cn'  => $params['ptk_cltg_cn'] ?? '4131',
-            'pten_bt'      => $params['pten_bt'] ?? 'DGTGCK',
-            'pdg_kh'       => $params['pdg_kh'] ?? '0',
-            'pdg_bp'       => $params['pdg_bp'] ?? '0',
-            'pdg_hd'       => $params['pdg_hd'] ?? '0',
-            'pdg_spct'     => $params['pdg_spct'] ?? '0',
-            'pdg_phi'      => $params['pdg_phi'] ?? '0',
-            'ploai_dg'     => $params['ploai_dg'] ?? '1',
+            'pma_cty'      => $paramObj->pma_cty ?? SModel::CTY,
+            'pstt'         => $paramObj->pstt ?? 1,
+            'pma_nt'       => $paramObj->pma_nt ?? 'USD',
+            'ptk_dgtg'     => $paramObj->ptk_dgtg ?? '11221',
+            'ptk_lai_cltg' => $paramObj->ptk_lai_cltg ?? '515',
+            'ptk_lo_cltg'  => $paramObj->ptk_lo_cltg ?? '635',
+            'ptk_cltg_cn'  => $paramObj->ptk_cltg_cn ?? '4131',
+            'pten_bt'      => $paramObj->pten_bt ?? 'DGTGCK',
+            'pdg_kh'       => $paramObj->pdg_kh ?? '0',
+            'pdg_bp'       => $paramObj->pdg_bp ?? '0',
+            'pdg_hd'       => $paramObj->pdg_hd ?? '0',
+            'pdg_spct'     => $paramObj->pdg_spct ?? '0',
+            'pdg_phi'      => $paramObj->pdg_phi ?? '0',
+            'ploai_dg'     => $paramObj->ploai_dg ?? '1',
             'pngay1'       => $pngay1,
             'pngay2'       => $pngay2,
-            'pstt_rec'     => $params['pstt_rec'] ?? 'AAA',
-            'pma_ct'       => $params['pma_ct'] ?? 'GL5',
-            'pso_ct'       => $params['pso_ct'] ?? '',
-            'puser'        => $params['puser'] ?? null,
+            'pstt_rec'     => $paramObj->pstt_rec ?? 'AAA',
+            'pma_ct'       => $paramObj->pma_ct ?? 'GL5',
+            'pso_ct'       => $paramObj->pso_ct ?? '',
+            'puser'        => $paramObj->puser ?? null,
         ], $connection);
     }
 }

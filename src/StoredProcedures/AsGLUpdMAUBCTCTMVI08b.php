@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLUpdMAUBCTCTMVI08b
- * 
+ *
  * Stored procedure: asGLUpdMAUBCTCTMVI08b
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (NVARCHAR(3)): input parameter.
  * - @pMau (NVARCHAR(10)): input parameter.
@@ -34,11 +34,11 @@ use Illuminate\Support\Collection;
  * - @pIsItalic (BIT): input parameter.
  * - @pBold (BIT): input parameter.
  * - @pRet (INT): input parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -51,20 +51,21 @@ class AsGLUpdMAUBCTCTMVI08b
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdMAUBCTCTMVI08b', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pIsPrint' => $params['pIsPrint'] ?? false,
-            'pIsItalic' => $params['pIsItalic'] ?? false,
-            'pBold' => $params['pBold'] ?? false,
-            'pRet' => $params['pRet'] ?? 0,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pIsPrint' => $paramObj->pIsPrint ?? false,
+            'pIsItalic' => $paramObj->pIsItalic ?? false,
+            'pBold' => $paramObj->pBold ?? false,
+            'pRet' => $paramObj->pRet ?? 0,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsMMPOVCHPO1
 {
@@ -26,14 +27,15 @@ class AsMMPOVCHPO1
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asMMPOVCHPO1', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pma_kh' => $params['pma_kh'] ?? null,
-            'pma_vt' => $params['pma_vt'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pma_kh' => $paramObj->pma_kh ?? null,
+            'pma_vt' => $paramObj->pma_vt ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null
         ], $connection);
     }
 
@@ -56,7 +58,7 @@ class AsMMPOVCHPO1
             'pNgay1' => $Ngay1,
             'pNgay2' => $Ngay2
         ];
-        
+
         return self::call($params);
     }
 }

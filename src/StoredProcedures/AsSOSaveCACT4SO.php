@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOSaveCACT4SO
 {
@@ -26,6 +27,7 @@ class AsSOSaveCACT4SO
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOSaveCACT4SO', $params, $connection);
@@ -66,7 +68,7 @@ class AsSOSaveCACT4SO
             'pMa_lo' => $Ma_lo,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

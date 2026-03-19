@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiGetCodeNested
 {
@@ -26,16 +27,17 @@ class AsSiGetCodeNested
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiGetCodeNested', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTableName' => $params['pTableName'] ?? null,
-            'pCode_fName' => $params['pCode_fName'] ?? null,
-            'pName_fName' => $params['pName_fName'] ?? null,
-            'pMa' => $params['pMa'] ?? null,
-            'pQuerry' => $params['pQuerry'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTableName' => $paramObj->pTableName ?? null,
+            'pCode_fName' => $paramObj->pCode_fName ?? null,
+            'pName_fName' => $paramObj->pName_fName ?? null,
+            'pMa' => $paramObj->pMa ?? null,
+            'pQuerry' => $paramObj->pQuerry ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsSiGetCodeNested
             'pQuerry' => $Querry,
             'ParamDefines' => $ParamDefines
         ];
-        
+
         return self::call($params);
     }
 }

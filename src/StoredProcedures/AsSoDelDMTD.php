@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSoDelDMTD
 {
@@ -26,12 +27,13 @@ class AsSoDelDMTD
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSoDelDMTD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_td' => $params['pMa_td'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_td' => $paramObj->pMa_td ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSoDelDMTD
             'pMa_td' => $Ma_td,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

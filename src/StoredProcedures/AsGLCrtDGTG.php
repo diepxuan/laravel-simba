@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLCrtDGTG.
  *
@@ -93,20 +93,21 @@ class AsGLCrtDGTG
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         // Tính ngày đầu tháng và cuối tháng hiện tại nếu không cung cấp
-        $pngay1 = $params['pngay1'] ?? date('Y-m-01');
-        $pngay2 = $params['pngay2'] ?? date('Y-m-t');
+        $pngay1 = $paramObj->pngay1 ?? date('Y-m-01');
+        $pngay2 = $paramObj->pngay2 ?? date('Y-m-t');
 
         return ProcedureCaller::call('asGLCrtDGTG', [
-            'pma_cty' => $params['pma_cty'] ?? SModel::CTY,
-            'pma_ct'  => $params['pma_ct'] ?? null,
-            'pma_nt'  => $params['pma_nt'] ?? 'VND',
-            'pstt'    => $params['pstt'] ?? 1,
+            'pma_cty' => $paramObj->pma_cty ?? SModel::CTY,
+            'pma_ct'  => $paramObj->pma_ct ?? null,
+            'pma_nt'  => $paramObj->pma_nt ?? 'VND',
+            'pstt'    => $paramObj->pstt ?? 1,
             'pngay1'  => $pngay1,
             'pngay2'  => $pngay2,
-            'puser'   => $params['puser'] ?? null,
+            'puser'   => $paramObj->puser ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdcolk.
  *
@@ -86,20 +86,21 @@ class AsUpdcolk
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdcolk', [
-            'pMa_cty'   => $params['pMa_cty'] ?? null,
-            'pThang'    => $params['pThang'] ?? null,
-            'pNam'      => $params['pNam'] ?? null,
-            'pMa_spct'  => $params['pMa_spct'] ?? null,
-            'pTk'       => $params['pTk'] ?? null,
-            'pTk_du'    => $params['pTk_du'] ?? null,
-            'pPs_no'    => $params['pPs_no'] ?? null,
-            'pPs_no_nt' => $params['pPs_no_nt'] ?? null,
-            'pPs_co'    => $params['pPs_co'] ?? null,
-            'pPs_co_nt' => $params['pPs_co_nt'] ?? null,
-            'pRet'      => $params['pRet'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? null,
+            'pThang'    => $paramObj->pThang ?? null,
+            'pNam'      => $paramObj->pNam ?? null,
+            'pMa_spct'  => $paramObj->pMa_spct ?? null,
+            'pTk'       => $paramObj->pTk ?? null,
+            'pTk_du'    => $paramObj->pTk_du ?? null,
+            'pPs_no'    => $paramObj->pPs_no ?? null,
+            'pPs_no_nt' => $paramObj->pPs_no_nt ?? null,
+            'pPs_co'    => $paramObj->pPs_co ?? null,
+            'pPs_co_nt' => $paramObj->pPs_co_nt ?? null,
+            'pRet'      => $paramObj->pRet ?? null,
         ], $connection);
     }
 

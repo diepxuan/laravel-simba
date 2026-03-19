@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiDynInsertUpdateDeleteData
 {
@@ -26,20 +27,21 @@ class AsSiDynInsertUpdateDeleteData
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiDynInsertUpdateDeleteData', [
-            'pXmlData' => $params['pXmlData'] ?? null,
-            'pTable_name' => $params['pTable_name'] ?? null,
-            'pMode' => $params['pMode'] ?? null,
-            'pKeyColumns' => $params['pKeyColumns'] ?? null,
-            'pColumnType' => $params['pColumnType'] ?? null,
-            'pComlumName' => $params['pComlumName'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pStr' => $params['pStr'] ?? null,
-            'psWhere' => $params['psWhere'] ?? null,
-            'pCl_Udp' => $params['pCl_Udp'] ?? null,
-            'pStrOn' => $params['pStrOn'] ?? null
+            'pXmlData' => $paramObj->pXmlData ?? null,
+            'pTable_name' => $paramObj->pTable_name ?? null,
+            'pMode' => $paramObj->pMode ?? null,
+            'pKeyColumns' => $paramObj->pKeyColumns ?? null,
+            'pColumnType' => $paramObj->pColumnType ?? null,
+            'pComlumName' => $paramObj->pComlumName ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pStr' => $paramObj->pStr ?? null,
+            'psWhere' => $paramObj->psWhere ?? null,
+            'pCl_Udp' => $paramObj->pCl_Udp ?? null,
+            'pStrOn' => $paramObj->pStrOn ?? null
         ], $connection);
     }
 
@@ -74,7 +76,7 @@ class AsSiDynInsertUpdateDeleteData
             'pCl_Udp' => $Cl_Udp,
             'pStrOn' => $StrOn
         ];
-        
+
         return self::call($params);
     }
 }

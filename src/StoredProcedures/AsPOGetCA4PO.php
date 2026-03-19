@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPoGetCa4Po.
  *
@@ -60,9 +60,9 @@ class AsPOGetCA4PO extends StoredProcedure
     public static function call(array $params): Collection
     {
         return parent::call(array_merge([
-            'pMa_cty'     => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_ct'      => $params['pMa_ct'] ?? null,
-            'pStt_rec_hd' => $params['pStt_rec_hd'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_ct'      => $paramObj->pMa_ct ?? null,
+            'pStt_rec_hd' => $paramObj->pStt_rec_hd ?? null,
         ], $params));
     }
 

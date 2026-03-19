@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIInsDMBP
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIInsDMBP', [
-            'pMa_cty' => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_bp'  => $params['pMa_bp'] ?? null,
-            'pTen_bp' => $params['pTen_bp'] ?? null,
-            'pKsd'    => $params['pKsd'] ?? null,
-            'pLUser'  => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_bp'  => $paramObj->pMa_bp ?? null,
+            'pTen_bp' => $paramObj->pTen_bp ?? null,
+            'pKsd'    => $paramObj->pKsd ?? null,
+            'pLUser'  => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdDashLocation.
  *
@@ -80,17 +80,18 @@ class AsUpdDashLocation
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdDashLocation', [
-            'pUserName'    => $params['pUserName'] ?? null,
-            'pDashIdSrc'   => $params['pDashIdSrc'] ?? null,
-            'pLocationTar' => $params['pLocationTar'] ?? null,
-            'pXTar'        => $params['pXTar'] ?? null,
-            'pYTar'        => $params['pYTar'] ?? null,
-            'pHSrc'        => $params['pHSrc'] ?? null,
-            'pWSrc'        => $params['pWSrc'] ?? null,
-            'pRet'         => $params['pRet'] ?? null,
+            'pUserName'    => $paramObj->pUserName ?? null,
+            'pDashIdSrc'   => $paramObj->pDashIdSrc ?? null,
+            'pLocationTar' => $paramObj->pLocationTar ?? null,
+            'pXTar'        => $paramObj->pXTar ?? null,
+            'pYTar'        => $paramObj->pYTar ?? null,
+            'pHSrc'        => $paramObj->pHSrc ?? null,
+            'pWSrc'        => $paramObj->pWSrc ?? null,
+            'pRet'         => $paramObj->pRet ?? null,
         ], $connection);
     }
 

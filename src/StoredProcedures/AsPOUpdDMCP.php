@@ -15,21 +15,23 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOUpdDMCP
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOUpdDMCP', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pMa_cp' => $params['pMa_cp'] ?? '',
-            'pTen_cp' => $params['pTen_cp'] ?? '',
-            'pTt_pb' => $params['pTt_pb'] ?? '',
-            'pKsd' => $params['pKsd'] ?? '',
-            'pLUser' => $params['pLUser'] ?? '',
-            'pRet' => $params['pRet'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pMa_cp' => $paramObj->pMa_cp ?? '',
+            'pTen_cp' => $paramObj->pTen_cp ?? '',
+            'pTt_pb' => $paramObj->pTt_pb ?? '',
+            'pKsd' => $paramObj->pKsd ?? '',
+            'pLUser' => $paramObj->pLUser ?? '',
+            'pRet' => $paramObj->pRet ?? ''
         ], $connection);
     }
 }

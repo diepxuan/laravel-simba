@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINGetCT9
 {
@@ -26,13 +27,14 @@ class AsINGetCT9
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINGetCT9', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pStt_rec0' => $params['pStt_rec0'] ?? null,
-            'pStruct' => $params['pStruct'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsINGetCT9
             'pStt_rec0' => $Stt_rec0,
             'pStruct' => $Struct
         ];
-        
+
         return self::call($params);
     }
 }

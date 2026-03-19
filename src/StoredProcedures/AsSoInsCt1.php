@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSoInsCt1
 {
@@ -26,49 +27,50 @@ class AsSoInsCt1
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSoInsCt1', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pStt_rec0' => $params['pStt_rec0'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null,
-            'pSo_luong_qd' => $params['pSo_luong_qd'] ?? null,
-            'pGia_nt2' => $params['pGia_nt2'] ?? null,
-            'pGia2' => $params['pGia2'] ?? null,
-            'pTien_nt2' => $params['pTien_nt2'] ?? null,
-            'pTien2' => $params['pTien2'] ?? null,
-            'pTl_ck' => $params['pTl_ck'] ?? null,
-            'pTien_ck_nt' => $params['pTien_ck_nt'] ?? null,
-            'pTien_ck' => $params['pTien_ck'] ?? null,
-            'pCk_ds' => $params['pCk_ds'] ?? null,
-            'pCk_ds_nt' => $params['pCk_ds_nt'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pTs_gtgt' => $params['pTs_gtgt'] ?? null,
-            'pThue_gtgt_nt' => $params['pThue_gtgt_nt'] ?? null,
-            'pThue_gtgt' => $params['pThue_gtgt'] ?? null,
-            'pTt_nt' => $params['pTt_nt'] ?? null,
-            'pTt' => $params['pTt'] ?? null,
-            'pKhuyen_mai' => $params['pKhuyen_mai'] ?? null,
-            'pTra_ck' => $params['pTra_ck'] ?? null,
-            'pTk_pt' => $params['pTk_pt'] ?? null,
-            'pTk_dt' => $params['pTk_dt'] ?? null,
-            'pTk_gv' => $params['pTk_gv'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pTk_thue' => $params['pTk_thue'] ?? null,
-            'pTk_ck' => $params['pTk_ck'] ?? null,
-            'pTen_vt' => $params['pTen_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pMa_nvkd' => $params['pMa_nvkd'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pDvt' => $paramObj->pDvt ?? null,
+            'pSo_luong_qd' => $paramObj->pSo_luong_qd ?? null,
+            'pGia_nt2' => $paramObj->pGia_nt2 ?? null,
+            'pGia2' => $paramObj->pGia2 ?? null,
+            'pTien_nt2' => $paramObj->pTien_nt2 ?? null,
+            'pTien2' => $paramObj->pTien2 ?? null,
+            'pTl_ck' => $paramObj->pTl_ck ?? null,
+            'pTien_ck_nt' => $paramObj->pTien_ck_nt ?? null,
+            'pTien_ck' => $paramObj->pTien_ck ?? null,
+            'pCk_ds' => $paramObj->pCk_ds ?? null,
+            'pCk_ds_nt' => $paramObj->pCk_ds_nt ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pTs_gtgt' => $paramObj->pTs_gtgt ?? null,
+            'pThue_gtgt_nt' => $paramObj->pThue_gtgt_nt ?? null,
+            'pThue_gtgt' => $paramObj->pThue_gtgt ?? null,
+            'pTt_nt' => $paramObj->pTt_nt ?? null,
+            'pTt' => $paramObj->pTt ?? null,
+            'pKhuyen_mai' => $paramObj->pKhuyen_mai ?? null,
+            'pTra_ck' => $paramObj->pTra_ck ?? null,
+            'pTk_pt' => $paramObj->pTk_pt ?? null,
+            'pTk_dt' => $paramObj->pTk_dt ?? null,
+            'pTk_gv' => $paramObj->pTk_gv ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pTk_thue' => $paramObj->pTk_thue ?? null,
+            'pTk_ck' => $paramObj->pTk_ck ?? null,
+            'pTen_vt' => $paramObj->pTen_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pMa_nvkd' => $paramObj->pMa_nvkd ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -161,7 +163,7 @@ class AsSoInsCt1
             'pMa_nvkd' => $Ma_nvkd,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

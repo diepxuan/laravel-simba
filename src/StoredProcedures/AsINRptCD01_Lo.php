@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINRptCD01_Lo
 {
@@ -26,28 +27,29 @@ class AsINRptCD01_Lo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINRptCD01_Lo', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pLoai_bc' => $params['pLoai_bc'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pma_plvt1' => $params['pma_plvt1'] ?? null,
-            'pma_plvt2' => $params['pma_plvt2'] ?? null,
-            'pma_plvt3' => $params['pma_plvt3'] ?? null,
-            'pDVT' => $params['pDVT'] ?? null,
-            'pPSDC' => $params['pPSDC'] ?? null,
-            'pNgoai_te' => $params['pNgoai_te'] ?? null,
-            'pDk_nhom' => $params['pDk_nhom'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pLoai_bc' => $paramObj->pLoai_bc ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pma_plvt1' => $paramObj->pma_plvt1 ?? null,
+            'pma_plvt2' => $paramObj->pma_plvt2 ?? null,
+            'pma_plvt3' => $paramObj->pma_plvt3 ?? null,
+            'pDVT' => $paramObj->pDVT ?? null,
+            'pPSDC' => $paramObj->pPSDC ?? null,
+            'pNgoai_te' => $paramObj->pNgoai_te ?? null,
+            'pDk_nhom' => $paramObj->pDk_nhom ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pDvt' => $paramObj->pDvt ?? null
         ], $connection);
     }
 
@@ -98,7 +100,7 @@ class AsINRptCD01_Lo
             'pMa_Cty' => $Ma_Cty,
             'pDvt' => $Dvt
         ];
-        
+
         return self::call($params);
     }
 }

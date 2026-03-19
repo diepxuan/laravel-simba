@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsSiCopyVoucherBetween2SQLDB.
  *
@@ -67,15 +67,16 @@ class AsSiCopyVoucherBetween2SQLDB
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiCopyVoucherBetween2SQLDB', [
-            'pMa_cty'     => $params['pMa_cty'] ?? null,
-            'pNgay1'      => $params['pNgay1'] ?? null,
-            'pNgay2'      => $params['pNgay2'] ?? null,
-            'pMa_ct'      => $params['pMa_ct'] ?? null,
-            'ph_tbl_name' => $params['ph_tbl_name'] ?? null,
-            'params'      => $params['params'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pNgay1'      => $paramObj->pNgay1 ?? null,
+            'pNgay2'      => $paramObj->pNgay2 ?? null,
+            'pMa_ct'      => $paramObj->pMa_ct ?? null,
+            'ph_tbl_name' => $paramObj->ph_tbl_name ?? null,
+            'params'      => $paramObj->params ?? null,
         ], $connection);
     }
 

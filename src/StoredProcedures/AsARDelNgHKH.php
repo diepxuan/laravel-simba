@@ -15,15 +15,17 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARDelNgHKH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARDelNgHKH', [
-            'pId_cn' => $params['pId_cn'] ?? null,
+            'pId_cn' => $paramObj->pId_cn ?? null,
         ], $connection);
     }
 }

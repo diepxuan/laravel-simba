@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSODelCk
 {
@@ -26,19 +27,20 @@ class AsSODelCk
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSODelCk', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kyck' => $params['pMa_kyck'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pSl_ds' => $params['pSl_ds'] ?? null,
-            'ptl_sl_ds' => $params['ptl_sl_ds'] ?? null,
-            'pTl_gt' => $params['pTl_gt'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kyck' => $paramObj->pMa_kyck ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pSl_ds' => $paramObj->pSl_ds ?? null,
+            'ptl_sl_ds' => $paramObj->ptl_sl_ds ?? null,
+            'pTl_gt' => $paramObj->pTl_gt ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -71,7 +73,7 @@ class AsSODelCk
             'pTl_gt' => $Tl_gt,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

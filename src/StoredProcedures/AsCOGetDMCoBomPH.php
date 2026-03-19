@@ -15,21 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsCOGetDMCoBomPH
- * 
+ *
  * Stored procedure: asCOGetDMCoBomPH
  * Purpose: =========================================================================
- * 
+ *
  * Tham số:
  * - @pMa_cty (NVARCHAR(20)): Tham số đầu vào.
  * - @pma_spct (NVARCHAR(20)): Tham số đầu vào.
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -43,11 +43,12 @@ class AsCOGetDMCoBomPH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCOGetDMCoBomPH', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pma_spct' => $params['pma_spct'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pma_spct' => $paramObj->pma_spct ?? null,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPORptTH02
 {
@@ -26,21 +27,22 @@ class AsPORptTH02
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPORptTH02', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pLoai' => $params['pLoai'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pSo_ky' => $params['pSo_ky'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pIs_nt' => $params['pIs_nt'] ?? null,
-            'par' => $params['par'] ?? null,
-            'par1' => $params['par1'] ?? null,
-            'pSoLoai' => $params['pSoLoai'] ?? null,
-            'pSoQuy' => $params['pSoQuy'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pLoai' => $paramObj->pLoai ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pSo_ky' => $paramObj->pSo_ky ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pIs_nt' => $paramObj->pIs_nt ?? null,
+            'par' => $paramObj->par ?? null,
+            'par1' => $paramObj->par1 ?? null,
+            'pSoLoai' => $paramObj->pSoLoai ?? null,
+            'pSoQuy' => $paramObj->pSoQuy ?? null
         ], $connection);
     }
 
@@ -77,7 +79,7 @@ class AsPORptTH02
             'pSoLoai' => $SoLoai,
             'pSoQuy' => $SoQuy
         ];
-        
+
         return self::call($params);
     }
 }

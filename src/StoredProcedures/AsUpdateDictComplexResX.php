@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdateDictComplexResX
 {
@@ -26,12 +27,13 @@ class AsUpdateDictComplexResX
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdateDictComplexResX', [
-            'pcode_name' => $params['pcode_name'] ?? null,
-            'plang_id' => $params['plang_id'] ?? null,
-            'pformated_col_list' => $params['pformated_col_list'] ?? null
+            'pcode_name' => $paramObj->pcode_name ?? null,
+            'plang_id' => $paramObj->plang_id ?? null,
+            'pformated_col_list' => $paramObj->pformated_col_list ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsUpdateDictComplexResX
             'plang_id' => $lang_id,
             'pformated_col_list' => $formated_col_list
         ];
-        
+
         return self::call($params);
     }
 }

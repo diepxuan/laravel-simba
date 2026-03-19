@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsQuanHeNV
 {
@@ -26,39 +27,40 @@ class AsHrInsQuanHeNV
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsQuanHeNV', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtqh' => $params['pId_qtqh'] ?? null,
-            'pHo_ten' => $params['pHo_ten'] ?? null,
-            'pHo_dem' => $params['pHo_dem'] ?? null,
-            'pTen' => $params['pTen'] ?? null,
-            'pNgay_sinh' => $params['pNgay_sinh'] ?? null,
-            'pGioi_tinh' => $params['pGioi_tinh'] ?? null,
-            'pQuan_he' => $params['pQuan_he'] ?? null,
-            'pNoi_o' => $params['pNoi_o'] ?? null,
-            'pNoi_o_dc' => $params['pNoi_o_dc'] ?? null,
-            'pNoi_o_xa' => $params['pNoi_o_xa'] ?? null,
-            'pNoi_o_huyen' => $params['pNoi_o_huyen'] ?? null,
-            'pNoi_o_tinh' => $params['pNoi_o_tinh'] ?? null,
-            'pMa_ton_giao' => $params['pMa_ton_giao'] ?? null,
-            'pMa_dan_toc' => $params['pMa_dan_toc'] ?? null,
-            'pMa_quoc_tich' => $params['pMa_quoc_tich'] ?? null,
-            'pMa_to_chuc' => $params['pMa_to_chuc'] ?? null,
-            'pMa_cvcm' => $params['pMa_cvcm'] ?? null,
-            'pPhone_mobile' => $params['pPhone_mobile'] ?? null,
-            'pPhone_home' => $params['pPhone_home'] ?? null,
-            'pPhone_work' => $params['pPhone_work'] ?? null,
-            'pPhone_work_ext' => $params['pPhone_work_ext'] ?? null,
-            'pEmail_home' => $params['pEmail_home'] ?? null,
-            'pAnh_dai_dien' => $params['pAnh_dai_dien'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pPhu_thuoc' => $params['pPhu_thuoc'] ?? null,
-            'pKhan_cap' => $params['pKhan_cap'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtqh' => $paramObj->pId_qtqh ?? null,
+            'pHo_ten' => $paramObj->pHo_ten ?? null,
+            'pHo_dem' => $paramObj->pHo_dem ?? null,
+            'pTen' => $paramObj->pTen ?? null,
+            'pNgay_sinh' => $paramObj->pNgay_sinh ?? null,
+            'pGioi_tinh' => $paramObj->pGioi_tinh ?? null,
+            'pQuan_he' => $paramObj->pQuan_he ?? null,
+            'pNoi_o' => $paramObj->pNoi_o ?? null,
+            'pNoi_o_dc' => $paramObj->pNoi_o_dc ?? null,
+            'pNoi_o_xa' => $paramObj->pNoi_o_xa ?? null,
+            'pNoi_o_huyen' => $paramObj->pNoi_o_huyen ?? null,
+            'pNoi_o_tinh' => $paramObj->pNoi_o_tinh ?? null,
+            'pMa_ton_giao' => $paramObj->pMa_ton_giao ?? null,
+            'pMa_dan_toc' => $paramObj->pMa_dan_toc ?? null,
+            'pMa_quoc_tich' => $paramObj->pMa_quoc_tich ?? null,
+            'pMa_to_chuc' => $paramObj->pMa_to_chuc ?? null,
+            'pMa_cvcm' => $paramObj->pMa_cvcm ?? null,
+            'pPhone_mobile' => $paramObj->pPhone_mobile ?? null,
+            'pPhone_home' => $paramObj->pPhone_home ?? null,
+            'pPhone_work' => $paramObj->pPhone_work ?? null,
+            'pPhone_work_ext' => $paramObj->pPhone_work_ext ?? null,
+            'pEmail_home' => $paramObj->pEmail_home ?? null,
+            'pAnh_dai_dien' => $paramObj->pAnh_dai_dien ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pPhu_thuoc' => $paramObj->pPhu_thuoc ?? null,
+            'pKhan_cap' => $paramObj->pKhan_cap ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -131,7 +133,7 @@ class AsHrInsQuanHeNV
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

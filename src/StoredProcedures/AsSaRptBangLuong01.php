@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSaRptBangLuong01
 {
@@ -26,17 +27,18 @@ class AsSaRptBangLuong01
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSaRptBangLuong01', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_cv' => $params['pMa_cv'] ?? null,
-            'pMa_nv' => $params['pMa_nv'] ?? null,
-            'pBHXH' => $params['pBHXH'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_cv' => $paramObj->pMa_cv ?? null,
+            'pMa_nv' => $paramObj->pMa_nv ?? null,
+            'pBHXH' => $paramObj->pBHXH ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsSaRptBangLuong01
             'pBHXH' => $BHXH,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

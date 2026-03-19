@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOGetGiaNhap
 {
@@ -26,14 +27,15 @@ class AsPOGetGiaNhap
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOGetGiaNhap', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pKieu_lay_gia' => $params['pKieu_lay_gia'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pKieu_lay_gia' => $paramObj->pKieu_lay_gia ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null
         ], $connection);
     }
 
@@ -56,7 +58,7 @@ class AsPOGetGiaNhap
             'pNgay_ct' => $Ngay_ct,
             'pMa_nt' => $Ma_nt
         ];
-        
+
         return self::call($params);
     }
 }

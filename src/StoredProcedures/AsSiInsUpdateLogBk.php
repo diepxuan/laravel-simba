@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiInsUpdateLogBk
 {
@@ -26,15 +27,16 @@ class AsSiInsUpdateLogBk
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiInsUpdateLogBk', [
-            'pID' => $params['pID'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'pName' => $params['pName'] ?? null,
-            'pType' => $params['pType'] ?? null,
-            'pLast_Modify' => $params['pLast_Modify'] ?? null,
-            'pFullPath' => $params['pFullPath'] ?? null
+            'pID' => $paramObj->pID ?? null,
+            'pRet' => $paramObj->pRet ?? null,
+            'pName' => $paramObj->pName ?? null,
+            'pType' => $paramObj->pType ?? null,
+            'pLast_Modify' => $paramObj->pLast_Modify ?? null,
+            'pFullPath' => $paramObj->pFullPath ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsSiInsUpdateLogBk
             'pLast_Modify' => $Last_Modify,
             'pFullPath' => $FullPath
         ];
-        
+
         return self::call($params);
     }
 }

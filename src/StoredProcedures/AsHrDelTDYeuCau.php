@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrDelTDYeuCau
 {
@@ -26,12 +27,13 @@ class AsHrDelTDYeuCau
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrDelTDYeuCau', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_yctd' => $params['pMa_yctd'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_yctd' => $paramObj->pMa_yctd ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsHrDelTDYeuCau
             'pMa_yctd' => $Ma_yctd,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

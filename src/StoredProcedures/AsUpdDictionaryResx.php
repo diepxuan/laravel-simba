@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdDictionaryResx.
  *
@@ -80,16 +80,17 @@ class AsUpdDictionaryResx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdDictionaryResx', [
-            'pKey_Code_name'     => $params['pKey_Code_name'] ?? null,
-            'pKey_Language'      => $params['pKey_Language'] ?? null,
-            'pCode_name'         => $params['pCode_name'] ?? null,
-            'pLanguage'          => $params['pLanguage'] ?? null,
-            'pFormated_col_list' => $params['pFormated_col_list'] ?? null,
-            'pViewform_size'     => $params['pViewform_size'] ?? null,
-            'pRet'               => $params['pRet'] ?? null,
+            'pKey_Code_name'     => $paramObj->pKey_Code_name ?? null,
+            'pKey_Language'      => $paramObj->pKey_Language ?? null,
+            'pCode_name'         => $paramObj->pCode_name ?? null,
+            'pLanguage'          => $paramObj->pLanguage ?? null,
+            'pFormated_col_list' => $paramObj->pFormated_col_list ?? null,
+            'pViewform_size'     => $paramObj->pViewform_size ?? null,
+            'pRet'               => $paramObj->pRet ?? null,
         ], $connection);
     }
 

@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiGetUpdateLogLookup
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiGetUpdateLogLookup', [
-            'pProductID' => $params['pProductID'] ?? null,
-            'pID' => $params['pID'] ?? null,
+            'pProductID' => $paramObj->pProductID ?? null,
+            'pID' => $paramObj->pID ?? null,
         ], $connection);
     }
 }

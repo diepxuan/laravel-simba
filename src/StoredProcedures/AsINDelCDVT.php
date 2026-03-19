@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINDelCDVT
 {
@@ -26,18 +27,19 @@ class AsINDelCDVT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINDelCDVT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsINDelCDVT
             'pMa_nt' => $Ma_nt,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

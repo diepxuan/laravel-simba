@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsDmCCTC
 {
@@ -26,19 +27,20 @@ class AsHrInsDmCCTC
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsDmCCTC', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId_CCTC' => $params['pId_CCTC'] ?? null,
-            'pTen_CCTC' => $params['pTen_CCTC'] ?? null,
-            'pId_Parent' => $params['pId_Parent'] ?? null,
-            'pStt' => $params['pStt'] ?? null,
-            'pBac' => $params['pBac'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'pStt_cay' => $params['pStt_cay'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId_CCTC' => $paramObj->pId_CCTC ?? null,
+            'pTen_CCTC' => $paramObj->pTen_CCTC ?? null,
+            'pId_Parent' => $paramObj->pId_Parent ?? null,
+            'pStt' => $paramObj->pStt ?? null,
+            'pBac' => $paramObj->pBac ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null,
+            'pStt_cay' => $paramObj->pStt_cay ?? null
         ], $connection);
     }
 
@@ -71,7 +73,7 @@ class AsHrInsDmCCTC
             'pRet' => $Ret,
             'pStt_cay' => $Stt_cay
         ];
-        
+
         return self::call($params);
     }
 }

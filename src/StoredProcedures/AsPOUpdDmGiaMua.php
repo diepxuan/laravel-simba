@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOUpdDmGiaMua
 {
@@ -26,16 +27,17 @@ class AsPOUpdDmGiaMua
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOUpdDmGiaMua', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pNgay_ad' => $params['pNgay_ad'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pGia_nt0' => $params['pGia_nt0'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pNgay_ad' => $paramObj->pNgay_ad ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pGia_nt0' => $paramObj->pGia_nt0 ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsPOUpdDmGiaMua
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

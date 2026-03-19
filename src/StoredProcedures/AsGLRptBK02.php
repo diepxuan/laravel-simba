@@ -15,34 +15,36 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLRptBK02
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBK02', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pngay_ct1' => $params['pngay_ct1'] ?? null,
-            'pngay_ct2' => $params['pngay_ct2'] ?? null,
-            'pGroupType' => $params['pGroupType'] ?? null,
-            'pso_ct1' => $params['pso_ct1'] ?? null,
-            'pso_ct2' => $params['pso_ct2'] ?? null,
-            'ptk' => $params['ptk'] ?? null,
-            'pNo_co' => $params['pNo_co'] ?? null,
-            'ptk_du' => $params['ptk_du'] ?? null,
-            'pma_kh' => $params['pma_kh'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pma_bp' => $params['pma_bp'] ?? null,
-            'pma_phi' => $params['pma_phi'] ?? null,
-            'pma_hd' => $params['pma_hd'] ?? null,
-            'pma_ku' => $params['pma_ku'] ?? null,
-            'pma_spct' => $params['pma_spct'] ?? null,
-            'pma_ct' => $params['pma_ct'] ?? null,
-            'pdien_giai' => $params['pdien_giai'] ?? null,
-            'pma_nt' => $params['pma_nt'] ?? null,
-            'pan_mk' => $params['pan_mk'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pngay_ct1' => $paramObj->pngay_ct1 ?? null,
+            'pngay_ct2' => $paramObj->pngay_ct2 ?? null,
+            'pGroupType' => $paramObj->pGroupType ?? null,
+            'pso_ct1' => $paramObj->pso_ct1 ?? null,
+            'pso_ct2' => $paramObj->pso_ct2 ?? null,
+            'ptk' => $paramObj->ptk ?? null,
+            'pNo_co' => $paramObj->pNo_co ?? null,
+            'ptk_du' => $paramObj->ptk_du ?? null,
+            'pma_kh' => $paramObj->pma_kh ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pma_bp' => $paramObj->pma_bp ?? null,
+            'pma_phi' => $paramObj->pma_phi ?? null,
+            'pma_hd' => $paramObj->pma_hd ?? null,
+            'pma_ku' => $paramObj->pma_ku ?? null,
+            'pma_spct' => $paramObj->pma_spct ?? null,
+            'pma_ct' => $paramObj->pma_ct ?? null,
+            'pdien_giai' => $paramObj->pdien_giai ?? null,
+            'pma_nt' => $paramObj->pma_nt ?? null,
+            'pan_mk' => $paramObj->pan_mk ?? null
         ], $connection);
     }
 }

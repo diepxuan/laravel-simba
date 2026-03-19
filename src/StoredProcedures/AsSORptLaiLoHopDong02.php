@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSORptLaiLoHopDong02
 {
@@ -26,22 +27,23 @@ class AsSORptLaiLoHopDong02
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSORptLaiLoHopDong02', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pTk_DT' => $params['pTk_DT'] ?? null,
-            'pTkDu_DT' => $params['pTkDu_DT'] ?? null,
-            'pPsNc_DT' => $params['pPsNc_DT'] ?? null,
-            'pTk_CP' => $params['pTk_CP'] ?? null,
-            'pTkDu_CP' => $params['pTkDu_CP'] ?? null,
-            'pPsNc_CP' => $params['pPsNc_CP'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'pma_cty' => $params['pma_cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pTk_DT' => $paramObj->pTk_DT ?? null,
+            'pTkDu_DT' => $paramObj->pTkDu_DT ?? null,
+            'pPsNc_DT' => $paramObj->pPsNc_DT ?? null,
+            'pTk_CP' => $paramObj->pTk_CP ?? null,
+            'pTkDu_CP' => $paramObj->pTkDu_CP ?? null,
+            'pPsNc_CP' => $paramObj->pPsNc_CP ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'pma_cty' => $paramObj->pma_cty ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsSORptLaiLoHopDong02
             'pSysMsg1' => $SysMsg1,
             'pma_cty' => $ma_cty
         ];
-        
+
         return self::call($params);
     }
 }

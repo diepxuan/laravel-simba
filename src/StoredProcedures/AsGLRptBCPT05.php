@@ -15,26 +15,28 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLRptBCPT05
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCPT05', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pTK' => $params['pTK'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_BP' => $params['pMa_BP'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pGroup1' => $params['pGroup1'] ?? null,
-            'pGroup2' => $params['pGroup2'] ?? null,
-            'pGroup3' => $params['pGroup3'] ?? null,
-            'pGroup4' => $params['pGroup4'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pTK' => $paramObj->pTK ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_BP' => $paramObj->pMa_BP ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pGroup1' => $paramObj->pGroup1 ?? null,
+            'pGroup2' => $paramObj->pGroup2 ?? null,
+            'pGroup3' => $paramObj->pGroup3 ?? null,
+            'pGroup4' => $paramObj->pGroup4 ?? null
         ], $connection);
     }
 }

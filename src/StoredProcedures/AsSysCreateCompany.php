@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSysCreateCompany
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSysCreateCompany', [
-            'pMa_cty_cu'  => $params['pMa_cty_cu'] ?? null,
-            'pMa_cty_moi'  => $params['pMa_cty_moi'] ?? null,
+            'pMa_cty_cu'  => $paramObj->pMa_cty_cu ?? null,
+            'pMa_cty_moi'  => $paramObj->pMa_cty_moi ?? null,
         ], $connection);
     }
 }

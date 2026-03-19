@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdVoucherResx.
  *
@@ -86,17 +86,18 @@ class AsUpdVoucherResx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdVoucherResx', [
-            'pKey_Voucher_code'     => $params['pKey_Voucher_code'] ?? null,
-            'pKey_Language'         => $params['pKey_Language'] ?? null,
-            'pVoucher_code'         => $params['pVoucher_code'] ?? null,
-            'pLanguage'             => $params['pLanguage'] ?? null,
-            'pPh_formated_col_list' => $params['pPh_formated_col_list'] ?? null,
-            'pCt_formated_col_list' => $params['pCt_formated_col_list'] ?? null,
-            'pDescription'          => $params['pDescription'] ?? null,
-            'pRet'                  => $params['pRet'] ?? null,
+            'pKey_Voucher_code'     => $paramObj->pKey_Voucher_code ?? null,
+            'pKey_Language'         => $paramObj->pKey_Language ?? null,
+            'pVoucher_code'         => $paramObj->pVoucher_code ?? null,
+            'pLanguage'             => $paramObj->pLanguage ?? null,
+            'pPh_formated_col_list' => $paramObj->pPh_formated_col_list ?? null,
+            'pCt_formated_col_list' => $paramObj->pCt_formated_col_list ?? null,
+            'pDescription'          => $paramObj->pDescription ?? null,
+            'pRet'                  => $paramObj->pRet ?? null,
         ], $connection);
     }
 

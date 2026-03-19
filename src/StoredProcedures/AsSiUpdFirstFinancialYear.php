@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiUpdFirstFinancialYear
 {
@@ -26,6 +27,7 @@ class AsSiUpdFirstFinancialYear
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiUpdFirstFinancialYear', $params, $connection);
@@ -44,7 +46,7 @@ class AsSiUpdFirstFinancialYear
             'pNgay1' => $Ngay1,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

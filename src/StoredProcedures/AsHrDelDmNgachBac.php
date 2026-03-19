@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrDelDmNgachBac
 {
@@ -26,13 +27,14 @@ class AsHrDelDmNgachBac
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrDelDmNgachBac', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_tbl' => $params['pMa_tbl'] ?? null,
-            'pMa_nb' => $params['pMa_nb'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_tbl' => $paramObj->pMa_tbl ?? null,
+            'pMa_nb' => $paramObj->pMa_nb ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsHrDelDmNgachBac
             'pMa_nb' => $Ma_nb,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsCODelUpdateCost
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCODelUpdateCost', [
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
-            'pNgay1'   => $params['pNgay1'] ?? null,
-            'pNgay2'   => $params['pNgay2'] ?? null,
-            'pTk154'   => $params['pTk154'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pNgay1'   => $paramObj->pNgay1 ?? null,
+            'pNgay2'   => $paramObj->pNgay2 ?? null,
+            'pTk154'   => $paramObj->pTk154 ?? null,
         ], $connection);
     }
 }

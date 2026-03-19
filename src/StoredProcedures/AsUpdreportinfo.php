@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdreportinfo
 {
@@ -26,22 +27,23 @@ class AsUpdreportinfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdreportinfo', [
-            'pKey_Menuid' => $params['pKey_Menuid'] ?? null,
-            'pKey_Ma_mau' => $params['pKey_Ma_mau'] ?? null,
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null,
-            'pCtlclass' => $params['pCtlclass'] ?? null,
-            'pSpname' => $params['pSpname'] ?? null,
-            'pRptname' => $params['pRptname'] ?? null,
-            'pIsdefault' => $params['pIsdefault'] ?? null,
-            'pBang_chu' => $params['pBang_chu'] ?? null,
-            'pBang_chu0' => $params['pBang_chu0'] ?? null,
-            'pDynReportFields' => $params['pDynReportFields'] ?? null,
-            'pHasNT' => $params['pHasNT'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pKey_Menuid' => $paramObj->pKey_Menuid ?? null,
+            'pKey_Ma_mau' => $paramObj->pKey_Ma_mau ?? null,
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null,
+            'pCtlclass' => $paramObj->pCtlclass ?? null,
+            'pSpname' => $paramObj->pSpname ?? null,
+            'pRptname' => $paramObj->pRptname ?? null,
+            'pIsdefault' => $paramObj->pIsdefault ?? null,
+            'pBang_chu' => $paramObj->pBang_chu ?? null,
+            'pBang_chu0' => $paramObj->pBang_chu0 ?? null,
+            'pDynReportFields' => $paramObj->pDynReportFields ?? null,
+            'pHasNT' => $paramObj->pHasNT ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsUpdreportinfo
             'pHasNT' => $HasNT,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

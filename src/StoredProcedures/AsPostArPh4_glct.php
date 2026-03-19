@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPostArPh4Glct.
  *
@@ -81,10 +81,10 @@ class AsPostArPh4_glct extends StoredProcedure
     public static function call(array $params): Collection
     {
         return parent::call(array_merge([
-            'pma_cty'  => $params['pma_cty'] ?? SModel::CTY,
-            'pstt_rec' => $params['pstt_rec'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pSTT_rec' => $params['pSTT_rec'] ?? null,
+            'pma_cty'  => $paramObj->pma_cty ?? SModel::CTY,
+            'pstt_rec' => $paramObj->pstt_rec ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pSTT_rec' => $paramObj->pSTT_rec ?? null,
         ], $params));
     }
 

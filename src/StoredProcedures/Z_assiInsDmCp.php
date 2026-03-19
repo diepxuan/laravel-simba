@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_assiInsDmCp
 {
     public static function call(array $params = []): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_assiInsDmCp', [
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
-            'pMa_cp'   => $params['pMa_cp'] ?? null,
-            'pTen_cp'  => $params['pTen_cp'] ?? null,
-            'pKsd'     => $params['pKsd'] ?? null,
-            'pLUser'   => $params['pLUser'] ?? null,
-            'pRet'     => $params['pRet'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_cp'   => $paramObj->pMa_cp ?? null,
+            'pTen_cp'  => $paramObj->pTen_cp ?? null,
+            'pKsd'     => $paramObj->pKsd ?? null,
+            'pLUser'   => $paramObj->pLUser ?? null,
+            'pRet'     => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

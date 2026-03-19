@@ -15,23 +15,25 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLInsDMCTGS
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLInsDMCTGS', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pTen_ctgs' => $params['pTen_ctgs'] ?? null,
-            'pSo_hieu' => $params['pSo_hieu'] ?? null,
-            'pNgay' => $params['pNgay'] ?? null,
-            'pStt' => $params['pStt'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pTen_ctgs' => $paramObj->pTen_ctgs ?? null,
+            'pSo_hieu' => $paramObj->pSo_hieu ?? null,
+            'pNgay' => $paramObj->pNgay ?? null,
+            'pStt' => $paramObj->pStt ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

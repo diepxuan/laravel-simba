@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInGetTonKhoTucThoi
 {
@@ -26,15 +27,16 @@ class AsInGetTonKhoTucThoi
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInGetTonKhoTucThoi', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pTon_ht' => $params['pTon_ht'] ?? null,
-            'pTon_tc' => $params['pTon_tc'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pTon_ht' => $paramObj->pTon_ht ?? null,
+            'pTon_tc' => $paramObj->pTon_tc ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsInGetTonKhoTucThoi
             'pTon_ht' => $Ton_ht,
             'pTon_tc' => $Ton_tc
         ];
-        
+
         return self::call($params);
     }
 }

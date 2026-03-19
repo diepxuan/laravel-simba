@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOUpdDMTS
 {
@@ -26,18 +27,19 @@ class AsSOUpdDMTS
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOUpdDMTS', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pTen_Thue' => $params['pTen_Thue'] ?? null,
-            'pTs_gtgt' => $params['pTs_gtgt'] ?? null,
-            'pKct' => $params['pKct'] ?? null,
-            'pTk_thue_co' => $params['pTk_thue_co'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pTen_Thue' => $paramObj->pTen_Thue ?? null,
+            'pTs_gtgt' => $paramObj->pTs_gtgt ?? null,
+            'pKct' => $paramObj->pKct ?? null,
+            'pTk_thue_co' => $paramObj->pTk_thue_co ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsSOUpdDMTS
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

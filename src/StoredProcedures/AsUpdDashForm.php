@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdDashForm
 {
@@ -26,20 +27,21 @@ class AsUpdDashForm
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdDashForm', [
-            'pDashId' => $params['pDashId'] ?? null,
-            'pUserName' => $params['pUserName'] ?? null,
-            'pTitle' => $params['pTitle'] ?? null,
-            'pFormat' => $params['pFormat'] ?? null,
-            'pLocation' => $params['pLocation'] ?? null,
-            'pX' => $params['pX'] ?? null,
-            'pY' => $params['pY'] ?? null,
-            'pH' => $params['pH'] ?? null,
-            'pW' => $params['pW'] ?? null,
-            'pIsMenu' => $params['pIsMenu'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pDashId' => $paramObj->pDashId ?? null,
+            'pUserName' => $paramObj->pUserName ?? null,
+            'pTitle' => $paramObj->pTitle ?? null,
+            'pFormat' => $paramObj->pFormat ?? null,
+            'pLocation' => $paramObj->pLocation ?? null,
+            'pX' => $paramObj->pX ?? null,
+            'pY' => $paramObj->pY ?? null,
+            'pH' => $paramObj->pH ?? null,
+            'pW' => $paramObj->pW ?? null,
+            'pIsMenu' => $paramObj->pIsMenu ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -74,7 +76,7 @@ class AsUpdDashForm
             'pIsMenu' => $IsMenu,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

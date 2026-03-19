@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsRightgroupCompany.
  *
@@ -82,12 +82,13 @@ class AsInsRightgroupCompany
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsRightgroupCompany', [
-            'pGroupName' => $params['pGroupName'] ?? null,
-            'pMa_cty'    => $params['pMa_cty'] ?? null,
-            'pActive'    => $params['pActive'] ?? null,
+            'pGroupName' => $paramObj->pGroupName ?? null,
+            'pMa_cty'    => $paramObj->pMa_cty ?? null,
+            'pActive'    => $paramObj->pActive ?? null,
         ], $connection);
     }
 }

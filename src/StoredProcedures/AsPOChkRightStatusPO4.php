@@ -15,17 +15,19 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOChkRightStatusPO4
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOChkRightStatusPO4', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pStt_rec' => $params['pStt_rec'] ?? '',
-            'pLanguage' => $params['pLanguage'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pStt_rec' => $paramObj->pStt_rec ?? '',
+            'pLanguage' => $paramObj->pLanguage ?? ''
         ], $connection);
     }
 }

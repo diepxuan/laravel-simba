@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIGetModuleID
 {
@@ -26,11 +27,12 @@ class AsSIGetModuleID
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetModuleID', [
-            'pmenuid' => $params['pmenuid'] ?? null,
-            'pStruct' => $params['pStruct'] ?? null
+            'pmenuid' => $paramObj->pmenuid ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsSIGetModuleID
             'pmenuid' => $menuid,
             'pStruct' => $Struct
         ];
-        
+
         return self::call($params);
     }
 }

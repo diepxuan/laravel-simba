@@ -15,32 +15,34 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLUpdMAUBCTCTMVI06
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdMAUBCTCTMVI06', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pGia_goc_dk' => $params['pGia_goc_dk'] ?? null,
-            'pGia_hl_dk' => $params['pGia_hl_dk'] ?? null,
-            'pGia_dp_dk' => $params['pGia_dp_dk'] ?? null,
-            'pGia_goc_ck' => $params['pGia_goc_ck'] ?? null,
-            'pGia_hl_ck' => $params['pGia_hl_ck'] ?? null,
-            'pGia_dp_ck' => $params['pGia_dp_ck'] ?? null,
-            'pIsprint' => $params['pIsprint'] ?? null,
-            'pIsitalic' => $params['pIsitalic'] ?? null,
-            'pBold' => $params['pBold'] ?? null,
-            'pModify' => $params['pModify'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pGia_goc_dk' => $paramObj->pGia_goc_dk ?? null,
+            'pGia_hl_dk' => $paramObj->pGia_hl_dk ?? null,
+            'pGia_dp_dk' => $paramObj->pGia_dp_dk ?? null,
+            'pGia_goc_ck' => $paramObj->pGia_goc_ck ?? null,
+            'pGia_hl_ck' => $paramObj->pGia_hl_ck ?? null,
+            'pGia_dp_ck' => $paramObj->pGia_dp_ck ?? null,
+            'pIsprint' => $paramObj->pIsprint ?? null,
+            'pIsitalic' => $paramObj->pIsitalic ?? null,
+            'pBold' => $paramObj->pBold ?? null,
+            'pModify' => $paramObj->pModify ?? null,
+            'pRet' => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

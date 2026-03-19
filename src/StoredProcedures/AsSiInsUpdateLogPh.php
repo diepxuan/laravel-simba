@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiInsUpdateLogPh
 {
@@ -26,22 +27,23 @@ class AsSiInsUpdateLogPh
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiInsUpdateLogPh', [
-            'pDescription' => $params['pDescription'] ?? null,
-            'pNote' => $params['pNote'] ?? null,
-            'pProductid' => $params['pProductid'] ?? null,
-            'pFunctionMenuid' => $params['pFunctionMenuid'] ?? null,
-            'pFunctionName' => $params['pFunctionName'] ?? null,
-            'pBugnumber' => $params['pBugnumber'] ?? null,
-            'pLinknumber' => $params['pLinknumber'] ?? null,
-            'pConnection' => $params['pConnection'] ?? null,
-            'pCuserbuild' => $params['pCuserbuild'] ?? null,
-            'pLuserbuild' => $params['pLuserbuild'] ?? null,
-            'pCUser' => $params['pCUser'] ?? null,
-            'pID' => $params['pID'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pDescription' => $paramObj->pDescription ?? null,
+            'pNote' => $paramObj->pNote ?? null,
+            'pProductid' => $paramObj->pProductid ?? null,
+            'pFunctionMenuid' => $paramObj->pFunctionMenuid ?? null,
+            'pFunctionName' => $paramObj->pFunctionName ?? null,
+            'pBugnumber' => $paramObj->pBugnumber ?? null,
+            'pLinknumber' => $paramObj->pLinknumber ?? null,
+            'pConnection' => $paramObj->pConnection ?? null,
+            'pCuserbuild' => $paramObj->pCuserbuild ?? null,
+            'pLuserbuild' => $paramObj->pLuserbuild ?? null,
+            'pCUser' => $paramObj->pCUser ?? null,
+            'pID' => $paramObj->pID ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsSiInsUpdateLogPh
             'pID' => $ID,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

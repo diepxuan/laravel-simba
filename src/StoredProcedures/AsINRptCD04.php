@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINRptCD04
 {
@@ -26,23 +27,24 @@ class AsINRptCD04
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINRptCD04', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pNgay' => $params['pNgay'] ?? null,
-            'pDVT' => $params['pDVT'] ?? null,
-            'pNgoai_te' => $params['pNgoai_te'] ?? null,
-            'pDk_Ck' => $params['pDk_Ck'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pQuaToiThieu' => $params['pQuaToiThieu'] ?? null,
-            'pQuaToiDa' => $params['pQuaToiDa'] ?? null,
-            'pNam' => $params['pNam'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pNgay' => $paramObj->pNgay ?? null,
+            'pDVT' => $paramObj->pDVT ?? null,
+            'pNgoai_te' => $paramObj->pNgoai_te ?? null,
+            'pDk_Ck' => $paramObj->pDk_Ck ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pQuaToiThieu' => $paramObj->pQuaToiThieu ?? null,
+            'pQuaToiDa' => $paramObj->pQuaToiDa ?? null,
+            'pNam' => $paramObj->pNam ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsINRptCD04
             'pQuaToiDa' => $QuaToiDa,
             'pNam' => $Nam
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPostApPh3ApTt.
  *
@@ -78,11 +78,11 @@ class AsPostApPh3_apTt extends StoredProcedure
     public static function call(array $params): Collection
     {
         return parent::call(array_merge([
-            'pMa_cty'  => $params['pMa_cty'] ?? SModel::CTY,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pNamTC'   => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pNamTC'   => $paramObj->pNamTC ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
         ], $params));
     }
 

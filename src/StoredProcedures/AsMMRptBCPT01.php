@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsMMRptBCPT01
 {
@@ -26,18 +27,19 @@ class AsMMRptBCPT01
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asMMRptBCPT01', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pma_plvt1' => $params['pma_plvt1'] ?? null,
-            'pma_plvt2' => $params['pma_plvt2'] ?? null,
-            'pma_plvt3' => $params['pma_plvt3'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pma_plvt1' => $paramObj->pma_plvt1 ?? null,
+            'pma_plvt2' => $paramObj->pma_plvt2 ?? null,
+            'pma_plvt3' => $paramObj->pma_plvt3 ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsMMRptBCPT01
             'pma_plvt3' => $ma_plvt3,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

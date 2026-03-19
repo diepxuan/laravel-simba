@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetVoucherCtOptFieldInfo
 {
@@ -26,11 +27,12 @@ class AsGetVoucherCtOptFieldInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetVoucherCtOptFieldInfo', [
-            'pVoucher_Code' => $params['pVoucher_Code'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pVoucher_Code' => $paramObj->pVoucher_Code ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsGetVoucherCtOptFieldInfo
             'pVoucher_Code' => $Voucher_Code,
             'pLanguage' => $Language
         ];
-        
+
         return self::call($params);
     }
 }

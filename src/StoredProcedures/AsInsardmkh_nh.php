@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInsardmkh_nh
 {
@@ -26,23 +27,24 @@ class AsInsardmkh_nh
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsardmkh_nh', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_ngh' => $params['pMa_ngh'] ?? null,
-            'pTen_ngh' => $params['pTen_ngh'] ?? null,
-            'pPhong_gd' => $params['pPhong_gd'] ?? null,
-            'pSo_tk' => $params['pSo_tk'] ?? null,
-            'pTinh_tp' => $params['pTinh_tp'] ?? null,
-            'pDia_chi' => $params['pDia_chi'] ?? null,
-            'pDien_thoai' => $params['pDien_thoai'] ?? null,
-            'pEmail' => $params['pEmail'] ?? null,
-            'pFax' => $params['pFax'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pNgam_dinh' => $params['pNgam_dinh'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_ngh' => $paramObj->pMa_ngh ?? null,
+            'pTen_ngh' => $paramObj->pTen_ngh ?? null,
+            'pPhong_gd' => $paramObj->pPhong_gd ?? null,
+            'pSo_tk' => $paramObj->pSo_tk ?? null,
+            'pTinh_tp' => $paramObj->pTinh_tp ?? null,
+            'pDia_chi' => $paramObj->pDia_chi ?? null,
+            'pDien_thoai' => $paramObj->pDien_thoai ?? null,
+            'pEmail' => $paramObj->pEmail ?? null,
+            'pFax' => $paramObj->pFax ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pNgam_dinh' => $paramObj->pNgam_dinh ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsInsardmkh_nh
             'pNgam_dinh' => $Ngam_dinh,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

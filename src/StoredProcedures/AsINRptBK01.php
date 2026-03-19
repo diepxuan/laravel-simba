@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINRptBK01
 {
@@ -26,15 +27,16 @@ class AsINRptBK01
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINRptBK01', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsINRptBK01
             'pMa_kho' => $Ma_kho,
             'pMa_cty' => $Ma_cty
         ];
-        
+
         return self::call($params);
     }
 }

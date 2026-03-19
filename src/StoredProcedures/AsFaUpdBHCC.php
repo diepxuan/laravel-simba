@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsFaUpdBHCC
- * 
+ *
  * Stored procedure: asFaUpdBHCC
  * Purpose: ========================================================
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Tham số đầu vào.
  * - @pMa_cc (nvarchar(20)): Tham số đầu vào.
@@ -33,11 +33,11 @@ use Illuminate\Support\Collection;
  * - @pMa_bpsd (nvarchar(8)): Tham số đầu vào.
  * - @pGt_da_Kh (decimal(19): Tham số đầu vào.
  * - @pRet (int OUTPUT): Tham số output (không được xử lý bởi ProcedureCaller hiện tại).
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện update).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -58,18 +58,19 @@ class AsFaUpdBHCC
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFaUpdBHCC', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_cc' => $params['pMa_cc'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pNgay_giam' => $params['pNgay_giam'] ?? null,
-            'pUser' => $params['pUser'] ?? null,
-            'pID' => $params['pID'] ?? null,
-            'ptk_cp' => $params['ptk_cp'] ?? null,
-            'pMa_bpsd' => $params['pMa_bpsd'] ?? null,
-            'pGt_da_Kh' => $params['pGt_da_Kh'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cc' => $paramObj->pMa_cc ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pNgay_giam' => $paramObj->pNgay_giam ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'pID' => $paramObj->pID ?? null,
+            'ptk_cp' => $paramObj->ptk_cp ?? null,
+            'pMa_bpsd' => $paramObj->pMa_bpsd ?? null,
+            'pGt_da_Kh' => $paramObj->pGt_da_Kh ?? null,
         ], $connection);
     }
 }

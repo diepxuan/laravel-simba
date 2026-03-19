@@ -15,23 +15,25 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLGetBudget
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLGetBudget', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_tk' => $params['pMa_tk'] ?? null,
-            'pMa_tk_du' => $params['pMa_tk_du'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pTtps_no_co' => $params['pTtps_no_co'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_tk' => $paramObj->pMa_tk ?? null,
+            'pMa_tk_du' => $paramObj->pMa_tk_du ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pTtps_no_co' => $paramObj->pTtps_no_co ?? null,
         ], $connection);
     }
 }

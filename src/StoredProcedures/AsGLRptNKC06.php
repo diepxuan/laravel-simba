@@ -15,24 +15,24 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLRptNKC06
- * 
+ *
  * Stored procedure: asGLRptNKC06
  * Purpose: ==================================================
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Tham số đầu vào.
  * - @pNgay_ct1 (smalldatetime): Tham số đầu vào.
  * - @pNgay_ct2 (smalldatetime): Tham số đầu vào.
  * - @pTk (nvarchar(20)): Tham số đầu vào.
  * - @pMa_Nt (nvarchar(3)): Tham số đầu vào.
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -49,14 +49,15 @@ class AsGLRptNKC06
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptNKC06', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_ct1' => $params['pNgay_ct1'] ?? null,
-            'pNgay_ct2' => $params['pNgay_ct2'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_ct1' => $paramObj->pNgay_ct1 ?? null,
+            'pNgay_ct2' => $paramObj->pNgay_ct2 ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
         ], $connection);
     }
 }

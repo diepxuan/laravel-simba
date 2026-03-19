@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDelOptFieldSetup.
  *
@@ -68,11 +68,12 @@ class AsDelOptFieldSetup
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asDelOptFieldSetup', [
-            'pVoucher_code' => $params['pVoucher_code'] ?? null,
-            'pField'        => $params['pField'] ?? null,
+            'pVoucher_code' => $paramObj->pVoucher_code ?? null,
+            'pField'        => $paramObj->pField ?? null,
         ], $connection);
     }
 }

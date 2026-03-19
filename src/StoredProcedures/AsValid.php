@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsValid
 {
@@ -26,18 +27,19 @@ class AsValid
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asValid', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pCodeName' => $params['pCodeName'] ?? null,
-            'pCodeValue' => $params['pCodeValue'] ?? null,
-            'pFieldList' => $params['pFieldList'] ?? null,
-            'pTableName' => $params['pTableName'] ?? null,
-            'pWhere' => $params['pWhere'] ?? null,
-            'paramDefs' => $params['paramDefs'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pCodeName' => $paramObj->pCodeName ?? null,
+            'pCodeValue' => $paramObj->pCodeValue ?? null,
+            'pFieldList' => $paramObj->pFieldList ?? null,
+            'pTableName' => $paramObj->pTableName ?? null,
+            'pWhere' => $paramObj->pWhere ?? null,
+            'paramDefs' => $paramObj->paramDefs ?? null,
+            'pRet' => $paramObj->pRet ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsValid
             'pRet' => $Ret,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

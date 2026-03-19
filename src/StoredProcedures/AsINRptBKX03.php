@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINRptBKX03
 {
@@ -26,28 +27,29 @@ class AsINRptBKX03
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINRptBKX03', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pSoct1' => $params['pSoct1'] ?? null,
-            'pSoct2' => $params['pSoct2'] ?? null,
-            'pLoai_px' => $params['pLoai_px'] ?? null,
-            'pMa_Hd' => $params['pMa_Hd'] ?? null,
-            'pTK_VT' => $params['pTK_VT'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pSoct1' => $paramObj->pSoct1 ?? null,
+            'pSoct2' => $paramObj->pSoct2 ?? null,
+            'pLoai_px' => $paramObj->pLoai_px ?? null,
+            'pMa_Hd' => $paramObj->pMa_Hd ?? null,
+            'pTK_VT' => $paramObj->pTK_VT ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
             'pMa_kho_nhập' => $params['pMa_kho_nhập'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_dangnx' => $params['pMa_dangnx'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_VT' => $params['pMa_VT'] ?? null,
-            'pNhom_VT' => $params['pNhom_VT'] ?? null,
-            'pMa_NT' => $params['pMa_NT'] ?? null,
-            'pTk_Du' => $params['pTk_Du'] ?? null,
-            'pDVT' => $params['pDVT'] ?? null
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_dangnx' => $paramObj->pMa_dangnx ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_VT' => $paramObj->pMa_VT ?? null,
+            'pNhom_VT' => $paramObj->pNhom_VT ?? null,
+            'pMa_NT' => $paramObj->pMa_NT ?? null,
+            'pTk_Du' => $paramObj->pTk_Du ?? null,
+            'pDVT' => $paramObj->pDVT ?? null
         ], $connection);
     }
 
@@ -98,7 +100,7 @@ class AsINRptBKX03
             'pTk_Du' => $Tk_Du,
             'pDVT' => $DVT
         ];
-        
+
         return self::call($params);
     }
 }

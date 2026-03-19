@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdUserObjectRight.
  *
@@ -74,15 +74,16 @@ class AsUpdUserObjectRight
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdUserObjectRight', [
-            'pUserName'   => $params['pUserName'] ?? null,
-            'pMenuID'     => $params['pMenuID'] ?? null,
-            'pObjectName' => $params['pObjectName'] ?? null,
-            'pViewRight'  => $params['pViewRight'] ?? null,
-            'pEditRight'  => $params['pEditRight'] ?? null,
-            'pAddRight'   => $params['pAddRight'] ?? null,
+            'pUserName'   => $paramObj->pUserName ?? null,
+            'pMenuID'     => $paramObj->pMenuID ?? null,
+            'pObjectName' => $paramObj->pObjectName ?? null,
+            'pViewRight'  => $paramObj->pViewRight ?? null,
+            'pEditRight'  => $paramObj->pEditRight ?? null,
+            'pAddRight'   => $paramObj->pAddRight ?? null,
         ], $connection);
     }
 

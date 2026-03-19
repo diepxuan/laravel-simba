@@ -15,25 +15,25 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetDMPHI
- * 
+ *
  * Stored procedure: asSIGetDMPHI
  * Purpose: Lấy danh sách phí (danh mục phí) trong module Sales & Inventory.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty (có thể null để lấy tất cả). Mặc định null.
  * - @pMa_phi (nvarchar(20)): Mã phí cần tìm (có thể null để lấy tất cả). Mặc định null.
  * - @pStruct (nvarchar(1)): Cấu trúc dữ liệu (0: danh sách). Mặc định '0'.
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: null (lấy tất cả công ty).
  * - pMa_phi: null (lấy tất cả phí).
  * - pStruct: '0'.
- * 
+ *
  * Kết quả trả về: Collection các phí với các cột: ma_cty, ma_phi, ten_phi, ksd, cdate, cuser, ldate, luser.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -47,12 +47,13 @@ class AsGetDMPHI
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDMPHI', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pStruct' => $params['pStruct'] ?? '0',
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pStruct' => $paramObj->pStruct ?? '0',
         ], $connection);
     }
 }

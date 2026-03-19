@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostSoPh3_glct
 {
@@ -26,22 +27,23 @@ class AsPostSoPh3_glct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostSoPh3_glct', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pChi_post_giavon' => $params['pChi_post_giavon'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pMa_nt0' => $params['pMa_nt0'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pTk_pt' => $params['pTk_pt'] ?? null,
-            'pDs_tk_kt' => $params['pDs_tk_kt'] ?? null,
-            'pMa_gd' => $params['pMa_gd'] ?? null,
-            'pNhom_dk' => $params['pNhom_dk'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pChi_post_giavon' => $paramObj->pChi_post_giavon ?? null,
+            'pNamTC' => $paramObj->pNamTC ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pMa_nt0' => $paramObj->pMa_nt0 ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pTk_pt' => $paramObj->pTk_pt ?? null,
+            'pDs_tk_kt' => $paramObj->pDs_tk_kt ?? null,
+            'pMa_gd' => $paramObj->pMa_gd ?? null,
+            'pNhom_dk' => $paramObj->pNhom_dk ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsPostSoPh3_glct
             'pMa_gd' => $Ma_gd,
             'pNhom_dk' => $Nhom_dk
         ];
-        
+
         return self::call($params);
     }
 }

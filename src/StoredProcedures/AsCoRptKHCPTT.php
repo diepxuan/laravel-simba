@@ -15,24 +15,26 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsCoRptKHCPTT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCoRptKHCPTT', [
-            'pMa_Cty'  => $params['pMa_Cty'] ?? null,
-            'pNgay1'  => $params['pNgay1'] ?? null,
-            'pNgay2'  => $params['pNgay2'] ?? null,
-            'pMa_bpsd'  => $params['pMa_bpsd'] ?? null,
-            'pMa_cp'  => $params['pMa_cp'] ?? null,
-            'pTk_pb'  => $params['pTk_pb'] ?? null,
-            'pTk_cp'  => $params['pTk_cp'] ?? null,
-            'pMa_phi'  => $params['pMa_phi'] ?? null,
-            'pMa_spct'  => $params['pMa_spct'] ?? null,
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
+            'pMa_Cty'  => $paramObj->pMa_Cty ?? null,
+            'pNgay1'  => $paramObj->pNgay1 ?? null,
+            'pNgay2'  => $paramObj->pNgay2 ?? null,
+            'pMa_bpsd'  => $paramObj->pMa_bpsd ?? null,
+            'pMa_cp'  => $paramObj->pMa_cp ?? null,
+            'pTk_pb'  => $paramObj->pTk_pb ?? null,
+            'pTk_cp'  => $paramObj->pTk_cp ?? null,
+            'pMa_phi'  => $paramObj->pMa_phi ?? null,
+            'pMa_spct'  => $paramObj->pMa_spct ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
         ], $connection);
     }
 }

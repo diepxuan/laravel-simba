@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOUpdND51opt
 {
@@ -26,15 +27,16 @@ class AsSOUpdND51opt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOUpdND51opt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_opt' => $params['pMa_opt'] ?? null,
-            'pGia_tri' => $params['pGia_tri'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_opt' => $paramObj->pMa_opt ?? null,
+            'pGia_tri' => $paramObj->pGia_tri ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsSOUpdND51opt
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

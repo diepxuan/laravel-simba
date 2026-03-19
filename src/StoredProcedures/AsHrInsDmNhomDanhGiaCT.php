@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsHrInsDmNhomDanhGiaCT
- * 
+ *
  * Stored procedure: asHrInsDmNhomDanhGiaCT
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (NVARCHAR(3)): input parameter.
  * - @pMa_nhdg (NVARCHAR(20)): input parameter.
@@ -29,11 +29,11 @@ use Illuminate\Support\Collection;
  * - @pTen_tcdg (NVARCHAR(200)): input parameter.
  * - @pDiem_toi_da (DECIMAL(19, 4)): input parameter.
  * - @pRet (INT): output parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -46,14 +46,15 @@ class AsHrInsDmNhomDanhGiaCT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsDmNhomDanhGiaCT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_nhdg' => $params['pMa_nhdg'] ?? null,
-            'pMa_tcdg' => $params['pMa_tcdg'] ?? null,
-            'pTen_tcdg' => $params['pTen_tcdg'] ?? null,
-            'pDiem_toi_da' => $params['pDiem_toi_da'] ?? 0.0,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_nhdg' => $paramObj->pMa_nhdg ?? null,
+            'pMa_tcdg' => $paramObj->pMa_tcdg ?? null,
+            'pTen_tcdg' => $paramObj->pTen_tcdg ?? null,
+            'pDiem_toi_da' => $paramObj->pDiem_toi_da ?? 0.0,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostSoPh1_SoCt
 {
@@ -26,16 +27,17 @@ class AsPostSoPh1_SoCt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostSoPh1_SoCt', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pNamTC' => $paramObj->pNamTC ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsPostSoPh1_SoCt
             'pNgay_ks' => $Ngay_ks,
             'pMa_cty' => $Ma_cty
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdChamCong
 {
@@ -26,52 +27,53 @@ class AsHrUpdChamCong
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdChamCong', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pMa_cham_cong' => $params['pMa_cham_cong'] ?? null,
-            'pMa_cvcm' => $params['pMa_cvcm'] ?? null,
-            'pHe_so_luong' => $params['pHe_so_luong'] ?? null,
-            'pTong_phu_cap' => $params['pTong_phu_cap'] ?? null,
-            'pMuc_luong' => $params['pMuc_luong'] ?? null,
-            'pTong_luong' => $params['pTong_luong'] ?? null,
-            'pNgay01' => $params['pNgay01'] ?? null,
-            'pNgay02' => $params['pNgay02'] ?? null,
-            'pNgay03' => $params['pNgay03'] ?? null,
-            'pNgay04' => $params['pNgay04'] ?? null,
-            'pNgay05' => $params['pNgay05'] ?? null,
-            'pNgay06' => $params['pNgay06'] ?? null,
-            'pNgay07' => $params['pNgay07'] ?? null,
-            'pNgay08' => $params['pNgay08'] ?? null,
-            'pNgay09' => $params['pNgay09'] ?? null,
-            'pNgay10' => $params['pNgay10'] ?? null,
-            'pNgay11' => $params['pNgay11'] ?? null,
-            'pNgay12' => $params['pNgay12'] ?? null,
-            'pNgay13' => $params['pNgay13'] ?? null,
-            'pNgay14' => $params['pNgay14'] ?? null,
-            'pNgay15' => $params['pNgay15'] ?? null,
-            'pNgay16' => $params['pNgay16'] ?? null,
-            'pNgay17' => $params['pNgay17'] ?? null,
-            'pNgay18' => $params['pNgay18'] ?? null,
-            'pNgay19' => $params['pNgay19'] ?? null,
-            'pNgay20' => $params['pNgay20'] ?? null,
-            'pNgay21' => $params['pNgay21'] ?? null,
-            'pNgay22' => $params['pNgay22'] ?? null,
-            'pNgay23' => $params['pNgay23'] ?? null,
-            'pNgay24' => $params['pNgay24'] ?? null,
-            'pNgay25' => $params['pNgay25'] ?? null,
-            'pNgay26' => $params['pNgay26'] ?? null,
-            'pNgay27' => $params['pNgay27'] ?? null,
-            'pNgay28' => $params['pNgay28'] ?? null,
-            'pNgay29' => $params['pNgay29'] ?? null,
-            'pNgay30' => $params['pNgay30'] ?? null,
-            'pNgay31' => $params['pNgay31'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pMa_cham_cong' => $paramObj->pMa_cham_cong ?? null,
+            'pMa_cvcm' => $paramObj->pMa_cvcm ?? null,
+            'pHe_so_luong' => $paramObj->pHe_so_luong ?? null,
+            'pTong_phu_cap' => $paramObj->pTong_phu_cap ?? null,
+            'pMuc_luong' => $paramObj->pMuc_luong ?? null,
+            'pTong_luong' => $paramObj->pTong_luong ?? null,
+            'pNgay01' => $paramObj->pNgay01 ?? null,
+            'pNgay02' => $paramObj->pNgay02 ?? null,
+            'pNgay03' => $paramObj->pNgay03 ?? null,
+            'pNgay04' => $paramObj->pNgay04 ?? null,
+            'pNgay05' => $paramObj->pNgay05 ?? null,
+            'pNgay06' => $paramObj->pNgay06 ?? null,
+            'pNgay07' => $paramObj->pNgay07 ?? null,
+            'pNgay08' => $paramObj->pNgay08 ?? null,
+            'pNgay09' => $paramObj->pNgay09 ?? null,
+            'pNgay10' => $paramObj->pNgay10 ?? null,
+            'pNgay11' => $paramObj->pNgay11 ?? null,
+            'pNgay12' => $paramObj->pNgay12 ?? null,
+            'pNgay13' => $paramObj->pNgay13 ?? null,
+            'pNgay14' => $paramObj->pNgay14 ?? null,
+            'pNgay15' => $paramObj->pNgay15 ?? null,
+            'pNgay16' => $paramObj->pNgay16 ?? null,
+            'pNgay17' => $paramObj->pNgay17 ?? null,
+            'pNgay18' => $paramObj->pNgay18 ?? null,
+            'pNgay19' => $paramObj->pNgay19 ?? null,
+            'pNgay20' => $paramObj->pNgay20 ?? null,
+            'pNgay21' => $paramObj->pNgay21 ?? null,
+            'pNgay22' => $paramObj->pNgay22 ?? null,
+            'pNgay23' => $paramObj->pNgay23 ?? null,
+            'pNgay24' => $paramObj->pNgay24 ?? null,
+            'pNgay25' => $paramObj->pNgay25 ?? null,
+            'pNgay26' => $paramObj->pNgay26 ?? null,
+            'pNgay27' => $paramObj->pNgay27 ?? null,
+            'pNgay28' => $paramObj->pNgay28 ?? null,
+            'pNgay29' => $paramObj->pNgay29 ?? null,
+            'pNgay30' => $paramObj->pNgay30 ?? null,
+            'pNgay31' => $paramObj->pNgay31 ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -170,7 +172,7 @@ class AsHrUpdChamCong
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

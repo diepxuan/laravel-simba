@@ -15,50 +15,52 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsTaInsOut
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asTaInsOut', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pStt_rec' => $params['pStt_rec'] ?? '',
-            'pStt_rec0' => $params['pStt_rec0'] ?? '',
-            'pMa_ct' => $params['pMa_ct'] ?? '',
-            'pNgay_ct' => $params['pNgay_ct'] ?? '',
-            'pThang' => $params['pThang'] ?? '',
-            'pNam' => $params['pNam'] ?? '',
-            'pSo_seri_mhd' => $params['pSo_seri_mhd'] ?? '',
-            'pNgay_lct' => $params['pNgay_lct'] ?? '',
-            'pSo_ct' => $params['pSo_ct'] ?? '',
-            'pSo_seri' => $params['pSo_seri'] ?? '',
-            'pTen_kh' => $params['pTen_kh'] ?? '',
-            'pDia_chi' => $params['pDia_chi'] ?? '',
-            'pMa_so_thue' => $params['pMa_so_thue'] ?? '',
-            'pMa_vt' => $params['pMa_vt'] ?? '',
-            'pTen_vt' => $params['pTen_vt'] ?? '',
-            'pSo_luong' => $params['pSo_luong'] ?? '',
-            'pGia' => $params['pGia'] ?? '',
-            'pMa_nt' => $params['pMa_nt'] ?? '',
-            'pTy_gia' => $params['pTy_gia'] ?? '',
-            'pT_tien' => $params['pT_tien'] ?? '',
-            'pT_tien_nt' => $params['pT_tien_nt'] ?? '',
-            'pMa_thue' => $params['pMa_thue'] ?? '',
-            'pThue_suat' => $params['pThue_suat'] ?? '',
-            'pT_thue' => $params['pT_thue'] ?? '',
-            'pT_thue_nt' => $params['pT_thue_nt'] ?? '',
-            'pTk_thue' => $params['pTk_thue'] ?? '',
-            'pTk_du' => $params['pTk_du'] ?? '',
-            'pMa_spct' => $params['pMa_spct'] ?? '',
-            'pMa_lo' => $params['pMa_lo'] ?? '',
-            'pMa_bp' => $params['pMa_bp'] ?? '',
-            'pMa_hd' => $params['pMa_hd'] ?? '',
-            'pGhi_chu' => $params['pGhi_chu'] ?? '',
-            'pMa_kh' => $params['pMa_kh'] ?? '',
-            'pUser' => $params['pUser'] ?? '',
-            'pRet' => $params['pRet'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pStt_rec' => $paramObj->pStt_rec ?? '',
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? '',
+            'pMa_ct' => $paramObj->pMa_ct ?? '',
+            'pNgay_ct' => $paramObj->pNgay_ct ?? '',
+            'pThang' => $paramObj->pThang ?? '',
+            'pNam' => $paramObj->pNam ?? '',
+            'pSo_seri_mhd' => $paramObj->pSo_seri_mhd ?? '',
+            'pNgay_lct' => $paramObj->pNgay_lct ?? '',
+            'pSo_ct' => $paramObj->pSo_ct ?? '',
+            'pSo_seri' => $paramObj->pSo_seri ?? '',
+            'pTen_kh' => $paramObj->pTen_kh ?? '',
+            'pDia_chi' => $paramObj->pDia_chi ?? '',
+            'pMa_so_thue' => $paramObj->pMa_so_thue ?? '',
+            'pMa_vt' => $paramObj->pMa_vt ?? '',
+            'pTen_vt' => $paramObj->pTen_vt ?? '',
+            'pSo_luong' => $paramObj->pSo_luong ?? '',
+            'pGia' => $paramObj->pGia ?? '',
+            'pMa_nt' => $paramObj->pMa_nt ?? '',
+            'pTy_gia' => $paramObj->pTy_gia ?? '',
+            'pT_tien' => $paramObj->pT_tien ?? '',
+            'pT_tien_nt' => $paramObj->pT_tien_nt ?? '',
+            'pMa_thue' => $paramObj->pMa_thue ?? '',
+            'pThue_suat' => $paramObj->pThue_suat ?? '',
+            'pT_thue' => $paramObj->pT_thue ?? '',
+            'pT_thue_nt' => $paramObj->pT_thue_nt ?? '',
+            'pTk_thue' => $paramObj->pTk_thue ?? '',
+            'pTk_du' => $paramObj->pTk_du ?? '',
+            'pMa_spct' => $paramObj->pMa_spct ?? '',
+            'pMa_lo' => $paramObj->pMa_lo ?? '',
+            'pMa_bp' => $paramObj->pMa_bp ?? '',
+            'pMa_hd' => $paramObj->pMa_hd ?? '',
+            'pGhi_chu' => $paramObj->pGhi_chu ?? '',
+            'pMa_kh' => $paramObj->pMa_kh ?? '',
+            'pUser' => $paramObj->pUser ?? '',
+            'pRet' => $paramObj->pRet ?? ''
         ], $connection);
     }
 }

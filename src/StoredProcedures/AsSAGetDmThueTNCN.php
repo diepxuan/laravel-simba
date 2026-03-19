@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsSAGetDmThueTNCN.
  *
@@ -68,10 +68,11 @@ class AsSAGetDmThueTNCN
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSAGetDmThueTNCN', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
         ], $connection);
     }
 

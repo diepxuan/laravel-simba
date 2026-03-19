@@ -15,29 +15,31 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFAUpdKHTS
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFAUpdKHTS', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pMa_ts' => $params['pMa_ts'] ?? null,
-            'pMa_ts_tgng' => $params['pMa_ts_tgng'] ?? null,
-            'pKh_n1' => $params['pKh_n1'] ?? null,
-            'pKh_n2' => $params['pKh_n2'] ?? null,
-            'pKh_n3' => $params['pKh_n3'] ?? null,
-            'pKh_n4' => $params['pKh_n4'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pma_bpsd' => $params['pma_bpsd'] ?? null,
-            'ptk_kh' => $params['ptk_kh'] ?? null,
-            'ptk_cp' => $params['ptk_cp'] ?? null,
-            'pSua_kh' => $params['pSua_kh'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pMa_ts' => $paramObj->pMa_ts ?? null,
+            'pMa_ts_tgng' => $paramObj->pMa_ts_tgng ?? null,
+            'pKh_n1' => $paramObj->pKh_n1 ?? null,
+            'pKh_n2' => $paramObj->pKh_n2 ?? null,
+            'pKh_n3' => $paramObj->pKh_n3 ?? null,
+            'pKh_n4' => $paramObj->pKh_n4 ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pma_bpsd' => $paramObj->pma_bpsd ?? null,
+            'ptk_kh' => $paramObj->ptk_kh ?? null,
+            'ptk_cp' => $paramObj->ptk_cp ?? null,
+            'pSua_kh' => $paramObj->pSua_kh ?? null,
         ], $connection);
     }
 }

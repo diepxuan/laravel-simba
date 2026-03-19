@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class ZGenSelect
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('zGenSelect', [
-            'tbl'   => $params['tbl'] ?? '',
-            'alias' => $params['alias'] ?? '',
+            'tbl'   => $paramObj->tbl ?? '',
+            'alias' => $paramObj->alias ?? '',
         ], $connection);
     }
 }

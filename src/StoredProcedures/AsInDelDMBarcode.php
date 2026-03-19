@@ -15,24 +15,24 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInDelDMBarcode
- * 
+ *
  * Stored procedure: asINDelDMBarcode
  * Purpose: Xóa bản ghi trong bảng INDMBARCODE (danh mục mã vạch) dựa trên mã công ty, mã vật tư và mã vạch.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pMa_vt (nvarchar(20)): Mã vật tư. Bắt buộc.
  * - @pMa_vach (nvarchar(128)): Mã vạch. Bắt buộc.
  * - @pRet (int output): Tham số output trả về mã lỗi (0 nếu thành công, @@error nếu có lỗi).
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: mã công ty mặc định (SModel::CTY).
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện delete).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -47,12 +47,13 @@ class AsInDelDMBarcode
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINDelDMBarcode', [
-            'pMa_cty'   => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_vt'    => $params['pMa_vt'] ?? null,
-            'pMa_vach'  => $params['pMa_vach'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_vt'    => $paramObj->pMa_vt ?? null,
+            'pMa_vach'  => $paramObj->pMa_vach ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

@@ -15,15 +15,17 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class ZCheckSmSysTable
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('zCheckSmSysTable', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
         ], $connection);
     }
 }

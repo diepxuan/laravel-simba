@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdateReportChartResX
 {
@@ -26,34 +27,35 @@ class AsUpdateReportChartResX
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdateReportChartResX', [
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pReport_code' => $params['pReport_code'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null,
-            'pXValueMember' => $params['pXValueMember'] ?? null,
-            'pYValueMembers' => $params['pYValueMembers'] ?? null,
-            'pChartType' => $params['pChartType'] ?? null,
-            'pArea3DEnabled' => $params['pArea3DEnabled'] ?? null,
-            'pInclination' => $params['pInclination'] ?? null,
-            'pPointDepth' => $params['pPointDepth'] ?? null,
-            'pPointGapDepth' => $params['pPointGapDepth'] ?? null,
-            'pLightStyle' => $params['pLightStyle'] ?? null,
-            'pColor' => $params['pColor'] ?? null,
-            'pNumber_Format' => $params['pNumber_Format'] ?? null,
-            'pArea_BackColor' => $params['pArea_BackColor'] ?? null,
-            'pArea_BackGradientStyle' => $params['pArea_BackGradientStyle'] ?? null,
-            'pArea_BackHatchStyle' => $params['pArea_BackHatchStyle'] ?? null,
-            'pSeries_BackGradientStyle' => $params['pSeries_BackGradientStyle'] ?? null,
-            'pSeries_BackHatchStyle' => $params['pSeries_BackHatchStyle'] ?? null,
-            'pSeries_ShadowColor' => $params['pSeries_ShadowColor'] ?? null,
-            'pSeries_ShadowOffset' => $params['pSeries_ShadowOffset'] ?? null,
-            'pSeries_Palette' => $params['pSeries_Palette'] ?? null,
-            'pSeries_MarkerSize' => $params['pSeries_MarkerSize'] ?? null,
-            'pWallWidth' => $params['pWallWidth'] ?? null,
-            'pIsValueShownAsLabel' => $params['pIsValueShownAsLabel'] ?? null,
-            'pDataFilter' => $params['pDataFilter'] ?? null
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pReport_code' => $paramObj->pReport_code ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null,
+            'pXValueMember' => $paramObj->pXValueMember ?? null,
+            'pYValueMembers' => $paramObj->pYValueMembers ?? null,
+            'pChartType' => $paramObj->pChartType ?? null,
+            'pArea3DEnabled' => $paramObj->pArea3DEnabled ?? null,
+            'pInclination' => $paramObj->pInclination ?? null,
+            'pPointDepth' => $paramObj->pPointDepth ?? null,
+            'pPointGapDepth' => $paramObj->pPointGapDepth ?? null,
+            'pLightStyle' => $paramObj->pLightStyle ?? null,
+            'pColor' => $paramObj->pColor ?? null,
+            'pNumber_Format' => $paramObj->pNumber_Format ?? null,
+            'pArea_BackColor' => $paramObj->pArea_BackColor ?? null,
+            'pArea_BackGradientStyle' => $paramObj->pArea_BackGradientStyle ?? null,
+            'pArea_BackHatchStyle' => $paramObj->pArea_BackHatchStyle ?? null,
+            'pSeries_BackGradientStyle' => $paramObj->pSeries_BackGradientStyle ?? null,
+            'pSeries_BackHatchStyle' => $paramObj->pSeries_BackHatchStyle ?? null,
+            'pSeries_ShadowColor' => $paramObj->pSeries_ShadowColor ?? null,
+            'pSeries_ShadowOffset' => $paramObj->pSeries_ShadowOffset ?? null,
+            'pSeries_Palette' => $paramObj->pSeries_Palette ?? null,
+            'pSeries_MarkerSize' => $paramObj->pSeries_MarkerSize ?? null,
+            'pWallWidth' => $paramObj->pWallWidth ?? null,
+            'pIsValueShownAsLabel' => $paramObj->pIsValueShownAsLabel ?? null,
+            'pDataFilter' => $paramObj->pDataFilter ?? null
         ], $connection);
     }
 
@@ -116,7 +118,7 @@ class AsUpdateReportChartResX
             'pIsValueShownAsLabel' => $IsValueShownAsLabel,
             'pDataFilter' => $DataFilter
         ];
-        
+
         return self::call($params);
     }
 }

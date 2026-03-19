@@ -15,24 +15,26 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFAPostCcdcHong2GlCt
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFAPostCcdcHong2GlCt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pTk_cp' => $params['pTk_cp'] ?? null,
-            'pTk_cc' => $params['pTk_cc'] ?? null,
-            'pTien_Hong' => $params['pTien_Hong'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pTk_cp' => $paramObj->pTk_cp ?? null,
+            'pTk_cc' => $paramObj->pTk_cc ?? null,
+            'pTien_Hong' => $paramObj->pTien_Hong ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
         ], $connection);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsCADelCDKU.
  *
@@ -66,12 +66,13 @@ class AsCADelCDKU
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCADelCDKU', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam'    => $params['pNam'] ?? null,
-            'pMa_ku'  => $params['pMa_ku'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam'    => $paramObj->pNam ?? null,
+            'pMa_ku'  => $paramObj->pMa_ku ?? null,
         ], $connection);
     }
 }

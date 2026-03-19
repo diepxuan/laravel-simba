@@ -16,7 +16,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 use Carbon\Carbon;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLChuyenSdTk.
  *
@@ -73,12 +73,12 @@ class AsGLChuyenSdTk extends StoredProcedure
     public static function call(array $params)
     {
         $params = [
-            'pMa_cty'   => $params['pMa_cty'] ?? SModel::CTY,
-            'pNgay_cnt' => $params['pNgay_cnt'] ?? now()->endOfYear(),
+            'pMa_cty'   => $params->pMa_cty ?? SModel::CTY,
+            'pNgay_cnt' => $params->pNgay_cnt ?? now()->endOfYear(),
             'pRet'      => ['output' => true, 'type' => 'INT'],
             ...$params,
         ];
-        $ngayCnt = $params['pNgay_cnt'] ?? now()->endOfYear();
+        $ngayCnt = $params->pNgay_cnt ?? now()->endOfYear();
 
         if ($ngayCnt instanceof Carbon) {
             $ngayCnt = $ngayCnt->format('Y-m-d H:i:s');

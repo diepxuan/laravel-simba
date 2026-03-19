@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_asCOGetDMBOM
 {
     public static function call(array $params = []): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_asCOGetDMBOM', [
-            'pMa_cty'        => $params['pMa_cty'] ?? null,
-            'pStt_Rec_Lenh'  => $params['pStt_Rec_Lenh'] ?? null,
-            'pMa_spct'       => $params['pMa_spct'] ?? null,
-            'pStruct'        => $params['pStruct'] ?? '0',
+            'pMa_cty'        => $paramObj->pMa_cty ?? null,
+            'pStt_Rec_Lenh'  => $paramObj->pStt_Rec_Lenh ?? null,
+            'pMa_spct'       => $paramObj->pMa_spct ?? null,
+            'pStruct'        => $paramObj->pStruct ?? '0',
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInReCalcCdvt13For1Vt
 {
@@ -26,12 +27,13 @@ class AsInReCalcCdvt13For1Vt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInReCalcCdvt13For1Vt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pNam' => $params['pNam'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pNam' => $paramObj->pNam ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsInReCalcCdvt13For1Vt
             'pMa_vt' => $Ma_vt,
             'pNam' => $Nam
         ];
-        
+
         return self::call($params);
     }
 }

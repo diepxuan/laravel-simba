@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInPostCDVT2CDFIFO
 {
@@ -26,20 +27,21 @@ class AsInPostCDVT2CDFIFO
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInPostCDVT2CDFIFO', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pTien_nt' => $params['pTien_nt'] ?? null,
-            'pTien' => $params['pTien'] ?? null,
-            'pAcction' => $params['pAcction'] ?? null,
-            'pma_vt' => $params['pma_vt'] ?? null,
-            'pma_kho' => $params['pma_kho'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pTien_nt' => $paramObj->pTien_nt ?? null,
+            'pTien' => $paramObj->pTien ?? null,
+            'pAcction' => $paramObj->pAcction ?? null,
+            'pma_vt' => $paramObj->pma_vt ?? null,
+            'pma_kho' => $paramObj->pma_kho ?? null
         ], $connection);
     }
 
@@ -74,7 +76,7 @@ class AsInPostCDVT2CDFIFO
             'pma_vt' => $ma_vt,
             'pma_kho' => $ma_kho
         ];
-        
+
         return self::call($params);
     }
 }

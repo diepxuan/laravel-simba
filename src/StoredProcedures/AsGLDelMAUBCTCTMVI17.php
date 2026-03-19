@@ -15,23 +15,23 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLDelMAUBCTCTMVI17
- * 
+ *
  * Stored procedure: asGLDelMAUBCTCTMVI17
  * Purpose: Xoá bản ghi trong bảng glmaubctctmVI17 (mẫu báo cáo tài chính) theo mã công ty, mẫu, mã số.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pMau (nvarchar(10)): Mẫu báo cáo. Bắt buộc.
  * - @pMa_so (nvarchar(10)): Mã số. Bắt buộc.
  * - @ret (int): Tham số output trả về mã lỗi (@@ERROR).
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện delete).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -46,12 +46,13 @@ class AsGLDelMAUBCTCTMVI17
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLDelMAUBCTCTMVI17', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau'    => $params['pMau'] ?? null,
-            'pMa_so'  => $params['pMa_so'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau'    => $paramObj->pMau ?? null,
+            'pMa_so'  => $paramObj->pMa_so ?? null,
             // ret là output parameter, không truyền vào.
         ], $connection);
     }

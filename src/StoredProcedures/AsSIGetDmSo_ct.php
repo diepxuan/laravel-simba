@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIGetDmSo_ct
 {
@@ -26,13 +27,14 @@ class AsSIGetDmSo_ct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDmSo_ct', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pPhan_he' => $params['pPhan_he'] ?? null,
-            'pStruct' => $params['pStruct'] ?? null,
-            'pLanguageId' => $params['pLanguageId'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pPhan_he' => $paramObj->pPhan_he ?? null,
+            'pStruct' => $paramObj->pStruct ?? null,
+            'pLanguageId' => $paramObj->pLanguageId ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsSIGetDmSo_ct
             'pStruct' => $Struct,
             'pLanguageId' => $LanguageId
         ];
-        
+
         return self::call($params);
     }
 }

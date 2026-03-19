@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdDmNgachBac
 {
@@ -26,49 +27,50 @@ class AsHrUpdDmNgachBac
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdDmNgachBac', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_tbl' => $params['pMa_tbl'] ?? null,
-            'pMa_nb' => $params['pMa_nb'] ?? null,
-            'pTen_nb' => $params['pTen_nb'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pSo_bac' => $params['pSo_bac'] ?? null,
-            'pNien_han01' => $params['pNien_han01'] ?? null,
-            'pHe_so01' => $params['pHe_so01'] ?? null,
-            'pNien_han02' => $params['pNien_han02'] ?? null,
-            'pHe_so02' => $params['pHe_so02'] ?? null,
-            'pNien_han03' => $params['pNien_han03'] ?? null,
-            'pHe_so03' => $params['pHe_so03'] ?? null,
-            'pNien_han04' => $params['pNien_han04'] ?? null,
-            'pHe_so04' => $params['pHe_so04'] ?? null,
-            'pNien_han05' => $params['pNien_han05'] ?? null,
-            'pHe_so05' => $params['pHe_so05'] ?? null,
-            'pNien_han06' => $params['pNien_han06'] ?? null,
-            'pHe_so06' => $params['pHe_so06'] ?? null,
-            'pNien_han07' => $params['pNien_han07'] ?? null,
-            'pHe_so07' => $params['pHe_so07'] ?? null,
-            'pNien_han08' => $params['pNien_han08'] ?? null,
-            'pHe_so08' => $params['pHe_so08'] ?? null,
-            'pNien_han09' => $params['pNien_han09'] ?? null,
-            'pHe_so09' => $params['pHe_so09'] ?? null,
-            'pNien_han10' => $params['pNien_han10'] ?? null,
-            'pHe_so10' => $params['pHe_so10'] ?? null,
-            'pNien_han11' => $params['pNien_han11'] ?? null,
-            'pHe_so11' => $params['pHe_so11'] ?? null,
-            'pNien_han12' => $params['pNien_han12'] ?? null,
-            'pHe_so12' => $params['pHe_so12'] ?? null,
-            'pNien_han13' => $params['pNien_han13'] ?? null,
-            'pHe_so13' => $params['pHe_so13'] ?? null,
-            'pNien_han14' => $params['pNien_han14'] ?? null,
-            'pHe_so14' => $params['pHe_so14'] ?? null,
-            'pNien_han15' => $params['pNien_han15'] ?? null,
-            'pHe_so15' => $params['pHe_so15'] ?? null,
-            'pNien_han16' => $params['pNien_han16'] ?? null,
-            'pHe_so16' => $params['pHe_so16'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_tbl' => $paramObj->pMa_tbl ?? null,
+            'pMa_nb' => $paramObj->pMa_nb ?? null,
+            'pTen_nb' => $paramObj->pTen_nb ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pSo_bac' => $paramObj->pSo_bac ?? null,
+            'pNien_han01' => $paramObj->pNien_han01 ?? null,
+            'pHe_so01' => $paramObj->pHe_so01 ?? null,
+            'pNien_han02' => $paramObj->pNien_han02 ?? null,
+            'pHe_so02' => $paramObj->pHe_so02 ?? null,
+            'pNien_han03' => $paramObj->pNien_han03 ?? null,
+            'pHe_so03' => $paramObj->pHe_so03 ?? null,
+            'pNien_han04' => $paramObj->pNien_han04 ?? null,
+            'pHe_so04' => $paramObj->pHe_so04 ?? null,
+            'pNien_han05' => $paramObj->pNien_han05 ?? null,
+            'pHe_so05' => $paramObj->pHe_so05 ?? null,
+            'pNien_han06' => $paramObj->pNien_han06 ?? null,
+            'pHe_so06' => $paramObj->pHe_so06 ?? null,
+            'pNien_han07' => $paramObj->pNien_han07 ?? null,
+            'pHe_so07' => $paramObj->pHe_so07 ?? null,
+            'pNien_han08' => $paramObj->pNien_han08 ?? null,
+            'pHe_so08' => $paramObj->pHe_so08 ?? null,
+            'pNien_han09' => $paramObj->pNien_han09 ?? null,
+            'pHe_so09' => $paramObj->pHe_so09 ?? null,
+            'pNien_han10' => $paramObj->pNien_han10 ?? null,
+            'pHe_so10' => $paramObj->pHe_so10 ?? null,
+            'pNien_han11' => $paramObj->pNien_han11 ?? null,
+            'pHe_so11' => $paramObj->pHe_so11 ?? null,
+            'pNien_han12' => $paramObj->pNien_han12 ?? null,
+            'pHe_so12' => $paramObj->pHe_so12 ?? null,
+            'pNien_han13' => $paramObj->pNien_han13 ?? null,
+            'pHe_so13' => $paramObj->pHe_so13 ?? null,
+            'pNien_han14' => $paramObj->pNien_han14 ?? null,
+            'pHe_so14' => $paramObj->pHe_so14 ?? null,
+            'pNien_han15' => $paramObj->pNien_han15 ?? null,
+            'pHe_so15' => $paramObj->pHe_so15 ?? null,
+            'pNien_han16' => $paramObj->pNien_han16 ?? null,
+            'pHe_so16' => $paramObj->pHe_so16 ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -161,7 +163,7 @@ class AsHrUpdDmNgachBac
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

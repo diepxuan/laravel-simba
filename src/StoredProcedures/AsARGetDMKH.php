@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARGetDMKH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARGetDMKH', [
-            'pMa_cty'   => $params['pMa_cty'] ?? null,
-            'pMa_kh'    => $params['pMa_kh'] ?? null,
-            'pStruct'   => $params['pStruct'] ?? '0',
-            'pModuleId' => $params['pModuleId'] ?? '',
+            'pMa_cty'   => $paramObj->pMa_cty ?? null,
+            'pMa_kh'    => $paramObj->pMa_kh ?? null,
+            'pStruct'   => $paramObj->pStruct ?? '0',
+            'pModuleId' => $paramObj->pModuleId ?? '',
         ], $connection);
     }
 }

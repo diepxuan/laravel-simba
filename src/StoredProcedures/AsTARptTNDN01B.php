@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsTARptTNDN01B
 {
@@ -26,13 +27,14 @@ class AsTARptTNDN01B
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asTARptTNDN01B', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMau' => $params['pMau'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMau' => $paramObj->pMau ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsTARptTNDN01B
             'pNgay2' => $Ngay2,
             'pMau' => $Mau
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,22 +15,24 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSaKhoaMoBL
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSaKhoaMoBL', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pKhoa' => $params['pKhoa'] ?? null,
-            'pMatKhau1' => $params['pMatKhau1'] ?? null,
-            'pMatKhau2' => $params['pMatKhau2'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pKhoa' => $paramObj->pKhoa ?? null,
+            'pMatKhau1' => $paramObj->pMatKhau1 ?? null,
+            'pMatKhau2' => $paramObj->pMatKhau2 ?? null,
+            'pRet' => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

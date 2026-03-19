@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsReCalPO2.
  *
@@ -69,13 +69,14 @@ class AsReCalPO2
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asReCalPO2', [
-            'pMa_cty'     => $params['pMa_cty'] ?? null,
-            'pStt_rec_pn' => $params['pStt_rec_pn'] ?? null,
-            'pma_cty'     => $params['pma_cty'] ?? null,
-            'pstt_rec_pn' => $params['pstt_rec_pn'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pStt_rec_pn' => $paramObj->pStt_rec_pn ?? null,
+            'pma_cty'     => $paramObj->pma_cty ?? null,
+            'pstt_rec_pn' => $paramObj->pstt_rec_pn ?? null,
         ], $connection);
     }
 

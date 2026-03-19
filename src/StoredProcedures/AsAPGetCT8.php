@@ -8,43 +8,40 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-14 23:59:00
+ * @lastupdate 2026-03-19 12:16:19
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
 class AsAPGetCT8
 {
     /**
-     * Call stored procedure asAPGetCT8
+     * Call stored procedure asAPGetCT8.
      *
      * @param array $params Procedure parameters
-     * @return Collection
      */
     public static function call(array $params): Collection
     {
+        $paramObj   = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asAPGetCT8', $params, $connection);
     }
 
     /**
-     * Call stored procedure asAPGetCT8 with named parameters
-     *
-     * @param string $Ma_cty
-     * @param string $Stt_rec
-     * @return Collection
+     * Call stored procedure asAPGetCT8 with named parameters.
      */
-    public static function callWithParams(string $Ma_cty = null, string $Stt_rec = null): Collection
+    public static function callWithParams(?string $Ma_cty = null, ?string $Stt_rec = null): Collection
     {
         $params = [
-            'pMa_cty' => $Ma_cty,
-            'pStt_rec' => $Stt_rec
+            'pMa_cty'  => $Ma_cty,
+            'pStt_rec' => $Stt_rec,
         ];
-        
+
         return self::call($params);
     }
 }

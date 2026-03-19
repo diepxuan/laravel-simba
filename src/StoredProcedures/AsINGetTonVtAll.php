@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINGetTonVtAll
 {
@@ -26,19 +27,20 @@ class AsINGetTonVtAll
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINGetTonVtAll', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null
         ], $connection);
     }
 
@@ -71,7 +73,7 @@ class AsINGetTonVtAll
             'pMa_vitri' => $Ma_vitri,
             'pTk_vt' => $Tk_vt
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,24 +15,26 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARRptF5BCCN04
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARRptF5BCCN04', [
-            'Ma_cty' => $params['pMa_cty'] ?? $params['Ma_cty'] ?? null,
-            'Tk' => $params['pTk'] ?? $params['Tk'] ?? null,
-            'Ma_kh' => $params['pMa_kh'] ?? $params['Ma_kh'] ?? null,
-            'Ma_loai' => $params['pMa_loai'] ?? $params['Ma_loai'] ?? null,
-            'Ma' => $params['pMa'] ?? $params['Ma'] ?? null,
-            'Ngay1' => $params['pNgay1'] ?? $params['Ngay1'] ?? null,
-            'Ngay2' => $params['pNgay2'] ?? $params['Ngay2'] ?? null,
-            'Ma_nt' => $params['pMa_nt'] ?? $params['Ma_nt'] ?? null,
-            'pMa_hd' => $params['pPMa_hd'] ?? $params['pMa_hd'] ?? null,
-            'pMa_bp' => $params['pPMa_bp'] ?? $params['pMa_bp'] ?? null,
+            'Ma_cty' => $paramObj->pMa_cty ?? $paramObj->Ma_cty ?? null,
+            'Tk' => $paramObj->pTk ?? $paramObj->Tk ?? null,
+            'Ma_kh' => $paramObj->pMa_kh ?? $paramObj->Ma_kh ?? null,
+            'Ma_loai' => $paramObj->pMa_loai ?? $paramObj->Ma_loai ?? null,
+            'Ma' => $paramObj->pMa ?? $paramObj->Ma ?? null,
+            'Ngay1' => $paramObj->pNgay1 ?? $paramObj->Ngay1 ?? null,
+            'Ngay2' => $paramObj->pNgay2 ?? $paramObj->Ngay2 ?? null,
+            'Ma_nt' => $paramObj->pMa_nt ?? $paramObj->Ma_nt ?? null,
+            'pMa_hd' => $paramObj->pPMa_hd ?? $paramObj->pMa_hd ?? null,
+            'pMa_bp' => $paramObj->pPMa_bp ?? $paramObj->pMa_bp ?? null,
         ], $connection);
     }
 }

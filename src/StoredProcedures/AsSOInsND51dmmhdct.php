@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOInsND51dmmhdct
 {
@@ -26,6 +27,7 @@ class AsSOInsND51dmmhdct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOInsND51dmmhdct', $params, $connection);
@@ -66,7 +68,7 @@ class AsSOInsND51dmmhdct
             'pMau_goc' => $Mau_goc,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

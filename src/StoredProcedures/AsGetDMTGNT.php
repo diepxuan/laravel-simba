@@ -15,21 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetDMTGNT
- * 
+ *
  * Stored procedure: asSIGetDMTGNT
  * Purpose: Lấy danh sách tiêu thức người thu (danh mục tiêu thức người thu) trong module Sales & Inventory.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Mặc định null (có thể null nhưng sẽ không trả về dữ liệu nếu null).
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: null (nên cung cấp mã công ty cụ thể).
- * 
+ *
  * Kết quả trả về: Collection các tiêu thức người thu với các cột: ma_cty, ma_nt, ngay_tg, ty_gia, cdate, cuser, ldate, luser.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -42,10 +42,11 @@ class AsGetDMTGNT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDMTGNT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
         ], $connection);
     }
 }

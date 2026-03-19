@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSORptBCPT08
 {
@@ -26,28 +27,29 @@ class AsSORptBCPT08
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSORptBCPT08', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pMa_plkh1' => $params['pMa_plkh1'] ?? null,
-            'pMa_plkh2' => $params['pMa_plkh2'] ?? null,
-            'pMa_plkh3' => $params['pMa_plkh3'] ?? null,
-            'pMa_Hd' => $params['pMa_Hd'] ?? null,
-            'pma_nhhd' => $params['pma_nhhd'] ?? null,
-            'pMa_Bp' => $params['pMa_Bp'] ?? null,
-            'pMa_Nvkd' => $params['pMa_Nvkd'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null,
-            'pGroup' => $params['pGroup'] ?? null,
-            'pngay1' => $params['pngay1'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_nvkd' => $params['pMa_nvkd'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
+            'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
+            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
+            'pMa_Hd' => $paramObj->pMa_Hd ?? null,
+            'pma_nhhd' => $paramObj->pma_nhhd ?? null,
+            'pMa_Bp' => $paramObj->pMa_Bp ?? null,
+            'pMa_Nvkd' => $paramObj->pMa_Nvkd ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
+            'pGroup' => $paramObj->pGroup ?? null,
+            'pngay1' => $paramObj->pngay1 ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_nvkd' => $paramObj->pMa_nvkd ?? null
         ], $connection);
     }
 
@@ -98,7 +100,7 @@ class AsSORptBCPT08
             'pMa_bp' => $Ma_bp,
             'pMa_nvkd' => $Ma_nvkd
         ];
-        
+
         return self::call($params);
     }
 }

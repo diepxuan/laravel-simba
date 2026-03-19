@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class StoredProcedure
 {

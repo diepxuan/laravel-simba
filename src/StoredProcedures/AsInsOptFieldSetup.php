@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsOptFieldSetup.
  *
@@ -81,14 +81,15 @@ class AsInsOptFieldSetup
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsOptFieldSetup', [
-            'pVoucher_code' => $params['pVoucher_code'] ?? null,
-            'pField'        => $params['pField'] ?? null,
-            'pMaster'       => $params['pMaster'] ?? null,
-            'pDetail'       => $params['pDetail'] ?? null,
-            'pRet'          => $params['pRet'] ?? null,
+            'pVoucher_code' => $paramObj->pVoucher_code ?? null,
+            'pField'        => $paramObj->pField ?? null,
+            'pMaster'       => $paramObj->pMaster ?? null,
+            'pDetail'       => $paramObj->pDetail ?? null,
+            'pRet'          => $paramObj->pRet ?? null,
         ], $connection);
     }
 

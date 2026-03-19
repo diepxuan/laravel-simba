@@ -15,22 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsSIGetDMBP
- * 
+ *
  * Stored procedure: asSIGetDMBP
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (nvarchar(3)): input parameter.
  * - @pMa_bp (nvarchar(20)): input parameter.
  * - @pStruct (nvarchar(1)): input parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -43,12 +43,13 @@ class AsSIGetDMBP
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDMBP', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pStruct' => $params['pStruct'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pStruct' => $paramObj->pStruct ?? null,
         ], $connection);
     }
 }

@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARGetCty
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARGetCty', [
-            'pMa_cty1' => $params['pMa_cty1'] ?? null,
-            'pMa_cty2' => $params['pMa_cty2'] ?? null,
+            'pMa_cty1' => $paramObj->pMa_cty1 ?? null,
+            'pMa_cty2' => $paramObj->pMa_cty2 ?? null,
         ], $connection);
     }
 }

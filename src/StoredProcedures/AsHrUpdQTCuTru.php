@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdQTCuTru
 {
@@ -26,24 +27,25 @@ class AsHrUpdQTCuTru
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdQTCuTru', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtct' => $params['pId_qtct'] ?? null,
-            'pNgay_bd' => $params['pNgay_bd'] ?? null,
-            'pNgay_kt' => $params['pNgay_kt'] ?? null,
-            'pNoi_o' => $params['pNoi_o'] ?? null,
-            'pNoi_o_dc' => $params['pNoi_o_dc'] ?? null,
-            'pNoi_o_xa' => $params['pNoi_o_xa'] ?? null,
-            'pNoi_o_huyen' => $params['pNoi_o_huyen'] ?? null,
-            'pNoi_o_tinh' => $params['pNoi_o_tinh'] ?? null,
-            'pQuan_he_cn' => $params['pQuan_he_cn'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtct' => $paramObj->pId_qtct ?? null,
+            'pNgay_bd' => $paramObj->pNgay_bd ?? null,
+            'pNgay_kt' => $paramObj->pNgay_kt ?? null,
+            'pNoi_o' => $paramObj->pNoi_o ?? null,
+            'pNoi_o_dc' => $paramObj->pNoi_o_dc ?? null,
+            'pNoi_o_xa' => $paramObj->pNoi_o_xa ?? null,
+            'pNoi_o_huyen' => $paramObj->pNoi_o_huyen ?? null,
+            'pNoi_o_tinh' => $paramObj->pNoi_o_tinh ?? null,
+            'pQuan_he_cn' => $paramObj->pQuan_he_cn ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -86,7 +88,7 @@ class AsHrUpdQTCuTru
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

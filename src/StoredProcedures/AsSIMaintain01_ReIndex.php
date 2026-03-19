@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIMaintain01_ReIndex
 {
@@ -26,6 +27,7 @@ class AsSIMaintain01_ReIndex
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIMaintain01_ReIndex', $params, $connection);
@@ -39,7 +41,7 @@ class AsSIMaintain01_ReIndex
     public static function callWithParams(): Collection
     {
         $params = [];
-        
+
         return self::call($params);
     }
 }

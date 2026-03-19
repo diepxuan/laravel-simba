@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsFADelDMLK.
  *
@@ -70,14 +70,15 @@ class AsFADelDMLK
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFADelDMLK', [
-            'pMa_cty'     => $params['pMa_cty'] ?? null,
-            'pMa_ts'      => $params['pMa_ts'] ?? null,
-            'pMa_Ts_Tgng' => $params['pMa_Ts_Tgng'] ?? null,
-            'pMa_lk'      => $params['pMa_lk'] ?? null,
-            'pRet'        => $params['pRet'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pMa_ts'      => $paramObj->pMa_ts ?? null,
+            'pMa_Ts_Tgng' => $paramObj->pMa_Ts_Tgng ?? null,
+            'pMa_lk'      => $paramObj->pMa_lk ?? null,
+            'pRet'        => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

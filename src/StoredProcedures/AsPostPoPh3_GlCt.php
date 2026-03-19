@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostPoPh3_GlCt
 {
@@ -26,25 +27,26 @@ class AsPostPoPh3_GlCt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostPoPh3_GlCt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pMa_gd' => $params['pMa_gd'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pMa_nt0' => $params['pMa_nt0'] ?? null,
-            'pTk_pt' => $params['pTk_pt'] ?? null,
-            'pDs_tk_kt' => $params['pDs_tk_kt'] ?? null,
-            'pluser' => $params['pluser'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null,
-            'pPO3' => $params['pPO3'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pMa_Nt0' => $params['pMa_Nt0'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pNamTC' => $paramObj->pNamTC ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pMa_gd' => $paramObj->pMa_gd ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pMa_nt0' => $paramObj->pMa_nt0 ?? null,
+            'pTk_pt' => $paramObj->pTk_pt ?? null,
+            'pDs_tk_kt' => $paramObj->pDs_tk_kt ?? null,
+            'pluser' => $paramObj->pluser ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
+            'pPO3' => $paramObj->pPO3 ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pMa_Nt0' => $paramObj->pMa_Nt0 ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsPostPoPh3_GlCt
             'pMa_ct' => $Ma_ct,
             'pMa_Nt0' => $Ma_Nt0
         ];
-        
+
         return self::call($params);
     }
 }

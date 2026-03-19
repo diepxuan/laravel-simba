@@ -15,38 +15,40 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLRptTH01
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptTH01', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pngay_ct1' => $params['pngay_ct1'] ?? null,
-            'pngay_ct2' => $params['pngay_ct2'] ?? null,
-            'pma_ct' => $params['pma_ct'] ?? null,
-            'ptk' => $params['ptk'] ?? null,
-            'ptk_du' => $params['ptk_du'] ?? null,
-            'pnhom_kh' => $params['pnhom_kh'] ?? null,
-            'pma_plkh1' => $params['pma_plkh1'] ?? null,
-            'pma_plkh2' => $params['pma_plkh2'] ?? null,
-            'pma_plkh3' => $params['pma_plkh3'] ?? null,
-            'pma_kh' => $params['pma_kh'] ?? null,
-            'pso_ct1' => $params['pso_ct1'] ?? null,
-            'pso_ct2' => $params['pso_ct2'] ?? null,
-            'pNo_co' => $params['pNo_co'] ?? null,
-            'pma_nt' => $params['pma_nt'] ?? null,
-            'pma_hd' => $params['pma_hd'] ?? null,
-            'pma_phi' => $params['pma_phi'] ?? null,
-            'pdien_giai' => $params['pdien_giai'] ?? null,
-            'pma_bp' => $params['pma_bp'] ?? null,
-            'pma_spct' => $params['pma_spct'] ?? null,
-            'pma_nhhd' => $params['pma_nhhd'] ?? null,
-            'pma_lo' => $params['pma_lo'] ?? null,
-            'pGroup' => $params['pGroup'] ?? null,
-            'pBcNt' => $params['pBcNt'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pngay_ct1' => $paramObj->pngay_ct1 ?? null,
+            'pngay_ct2' => $paramObj->pngay_ct2 ?? null,
+            'pma_ct' => $paramObj->pma_ct ?? null,
+            'ptk' => $paramObj->ptk ?? null,
+            'ptk_du' => $paramObj->ptk_du ?? null,
+            'pnhom_kh' => $paramObj->pnhom_kh ?? null,
+            'pma_plkh1' => $paramObj->pma_plkh1 ?? null,
+            'pma_plkh2' => $paramObj->pma_plkh2 ?? null,
+            'pma_plkh3' => $paramObj->pma_plkh3 ?? null,
+            'pma_kh' => $paramObj->pma_kh ?? null,
+            'pso_ct1' => $paramObj->pso_ct1 ?? null,
+            'pso_ct2' => $paramObj->pso_ct2 ?? null,
+            'pNo_co' => $paramObj->pNo_co ?? null,
+            'pma_nt' => $paramObj->pma_nt ?? null,
+            'pma_hd' => $paramObj->pma_hd ?? null,
+            'pma_phi' => $paramObj->pma_phi ?? null,
+            'pdien_giai' => $paramObj->pdien_giai ?? null,
+            'pma_bp' => $paramObj->pma_bp ?? null,
+            'pma_spct' => $paramObj->pma_spct ?? null,
+            'pma_nhhd' => $paramObj->pma_nhhd ?? null,
+            'pma_lo' => $paramObj->pma_lo ?? null,
+            'pGroup' => $paramObj->pGroup ?? null,
+            'pBcNt' => $paramObj->pBcNt ?? null
         ], $connection);
     }
 }

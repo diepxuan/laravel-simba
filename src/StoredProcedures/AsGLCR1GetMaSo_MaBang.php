@@ -15,21 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLCR1GetMaSo_MaBang
- * 
+ *
  * Stored procedure: asGLCR1GetMaSo_MaBang
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (nvarchar(3)): input parameter.
  * - @pTk (nvarchar(20): input parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -42,11 +42,12 @@ class AsGLCR1GetMaSo_MaBang
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLCR1GetMaSo_MaBang', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTk' => $paramObj->pTk ?? null,
         ], $connection);
     }
 }

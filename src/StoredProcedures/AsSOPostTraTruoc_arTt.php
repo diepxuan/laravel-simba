@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOPostTraTruoc_arTt
 {
@@ -26,22 +27,23 @@ class AsSOPostTraTruoc_arTt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOPostTraTruoc_arTt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec_pt' => $params['pStt_rec_pt'] ?? null,
-            'pStt_rec_dh' => $params['pStt_rec_dh'] ?? null,
-            'pStt_rec_hd' => $params['pStt_rec_hd'] ?? null,
-            'pTien_tra_truoc' => $params['pTien_tra_truoc'] ?? null,
-            'pTien_tra_truoc_nt' => $params['pTien_tra_truoc_nt'] ?? null,
-            'pThangTC' => $params['pThangTC'] ?? null,
-            'pNamTC' => $params['pNamTC'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pstt_rec_dh' => $params['pstt_rec_dh'] ?? null,
-            'pstt_rec_hd' => $params['pstt_rec_hd'] ?? null,
-            'pstt_rec_pt' => $params['pstt_rec_pt'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec_pt' => $paramObj->pStt_rec_pt ?? null,
+            'pStt_rec_dh' => $paramObj->pStt_rec_dh ?? null,
+            'pStt_rec_hd' => $paramObj->pStt_rec_hd ?? null,
+            'pTien_tra_truoc' => $paramObj->pTien_tra_truoc ?? null,
+            'pTien_tra_truoc_nt' => $paramObj->pTien_tra_truoc_nt ?? null,
+            'pThangTC' => $paramObj->pThangTC ?? null,
+            'pNamTC' => $paramObj->pNamTC ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pstt_rec_dh' => $paramObj->pstt_rec_dh ?? null,
+            'pstt_rec_hd' => $paramObj->pstt_rec_hd ?? null,
+            'pstt_rec_pt' => $paramObj->pstt_rec_pt ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsSOPostTraTruoc_arTt
             'pstt_rec_hd' => $stt_rec_hd,
             'pstt_rec_pt' => $stt_rec_pt
         ];
-        
+
         return self::call($params);
     }
 }

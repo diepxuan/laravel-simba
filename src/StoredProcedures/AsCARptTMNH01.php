@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsCARptTMNH01
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCARptTMNH01', [
-            'pMa_Cty'   => $params['pMa_Cty'] ?? SModel::CTY,
-            'pTk'       => $params['pTk'] ?? '111',
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '2015-10-01',
-            'pNgay_ct2' => $params['pNgay_ct2'] ?? '2015-10-31',
-            'pMa_Nt'    => $params['pMa_Nt'] ?? '',
+            'pMa_Cty'   => $paramObj->pMa_Cty ?? SModel::CTY,
+            'pTk'       => $paramObj->pTk ?? '111',
+            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? '2015-10-01',
+            'pNgay_ct2' => $paramObj->pNgay_ct2 ?? '2015-10-31',
+            'pMa_Nt'    => $paramObj->pMa_Nt ?? '',
         ], $connection);
     }
 }

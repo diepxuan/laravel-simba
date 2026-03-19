@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARRptBCCN01SL
 {
@@ -26,12 +27,13 @@ class AsARRptBCCN01SL
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARRptBCCN01SL', [
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'pSysMsg2' => $params['pSysMsg2'] ?? null,
-            'pSysMsg3' => $params['pSysMsg3'] ?? null
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
+            'pSysMsg3' => $paramObj->pSysMsg3 ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsARRptBCCN01SL
             'pSysMsg2' => $SysMsg2,
             'pSysMsg3' => $SysMsg3
         ];
-        
+
         return self::call($params);
     }
 }

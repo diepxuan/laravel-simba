@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_asTotal
 {
     public static function call(array $params = []): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_asTotal', [
-            'table'      => $params['table'] ?? null,
-            'fSum'       => $params['fSum'] ?? null,
-            'fGroup'     => $params['fGroup'] ?? null,
-            'sFilterSum' => $params['sFilterSum'] ?? '',
+            'table'      => $paramObj->table ?? null,
+            'fSum'       => $paramObj->fSum ?? null,
+            'fGroup'     => $paramObj->fGroup ?? null,
+            'sFilterSum' => $paramObj->sFilterSum ?? '',
         ], $connection);
     }
 }

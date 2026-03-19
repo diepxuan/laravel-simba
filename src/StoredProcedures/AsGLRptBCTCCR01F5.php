@@ -15,25 +15,25 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLRptBCTCCR01F5
- * 
+ *
  * Stored procedure: asGLRptBCTCCR01F5
  * Purpose: ====================================================
- * 
+ *
  * Tham số:
  * - @pMa_Cty (NVARCHAR(3)): Mô tả tham số
  * - @pTk (NVARCHAR(20)): Mô tả tham số
  * - @pMa_nt (NVARCHAR(3)): Mô tả tham số
- * 
+ *
  * Giá trị mặc định:
  * - @pMa_Cty: null
  * - @pTk: null
  * - @pMa_nt: null
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -48,12 +48,13 @@ class AsGLRptBCTCCR01F5
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTCCR01F5', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
         ], $connection);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdOptFieldInfo.
  *
@@ -75,14 +75,15 @@ class AsUpdOptFieldInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdOptFieldInfo', [
-            'pStt'     => $params['pStt'] ?? null,
-            'pCaption' => $params['pCaption'] ?? null,
-            'pField'   => $params['pField'] ?? null,
-            'pLUser'   => $params['pLUser'] ?? null,
-            'pRet'     => $params['pRet'] ?? null,
+            'pStt'     => $paramObj->pStt ?? null,
+            'pCaption' => $paramObj->pCaption ?? null,
+            'pField'   => $paramObj->pField ?? null,
+            'pLUser'   => $paramObj->pLUser ?? null,
+            'pRet'     => $paramObj->pRet ?? null,
         ], $connection);
     }
 

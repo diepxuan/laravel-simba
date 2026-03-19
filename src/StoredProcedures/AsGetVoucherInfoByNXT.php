@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetVoucherInfoByNXT
 {
@@ -26,11 +27,12 @@ class AsGetVoucherInfoByNXT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetVoucherInfoByNXT', [
-            'pNxt' => $params['pNxt'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pNxt' => $paramObj->pNxt ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsGetVoucherInfoByNXT
             'pNxt' => $Nxt,
             'pLanguage' => $Language
         ];
-        
+
         return self::call($params);
     }
 }

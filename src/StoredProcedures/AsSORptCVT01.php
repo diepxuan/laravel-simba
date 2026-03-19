@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSORptCVT01
 {
@@ -26,18 +27,19 @@ class AsSORptCVT01
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSORptCVT01', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pSoct1' => $params['pSoct1'] ?? null,
-            'pSoct2' => $params['pSoct2'] ?? null,
-            'pMa_td' => $params['pMa_td'] ?? null,
-            'pMa_pt' => $params['pMa_pt'] ?? null,
-            'pMa_nvt' => $params['pMa_nvt'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pSoct1' => $paramObj->pSoct1 ?? null,
+            'pSoct2' => $paramObj->pSoct2 ?? null,
+            'pMa_td' => $paramObj->pMa_td ?? null,
+            'pMa_pt' => $paramObj->pMa_pt ?? null,
+            'pMa_nvt' => $paramObj->pMa_nvt ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsSORptCVT01
             'pMa_pt' => $Ma_pt,
             'pMa_nvt' => $Ma_nvt
         ];
-        
+
         return self::call($params);
     }
 }

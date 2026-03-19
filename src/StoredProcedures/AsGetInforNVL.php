@@ -15,17 +15,19 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetInforNVL
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetInforNVL', [
-            'pSo_lich_sx'  => $params['pSo_lich_sx'] ?? null,
-            'pMa_vt'  => $params['pMa_vt'] ?? null,
-            'pNgay'  => $params['pNgay'] ?? null,
+            'pSo_lich_sx'  => $paramObj->pSo_lich_sx ?? null,
+            'pMa_vt'  => $paramObj->pMa_vt ?? null,
+            'pNgay'  => $paramObj->pNgay ?? null,
         ], $connection);
     }
 }

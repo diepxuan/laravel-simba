@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLInsMAUBCTCTmVI15c
- * 
+ *
  * Stored procedure: asGLInsMAUBCTCTmVI15c
  * Purpose: =============================================
- * 
+ *
  * Tham số:
  * - @pMa_cty (NVARCHAR): Tham số đầu vào.
  * - @pMau (NVARCHAR): Tham số đầu vào.
@@ -89,11 +89,11 @@ use Illuminate\Support\Collection;
  * - @pTien_05 (NVARCHAR): Tham số đầu vào.
  * - @pTien_06 (NVARCHAR): Tham số đầu vào.
  * - @pRet (NVARCHAR OUTPUT): Tham số output (không được xử lý bởi ProcedureCaller hiện tại).
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện insert).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -169,73 +169,74 @@ class AsGLInsMAUBCTCTmVI15c
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLInsMAUBCTCTmVI15c', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pLoai_ps' => $params['pLoai_ps'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pTk_02' => $params['pTk_02'] ?? null,
-            'pIsPrint' => $params['pIsPrint'] ?? null,
-            'pIsItalic' => $params['pIsItalic'] ?? null,
-            'pBold' => $params['pBold'] ?? null,
-            'pModify' => $params['pModify'] ?? null,
-            'pTien_01' => $params['pTien_01'] ?? null,
-            'pTien_02' => $params['pTien_02'] ?? null,
-            'pTien_03' => $params['pTien_03'] ?? null,
-            'pTien_04' => $params['pTien_04'] ?? null,
-            'pTien_05' => $params['pTien_05'] ?? null,
-            'pTien_06' => $params['pTien_06'] ?? null,
-            'pUserData' => $params['pUserData'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pcach_tinh' => $params['pcach_tinh'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pTk_02' => $params['pTk_02'] ?? null,
-            'pModify' => $params['pModify'] ?? null,
-            'pModify' => $params['pModify'] ?? null,
-            'pUserData' => $params['pUserData'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pLoai_ps' => $params['pLoai_ps'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pTk_02' => $params['pTk_02'] ?? null,
-            'pIsPrint' => $params['pIsPrint'] ?? null,
-            'pIsItalic' => $params['pIsItalic'] ?? null,
-            'pBold' => $params['pBold'] ?? null,
-            'pModify' => $params['pModify'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pLoai_ps' => $params['pLoai_ps'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pTk_02' => $params['pTk_02'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pIsPrint' => $params['pIsPrint'] ?? null,
-            'pIsItalic' => $params['pIsItalic'] ?? null,
-            'pBold' => $params['pBold'] ?? null,
-            'pModify' => $params['pModify'] ?? null,
-            'pTien_01' => $params['pTien_01'] ?? null,
-            'pTien_02' => $params['pTien_02'] ?? null,
-            'pTien_03' => $params['pTien_03'] ?? null,
-            'pTien_04' => $params['pTien_04'] ?? null,
-            'pTien_05' => $params['pTien_05'] ?? null,
-            'pTien_06' => $params['pTien_06'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pLoai_ps' => $paramObj->pLoai_ps ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pTk_02' => $paramObj->pTk_02 ?? null,
+            'pIsPrint' => $paramObj->pIsPrint ?? null,
+            'pIsItalic' => $paramObj->pIsItalic ?? null,
+            'pBold' => $paramObj->pBold ?? null,
+            'pModify' => $paramObj->pModify ?? null,
+            'pTien_01' => $paramObj->pTien_01 ?? null,
+            'pTien_02' => $paramObj->pTien_02 ?? null,
+            'pTien_03' => $paramObj->pTien_03 ?? null,
+            'pTien_04' => $paramObj->pTien_04 ?? null,
+            'pTien_05' => $paramObj->pTien_05 ?? null,
+            'pTien_06' => $paramObj->pTien_06 ?? null,
+            'pUserData' => $paramObj->pUserData ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pcach_tinh' => $paramObj->pcach_tinh ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pTk_02' => $paramObj->pTk_02 ?? null,
+            'pModify' => $paramObj->pModify ?? null,
+            'pModify' => $paramObj->pModify ?? null,
+            'pUserData' => $paramObj->pUserData ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pLoai_ps' => $paramObj->pLoai_ps ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pTk_02' => $paramObj->pTk_02 ?? null,
+            'pIsPrint' => $paramObj->pIsPrint ?? null,
+            'pIsItalic' => $paramObj->pIsItalic ?? null,
+            'pBold' => $paramObj->pBold ?? null,
+            'pModify' => $paramObj->pModify ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pLoai_ps' => $paramObj->pLoai_ps ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pTk_02' => $paramObj->pTk_02 ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pIsPrint' => $paramObj->pIsPrint ?? null,
+            'pIsItalic' => $paramObj->pIsItalic ?? null,
+            'pBold' => $paramObj->pBold ?? null,
+            'pModify' => $paramObj->pModify ?? null,
+            'pTien_01' => $paramObj->pTien_01 ?? null,
+            'pTien_02' => $paramObj->pTien_02 ?? null,
+            'pTien_03' => $paramObj->pTien_03 ?? null,
+            'pTien_04' => $paramObj->pTien_04 ?? null,
+            'pTien_05' => $paramObj->pTien_05 ?? null,
+            'pTien_06' => $paramObj->pTien_06 ?? null,
         ], $connection);
     }
 }

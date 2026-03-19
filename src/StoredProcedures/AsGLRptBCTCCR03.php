@@ -15,22 +15,24 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLRptBCTCCR03
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTCCR03', [
-            'pMa_Cty'    => $params['pMa_Cty'] ?? 'CR',
-            'pNam'       => $params['pNam'] ?? 2013,
-            'pNgay_Ct1'  => $params['pNgay_Ct1'] ?? '2013-01-01',
-            'pNgay_Ct2'  => $params['pNgay_Ct2'] ?? '2013-01-31',
-            'pNgay_Ct01' => $params['pNgay_Ct01'] ?? '2013-01-01',
-            'pNgay_Ct02' => $params['pNgay_Ct02'] ?? '2013-01-31',
-            'pMau'       => $params['pMau'] ?? '15',
-            'pDest'      => $params['pDest'] ?? '',
+            'pMa_Cty'    => $paramObj->pMa_Cty ?? 'CR',
+            'pNam'       => $paramObj->pNam ?? 2013,
+            'pNgay_Ct1'  => $paramObj->pNgay_Ct1 ?? '2013-01-01',
+            'pNgay_Ct2'  => $paramObj->pNgay_Ct2 ?? '2013-01-31',
+            'pNgay_Ct01' => $paramObj->pNgay_Ct01 ?? '2013-01-01',
+            'pNgay_Ct02' => $paramObj->pNgay_Ct02 ?? '2013-01-31',
+            'pMau'       => $paramObj->pMau ?? '15',
+            'pDest'      => $paramObj->pDest ?? '',
         ], $connection);
     }
 }

@@ -15,15 +15,17 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLUpdMauPl1
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdMauPl1', [
-            'pma_cty' => $params['pma_cty'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null
         ], $connection);
     }
 }

@@ -15,25 +15,27 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFAUpdDMLK
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFAUpdDMLK', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ts' => $params['pMa_ts'] ?? null,
-            'pMa_lk' => $params['pMa_lk'] ?? null,
-            'pTg' => $params['pTg'] ?? null,
-            'pTen_lk' => $params['pTen_lk'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pGia_tri' => $params['pGia_tri'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ts' => $paramObj->pMa_ts ?? null,
+            'pMa_lk' => $paramObj->pMa_lk ?? null,
+            'pTg' => $paramObj->pTg ?? null,
+            'pTen_lk' => $paramObj->pTen_lk ?? null,
+            'pDvt' => $paramObj->pDvt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pGia_tri' => $paramObj->pGia_tri ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

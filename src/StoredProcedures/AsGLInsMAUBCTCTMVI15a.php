@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLInsMAUBCTCTMVI15a
- * 
+ *
  * Stored procedure: asGLInsMAUBCTCTMVI15a
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (NVARCHAR(3)): input parameter.
  * - @pMau (NVARCHAR(10)): input parameter.
@@ -45,11 +45,11 @@ use Illuminate\Support\Collection;
  * - @pNgay1 (SMALLDATETIME): input parameter.
  * - @pNgay2 (SMALLDATETIME): input parameter.
  * - @pRet (INT): output parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -62,30 +62,31 @@ class AsGLInsMAUBCTCTMVI15a
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLInsMAUBCTCTMVI15a', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pcach_tinh' => $params['pcach_tinh'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pIsPrint' => $params['pIsPrint'] ?? false,
-            'pIsItalic' => $params['pIsItalic'] ?? false,
-            'pBold' => $params['pBold'] ?? false,
-            'pModify' => $params['pModify'] ?? false,
-            'pgia_tri_dk' => $params['pgia_tri_dk'] ?? 0.0,
-            'pton_dk' => $params['pton_dk'] ?? 0.0,
-            'pps_tang' => $params['pps_tang'] ?? 0.0,
-            'pps_giam' => $params['pps_giam'] ?? 0.0,
-            'pgia_tri_ck' => $params['pgia_tri_ck'] ?? 0.0,
-            'pton_ck' => $params['pton_ck'] ?? 0.0,
-            'pUserData' => $params['pUserData'] ?? false,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pcach_tinh' => $paramObj->pcach_tinh ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pIsPrint' => $paramObj->pIsPrint ?? false,
+            'pIsItalic' => $paramObj->pIsItalic ?? false,
+            'pBold' => $paramObj->pBold ?? false,
+            'pModify' => $paramObj->pModify ?? false,
+            'pgia_tri_dk' => $paramObj->pgia_tri_dk ?? 0.0,
+            'pton_dk' => $paramObj->pton_dk ?? 0.0,
+            'pps_tang' => $paramObj->pps_tang ?? 0.0,
+            'pps_giam' => $paramObj->pps_giam ?? 0.0,
+            'pgia_tri_ck' => $paramObj->pgia_tri_ck ?? 0.0,
+            'pton_ck' => $paramObj->pton_ck ?? 0.0,
+            'pUserData' => $paramObj->pUserData ?? false,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
         ], $connection);
     }
 }

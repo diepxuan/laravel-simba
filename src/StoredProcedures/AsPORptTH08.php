@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPORptTH08
 {
@@ -26,29 +27,30 @@ class AsPORptTH08
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPORptTH08', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_loai' => $params['pMa_loai'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pMa_plkh1' => $params['pMa_plkh1'] ?? null,
-            'pMa_plkh2' => $params['pMa_plkh2'] ?? null,
-            'pMa_plkh3' => $params['pMa_plkh3'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_NT' => $params['pMa_NT'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pMa_Hd' => $params['pMa_Hd'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_loai' => $paramObj->pMa_loai ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
+            'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
+            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_NT' => $paramObj->pMa_NT ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pMa_Hd' => $paramObj->pMa_Hd ?? null
         ], $connection);
     }
 
@@ -101,7 +103,7 @@ class AsPORptTH08
             'pMa_nt' => $Ma_nt,
             'pMa_Hd' => $Ma_Hd
         ];
-        
+
         return self::call($params);
     }
 }

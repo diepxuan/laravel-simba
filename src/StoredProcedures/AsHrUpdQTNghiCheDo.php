@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdQTNghiCheDo
 {
@@ -26,39 +27,40 @@ class AsHrUpdQTNghiCheDo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdQTNghiCheDo', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtncd' => $params['pId_qtncd'] ?? null,
-            'pSo_qd' => $params['pSo_qd'] ?? null,
-            'pNgay_qd' => $params['pNgay_qd'] ?? null,
-            'pNguoi_ky_qd' => $params['pNguoi_ky_qd'] ?? null,
-            'pLoai_ncd' => $params['pLoai_ncd'] ?? null,
-            'pMa_ncd' => $params['pMa_ncd'] ?? null,
-            'pDieu_kien_lv' => $params['pDieu_kien_lv'] ?? null,
-            'pMa_benh' => $params['pMa_benh'] ?? null,
-            'pTuoi_con' => $params['pTuoi_con'] ?? null,
-            'pNgay_bd' => $params['pNgay_bd'] ?? null,
-            'pNgay_kt' => $params['pNgay_kt'] ?? null,
-            'pTinh_ngay_kl' => $params['pTinh_ngay_kl'] ?? null,
-            'pSo_ngay_nghi' => $params['pSo_ngay_nghi'] ?? null,
-            'pMa_huong_dt' => $params['pMa_huong_dt'] ?? null,
-            'pMa_noi_dt' => $params['pMa_noi_dt'] ?? null,
-            'pCty_tt' => $params['pCty_tt'] ?? null,
-            'pNv_tt' => $params['pNv_tt'] ?? null,
-            'pBhxh_tt' => $params['pBhxh_tt'] ?? null,
-            'pNd_tai_gia' => $params['pNd_tai_gia'] ?? null,
-            'pNd_tap_trung' => $params['pNd_tap_trung'] ?? null,
-            'pNd_tu_ngay' => $params['pNd_tu_ngay'] ?? null,
-            'pNd_den_ngay' => $params['pNd_den_ngay'] ?? null,
-            'pNd_dia_chi' => $params['pNd_dia_chi'] ?? null,
-            'pNd_bhxh_tt' => $params['pNd_bhxh_tt'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtncd' => $paramObj->pId_qtncd ?? null,
+            'pSo_qd' => $paramObj->pSo_qd ?? null,
+            'pNgay_qd' => $paramObj->pNgay_qd ?? null,
+            'pNguoi_ky_qd' => $paramObj->pNguoi_ky_qd ?? null,
+            'pLoai_ncd' => $paramObj->pLoai_ncd ?? null,
+            'pMa_ncd' => $paramObj->pMa_ncd ?? null,
+            'pDieu_kien_lv' => $paramObj->pDieu_kien_lv ?? null,
+            'pMa_benh' => $paramObj->pMa_benh ?? null,
+            'pTuoi_con' => $paramObj->pTuoi_con ?? null,
+            'pNgay_bd' => $paramObj->pNgay_bd ?? null,
+            'pNgay_kt' => $paramObj->pNgay_kt ?? null,
+            'pTinh_ngay_kl' => $paramObj->pTinh_ngay_kl ?? null,
+            'pSo_ngay_nghi' => $paramObj->pSo_ngay_nghi ?? null,
+            'pMa_huong_dt' => $paramObj->pMa_huong_dt ?? null,
+            'pMa_noi_dt' => $paramObj->pMa_noi_dt ?? null,
+            'pCty_tt' => $paramObj->pCty_tt ?? null,
+            'pNv_tt' => $paramObj->pNv_tt ?? null,
+            'pBhxh_tt' => $paramObj->pBhxh_tt ?? null,
+            'pNd_tai_gia' => $paramObj->pNd_tai_gia ?? null,
+            'pNd_tap_trung' => $paramObj->pNd_tap_trung ?? null,
+            'pNd_tu_ngay' => $paramObj->pNd_tu_ngay ?? null,
+            'pNd_den_ngay' => $paramObj->pNd_den_ngay ?? null,
+            'pNd_dia_chi' => $paramObj->pNd_dia_chi ?? null,
+            'pNd_bhxh_tt' => $paramObj->pNd_bhxh_tt ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -131,7 +133,7 @@ class AsHrUpdQTNghiCheDo
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

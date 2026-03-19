@@ -15,26 +15,28 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLUpdmauBctc06
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdmauBctc06', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt' => $params['pStt'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null,
-            'pGia_tri' => $params['pGia_tri'] ?? null,
-            'pRep_ref' => $params['pRep_ref'] ?? null,
-            'pMa_so_ref' => $params['pMa_so_ref'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pIn_ck' => $params['pIn_ck'] ?? null,
-            'pBold' => $params['pBold'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt' => $paramObj->pStt ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pDvt' => $paramObj->pDvt ?? null,
+            'pGia_tri' => $paramObj->pGia_tri ?? null,
+            'pRep_ref' => $paramObj->pRep_ref ?? null,
+            'pMa_so_ref' => $paramObj->pMa_so_ref ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pIn_ck' => $paramObj->pIn_ck ?? null,
+            'pBold' => $paramObj->pBold ?? null
         ], $connection);
     }
 }

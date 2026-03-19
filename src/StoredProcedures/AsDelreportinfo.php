@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDelreportinfo.
  *
@@ -68,11 +68,12 @@ class AsDelreportinfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asDelreportinfo', [
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null,
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null,
         ], $connection);
     }
 }

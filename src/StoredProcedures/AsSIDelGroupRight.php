@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIDelGroupRight
 {
@@ -26,12 +27,13 @@ class AsSIDelGroupRight
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIDelGroupRight', [
-            'pGroupName' => $params['pGroupName'] ?? null,
-            'pMenuID' => $params['pMenuID'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pGroupName' => $paramObj->pGroupName ?? null,
+            'pMenuID' => $paramObj->pMenuID ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSIDelGroupRight
             'pMenuID' => $MenuID,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

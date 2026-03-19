@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFaDelDepreciation
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFaDelDepreciation', [
-            'Ma_cty' => $params['Ma_cty'] ?? null,
-            'Nam' => $params['Nam'] ?? null,
-            'Thang' => $params['Thang'] ?? null,
-            'Ma_Ts' => $params['Ma_Ts'] ?? null,
-            'Ma_ct' => $params['Ma_ct'] ?? null,
+            'Ma_cty' => $paramObj->Ma_cty ?? null,
+            'Nam' => $paramObj->Nam ?? null,
+            'Thang' => $paramObj->Thang ?? null,
+            'Ma_Ts' => $paramObj->Ma_Ts ?? null,
+            'Ma_ct' => $paramObj->Ma_ct ?? null,
         ], $connection);
     }
 }

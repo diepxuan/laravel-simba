@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsARInsCdKH
- * 
+ *
  * Stored procedure: asARInsCdKH
  * Purpose: Chèn dữ liệu vào bảng arcdkh (công nợ chi tiết khách hàng) và đồng bộ sang glcdtk (công nợ chi tiết tài khoản).
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pNam (int): Năm. Bắt buộc.
@@ -37,11 +37,11 @@ use Illuminate\Support\Collection;
  * - @pDu_co_nt (decimal(19,4)): Dư có ngoại tệ. Bắt buộc.
  * - @pUser (nvarchar(20)): Người dùng thực hiện. Bắt buộc.
  * - @pRet (int output): Tham số output trả về kết quả (không được xử lý bởi ProcedureCaller hiện tại).
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện insert/update).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -66,22 +66,23 @@ class AsARInsCdKH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARInsCdKH', [
-            'pMa_cty'   => $params['pMa_cty'] ?? null,
-            'pNam'      => $params['pNam'] ?? null,
-            'pTk'       => $params['pTk'] ?? null,
-            'pMa_nt'    => $params['pMa_nt'] ?? null,
-            'pMa_kh'    => $params['pMa_kh'] ?? null,
-            'pMa_bp'    => $params['pMa_bp'] ?? null,
-            'pMa_hd'    => $params['pMa_hd'] ?? null,
-            'pMa_spct'  => $params['pMa_spct'] ?? null,
-            'pDu_no'    => $params['pDu_no'] ?? null,
-            'pDu_co'    => $params['pDu_co'] ?? null,
-            'pDu_no_nt' => $params['pDu_no_nt'] ?? null,
-            'pDu_co_nt' => $params['pDu_co_nt'] ?? null,
-            'pUser'     => $params['pUser'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? null,
+            'pNam'      => $paramObj->pNam ?? null,
+            'pTk'       => $paramObj->pTk ?? null,
+            'pMa_nt'    => $paramObj->pMa_nt ?? null,
+            'pMa_kh'    => $paramObj->pMa_kh ?? null,
+            'pMa_bp'    => $paramObj->pMa_bp ?? null,
+            'pMa_hd'    => $paramObj->pMa_hd ?? null,
+            'pMa_spct'  => $paramObj->pMa_spct ?? null,
+            'pDu_no'    => $paramObj->pDu_no ?? null,
+            'pDu_co'    => $paramObj->pDu_co ?? null,
+            'pDu_no_nt' => $paramObj->pDu_no_nt ?? null,
+            'pDu_co_nt' => $paramObj->pDu_co_nt ?? null,
+            'pUser'     => $paramObj->pUser ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsRptUpdTATNDN01A_DC.
  *
@@ -77,18 +77,19 @@ class AsRptUpdTATNDN01A_DC
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asRptUpdTATNDN01A_DC', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNgay1'  => $params['pNgay1'] ?? null,
-            'pNgay2'  => $params['pNgay2'] ?? null,
-            'pMau'    => $params['pMau'] ?? null,
-            'pMa_so'  => $params['pMa_so'] ?? null,
-            'pTien'   => $params['pTien'] ?? null,
-            'pStt'    => $params['pStt'] ?? null,
-            'pRet'    => $params['pRet'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pNgay1'  => $paramObj->pNgay1 ?? null,
+            'pNgay2'  => $paramObj->pNgay2 ?? null,
+            'pMau'    => $paramObj->pMau ?? null,
+            'pMa_so'  => $paramObj->pMa_so ?? null,
+            'pTien'   => $paramObj->pTien ?? null,
+            'pStt'    => $paramObj->pStt ?? null,
+            'pRet'    => $paramObj->pRet ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
         ], $connection);
     }
 

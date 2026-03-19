@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOInsCP4
 {
@@ -26,27 +27,28 @@ class AsPOInsCP4
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOInsCP4', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pStt_rec0' => $params['pStt_rec0'] ?? null,
-            'pMa_cp' => $params['pMa_cp'] ?? null,
-            'pTen_cp' => $params['pTen_cp'] ?? null,
-            'pTt_pb' => $params['pTt_pb'] ?? null,
-            'pTien_cp_nt' => $params['pTien_cp_nt'] ?? null,
-            'pTien_cp' => $params['pTien_cp'] ?? null,
-            'pTs_gtgt' => $params['pTs_gtgt'] ?? null,
-            'pThue_gtgt_nt' => $params['pThue_gtgt_nt'] ?? null,
-            'pThue_gtgt' => $params['pThue_gtgt'] ?? null,
-            'pTt_nt' => $params['pTt_nt'] ?? null,
-            'pTt' => $params['pTt'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
+            'pMa_cp' => $paramObj->pMa_cp ?? null,
+            'pTen_cp' => $paramObj->pTen_cp ?? null,
+            'pTt_pb' => $paramObj->pTt_pb ?? null,
+            'pTien_cp_nt' => $paramObj->pTien_cp_nt ?? null,
+            'pTien_cp' => $paramObj->pTien_cp ?? null,
+            'pTs_gtgt' => $paramObj->pTs_gtgt ?? null,
+            'pThue_gtgt_nt' => $paramObj->pThue_gtgt_nt ?? null,
+            'pThue_gtgt' => $paramObj->pThue_gtgt ?? null,
+            'pTt_nt' => $paramObj->pTt_nt ?? null,
+            'pTt' => $paramObj->pTt ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -95,7 +97,7 @@ class AsPOInsCP4
             'pMa_lo' => $Ma_lo,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

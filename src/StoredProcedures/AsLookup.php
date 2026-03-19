@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsLookup
 {
@@ -26,21 +27,22 @@ class AsLookup
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asLookup', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pCodeName' => $params['pCodeName'] ?? null,
-            'pFieldList' => $params['pFieldList'] ?? null,
-            'pTableName' => $params['pTableName'] ?? null,
-            'pWhere' => $params['pWhere'] ?? null,
-            'pLastModDate' => $params['pLastModDate'] ?? null,
-            'pPage_size' => $params['pPage_size'] ?? null,
-            'pPage_num' => $params['pPage_num'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null,
-            'paramDefs' => $params['paramDefs'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pageSize' => $params['pageSize'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pCodeName' => $paramObj->pCodeName ?? null,
+            'pFieldList' => $paramObj->pFieldList ?? null,
+            'pTableName' => $paramObj->pTableName ?? null,
+            'pWhere' => $paramObj->pWhere ?? null,
+            'pLastModDate' => $paramObj->pLastModDate ?? null,
+            'pPage_size' => $paramObj->pPage_size ?? null,
+            'pPage_num' => $paramObj->pPage_num ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null,
+            'paramDefs' => $paramObj->paramDefs ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pageSize' => $paramObj->pageSize ?? null
         ], $connection);
     }
 
@@ -77,7 +79,7 @@ class AsLookup
             'pMa_Cty' => $Ma_Cty,
             'pageSize' => $ageSize
         ];
-        
+
         return self::call($params);
     }
 }

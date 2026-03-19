@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdateVoucherResX
 {
@@ -26,13 +27,14 @@ class AsUpdateVoucherResX
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdateVoucherResX', [
-            'pVoucher_Code' => $params['pVoucher_Code'] ?? null,
-            'plang_id' => $params['plang_id'] ?? null,
-            'pformated_col_list' => $params['pformated_col_list'] ?? null,
-            'pPh_Ct' => $params['pPh_Ct'] ?? null
+            'pVoucher_Code' => $paramObj->pVoucher_Code ?? null,
+            'plang_id' => $paramObj->plang_id ?? null,
+            'pformated_col_list' => $paramObj->pformated_col_list ?? null,
+            'pPh_Ct' => $paramObj->pPh_Ct ?? null
         ], $connection);
     }
 
@@ -53,7 +55,7 @@ class AsUpdateVoucherResX
             'pformated_col_list' => $formated_col_list,
             'pPh_Ct' => $Ph_Ct
         ];
-        
+
         return self::call($params);
     }
 }

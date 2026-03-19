@@ -15,27 +15,29 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARUpdCDKH
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARUpdCDKH', [
-            'pMa_cty' => $params['pPMa_cty'] ?? $params['pMa_cty'] ?? null,
-            'pTk' => $params['pPTk'] ?? $params['pTk'] ?? null,
-            'pNam' => $params['pPNam'] ?? $params['pNam'] ?? null,
-            'pMa_Kh' => $params['pPMa_Kh'] ?? $params['pMa_Kh'] ?? null,
-            'pMa_SpCt' => $params['pPMa_SpCt'] ?? $params['pMa_SpCt'] ?? null,
-            'pMa_hd' => $params['pPMa_hd'] ?? $params['pMa_hd'] ?? null,
-            'pMa_Bp' => $params['pPMa_Bp'] ?? $params['pMa_Bp'] ?? null,
-            'pDu_No_Nt' => $params['pPDu_No_Nt'] ?? $params['pDu_No_Nt'] ?? null,
-            'pDu_Co_Nt' => $params['pPDu_Co_Nt'] ?? $params['pDu_Co_Nt'] ?? null,
-            'pDu_No' => $params['pPDu_No'] ?? $params['pDu_No'] ?? null,
-            'pDu_Co' => $params['pPDu_Co'] ?? $params['pDu_Co'] ?? null,
-            'pUser' => $params['pPUser'] ?? $params['pUser'] ?? null,
-            'pRet' => $params['pPRet'] ?? $params['pRet'] ?? null,
+            'pMa_cty' => $paramObj->pPMa_cty ?? $paramObj->pMa_cty ?? null,
+            'pTk' => $paramObj->pPTk ?? $paramObj->pTk ?? null,
+            'pNam' => $paramObj->pPNam ?? $paramObj->pNam ?? null,
+            'pMa_Kh' => $paramObj->pPMa_Kh ?? $paramObj->pMa_Kh ?? null,
+            'pMa_SpCt' => $paramObj->pPMa_SpCt ?? $paramObj->pMa_SpCt ?? null,
+            'pMa_hd' => $paramObj->pPMa_hd ?? $paramObj->pMa_hd ?? null,
+            'pMa_Bp' => $paramObj->pPMa_Bp ?? $paramObj->pMa_Bp ?? null,
+            'pDu_No_Nt' => $paramObj->pPDu_No_Nt ?? $paramObj->pDu_No_Nt ?? null,
+            'pDu_Co_Nt' => $paramObj->pPDu_Co_Nt ?? $paramObj->pDu_Co_Nt ?? null,
+            'pDu_No' => $paramObj->pPDu_No ?? $paramObj->pDu_No ?? null,
+            'pDu_Co' => $paramObj->pPDu_Co ?? $paramObj->pDu_Co ?? null,
+            'pUser' => $paramObj->pPUser ?? $paramObj->pUser ?? null,
+            'pRet' => $paramObj->pPRet ?? $paramObj->pRet ?? null,
         ], $connection);
     }
 }

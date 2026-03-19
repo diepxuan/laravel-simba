@@ -15,23 +15,25 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_asCoInsDmPbGt2
 {
     public static function call(array $params = []): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_asCoInsDmPbGt2', [
-            'pMa_cty'     => $params['pMa_cty'] ?? null,
-            'pStt'        => $params['pStt'] ?? null,
-            'pTen_bt'     => $params['pTen_bt'] ?? null,
-            'pSo_ct'      => $params['pSo_ct'] ?? null,
-            'pTk_no'      => $params['pTk_no'] ?? null,
-            'pTk_co'      => $params['pTk_co'] ?? null,
-            'pTk_lay_hs'  => $params['pTk_lay_hs'] ?? null,
-            'pMa_pb'      => $params['pMa_pb'] ?? null,
-            'pRet'        => $params['pRet'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pStt'        => $paramObj->pStt ?? null,
+            'pTen_bt'     => $paramObj->pTen_bt ?? null,
+            'pSo_ct'      => $paramObj->pSo_ct ?? null,
+            'pTk_no'      => $paramObj->pTk_no ?? null,
+            'pTk_co'      => $paramObj->pTk_co ?? null,
+            'pTk_lay_hs'  => $paramObj->pTk_lay_hs ?? null,
+            'pMa_pb'      => $paramObj->pMa_pb ?? null,
+            'pRet'        => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

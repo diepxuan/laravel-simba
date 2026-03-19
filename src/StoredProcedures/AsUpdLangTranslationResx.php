@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdLangTranslationResx
 {
@@ -26,17 +27,18 @@ class AsUpdLangTranslationResx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdLangTranslationResx', [
-            'pDllFullName' => $params['pDllFullName'] ?? null,
-            'pUserControlName' => $params['pUserControlName'] ?? null,
-            'pControlName' => $params['pControlName'] ?? null,
-            'pPropertyName' => $params['pPropertyName'] ?? null,
-            'pFormula' => $params['pFormula'] ?? null,
-            'pdefaultValue' => $params['pdefaultValue'] ?? null,
-            'pValue' => $params['pValue'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pDllFullName' => $paramObj->pDllFullName ?? null,
+            'pUserControlName' => $paramObj->pUserControlName ?? null,
+            'pControlName' => $paramObj->pControlName ?? null,
+            'pPropertyName' => $paramObj->pPropertyName ?? null,
+            'pFormula' => $paramObj->pFormula ?? null,
+            'pdefaultValue' => $paramObj->pdefaultValue ?? null,
+            'pValue' => $paramObj->pValue ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsUpdLangTranslationResx
             'pValue' => $Value,
             'pLanguage' => $Language
         ];
-        
+
         return self::call($params);
     }
 }

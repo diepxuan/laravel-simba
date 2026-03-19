@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDeldaoinfo.
  *
@@ -66,11 +66,12 @@ class AsDeldaoinfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asDeldaoinfo', [
-            'pTable_name' => $params['pTable_name'] ?? null,
-            'pRet'        => $params['pRet'] ?? null,
+            'pTable_name' => $paramObj->pTable_name ?? null,
+            'pRet'        => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

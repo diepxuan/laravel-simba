@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLDelDMKC
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLDelDMKC', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pModuleID' => $params['pModuleID'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pTk_du' => $params['pTk_du'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pSTT' => $params['pSTT'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pModuleID' => $paramObj->pModuleID ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pTk_du' => $paramObj->pTk_du ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pSTT' => $paramObj->pSTT ?? null,
         ], $connection);
     }
 }

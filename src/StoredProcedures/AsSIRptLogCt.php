@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIRptLogCt
 {
@@ -26,16 +27,17 @@ class AsSIRptLogCt
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIRptLogCt', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pAction' => $params['pAction'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pUser' => $params['pUser'] ?? null,
-            'ph' => $params['ph'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pAction' => $paramObj->pAction ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'ph' => $paramObj->ph ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsSIRptLogCt
             'pUser' => $User,
             'ph' => $h
         ];
-        
+
         return self::call($params);
     }
 }

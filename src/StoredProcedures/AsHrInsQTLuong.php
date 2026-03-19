@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsQTLuong
 {
@@ -26,27 +27,28 @@ class AsHrInsQTLuong
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsQTLuong', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtluong' => $params['pId_qtluong'] ?? null,
-            'pNgay_ad' => $params['pNgay_ad'] ?? null,
-            'pLuong_nb' => $params['pLuong_nb'] ?? null,
-            'pMa_tbl' => $params['pMa_tbl'] ?? null,
-            'pMa_nb' => $params['pMa_nb'] ?? null,
-            'pHe_so_luong' => $params['pHe_so_luong'] ?? null,
-            'pTong_phu_cap' => $params['pTong_phu_cap'] ?? null,
-            'pMuc_luong' => $params['pMuc_luong'] ?? null,
-            'pMuc_luong_BHXH' => $params['pMuc_luong_BHXH'] ?? null,
-            'pSo_qd' => $params['pSo_qd'] ?? null,
-            'pNgay_qd' => $params['pNgay_qd'] ?? null,
-            'pNguoi_ky_qd' => $params['pNguoi_ky_qd'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtluong' => $paramObj->pId_qtluong ?? null,
+            'pNgay_ad' => $paramObj->pNgay_ad ?? null,
+            'pLuong_nb' => $paramObj->pLuong_nb ?? null,
+            'pMa_tbl' => $paramObj->pMa_tbl ?? null,
+            'pMa_nb' => $paramObj->pMa_nb ?? null,
+            'pHe_so_luong' => $paramObj->pHe_so_luong ?? null,
+            'pTong_phu_cap' => $paramObj->pTong_phu_cap ?? null,
+            'pMuc_luong' => $paramObj->pMuc_luong ?? null,
+            'pMuc_luong_BHXH' => $paramObj->pMuc_luong_BHXH ?? null,
+            'pSo_qd' => $paramObj->pSo_qd ?? null,
+            'pNgay_qd' => $paramObj->pNgay_qd ?? null,
+            'pNguoi_ky_qd' => $paramObj->pNguoi_ky_qd ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -95,7 +97,7 @@ class AsHrInsQTLuong
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,12 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostCaPh2_glct
 {
     /**
      * Call stored procedure asPostCaPh2_glct
-     * 
+     *
      * Note: Stored procedure chỉ có 2 tham số (@pMa_cty, @pStt_rec)
      * Các tham số khác được tính toán bên trong stored procedure
      *
@@ -29,11 +30,12 @@ class AsPostCaPh2_glct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostCaPh2_glct', [
-            'pMa_cty' => $params['pMa_cty'] ?? SModel::CTY,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsPostCaPh2_glct
             'pMa_cty' => $Ma_cty,
             'pStt_rec' => $Stt_rec,
         ];
-        
+
         return self::call($params);
     }
 }

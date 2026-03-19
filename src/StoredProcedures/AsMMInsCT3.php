@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsMMInsCT3
 {
@@ -26,26 +27,27 @@ class AsMMInsCT3
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asMMInsCT3', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pStt_rec0' => $params['pStt_rec0'] ?? null,
-            'pStt_rec_dh' => $params['pStt_rec_dh'] ?? null,
-            'pStt_rec0_dh' => $params['pStt_rec0_dh'] ?? null,
-            'pSo_dh' => $params['pSo_dh'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pTen_vt' => $params['pTen_vt'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pSo_luong_qd' => $params['pSo_luong_qd'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
+            'pStt_rec_dh' => $paramObj->pStt_rec_dh ?? null,
+            'pStt_rec0_dh' => $paramObj->pStt_rec0_dh ?? null,
+            'pSo_dh' => $paramObj->pSo_dh ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pTen_vt' => $paramObj->pTen_vt ?? null,
+            'pDvt' => $paramObj->pDvt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pSo_luong_qd' => $paramObj->pSo_luong_qd ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -92,7 +94,7 @@ class AsMMInsCT3
             'pGhi_chu' => $Ghi_chu,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

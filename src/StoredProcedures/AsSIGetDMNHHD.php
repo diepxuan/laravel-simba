@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIGetDMNHHD
 {
@@ -26,12 +27,13 @@ class AsSIGetDMNHHD
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDMNHHD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_nhhd' => $params['pMa_nhhd'] ?? null,
-            'pStruct' => $params['pStruct'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_nhhd' => $paramObj->pMa_nhhd ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSIGetDMNHHD
             'pMa_nhhd' => $Ma_nhhd,
             'pStruct' => $Struct
         ];
-        
+
         return self::call($params);
     }
 }

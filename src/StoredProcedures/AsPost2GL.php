@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPost2GL.
  *
@@ -94,14 +94,15 @@ class AsPost2GL
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPost2GL', [
-            'pMa_Cty'     => $params['pMa_Cty'] ?? null,
-            'pStt_rec'    => $params['pStt_rec'] ?? null,
-            'pMa_ct'      => $params['pMa_ct'] ?? null,
-            'pPostUnpost' => $params['pPostUnpost'] ?? null,
-            'pRet'        => $params['pRet'] ?? null,
+            'pMa_Cty'     => $paramObj->pMa_Cty ?? null,
+            'pStt_rec'    => $paramObj->pStt_rec ?? null,
+            'pMa_ct'      => $paramObj->pMa_ct ?? null,
+            'pPostUnpost' => $paramObj->pPostUnpost ?? null,
+            'pRet'        => $paramObj->pRet ?? null,
         ], $connection);
     }
 

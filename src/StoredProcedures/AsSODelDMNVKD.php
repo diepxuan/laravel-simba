@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSODelDMNVKD
 {
@@ -26,12 +27,13 @@ class AsSODelDMNVKD
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSODelDMNVKD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_nvkd' => $params['pMa_nvkd'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_nvkd' => $paramObj->pMa_nvkd ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSODelDMNVKD
             'pMa_nvkd' => $Ma_nvkd,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

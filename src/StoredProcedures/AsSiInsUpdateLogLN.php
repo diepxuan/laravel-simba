@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiInsUpdateLogLN
 {
@@ -26,15 +27,16 @@ class AsSiInsUpdateLogLN
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiInsUpdateLogLN', [
-            'pProductid' => $params['pProductid'] ?? null,
-            'pChildID' => $params['pChildID'] ?? null,
-            'pLinkNumber' => $params['pLinkNumber'] ?? null,
-            'pMaxLevel' => $params['pMaxLevel'] ?? null,
-            'pBugLevel' => $params['pBugLevel'] ?? null,
-            'pChildLevel' => $params['pChildLevel'] ?? null
+            'pProductid' => $paramObj->pProductid ?? null,
+            'pChildID' => $paramObj->pChildID ?? null,
+            'pLinkNumber' => $paramObj->pLinkNumber ?? null,
+            'pMaxLevel' => $paramObj->pMaxLevel ?? null,
+            'pBugLevel' => $paramObj->pBugLevel ?? null,
+            'pChildLevel' => $paramObj->pChildLevel ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsSiInsUpdateLogLN
             'pBugLevel' => $BugLevel,
             'pChildLevel' => $ChildLevel
         ];
-        
+
         return self::call($params);
     }
 }

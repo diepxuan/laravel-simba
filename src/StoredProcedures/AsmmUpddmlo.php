@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsmmUpddmlo
 {
@@ -26,22 +27,23 @@ class AsmmUpddmlo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asmmUpddmlo', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_lo_tp' => $params['pMa_lo_tp'] ?? null,
-            'pTen_lo' => $params['pTen_lo'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pTen_vt' => $params['pTen_vt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pHan_dung' => $params['pHan_dung'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_lo_tp' => $paramObj->pMa_lo_tp ?? null,
+            'pTen_lo' => $paramObj->pTen_lo ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pTen_vt' => $paramObj->pTen_vt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pHan_dung' => $paramObj->pHan_dung ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsmmUpddmlo
             'pTrang_thai' => $Trang_thai,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

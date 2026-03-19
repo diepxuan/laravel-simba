@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLCopyMauBs.
  *
@@ -68,12 +68,13 @@ class AsGLCopyMauBs
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLCopyMauBs', [
-            'pMa_cty1' => $params['pMa_cty1'] ?? SModel::CTY,
-            'pMa_cty2' => $params['pMa_cty2'] ?? null,
-            'pMau'     => $params['pMau'] ?? null,
+            'pMa_cty1' => $paramObj->pMa_cty1 ?? SModel::CTY,
+            'pMa_cty2' => $paramObj->pMa_cty2 ?? null,
+            'pMau'     => $paramObj->pMau ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

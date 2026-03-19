@@ -15,23 +15,23 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInDelCDFIFO
- * 
+ *
  * Stored procedure: asINDelCDFIFO
  * Purpose: Xóa bản ghi trong bảng InCdFifo và gọi stored procedure asINPostCDFIFO2CDVT với chế độ DELETE.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pStt_rec_nt (nvarchar(20)): Số chứng từ nhập xuất (stt_rec_nt). Bắt buộc.
  * - @pStt_rec0 (nvarchar(3)): Số thứ tự chi tiết (stt_rec0). Bắt buộc.
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: mã công ty mặc định (SModel::CTY).
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện delete).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -46,12 +46,13 @@ class AsInDelCDFIFO
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINDelCDFIFO', [
-            'pMa_cty'      => $params['pMa_cty'] ?? SModel::CTY,
-            'pStt_rec_nt'  => $params['pStt_rec_nt'] ?? null,
-            'pStt_rec0'    => $params['pStt_rec0'] ?? null,
+            'pMa_cty'      => $paramObj->pMa_cty ?? SModel::CTY,
+            'pStt_rec_nt'  => $paramObj->pStt_rec_nt ?? null,
+            'pStt_rec0'    => $paramObj->pStt_rec0 ?? null,
         ], $connection);
     }
 }

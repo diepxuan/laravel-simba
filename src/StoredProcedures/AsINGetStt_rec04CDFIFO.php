@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINGetStt_rec04CDFIFO
 {
@@ -26,12 +27,13 @@ class AsINGetStt_rec04CDFIFO
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINGetStt_rec04CDFIFO', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pSo_ct' => $params['pSo_ct'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pSo_ct' => $paramObj->pSo_ct ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsINGetStt_rec04CDFIFO
             'pNgay_ct' => $Ngay_ct,
             'pSo_ct' => $So_ct
         ];
-        
+
         return self::call($params);
     }
 }

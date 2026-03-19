@@ -8,11 +8,12 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-25 15:23:48
+ * @lastupdate 2026-03-19 12:16:04
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
 
@@ -76,14 +77,15 @@ class AsAPDelPost2TT_APTT
      */
     public static function call(array $params): Collection
     {
+        $paramObj   = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asAPDelPost2TT_APTT', [
-            'pMa_cty'     => $params['pMa_cty'] ?? null,
-            'pStt_rec'    => $params['pStt_rec'] ?? null,
-            'pStt_rec_hd' => $params['pStt_rec_hd'] ?? null,
-            'pTien_tt'    => $params['pTien_tt'] ?? 0.0,
-            'pTien_tt_nt' => $params['pTien_tt_nt'] ?? 0.0,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pStt_rec'    => $paramObj->pStt_rec ?? null,
+            'pStt_rec_hd' => $paramObj->pStt_rec_hd ?? null,
+            'pTien_tt'    => $paramObj->pTien_tt ?? 0.0,
+            'pTien_tt_nt' => $paramObj->pTien_tt_nt ?? 0.0,
         ], $connection);
     }
 }

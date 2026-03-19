@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSoUpdCk
 {
@@ -26,53 +27,54 @@ class AsSoUpdCk
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSoUpdCk', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pVt_nhomvt' => $params['pVt_nhomvt'] ?? null,
-            'pKh_nhomkh' => $params['pKh_nhomkh'] ?? null,
-            'pSl_ds' => $params['pSl_ds'] ?? null,
-            'pTl_gt' => $params['pTl_gt'] ?? null,
-            'pTl_sl_ds' => $params['pTl_sl_ds'] ?? null,
-            'pma_kyck' => $params['pma_kyck'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pGt0' => $params['pGt0'] ?? null,
-            'pGt1' => $params['pGt1'] ?? null,
-            'pCk1' => $params['pCk1'] ?? null,
-            'pGt2' => $params['pGt2'] ?? null,
-            'pCk2' => $params['pCk2'] ?? null,
-            'pGt3' => $params['pGt3'] ?? null,
-            'pCk3' => $params['pCk3'] ?? null,
-            'pGt4' => $params['pGt4'] ?? null,
-            'pCk4' => $params['pCk4'] ?? null,
-            'pGt5' => $params['pGt5'] ?? null,
-            'pCk5' => $params['pCk5'] ?? null,
-            'pGt6' => $params['pGt6'] ?? null,
-            'pCk6' => $params['pCk6'] ?? null,
-            'pGt7' => $params['pGt7'] ?? null,
-            'pCk7' => $params['pCk7'] ?? null,
-            'pGt8' => $params['pGt8'] ?? null,
-            'pCk8' => $params['pCk8'] ?? null,
-            'pGt9' => $params['pGt9'] ?? null,
-            'pCk9' => $params['pCk9'] ?? null,
-            'pGt10' => $params['pGt10'] ?? null,
-            'pCk10' => $params['pCk10'] ?? null,
-            'pGt11' => $params['pGt11'] ?? null,
-            'pCk11' => $params['pCk11'] ?? null,
-            'pGt12' => $params['pGt12'] ?? null,
-            'pCk12' => $params['pCk12'] ?? null,
-            'pGt13' => $params['pGt13'] ?? null,
-            'pCk13' => $params['pCk13'] ?? null,
-            'pGt14' => $params['pGt14'] ?? null,
-            'pCk14' => $params['pCk14'] ?? null,
-            'pGt15' => $params['pGt15'] ?? null,
-            'pCk15' => $params['pCk15'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pVt_nhomvt' => $paramObj->pVt_nhomvt ?? null,
+            'pKh_nhomkh' => $paramObj->pKh_nhomkh ?? null,
+            'pSl_ds' => $paramObj->pSl_ds ?? null,
+            'pTl_gt' => $paramObj->pTl_gt ?? null,
+            'pTl_sl_ds' => $paramObj->pTl_sl_ds ?? null,
+            'pma_kyck' => $paramObj->pma_kyck ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pGt0' => $paramObj->pGt0 ?? null,
+            'pGt1' => $paramObj->pGt1 ?? null,
+            'pCk1' => $paramObj->pCk1 ?? null,
+            'pGt2' => $paramObj->pGt2 ?? null,
+            'pCk2' => $paramObj->pCk2 ?? null,
+            'pGt3' => $paramObj->pGt3 ?? null,
+            'pCk3' => $paramObj->pCk3 ?? null,
+            'pGt4' => $paramObj->pGt4 ?? null,
+            'pCk4' => $paramObj->pCk4 ?? null,
+            'pGt5' => $paramObj->pGt5 ?? null,
+            'pCk5' => $paramObj->pCk5 ?? null,
+            'pGt6' => $paramObj->pGt6 ?? null,
+            'pCk6' => $paramObj->pCk6 ?? null,
+            'pGt7' => $paramObj->pGt7 ?? null,
+            'pCk7' => $paramObj->pCk7 ?? null,
+            'pGt8' => $paramObj->pGt8 ?? null,
+            'pCk8' => $paramObj->pCk8 ?? null,
+            'pGt9' => $paramObj->pGt9 ?? null,
+            'pCk9' => $paramObj->pCk9 ?? null,
+            'pGt10' => $paramObj->pGt10 ?? null,
+            'pCk10' => $paramObj->pCk10 ?? null,
+            'pGt11' => $paramObj->pGt11 ?? null,
+            'pCk11' => $paramObj->pCk11 ?? null,
+            'pGt12' => $paramObj->pGt12 ?? null,
+            'pCk12' => $paramObj->pCk12 ?? null,
+            'pGt13' => $paramObj->pGt13 ?? null,
+            'pCk13' => $paramObj->pCk13 ?? null,
+            'pGt14' => $paramObj->pGt14 ?? null,
+            'pCk14' => $paramObj->pCk14 ?? null,
+            'pGt15' => $paramObj->pGt15 ?? null,
+            'pCk15' => $paramObj->pCk15 ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -173,7 +175,7 @@ class AsSoUpdCk
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

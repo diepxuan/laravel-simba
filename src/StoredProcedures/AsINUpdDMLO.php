@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsINUpdDMLO
 {
@@ -26,17 +27,18 @@ class AsINUpdDMLO
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINUpdDMLO', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pTen_lo' => $params['pTen_lo'] ?? null,
-            'pHan_dung' => $params['pHan_dung'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pTen_lo' => $paramObj->pTen_lo ?? null,
+            'pHan_dung' => $paramObj->pHan_dung ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsINUpdDMLO
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

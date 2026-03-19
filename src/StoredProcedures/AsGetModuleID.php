@@ -15,17 +15,17 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetModuleID
- * 
+ *
  * Stored procedure: asSIGetModuleID
  * Purpose: Lấy danh sách module ID và tên module từ bảng menu.
- * 
+ *
  * Tham số: Không có tham số.
- * 
+ *
  * Kết quả trả về: Collection các module với các cột: moduleid, modulename.
- * 
+ *
  * Example call:
  * ```php
  * $params = [];
@@ -36,6 +36,7 @@ class AsGetModuleID
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetModuleID', [], $connection);

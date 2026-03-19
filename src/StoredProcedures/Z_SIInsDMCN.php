@@ -15,41 +15,43 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_SIInsDMCN
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_SIInsDMCN', [
-            'pmenuid'      => $params['pmenuid'] ?? '',
-            'pmoduleid'    => $params['pmoduleid'] ?? '',
-            'pbar'         => $params['pbar'] ?? '',
-            'pbarenUS'     => $params['pbarenUS'] ?? '',
-            'pdllName'     => $params['pdllName'] ?? '',
-            'pcommand'     => $params['pcommand'] ?? '',
-            'pcode_name'   => $params['pcode_name'] ?? '',
-            'preport'      => $params['preport'] ?? false,
-            'pbasicright'  => $params['pbasicright'] ?? false,
-            'pform'        => $params['pform'] ?? false,
-            'popt'         => $params['popt'] ?? '',
-            'ppar1'        => $params['ppar1'] ?? '',
-            'ppar2'        => $params['ppar2'] ?? '',
-            'ppar3'        => $params['ppar3'] ?? '',
-            'ppar4'        => $params['ppar4'] ?? '',
-            'ppar5'        => $params['ppar5'] ?? '',
-            'ppar6'        => $params['ppar6'] ?? '',
-            'ppar7'        => $params['ppar7'] ?? '',
-            'ppar8'        => $params['ppar8'] ?? '',
-            'pstt'         => $params['pstt'] ?? '',
-            'ppicture1'    => $params['ppicture1'] ?? '',
-            'ppicture2'    => $params['ppicture2'] ?? '',
-            'pdeveloper'   => $params['pdeveloper'] ?? '',
-            'pmaintainer'  => $params['pmaintainer'] ?? '',
-            'pused'        => $params['pused'] ?? false,
-            'prowid'       => $params['prowid'] ?? 0,
-            'pactive'      => $params['pactive'] ?? false,
+            'pmenuid'      => $paramObj->pmenuid ?? '',
+            'pmoduleid'    => $paramObj->pmoduleid ?? '',
+            'pbar'         => $paramObj->pbar ?? '',
+            'pbarenUS'     => $paramObj->pbarenUS ?? '',
+            'pdllName'     => $paramObj->pdllName ?? '',
+            'pcommand'     => $paramObj->pcommand ?? '',
+            'pcode_name'   => $paramObj->pcode_name ?? '',
+            'preport'      => $paramObj->preport ?? false,
+            'pbasicright'  => $paramObj->pbasicright ?? false,
+            'pform'        => $paramObj->pform ?? false,
+            'popt'         => $paramObj->popt ?? '',
+            'ppar1'        => $paramObj->ppar1 ?? '',
+            'ppar2'        => $paramObj->ppar2 ?? '',
+            'ppar3'        => $paramObj->ppar3 ?? '',
+            'ppar4'        => $paramObj->ppar4 ?? '',
+            'ppar5'        => $paramObj->ppar5 ?? '',
+            'ppar6'        => $paramObj->ppar6 ?? '',
+            'ppar7'        => $paramObj->ppar7 ?? '',
+            'ppar8'        => $paramObj->ppar8 ?? '',
+            'pstt'         => $paramObj->pstt ?? '',
+            'ppicture1'    => $paramObj->ppicture1 ?? '',
+            'ppicture2'    => $paramObj->ppicture2 ?? '',
+            'pdeveloper'   => $paramObj->pdeveloper ?? '',
+            'pmaintainer'  => $paramObj->pmaintainer ?? '',
+            'pused'        => $paramObj->pused ?? false,
+            'prowid'       => $paramObj->prowid ?? 0,
+            'pactive'      => $paramObj->pactive ?? false,
         ], $connection);
     }
 }

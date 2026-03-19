@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIMaintain04
 {
@@ -26,16 +27,17 @@ class AsSIMaintain04
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIMaintain04', [
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pngay_ct1' => $params['pngay_ct1'] ?? null,
-            'pngay_ct2' => $params['pngay_ct2'] ?? null,
-            'ptk' => $params['ptk'] ?? null,
-            'ptk_du' => $params['ptk_du'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_ct1' => $params['pNgay_ct1'] ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pngay_ct1' => $paramObj->pngay_ct1 ?? null,
+            'pngay_ct2' => $paramObj->pngay_ct2 ?? null,
+            'ptk' => $paramObj->ptk ?? null,
+            'ptk_du' => $paramObj->ptk_du ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_ct1' => $paramObj->pNgay_ct1 ?? null
         ], $connection);
     }
 
@@ -62,7 +64,7 @@ class AsSIMaintain04
             'pMa_cty' => $Ma_cty,
             'pNgay_ct1' => $Ngay_ct1
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsQTKNCongTac
 {
@@ -26,28 +27,29 @@ class AsHrInsQTKNCongTac
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsQTKNCongTac', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtknct' => $params['pId_qtknct'] ?? null,
-            'pMa_to_chuc' => $params['pMa_to_chuc'] ?? null,
-            'pTen_to_chuc' => $params['pTen_to_chuc'] ?? null,
-            'pMa_cvcm' => $params['pMa_cvcm'] ?? null,
-            'pNgay_bd' => $params['pNgay_bd'] ?? null,
-            'pNgay_kt' => $params['pNgay_kt'] ?? null,
-            'pMo_ta_cv' => $params['pMo_ta_cv'] ?? null,
-            'pThu_nhap_bd' => $params['pThu_nhap_bd'] ?? null,
-            'pThu_nhap_kt' => $params['pThu_nhap_kt'] ?? null,
-            'pTen_nql' => $params['pTen_nql'] ?? null,
-            'pChuc_danh_nql' => $params['pChuc_danh_nql'] ?? null,
-            'pThanh_tich' => $params['pThanh_tich'] ?? null,
-            'pSo_nv_ql' => $params['pSo_nv_ql'] ?? null,
-            'pMa_thoi_viec' => $params['pMa_thoi_viec'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtknct' => $paramObj->pId_qtknct ?? null,
+            'pMa_to_chuc' => $paramObj->pMa_to_chuc ?? null,
+            'pTen_to_chuc' => $paramObj->pTen_to_chuc ?? null,
+            'pMa_cvcm' => $paramObj->pMa_cvcm ?? null,
+            'pNgay_bd' => $paramObj->pNgay_bd ?? null,
+            'pNgay_kt' => $paramObj->pNgay_kt ?? null,
+            'pMo_ta_cv' => $paramObj->pMo_ta_cv ?? null,
+            'pThu_nhap_bd' => $paramObj->pThu_nhap_bd ?? null,
+            'pThu_nhap_kt' => $paramObj->pThu_nhap_kt ?? null,
+            'pTen_nql' => $paramObj->pTen_nql ?? null,
+            'pChuc_danh_nql' => $paramObj->pChuc_danh_nql ?? null,
+            'pThanh_tich' => $paramObj->pThanh_tich ?? null,
+            'pSo_nv_ql' => $paramObj->pSo_nv_ql ?? null,
+            'pMa_thoi_viec' => $paramObj->pMa_thoi_viec ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -98,7 +100,7 @@ class AsHrInsQTKNCongTac
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

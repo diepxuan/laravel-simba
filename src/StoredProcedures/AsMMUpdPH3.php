@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsMMUpdPH3
 {
@@ -26,23 +27,24 @@ class AsMMUpdPH3
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asMMUpdPH3', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pSo_ct' => $params['pSo_ct'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_lct' => $params['pNgay_lct'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pTen_kh' => $params['pTen_kh'] ?? null,
-            'pNguoi_gd' => $params['pNguoi_gd'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pT_so_luong' => $params['pT_so_luong'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pSo_ct' => $paramObj->pSo_ct ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_lct' => $paramObj->pNgay_lct ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pTen_kh' => $paramObj->pTen_kh ?? null,
+            'pNguoi_gd' => $paramObj->pNguoi_gd ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pT_so_luong' => $paramObj->pT_so_luong ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsMMUpdPH3
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

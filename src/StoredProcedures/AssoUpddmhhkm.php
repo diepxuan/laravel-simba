@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AssoUpddmhhkm
 {
@@ -26,18 +27,19 @@ class AssoUpddmhhkm
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('assoUpddmhhkm', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_km' => $params['pMa_km'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pLoai_km' => $params['pLoai_km'] ?? null,
-            'pSl_km' => $params['pSl_km'] ?? null,
-            'pMuc_km' => $params['pMuc_km'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_km' => $paramObj->pMa_km ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pLoai_km' => $paramObj->pLoai_km ?? null,
+            'pSl_km' => $paramObj->pSl_km ?? null,
+            'pMuc_km' => $paramObj->pMuc_km ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AssoUpddmhhkm
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

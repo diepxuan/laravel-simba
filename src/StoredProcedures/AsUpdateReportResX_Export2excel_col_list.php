@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsUpdateReportResX_Export2excel_col_list
 {
@@ -26,15 +27,16 @@ class AsUpdateReportResX_Export2excel_col_list
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdateReportResX_Export2excel_col_list', [
-            'pmenuid' => $params['pmenuid'] ?? null,
-            'pma_mau' => $params['pma_mau'] ?? null,
-            'plang_id' => $params['plang_id'] ?? null,
-            'pExport2excel_col_list' => $params['pExport2excel_col_list'] ?? null,
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null
+            'pmenuid' => $paramObj->pmenuid ?? null,
+            'pma_mau' => $paramObj->pma_mau ?? null,
+            'plang_id' => $paramObj->plang_id ?? null,
+            'pExport2excel_col_list' => $paramObj->pExport2excel_col_list ?? null,
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsUpdateReportResX_Export2excel_col_list
             'pMenuid' => $Menuid,
             'pMa_mau' => $Ma_mau
         ];
-        
+
         return self::call($params);
     }
 }

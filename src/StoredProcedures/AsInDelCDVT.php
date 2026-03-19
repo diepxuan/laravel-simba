@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInDelCDVT
- * 
+ *
  * Stored procedure: asINDelCDVT
  * Purpose: Xóa bản ghi trong bảng INCDVT (tồn kho chi tiết) dựa trên các khóa chính.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pNam (int): Năm tài chính. Bắt buộc.
@@ -32,12 +32,12 @@ use Illuminate\Support\Collection;
  * - @pTk_vt (nvarchar(20)): Tài khoản vật tư. Bắt buộc.
  * - @pMa_nt (nvarchar(3)): Mã người thu. Bắt buộc.
  * - @pRet (int output): Tham số output trả về mã lỗi (0 nếu thành công, @@error nếu có lỗi).
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: mã công ty mặc định (SModel::CTY).
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện delete).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -57,17 +57,18 @@ class AsInDelCDVT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINDelCDVT', [
-            'pMa_cty'    => $params['pMa_cty'] ?? SModel::CTY,
-            'pNam'       => $params['pNam'] ?? null,
-            'pMa_vt'     => $params['pMa_vt'] ?? null,
-            'pMa_kho'    => $params['pMa_kho'] ?? null,
-            'pMa_vitri'  => $params['pMa_vitri'] ?? null,
-            'pMa_lo'     => $params['pMa_lo'] ?? null,
-            'pTk_vt'     => $params['pTk_vt'] ?? null,
-            'pMa_nt'     => $params['pMa_nt'] ?? null,
+            'pMa_cty'    => $paramObj->pMa_cty ?? SModel::CTY,
+            'pNam'       => $paramObj->pNam ?? null,
+            'pMa_vt'     => $paramObj->pMa_vt ?? null,
+            'pMa_kho'    => $paramObj->pMa_kho ?? null,
+            'pMa_vitri'  => $paramObj->pMa_vitri ?? null,
+            'pMa_lo'     => $paramObj->pMa_lo ?? null,
+            'pTk_vt'     => $paramObj->pTk_vt ?? null,
+            'pMa_nt'     => $paramObj->pMa_nt ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

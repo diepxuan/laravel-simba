@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsUserRight.
  *
@@ -89,17 +89,18 @@ class AsInsUserRight
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsUserRight', [
-            'pUserName'     => $params['pUserName'] ?? null,
-            'pMenuID'       => $params['pMenuID'] ?? null,
-            'pViewRight'    => $params['pViewRight'] ?? null,
-            'pInsertRight'  => $params['pInsertRight'] ?? null,
-            'pUpdateRight'  => $params['pUpdateRight'] ?? null,
-            'pDeleteRight'  => $params['pDeleteRight'] ?? null,
-            'pLimitedPrint' => $params['pLimitedPrint'] ?? null,
-            'pRet'          => $params['pRet'] ?? null,
+            'pUserName'     => $paramObj->pUserName ?? null,
+            'pMenuID'       => $paramObj->pMenuID ?? null,
+            'pViewRight'    => $paramObj->pViewRight ?? null,
+            'pInsertRight'  => $paramObj->pInsertRight ?? null,
+            'pUpdateRight'  => $paramObj->pUpdateRight ?? null,
+            'pDeleteRight'  => $paramObj->pDeleteRight ?? null,
+            'pLimitedPrint' => $paramObj->pLimitedPrint ?? null,
+            'pRet'          => $paramObj->pRet ?? null,
         ], $connection);
     }
 

@@ -15,31 +15,33 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLUpdDMDGTG
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdDMDGTG', [
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
-            'pLoai_dg'  => $params['pLoai_dg'] ?? null,
-            'pTk_dgtg'  => $params['pTk_dgtg'] ?? null,
-            'pStt'  => $params['pStt'] ?? null,
-            'pTk_lai_cltg'  => $params['pTk_lai_cltg'] ?? null,
-            'pTk_lo_cltg'  => $params['pTk_lo_cltg'] ?? null,
-            'pTk_cltg_cn'  => $params['pTk_cltg_cn'] ?? null,
-            'pTen_bt'  => $params['pTen_bt'] ?? null,
-            'pDg_kh'  => $params['pDg_kh'] ?? null,
-            'pDg_bp'  => $params['pDg_bp'] ?? null,
-            'pDg_hd'  => $params['pDg_hd'] ?? null,
-            'pDg_spct'  => $params['pDg_spct'] ?? null,
-            'pDg_phi'  => $params['pDg_phi'] ?? null,
-            'pSo_ct'  => $params['pSo_ct'] ?? null,
-            'pKsd'  => $params['pKsd'] ?? null,
-            'pLUser'  => $params['pLUser'] ?? null,
-            'pRet'  => $params['pRet'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pLoai_dg'  => $paramObj->pLoai_dg ?? null,
+            'pTk_dgtg'  => $paramObj->pTk_dgtg ?? null,
+            'pStt'  => $paramObj->pStt ?? null,
+            'pTk_lai_cltg'  => $paramObj->pTk_lai_cltg ?? null,
+            'pTk_lo_cltg'  => $paramObj->pTk_lo_cltg ?? null,
+            'pTk_cltg_cn'  => $paramObj->pTk_cltg_cn ?? null,
+            'pTen_bt'  => $paramObj->pTen_bt ?? null,
+            'pDg_kh'  => $paramObj->pDg_kh ?? null,
+            'pDg_bp'  => $paramObj->pDg_bp ?? null,
+            'pDg_hd'  => $paramObj->pDg_hd ?? null,
+            'pDg_spct'  => $paramObj->pDg_spct ?? null,
+            'pDg_phi'  => $paramObj->pDg_phi ?? null,
+            'pSo_ct'  => $paramObj->pSo_ct ?? null,
+            'pKsd'  => $paramObj->pKsd ?? null,
+            'pLUser'  => $paramObj->pLUser ?? null,
+            'pRet'  => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

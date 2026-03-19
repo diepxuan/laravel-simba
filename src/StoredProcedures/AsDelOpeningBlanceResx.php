@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDelOpeningBlanceResx.
  *
@@ -68,11 +68,12 @@ class AsDelOpeningBlanceResx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asDelOpeningBlanceResx', [
-            'pCode_name' => $params['pCode_name'] ?? null,
-            'pLanguage'  => $params['pLanguage'] ?? null,
+            'pCode_name' => $paramObj->pCode_name ?? null,
+            'pLanguage'  => $paramObj->pLanguage ?? null,
         ], $connection);
     }
 }

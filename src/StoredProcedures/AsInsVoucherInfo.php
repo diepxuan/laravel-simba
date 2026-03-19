@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInsVoucherInfo
 {
@@ -26,32 +27,33 @@ class AsInsVoucherInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsVoucherInfo', [
-            'pVoucher_code' => $params['pVoucher_code'] ?? null,
-            'pPh_table_name' => $params['pPh_table_name'] ?? null,
-            'pCt_table_name' => $params['pCt_table_name'] ?? null,
-            'pCp_table_name' => $params['pCp_table_name'] ?? null,
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pPh_extra_edit_cotrol_list' => $params['pPh_extra_edit_cotrol_list'] ?? null,
-            'pSearch_class_name' => $params['pSearch_class_name'] ?? null,
-            'pView_class_name' => $params['pView_class_name'] ?? null,
-            'pPrint_class_name' => $params['pPrint_class_name'] ?? null,
-            'pMa_nt_default' => $params['pMa_nt_default'] ?? null,
-            'pPh_carry_field_list' => $params['pPh_carry_field_list'] ?? null,
-            'pCt_carry_field_list' => $params['pCt_carry_field_list'] ?? null,
-            'pPh_print_field_list' => $params['pPh_print_field_list'] ?? null,
-            'pRow_per_page' => $params['pRow_per_page'] ?? null,
-            'pNumber_of_copy' => $params['pNumber_of_copy'] ?? null,
-            'pHas_cp' => $params['pHas_cp'] ?? null,
-            'pHas_tain' => $params['pHas_tain'] ?? null,
-            'pHas_taout' => $params['pHas_taout'] ?? null,
-            'pCopy_enabled' => $params['pCopy_enabled'] ?? null,
-            'pCopy_vaora' => $params['pCopy_vaora'] ?? null,
-            'pNxt' => $params['pNxt'] ?? null,
-            'pDescription' => $params['pDescription'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pVoucher_code' => $paramObj->pVoucher_code ?? null,
+            'pPh_table_name' => $paramObj->pPh_table_name ?? null,
+            'pCt_table_name' => $paramObj->pCt_table_name ?? null,
+            'pCp_table_name' => $paramObj->pCp_table_name ?? null,
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pPh_extra_edit_cotrol_list' => $paramObj->pPh_extra_edit_cotrol_list ?? null,
+            'pSearch_class_name' => $paramObj->pSearch_class_name ?? null,
+            'pView_class_name' => $paramObj->pView_class_name ?? null,
+            'pPrint_class_name' => $paramObj->pPrint_class_name ?? null,
+            'pMa_nt_default' => $paramObj->pMa_nt_default ?? null,
+            'pPh_carry_field_list' => $paramObj->pPh_carry_field_list ?? null,
+            'pCt_carry_field_list' => $paramObj->pCt_carry_field_list ?? null,
+            'pPh_print_field_list' => $paramObj->pPh_print_field_list ?? null,
+            'pRow_per_page' => $paramObj->pRow_per_page ?? null,
+            'pNumber_of_copy' => $paramObj->pNumber_of_copy ?? null,
+            'pHas_cp' => $paramObj->pHas_cp ?? null,
+            'pHas_tain' => $paramObj->pHas_tain ?? null,
+            'pHas_taout' => $paramObj->pHas_taout ?? null,
+            'pCopy_enabled' => $paramObj->pCopy_enabled ?? null,
+            'pCopy_vaora' => $paramObj->pCopy_vaora ?? null,
+            'pNxt' => $paramObj->pNxt ?? null,
+            'pDescription' => $paramObj->pDescription ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -110,7 +112,7 @@ class AsInsVoucherInfo
             'pDescription' => $Description,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

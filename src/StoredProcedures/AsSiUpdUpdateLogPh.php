@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiUpdUpdateLogPh
 {
@@ -26,24 +27,25 @@ class AsSiUpdUpdateLogPh
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiUpdUpdateLogPh', [
-            'pId' => $params['pId'] ?? null,
-            'pDescription' => $params['pDescription'] ?? null,
-            'pNote' => $params['pNote'] ?? null,
-            'pProductid' => $params['pProductid'] ?? null,
-            'pFunctionMenuid' => $params['pFunctionMenuid'] ?? null,
-            'pFunctionName' => $params['pFunctionName'] ?? null,
-            'pBugnumber' => $params['pBugnumber'] ?? null,
-            'pLinknumber' => $params['pLinknumber'] ?? null,
-            'pConnection' => $params['pConnection'] ?? null,
-            'pCuserbuild' => $params['pCuserbuild'] ?? null,
-            'pLuserbuild' => $params['pLuserbuild'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'ParentNumber' => $params['ParentNumber'] ?? null,
-            'ParentLevel' => $params['ParentLevel'] ?? null
+            'pId' => $paramObj->pId ?? null,
+            'pDescription' => $paramObj->pDescription ?? null,
+            'pNote' => $paramObj->pNote ?? null,
+            'pProductid' => $paramObj->pProductid ?? null,
+            'pFunctionMenuid' => $paramObj->pFunctionMenuid ?? null,
+            'pFunctionName' => $paramObj->pFunctionName ?? null,
+            'pBugnumber' => $paramObj->pBugnumber ?? null,
+            'pLinknumber' => $paramObj->pLinknumber ?? null,
+            'pConnection' => $paramObj->pConnection ?? null,
+            'pCuserbuild' => $paramObj->pCuserbuild ?? null,
+            'pLuserbuild' => $paramObj->pLuserbuild ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null,
+            'ParentNumber' => $paramObj->ParentNumber ?? null,
+            'ParentLevel' => $paramObj->ParentLevel ?? null
         ], $connection);
     }
 
@@ -86,7 +88,7 @@ class AsSiUpdUpdateLogPh
             'ParentNumber' => $ParentNumber,
             'ParentLevel' => $ParentLevel
         ];
-        
+
         return self::call($params);
     }
 }

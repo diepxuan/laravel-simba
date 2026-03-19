@@ -15,28 +15,30 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFAInsDTSD
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFAInsDTSD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ts' => $params['pMa_ts'] ?? null,
-            'pNgay' => $params['pNgay'] ?? null,
-            'pLoai_dt' => $params['pLoai_dt'] ?? null,
-            'pMa_bpsd' => $params['pMa_bpsd'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pTk_ts' => $params['pTk_ts'] ?? null,
-            'pTk_kh' => $params['pTk_kh'] ?? null,
-            'pTk_cp' => $params['pTk_cp'] ?? null,
-            'pCdate' => $params['pCdate'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pLdate' => $params['pLdate'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ts' => $paramObj->pMa_ts ?? null,
+            'pNgay' => $paramObj->pNgay ?? null,
+            'pLoai_dt' => $paramObj->pLoai_dt ?? null,
+            'pMa_bpsd' => $paramObj->pMa_bpsd ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pTk_ts' => $paramObj->pTk_ts ?? null,
+            'pTk_kh' => $paramObj->pTk_kh ?? null,
+            'pTk_cp' => $paramObj->pTk_cp ?? null,
+            'pCdate' => $paramObj->pCdate ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pLdate' => $paramObj->pLdate ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
         ], $connection);
     }
 }

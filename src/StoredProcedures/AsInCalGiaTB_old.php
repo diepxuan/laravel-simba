@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInCalGiaTB_old
 {
@@ -26,11 +27,12 @@ class AsInCalGiaTB_old
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInCalGiaTB_old', [
-            'pStt_L' => $params['pStt_L'] ?? null,
-            'pMa_L' => $params['pMa_L'] ?? null
+            'pStt_L' => $paramObj->pStt_L ?? null,
+            'pMa_L' => $paramObj->pMa_L ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsInCalGiaTB_old
             'pStt_L' => $Stt_L,
             'pMa_L' => $Ma_L
         ];
-        
+
         return self::call($params);
     }
 }

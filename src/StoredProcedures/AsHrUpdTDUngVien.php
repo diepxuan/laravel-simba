@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdTDUngVien
 {
@@ -26,31 +27,32 @@ class AsHrUpdTDUngVien
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdTDUngVien', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_yctd' => $params['pMa_yctd'] ?? null,
-            'pVong_so' => $params['pVong_so'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pHo_ten' => $params['pHo_ten'] ?? null,
-            'pHo_dem' => $params['pHo_dem'] ?? null,
-            'pTen' => $params['pTen'] ?? null,
-            'pNgay_sinh' => $params['pNgay_sinh'] ?? null,
-            'pGioi_tinh' => $params['pGioi_tinh'] ?? null,
-            'pSo_cmnd' => $params['pSo_cmnd'] ?? null,
-            'pMa_dia_dem_lv' => $params['pMa_dia_dem_lv'] ?? null,
-            'pTen_dia_diem_lv' => $params['pTen_dia_diem_lv'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_cvcm' => $params['pMa_cvcm'] ?? null,
-            'pThoi_gian_lv' => $params['pThoi_gian_lv'] ?? null,
-            'pMa_htlv' => $params['pMa_htlv'] ?? null,
-            'pLuong_de_nghi' => $params['pLuong_de_nghi'] ?? null,
-            'pLuong_chap_nhan' => $params['pLuong_chap_nhan'] ?? null,
-            'pNgay_ctdl' => $params['pNgay_ctdl'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_yctd' => $paramObj->pMa_yctd ?? null,
+            'pVong_so' => $paramObj->pVong_so ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pHo_ten' => $paramObj->pHo_ten ?? null,
+            'pHo_dem' => $paramObj->pHo_dem ?? null,
+            'pTen' => $paramObj->pTen ?? null,
+            'pNgay_sinh' => $paramObj->pNgay_sinh ?? null,
+            'pGioi_tinh' => $paramObj->pGioi_tinh ?? null,
+            'pSo_cmnd' => $paramObj->pSo_cmnd ?? null,
+            'pMa_dia_dem_lv' => $paramObj->pMa_dia_dem_lv ?? null,
+            'pTen_dia_diem_lv' => $paramObj->pTen_dia_diem_lv ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_cvcm' => $paramObj->pMa_cvcm ?? null,
+            'pThoi_gian_lv' => $paramObj->pThoi_gian_lv ?? null,
+            'pMa_htlv' => $paramObj->pMa_htlv ?? null,
+            'pLuong_de_nghi' => $paramObj->pLuong_de_nghi ?? null,
+            'pLuong_chap_nhan' => $paramObj->pLuong_chap_nhan ?? null,
+            'pNgay_ctdl' => $paramObj->pNgay_ctdl ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -107,7 +109,7 @@ class AsHrUpdTDUngVien
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

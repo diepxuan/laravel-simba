@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdDmTCDanhGiaCT
 {
@@ -26,15 +27,16 @@ class AsHrUpdDmTCDanhGiaCT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdDmTCDanhGiaCT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_tcdg' => $params['pMa_tcdg'] ?? null,
-            'pId_diem' => $params['pId_diem'] ?? null,
-            'pDiem_dg' => $params['pDiem_dg'] ?? null,
-            'pKy_hieu' => $params['pKy_hieu'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_tcdg' => $paramObj->pMa_tcdg ?? null,
+            'pId_diem' => $paramObj->pId_diem ?? null,
+            'pDiem_dg' => $paramObj->pDiem_dg ?? null,
+            'pKy_hieu' => $paramObj->pKy_hieu ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsHrUpdDmTCDanhGiaCT
             'pKy_hieu' => $Ky_hieu,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetTygia
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetTygia', [
-            'pMa_Cty'  => $params['pMa_Cty'] ?? null,
-            'pMa_nt'  => $params['pMa_nt'] ?? null,
-            'pNgay_ct'  => $params['pNgay_ct'] ?? null,
-            'pTy_gia'  => $params['pTy_gia'] ?? null,
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
+            'pMa_Cty'  => $paramObj->pMa_Cty ?? null,
+            'pMa_nt'  => $paramObj->pMa_nt ?? null,
+            'pNgay_ct'  => $paramObj->pNgay_ct ?? null,
+            'pTy_gia'  => $paramObj->pTy_gia ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
         ], $connection);
     }
 }

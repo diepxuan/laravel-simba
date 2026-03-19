@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class ZInsExtendedPropery
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('zInsExtendedPropery', [
-            'tblName'   => $params['tblName'] ?? '',
-            'colName'   => $params['colName'] ?? '',
-            'property'  => $params['property'] ?? '',
-            'val'       => $params['val'] ?? '',
+            'tblName'   => $paramObj->tblName ?? '',
+            'colName'   => $paramObj->colName ?? '',
+            'property'  => $paramObj->property ?? '',
+            'val'       => $paramObj->val ?? '',
         ], $connection);
     }
 }

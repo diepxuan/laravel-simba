@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdDashFrequentlyFunction.
  *
@@ -74,14 +74,15 @@ class AsUpdDashFrequentlyFunction
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdDashFrequentlyFunction', [
-            'pUserName' => $params['pUserName'] ?? null,
-            'pMenuID'   => $params['pMenuID'] ?? null,
-            'pDashID'   => $params['pDashID'] ?? null,
-            'pSpace'    => $params['pSpace'] ?? null,
-            'pRet'      => $params['pRet'] ?? null,
+            'pUserName' => $paramObj->pUserName ?? null,
+            'pMenuID'   => $paramObj->pMenuID ?? null,
+            'pDashID'   => $paramObj->pDashID ?? null,
+            'pSpace'    => $paramObj->pSpace ?? null,
+            'pRet'      => $paramObj->pRet ?? null,
         ], $connection);
     }
 

@@ -15,17 +15,19 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsFaGetPbKh
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFaGetPbKh', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang' => $paramObj->pThang ?? null,
         ], $connection);
     }
 }

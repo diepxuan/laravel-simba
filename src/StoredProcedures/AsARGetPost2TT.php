@@ -15,23 +15,25 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARGetPost2TT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARGetPost2TT', [
-            'pMa_cty'     => $params['pMa_cty'] ?? null,
-            'pLoai_ct'    => $params['pLoai_ct'] ?? null,
-            'pSo1'        => $params['pSo1'] ?? null,
-            'pSo2'        => $params['pSo2'] ?? null,
-            'pNgay1'      => $params['pNgay1'] ?? null,
-            'pNgay2'      => $params['pNgay2'] ?? null,
-            'pMa_kh'      => $params['pMa_kh'] ?? null,
-            'pTk'         => $params['pTk'] ?? null,
-            'pDien_giai'  => $params['pDien_giai'] ?? null,
+            'pMa_cty'     => $paramObj->pMa_cty ?? null,
+            'pLoai_ct'    => $paramObj->pLoai_ct ?? null,
+            'pSo1'        => $paramObj->pSo1 ?? null,
+            'pSo2'        => $paramObj->pSo2 ?? null,
+            'pNgay1'      => $paramObj->pNgay1 ?? null,
+            'pNgay2'      => $paramObj->pNgay2 ?? null,
+            'pMa_kh'      => $paramObj->pMa_kh ?? null,
+            'pTk'         => $paramObj->pTk ?? null,
+            'pDien_giai'  => $paramObj->pDien_giai ?? null,
         ], $connection);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdGroupRight.
  *
@@ -71,12 +71,13 @@ class AsUpdGroupRight
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdGroupRight', [
-            'pGroupName'     => $params['pGroupName'] ?? null,
-            'pGroupName_Old' => $params['pGroupName_Old'] ?? null,
-            'pRet'           => $params['pRet'] ?? null,
+            'pGroupName'     => $paramObj->pGroupName ?? null,
+            'pGroupName_Old' => $paramObj->pGroupName_Old ?? null,
+            'pRet'           => $paramObj->pRet ?? null,
         ], $connection);
     }
 

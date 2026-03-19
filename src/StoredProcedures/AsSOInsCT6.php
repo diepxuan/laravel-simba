@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOInsCT6
 {
@@ -26,26 +27,27 @@ class AsSOInsCT6
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOInsCT6', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pStt_rec0' => $params['pStt_rec0'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pTen_vt' => $params['pTen_vt'] ?? null,
-            'pDvt' => $params['pDvt'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pSo_luong_qd' => $params['pSo_luong_qd'] ?? null,
-            'pGia2' => $params['pGia2'] ?? null,
-            'pTien2' => $params['pTien2'] ?? null,
-            'pTl_ck' => $params['pTl_ck'] ?? null,
-            'pTien_ck' => $params['pTien_ck'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pTs_gtgt' => $params['pTs_gtgt'] ?? null,
-            'pThue_gtgt' => $params['pThue_gtgt'] ?? null,
-            'pTt' => $params['pTt'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pTen_vt' => $paramObj->pTen_vt ?? null,
+            'pDvt' => $paramObj->pDvt ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pSo_luong_qd' => $paramObj->pSo_luong_qd ?? null,
+            'pGia2' => $paramObj->pGia2 ?? null,
+            'pTien2' => $paramObj->pTien2 ?? null,
+            'pTl_ck' => $paramObj->pTl_ck ?? null,
+            'pTien_ck' => $paramObj->pTien_ck ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pTs_gtgt' => $paramObj->pTs_gtgt ?? null,
+            'pThue_gtgt' => $paramObj->pThue_gtgt ?? null,
+            'pTt' => $paramObj->pTt ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -92,7 +94,7 @@ class AsSOInsCT6
             'pTt' => $Tt,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

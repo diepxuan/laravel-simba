@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdUserInfo.
  *
@@ -79,16 +79,17 @@ class AsUpdUserInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdUserInfo', [
-            'pUserName' => $params['pUserName'] ?? null,
-            'pFullName' => $params['pFullName'] ?? null,
-            'pIsAdmin'  => $params['pIsAdmin'] ?? null,
-            'pGrand'    => $params['pGrand'] ?? null,
-            'pDisabled' => $params['pDisabled'] ?? null,
-            'pUser'     => $params['pUser'] ?? null,
-            'pRet'      => $params['pRet'] ?? null,
+            'pUserName' => $paramObj->pUserName ?? null,
+            'pFullName' => $paramObj->pFullName ?? null,
+            'pIsAdmin'  => $paramObj->pIsAdmin ?? null,
+            'pGrand'    => $paramObj->pGrand ?? null,
+            'pDisabled' => $paramObj->pDisabled ?? null,
+            'pUser'     => $paramObj->pUser ?? null,
+            'pRet'      => $paramObj->pRet ?? null,
         ], $connection);
     }
 

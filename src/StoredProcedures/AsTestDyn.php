@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsTestDyn
 {
@@ -26,25 +27,26 @@ class AsTestDyn
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asTestDyn', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pTK' => $params['pTK'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_nvkd' => $params['pMa_nvkd'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pLoai_ps' => $params['pLoai_ps'] ?? null,
-            'pKM' => $params['pKM'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pMa_httt' => $params['pMa_httt'] ?? null,
-            'pGroup' => $params['pGroup'] ?? null,
-            'pNgay_bc' => $params['pNgay_bc'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pTon' => $params['pTon'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pTK' => $paramObj->pTK ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_nvkd' => $paramObj->pMa_nvkd ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pLoai_ps' => $paramObj->pLoai_ps ?? null,
+            'pKM' => $paramObj->pKM ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pMa_httt' => $paramObj->pMa_httt ?? null,
+            'pGroup' => $paramObj->pGroup ?? null,
+            'pNgay_bc' => $paramObj->pNgay_bc ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pTon' => $paramObj->pTon ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsTestDyn
             'pSo_luong' => $So_luong,
             'pTon' => $Ton
         ];
-        
+
         return self::call($params);
     }
 }

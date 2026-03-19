@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsFARptSoSD
- * 
+ *
  * Stored procedure: asFARptSoSD
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (nvarchar(3)): input parameter.
  * - @pNgay1 (smalldatetime): input parameter.
@@ -31,11 +31,11 @@ use Illuminate\Support\Collection;
  * - @pMa_bpsd (nvarchar(20)): input parameter.
  * - @pLoai (TINYINT): input parameter.
  * - @pRet (int): output parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -48,16 +48,17 @@ class AsFARptSoSD
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFARptSoSD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_tscd' => $params['pMa_tscd'] ?? null,
-            'pMa_cc' => $params['pMa_cc'] ?? null,
-            'pMa_bpsd' => $params['pMa_bpsd'] ?? null,
-            'pLoai' => $params['pLoai'] ?? 0,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_tscd' => $paramObj->pMa_tscd ?? null,
+            'pMa_cc' => $paramObj->pMa_cc ?? null,
+            'pMa_bpsd' => $paramObj->pMa_bpsd ?? null,
+            'pLoai' => $paramObj->pLoai ?? 0,
         ], $connection);
     }
 }

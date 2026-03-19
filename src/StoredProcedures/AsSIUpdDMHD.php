@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIUpdDMHD
 {
@@ -26,25 +27,26 @@ class AsSIUpdDMHD
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIUpdDMHD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pSo_hd' => $params['pSo_hd'] ?? null,
-            'pMa_nhhd' => $params['pMa_nhhd'] ?? null,
-            'pLoai' => $params['pLoai'] ?? null,
-            'pNgay_hd' => $params['pNgay_hd'] ?? null,
-            'pNgay_hh' => $params['pNgay_hh'] ?? null,
-            'pTen_hd' => $params['pTen_hd'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pNoi_dung' => $params['pNoi_dung'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pTien' => $params['pTien'] ?? null,
-            'pTien_nt' => $params['pTien_nt'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pSo_hd' => $paramObj->pSo_hd ?? null,
+            'pMa_nhhd' => $paramObj->pMa_nhhd ?? null,
+            'pLoai' => $paramObj->pLoai ?? null,
+            'pNgay_hd' => $paramObj->pNgay_hd ?? null,
+            'pNgay_hh' => $paramObj->pNgay_hh ?? null,
+            'pTen_hd' => $paramObj->pTen_hd ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pNoi_dung' => $paramObj->pNoi_dung ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pTien' => $paramObj->pTien ?? null,
+            'pTien_nt' => $paramObj->pTien_nt ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsSIUpdDMHD
             'pLUser' => $LUser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

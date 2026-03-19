@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsHrDelDTKhoa.
  *
@@ -57,12 +57,13 @@ class AsHrDelDTKhoa
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrDelDTKhoa', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_kdt' => $params['pMa_kdt'] ?? null,
-            'pRet'    => $params['pRet'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_kdt' => $paramObj->pMa_kdt ?? null,
+            'pRet'    => $paramObj->pRet ?? null,
         ], $connection);
     }
 

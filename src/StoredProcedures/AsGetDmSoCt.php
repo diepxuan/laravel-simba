@@ -15,27 +15,27 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetDmSoCt
- * 
+ *
  * Stored procedure: asSIGetDmSo_ct
  * Purpose: Lấy danh sách loại chứng từ (danh mục số chứng từ) trong module Sales & Inventory, theo phân hệ và ngôn ngữ.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pPhan_he (nvarchar(2)): Phân hệ (ví dụ: 'SO'). Mặc định 'SO'.
  * - @pStruct (nvarchar(1)): Cấu trúc dữ liệu (0: danh sách). Mặc định '0'.
  * - @pLanguageId (nvarchar(5)): Ngôn ngữ (ví dụ: 'vi-VN'). Bắt buộc.
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: null (phải cung cấp).
  * - pPhan_he: 'SO'.
  * - pStruct: '0'.
  * - pLanguageId: null (phải cung cấp).
- * 
+ *
  * Kết quả trả về: Collection các loại chứng từ với các cột: ma_ct, ten_ct.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -50,13 +50,14 @@ class AsGetDmSoCt
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDmSo_ct', [
-            'pMa_cty'      => $params['pMa_cty'] ?? null,
-            'pPhan_he'     => $params['pPhan_he'] ?? 'SO',
-            'pStruct'      => $params['pStruct'] ?? '0',
-            'pLanguageId'  => $params['pLanguageId'] ?? null,
+            'pMa_cty'      => $paramObj->pMa_cty ?? null,
+            'pPhan_he'     => $paramObj->pPhan_he ?? 'SO',
+            'pStruct'      => $paramObj->pStruct ?? '0',
+            'pLanguageId'  => $paramObj->pLanguageId ?? null,
         ], $connection);
     }
 }

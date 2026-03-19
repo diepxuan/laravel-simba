@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIMaintain022
 {
@@ -26,6 +27,7 @@ class AsSIMaintain022
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIMaintain022', $params, $connection);
@@ -44,7 +46,7 @@ class AsSIMaintain022
             'pMa_cty' => $Ma_cty,
             'pstr_ma' => $str_ma
         ];
-        
+
         return self::call($params);
     }
 }

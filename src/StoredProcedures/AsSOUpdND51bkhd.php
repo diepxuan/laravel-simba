@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOUpdND51bkhd
 {
@@ -26,18 +27,19 @@ class AsSOUpdND51bkhd
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOUpdND51bkhd', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_tb' => $params['pMa_tb'] ?? null,
-            'pNgay_tb' => $params['pNgay_tb'] ?? null,
-            'pTen_cty' => $params['pTen_cty'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pDai_dien' => $params['pDai_dien'] ?? null,
-            'pLdate' => $params['pLdate'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_tb' => $paramObj->pMa_tb ?? null,
+            'pNgay_tb' => $paramObj->pNgay_tb ?? null,
+            'pTen_cty' => $paramObj->pTen_cty ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pDai_dien' => $paramObj->pDai_dien ?? null,
+            'pLdate' => $paramObj->pLdate ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -68,7 +70,7 @@ class AsSOUpdND51bkhd
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

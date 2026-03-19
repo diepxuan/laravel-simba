@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsLogPrint.
  *
@@ -89,23 +89,24 @@ class AsInsLogPrint
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsLogPrint', [
-            'pma_cty'       => $params['pma_cty'] ?? null,
-            'pusername'     => $params['pusername'] ?? null,
-            'pmenuid'       => $params['pmenuid'] ?? null,
-            'pstt_rec'      => $params['pstt_rec'] ?? null,
-            'pma_ct'        => $params['pma_ct'] ?? null,
-            'pso_ct'        => $params['pso_ct'] ?? null,
-            'pso_seri'      => $params['pso_seri'] ?? null,
-            'pngay_ct'      => $params['pngay_ct'] ?? null,
-            'pma_mau'       => $params['pma_mau'] ?? null,
-            'pdate'         => $params['pdate'] ?? null,
-            'pCountPrinted' => $params['pCountPrinted'] ?? null,
-            'pIs_Frist'     => $params['pIs_Frist'] ?? null,
-            'pSo_ct'        => $params['pSo_ct'] ?? null,
-            'pSo_seri'      => $params['pSo_seri'] ?? null,
+            'pma_cty'       => $paramObj->pma_cty ?? null,
+            'pusername'     => $paramObj->pusername ?? null,
+            'pmenuid'       => $paramObj->pmenuid ?? null,
+            'pstt_rec'      => $paramObj->pstt_rec ?? null,
+            'pma_ct'        => $paramObj->pma_ct ?? null,
+            'pso_ct'        => $paramObj->pso_ct ?? null,
+            'pso_seri'      => $paramObj->pso_seri ?? null,
+            'pngay_ct'      => $paramObj->pngay_ct ?? null,
+            'pma_mau'       => $paramObj->pma_mau ?? null,
+            'pdate'         => $paramObj->pdate ?? null,
+            'pCountPrinted' => $paramObj->pCountPrinted ?? null,
+            'pIs_Frist'     => $paramObj->pIs_Frist ?? null,
+            'pSo_ct'        => $paramObj->pSo_ct ?? null,
+            'pSo_seri'      => $paramObj->pSo_seri ?? null,
         ], $connection);
     }
 

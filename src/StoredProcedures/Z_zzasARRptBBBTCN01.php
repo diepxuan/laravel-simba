@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_zzasARRptBBBTCN01
 {
     public static function call(array $params = []): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_zzasARRptBBBTCN01', [
-            'ma_cty'  => $params['ma_cty'] ?? null,
-            'Ngay1'  => $params['Ngay1'] ?? null,
-            'Ngay2'  => $params['Ngay2'] ?? null,
-            'Tk'  => $params['Tk'] ?? null,
-            'ma_kh'  => $params['ma_kh'] ?? null,
-            'ma_nt'  => $params['ma_nt'] ?? null,
+            'ma_cty'  => $paramObj->ma_cty ?? null,
+            'Ngay1'  => $paramObj->Ngay1 ?? null,
+            'Ngay2'  => $paramObj->Ngay2 ?? null,
+            'Tk'  => $paramObj->Tk ?? null,
+            'ma_kh'  => $paramObj->ma_kh ?? null,
+            'ma_nt'  => $paramObj->ma_nt ?? null,
         ], $connection);
     }
 }

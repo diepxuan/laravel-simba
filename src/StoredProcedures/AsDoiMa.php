@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsDoiMa
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asDoiMa', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pCode_name' => $params['pCode_name'] ?? null,
-            'pOldValue' => $params['pOldValue'] ?? null,
-            'pNewValue' => $params['pNewValue'] ?? null,
-            'pTable_name' => $params['pTable_name'] ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pCode_name' => $paramObj->pCode_name ?? null,
+            'pOldValue' => $paramObj->pOldValue ?? null,
+            'pNewValue' => $paramObj->pNewValue ?? null,
+            'pTable_name' => $paramObj->pTable_name ?? null,
         ], $connection);
     }
 }

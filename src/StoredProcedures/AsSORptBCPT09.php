@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSORptBCPT09
 {
@@ -26,26 +27,27 @@ class AsSORptBCPT09
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSORptBCPT09', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_kyck' => $params['pMa_kyck'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pSL_DS' => $params['pSL_DS'] ?? null,
-            'pTl_sl_ds' => $params['pTl_sl_ds'] ?? null,
-            'pTl_gt' => $params['pTl_gt'] ?? null,
-            'pGT_tu' => $params['pGT_tu'] ?? null,
-            'pGT_den' => $params['pGT_den'] ?? null,
-            'pCK' => $params['pCK'] ?? null,
-            'pSql' => $params['pSql'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pWhere' => $params['pWhere'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_kyck' => $paramObj->pMa_kyck ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pSL_DS' => $paramObj->pSL_DS ?? null,
+            'pTl_sl_ds' => $paramObj->pTl_sl_ds ?? null,
+            'pTl_gt' => $paramObj->pTl_gt ?? null,
+            'pGT_tu' => $paramObj->pGT_tu ?? null,
+            'pGT_den' => $paramObj->pGT_den ?? null,
+            'pCK' => $paramObj->pCK ?? null,
+            'pSql' => $paramObj->pSql ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pWhere' => $paramObj->pWhere ?? null
         ], $connection);
     }
 
@@ -92,7 +94,7 @@ class AsSORptBCPT09
             'ParamDefines' => $ParamDefines,
             'pWhere' => $Where
         ];
-        
+
         return self::call($params);
     }
 }

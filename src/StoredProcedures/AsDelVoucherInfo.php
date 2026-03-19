@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDelVoucherInfo.
  *
@@ -89,10 +89,11 @@ class AsDelVoucherInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asDelVoucherInfo', [
-            'pVoucher_code' => $params['pVoucher_code'] ?? null,
+            'pVoucher_code' => $paramObj->pVoucher_code ?? null,
         ], $connection);
     }
 }

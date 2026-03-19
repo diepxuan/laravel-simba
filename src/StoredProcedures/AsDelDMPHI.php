@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDelDMPHI
- * 
+ *
  * Stored procedure: asSIDelDMPHI
  * Purpose: Xoá một loại phí (danh mục phí) trong module Sales & Inventory.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pMa_phi (nvarchar(20)): Mã phí cần xoá. Bắt buộc.
@@ -29,13 +29,13 @@ use Illuminate\Support\Collection;
  *     - 0: được xoá thành công.
  *     - 50004: mã phí đã tồn tại trong các bảng dữ liệu liên quan (không được phép xoá).
  *     - @@error: mã lỗi SQL nếu có lỗi khi thực hiện delete.
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: mã công ty mặc định (SModel::CTY).
  * - pMa_phi: không có mặc định, phải cung cấp.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện delete).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -49,11 +49,12 @@ class AsDelDMPHI
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIDelDMPHI', [
-            'pMa_cty'  => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_phi'  => $params['pMa_phi'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_phi'  => $paramObj->pMa_phi ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

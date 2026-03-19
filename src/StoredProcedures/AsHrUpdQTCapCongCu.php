@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdQTCapCongCu
 {
@@ -26,23 +27,24 @@ class AsHrUpdQTCapCongCu
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdQTCapCongCu', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtccc' => $params['pId_qtccc'] ?? null,
-            'pMa_nhcc' => $params['pMa_nhcc'] ?? null,
-            'pMa_cc' => $params['pMa_cc'] ?? null,
-            'pTen_cc' => $params['pTen_cc'] ?? null,
-            'pNgay_cap' => $params['pNgay_cap'] ?? null,
-            'pNgay_tra' => $params['pNgay_tra'] ?? null,
-            'pSo_luong' => $params['pSo_luong'] ?? null,
-            'pGia_tri' => $params['pGia_tri'] ?? null,
-            'pTong_gia_tri' => $params['pTong_gia_tri'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtccc' => $paramObj->pId_qtccc ?? null,
+            'pMa_nhcc' => $paramObj->pMa_nhcc ?? null,
+            'pMa_cc' => $paramObj->pMa_cc ?? null,
+            'pTen_cc' => $paramObj->pTen_cc ?? null,
+            'pNgay_cap' => $paramObj->pNgay_cap ?? null,
+            'pNgay_tra' => $paramObj->pNgay_tra ?? null,
+            'pSo_luong' => $paramObj->pSo_luong ?? null,
+            'pGia_tri' => $paramObj->pGia_tri ?? null,
+            'pTong_gia_tri' => $paramObj->pTong_gia_tri ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsHrUpdQTCapCongCu
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIUpdcompany
 {
@@ -26,22 +27,23 @@ class AsSIUpdcompany
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIUpdcompany', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTen_tcty' => $params['pTen_tcty'] ?? null,
-            'pTen_cty' => $params['pTen_cty'] ?? null,
-            'pDia_chi' => $params['pDia_chi'] ?? null,
-            'pGiam_doc' => $params['pGiam_doc'] ?? null,
-            'pKtt' => $params['pKtt'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pTel' => $params['pTel'] ?? null,
-            'pFax' => $params['pFax'] ?? null,
-            'pEmail' => $params['pEmail'] ?? null,
-            'pQd_cdkt' => $params['pQd_cdkt'] ?? null,
-            'pTen_qd_cdkt' => $params['pTen_qd_cdkt'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTen_tcty' => $paramObj->pTen_tcty ?? null,
+            'pTen_cty' => $paramObj->pTen_cty ?? null,
+            'pDia_chi' => $paramObj->pDia_chi ?? null,
+            'pGiam_doc' => $paramObj->pGiam_doc ?? null,
+            'pKtt' => $paramObj->pKtt ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pTel' => $paramObj->pTel ?? null,
+            'pFax' => $paramObj->pFax ?? null,
+            'pEmail' => $paramObj->pEmail ?? null,
+            'pQd_cdkt' => $paramObj->pQd_cdkt ?? null,
+            'pTen_qd_cdkt' => $paramObj->pTen_qd_cdkt ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsSIUpdcompany
             'pTen_qd_cdkt' => $Ten_qd_cdkt,
             'pLanguage' => $Language
         ];
-        
+
         return self::call($params);
     }
 }

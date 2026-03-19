@@ -15,22 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLRptCheckCashFlow
- * 
+ *
  * Stored procedure: asGLRptCheckCashFlow
- * Purpose: 
- * 
+ * Purpose:
+ *
  * Parameters:
  * - @pMa_cty (nvarchar(3)): input parameter.
  * - @pNgay_ct1 (smalldatetime): input parameter.
  * - @pNgay_ct2 (smalldatetime): input parameter.
- * 
- * Default values: 
- * 
+ *
+ * Default values:
+ *
  * Returns: Collection of query results.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -43,12 +43,13 @@ class AsGLRptCheckCashFlow
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptCheckCashFlow', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_ct1' => $params['pNgay_ct1'] ?? null,
-            'pNgay_ct2' => $params['pNgay_ct2'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_ct1' => $paramObj->pNgay_ct1 ?? null,
+            'pNgay_ct2' => $paramObj->pNgay_ct2 ?? null,
         ], $connection);
     }
 }

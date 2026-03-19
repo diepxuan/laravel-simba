@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPOFilt3
 {
@@ -26,6 +27,7 @@ class AsPOFilt3
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPOFilt3', $params, $connection);
@@ -44,7 +46,7 @@ class AsPOFilt3
             'pKeyPh' => $KeyPh,
             'pKeyCt' => $KeyCt
         ];
-        
+
         return self::call($params);
     }
 }

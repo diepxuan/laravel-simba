@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiGetCt4PostGL
 {
@@ -26,14 +27,15 @@ class AsSiGetCt4PostGL
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiGetCt4PostGL', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pMa_ph' => $params['pMa_ph'] ?? null,
-            'pLanguageId' => $params['pLanguageId'] ?? null,
-            'pMa_cty' => $params['pMa_cty'] ?? null
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pMa_ph' => $paramObj->pMa_ph ?? null,
+            'pLanguageId' => $paramObj->pLanguageId ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null
         ], $connection);
     }
 
@@ -56,7 +58,7 @@ class AsSiGetCt4PostGL
             'pLanguageId' => $LanguageId,
             'pMa_cty' => $Ma_cty
         ];
-        
+
         return self::call($params);
     }
 }

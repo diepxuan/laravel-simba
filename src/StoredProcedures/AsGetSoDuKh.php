@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetSoDuKh.
  *
@@ -67,10 +67,10 @@ class AsGetSoDuKh
         $connection = (new SModel())->getConnectionName();
 
         $result = ProcedureCaller::call('asGetSoDuKh', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pMa_kh'  => $params['pMa_kh'] ?? null,
-            'pNgay'   => $params['pNgay'] ?? null,
-            'pTk'     => $params['pTk'] ?? null,
+            'pMa_Cty' => $params->pMa_Cty ?? null,
+            'pMa_kh'  => $params->pMa_kh ?? null,
+            'pNgay'   => $params->pNgay ?? null,
+            'pTk'     => $params->pTk ?? null,
         ], $connection);
 
         if ($result instanceof Collection && $result->isNotEmpty()) {

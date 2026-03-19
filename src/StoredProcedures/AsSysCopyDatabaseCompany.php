@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsSysCopyDatabaseCompany.
  *
@@ -73,12 +73,13 @@ class AsSysCopyDatabaseCompany
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSysCopyDatabaseCompany', [
-            'SourceDB' => $params['SourceDB'] ?? null,
-            'DestDB'   => $params['DestDB'] ?? null,
-            'Ma_CTy'   => $params['Ma_CTy'] ?? null,
+            'SourceDB' => $paramObj->SourceDB ?? null,
+            'DestDB'   => $paramObj->DestDB ?? null,
+            'Ma_CTy'   => $paramObj->Ma_CTy ?? null,
         ], $connection);
     }
 }

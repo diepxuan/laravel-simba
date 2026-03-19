@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSaGetbangluong
 {
@@ -26,15 +27,16 @@ class AsSaGetbangluong
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSaGetbangluong', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pId_nv' => $params['pId_nv'] ?? null,
-            'pMa_nv' => $params['pMa_nv'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pId_nv' => $paramObj->pId_nv ?? null,
+            'pMa_nv' => $paramObj->pMa_nv ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsSaGetbangluong
             'pId_nv' => $Id_nv,
             'pMa_nv' => $Ma_nv
         ];
-        
+
         return self::call($params);
     }
 }

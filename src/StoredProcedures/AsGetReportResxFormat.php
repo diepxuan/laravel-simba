@@ -15,18 +15,20 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetReportResxFormat
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetReportResxFormat', [
-            'menuid' => $params['menuid'] ?? null,
-            'ma_mau' => $params['ma_mau'] ?? null,
-            'lang_id' => $params['lang_id'] ?? null,
-            'vnd_nt' => $params['vnd_nt'] ?? null
+            'menuid' => $paramObj->menuid ?? null,
+            'ma_mau' => $paramObj->ma_mau ?? null,
+            'lang_id' => $paramObj->lang_id ?? null,
+            'vnd_nt' => $paramObj->vnd_nt ?? null
         ], $connection);
     }
 }

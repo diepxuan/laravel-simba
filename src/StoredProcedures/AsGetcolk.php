@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetcolk
 {
@@ -26,15 +27,16 @@ class AsGetcolk
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetcolk', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pTk_du' => $params['pTk_du'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pTk_du' => $paramObj->pTk_du ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsGetcolk
             'pTk' => $Tk,
             'pTk_du' => $Tk_du
         ];
-        
+
         return self::call($params);
     }
 }

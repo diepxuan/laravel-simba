@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSortDashFrequentlyFunction
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSortDashFrequentlyFunction', [
-            'pMenuIdSource'  => $params['pMenuIdSource'] ?? null,
-            'pSttTarget'  => $params['pSttTarget'] ?? null,
-            'pUserName'  => $params['pUserName'] ?? null,
-            'pDashID'  => $params['pDashID'] ?? null,
-            'pRet'  => $params['pRet'] ?? null,
+            'pMenuIdSource'  => $paramObj->pMenuIdSource ?? null,
+            'pSttTarget'  => $paramObj->pSttTarget ?? null,
+            'pUserName'  => $paramObj->pUserName ?? null,
+            'pDashID'  => $paramObj->pDashID ?? null,
+            'pRet'  => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

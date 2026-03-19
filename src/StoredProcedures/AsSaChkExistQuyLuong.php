@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSaChkExistQuyLuong
 {
@@ -26,15 +27,16 @@ class AsSaChkExistQuyLuong
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSaChkExistQuyLuong', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pRet' => $params['pRet'] ?? null,
-            'pMa_Bp' => $params['pMa_Bp'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pRet' => $paramObj->pRet ?? null,
+            'pMa_Bp' => $paramObj->pMa_Bp ?? null
         ], $connection);
     }
 
@@ -59,7 +61,7 @@ class AsSaChkExistQuyLuong
             'pRet' => $Ret,
             'pMa_Bp' => $Ma_Bp
         ];
-        
+
         return self::call($params);
     }
 }

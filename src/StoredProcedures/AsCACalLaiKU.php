@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsCACalLaiKU.
  *
@@ -79,15 +79,16 @@ class AsCACalLaiKU
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCACalLaiKU', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang'  => $params['pThang'] ?? null,
-            'pNam'    => $params['pNam'] ?? null,
-            'pMa_ct'  => $params['pMa_ct'] ?? null,
-            'pMa_ku'  => $params['pMa_ku'] ?? null,
-            'pUser'   => $params['pUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang'  => $paramObj->pThang ?? null,
+            'pNam'    => $paramObj->pNam ?? null,
+            'pMa_ct'  => $paramObj->pMa_ct ?? null,
+            'pMa_ku'  => $paramObj->pMa_ku ?? null,
+            'pUser'   => $paramObj->pUser ?? null,
         ], $connection);
     }
 }

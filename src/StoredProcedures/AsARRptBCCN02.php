@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARRptBCCN02
 {
@@ -26,23 +27,24 @@ class AsARRptBCCN02
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARRptBCCN02', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_plkh1' => $params['pMa_plkh1'] ?? null,
-            'pMa_plkh2' => $params['pMa_plkh2'] ?? null,
-            'pMa_plkh3' => $params['pMa_plkh3'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pGroup1' => $params['pGroup1'] ?? null,
-            'pGroup2' => $params['pGroup2'] ?? null,
-            'pGroup3' => $params['pGroup3'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'pSysMsg2' => $params['pSysMsg2'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
+            'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
+            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pGroup1' => $paramObj->pGroup1 ?? null,
+            'pGroup2' => $paramObj->pGroup2 ?? null,
+            'pGroup3' => $paramObj->pGroup3 ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'pSysMsg2' => $paramObj->pSysMsg2 ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsARRptBCCN02
             'pSysMsg1' => $SysMsg1,
             'pSysMsg2' => $SysMsg2
         ];
-        
+
         return self::call($params);
     }
 }

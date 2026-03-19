@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsLogCT4Update.
  *
@@ -83,15 +83,16 @@ class AsInsLogCT4Update
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsLogCT4Update', [
-            'pMa_cty'      => $params['pMa_cty'] ?? null,
-            'pStt_rec'     => $params['pStt_rec'] ?? null,
-            'pMa_ct'       => $params['pMa_ct'] ?? null,
-            'pUser'        => $params['pUser'] ?? null,
-            'pAction'      => $params['pAction'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
+            'pMa_cty'      => $paramObj->pMa_cty ?? null,
+            'pStt_rec'     => $paramObj->pStt_rec ?? null,
+            'pMa_ct'       => $paramObj->pMa_ct ?? null,
+            'pUser'        => $paramObj->pUser ?? null,
+            'pAction'      => $paramObj->pAction ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
         ], $connection);
     }
 

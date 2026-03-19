@@ -15,31 +15,33 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIUpdDMHTTT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIUpdDMHTTT', [
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
-            'pMa_httt'  => $params['pMa_httt'] ?? null,
-            'pModuleid'  => $params['pModuleid'] ?? null,
-            'pTen_httt'  => $params['pTen_httt'] ?? null,
-            'pTk'  => $params['pTk'] ?? null,
-            'pTk_thue_gtgt_mua'  => $params['pTk_thue_gtgt_mua'] ?? null,
-            'pTk_thue_gtgt_ban'  => $params['pTk_thue_gtgt_ban'] ?? null,
-            'pTk_thue_nk'  => $params['pTk_thue_nk'] ?? null,
-            'pTk_thue_xk'  => $params['pTk_thue_xk'] ?? null,
-            'pTk_gtgt_nk_no'  => $params['pTk_gtgt_nk_no'] ?? null,
-            'pTk_gtgt_nk_co'  => $params['pTk_gtgt_nk_co'] ?? null,
-            'pTk_thue_gtgt_xk'  => $params['pTk_thue_gtgt_xk'] ?? null,
-            'pTK_thue_ttdb'  => $params['pTK_thue_ttdb'] ?? null,
-            'pTk_ck'  => $params['pTk_ck'] ?? null,
-            'pKsd'  => $params['pKsd'] ?? null,
-            'pLUser'  => $params['pLUser'] ?? null,
-            'pRet'  => $params['pRet'] ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_httt'  => $paramObj->pMa_httt ?? null,
+            'pModuleid'  => $paramObj->pModuleid ?? null,
+            'pTen_httt'  => $paramObj->pTen_httt ?? null,
+            'pTk'  => $paramObj->pTk ?? null,
+            'pTk_thue_gtgt_mua'  => $paramObj->pTk_thue_gtgt_mua ?? null,
+            'pTk_thue_gtgt_ban'  => $paramObj->pTk_thue_gtgt_ban ?? null,
+            'pTk_thue_nk'  => $paramObj->pTk_thue_nk ?? null,
+            'pTk_thue_xk'  => $paramObj->pTk_thue_xk ?? null,
+            'pTk_gtgt_nk_no'  => $paramObj->pTk_gtgt_nk_no ?? null,
+            'pTk_gtgt_nk_co'  => $paramObj->pTk_gtgt_nk_co ?? null,
+            'pTk_thue_gtgt_xk'  => $paramObj->pTk_thue_gtgt_xk ?? null,
+            'pTK_thue_ttdb'  => $paramObj->pTK_thue_ttdb ?? null,
+            'pTk_ck'  => $paramObj->pTk_ck ?? null,
+            'pKsd'  => $paramObj->pKsd ?? null,
+            'pLUser'  => $paramObj->pLUser ?? null,
+            'pRet'  => $paramObj->pRet ?? null,
         ], $connection);
     }
 }

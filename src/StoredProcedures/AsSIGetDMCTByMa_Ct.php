@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSIGetDMCTByMa_Ct
 {
@@ -26,12 +27,13 @@ class AsSIGetDMCTByMa_Ct
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDMCTByMa_Ct', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsSIGetDMCTByMa_Ct
             'pMa_ct' => $Ma_ct,
             'pLanguage' => $Language
         ];
-        
+
         return self::call($params);
     }
 }

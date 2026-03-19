@@ -15,15 +15,17 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsARGetSO34AR1
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARGetSO34AR1', [
-            'pKey' => $params['pKey'] ?? null,
+            'pKey' => $paramObj->pKey ?? null,
         ], $connection);
     }
 }

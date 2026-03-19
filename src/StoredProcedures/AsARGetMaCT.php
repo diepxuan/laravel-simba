@@ -15,18 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsARGetMaCT
- * 
+ *
  * Stored procedure: asARGetMaCT
  * Purpose: Tìm kiếm mã loại chứng từ được phân bổ cho module công nợ phải thu.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
- * 
+ *
  * Kết quả trả về: Danh sách các loại chứng từ (ma_ct, ten_ct) thuộc các mã: 'CA1', 'CA3', 'AR4', 'AP4'.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -39,10 +39,11 @@ class AsARGetMaCT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARGetMaCT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
         ], $connection);
     }
 }

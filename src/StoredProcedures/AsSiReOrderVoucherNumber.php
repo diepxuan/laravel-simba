@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiReOrderVoucherNumber
 {
@@ -26,21 +27,22 @@ class AsSiReOrderVoucherNumber
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiReOrderVoucherNumber', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pSo_ct' => $params['pSo_ct'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pUser' => $params['pUser'] ?? null,
-            'ph' => $params['ph'] ?? null,
-            'prefix' => $params['prefix'] ?? null,
-            'pattern' => $params['pattern'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pWidth' => $params['pWidth'] ?? null,
-            'pma_cty' => $params['pma_cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pSo_ct' => $paramObj->pSo_ct ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'ph' => $paramObj->ph ?? null,
+            'prefix' => $paramObj->prefix ?? null,
+            'pattern' => $paramObj->pattern ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pWidth' => $paramObj->pWidth ?? null,
+            'pma_cty' => $paramObj->pma_cty ?? null
         ], $connection);
     }
 
@@ -77,7 +79,7 @@ class AsSiReOrderVoucherNumber
             'pWidth' => $Width,
             'pma_cty' => $ma_cty
         ];
-        
+
         return self::call($params);
     }
 }

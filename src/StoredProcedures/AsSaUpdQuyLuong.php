@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSaUpdQuyLuong
 {
@@ -26,20 +27,21 @@ class AsSaUpdQuyLuong
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSaUpdQuyLuong', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pThang' => $params['pThang'] ?? null,
-            'pNam' => $params['pNam'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pTen_bp' => $params['pTen_bp'] ?? null,
-            'pQl_t_dc' => $params['pQl_t_dc'] ?? null,
-            'pQl_s_dc' => $params['pQl_s_dc'] ?? null,
-            'pTyle_dc' => $params['pTyle_dc'] ?? null,
-            'pGiatri_dc' => $params['pGiatri_dc'] ?? null,
-            'pQl_dp' => $params['pQl_dp'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pTen_bp' => $paramObj->pTen_bp ?? null,
+            'pQl_t_dc' => $paramObj->pQl_t_dc ?? null,
+            'pQl_s_dc' => $paramObj->pQl_s_dc ?? null,
+            'pTyle_dc' => $paramObj->pTyle_dc ?? null,
+            'pGiatri_dc' => $paramObj->pGiatri_dc ?? null,
+            'pQl_dp' => $paramObj->pQl_dp ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -74,7 +76,7 @@ class AsSaUpdQuyLuong
             'pQl_dp' => $Ql_dp,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

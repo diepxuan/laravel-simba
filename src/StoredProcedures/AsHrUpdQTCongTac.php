@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdQTCongTac
 {
@@ -26,25 +27,26 @@ class AsHrUpdQTCongTac
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdQTCongTac', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtct' => $params['pId_qtct'] ?? null,
-            'pNgay_ad' => $params['pNgay_ad'] ?? null,
-            'pMo_ta_cv' => $params['pMo_ta_cv'] ?? null,
-            'pMa_dia_diem_lv' => $params['pMa_dia_diem_lv'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_cvcm' => $params['pMa_cvcm'] ?? null,
-            'pMa_nguoi_ql' => $params['pMa_nguoi_ql'] ?? null,
-            'pSo_qd' => $params['pSo_qd'] ?? null,
-            'pNgay_qd' => $params['pNgay_qd'] ?? null,
-            'pNguoi_ky_qd' => $params['pNguoi_ky_qd'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtct' => $paramObj->pId_qtct ?? null,
+            'pNgay_ad' => $paramObj->pNgay_ad ?? null,
+            'pMo_ta_cv' => $paramObj->pMo_ta_cv ?? null,
+            'pMa_dia_diem_lv' => $paramObj->pMa_dia_diem_lv ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_cvcm' => $paramObj->pMa_cvcm ?? null,
+            'pMa_nguoi_ql' => $paramObj->pMa_nguoi_ql ?? null,
+            'pSo_qd' => $paramObj->pSo_qd ?? null,
+            'pNgay_qd' => $paramObj->pNgay_qd ?? null,
+            'pNguoi_ky_qd' => $paramObj->pNguoi_ky_qd ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsHrUpdQTCongTac
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

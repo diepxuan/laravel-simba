@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsDelDMTGNT
- * 
+ *
  * Stored procedure: asSIDelDMTGNT
  * Purpose: Xoá một tiêu thức người thu (danh mục tiêu thức người thu) trong module Sales & Inventory.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pMa_nt (nvarchar(3)): Mã người thu cần xoá tiêu thức. Bắt buộc.
@@ -29,14 +29,14 @@ use Illuminate\Support\Collection;
  * - @pRet (int output): Tham số output trả về mã lỗi:
  *     - 0: được xoá thành công.
  *     - @@error: mã lỗi SQL nếu có lỗi khi thực hiện delete.
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: mã công ty mặc định (SModel::CTY).
  * - pMa_nt: không có mặc định, phải cung cấp.
  * - pNgay_tg: không có mặc định, phải cung cấp (định dạng Y-m-d).
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện delete).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -51,12 +51,13 @@ class AsDelDMTGNT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIDelDMTGNT', [
-            'pMa_cty'   => $params['pMa_cty'] ?? SModel::CTY,
-            'pMa_nt'    => $params['pMa_nt'] ?? null,
-            'pNgay_tg'  => $params['pNgay_tg'] ?? null,
+            'pMa_cty'   => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_nt'    => $paramObj->pMa_nt ?? null,
+            'pNgay_tg'  => $paramObj->pNgay_tg ?? null,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOUpdND51phhdph
 {
@@ -26,25 +27,26 @@ class AsSOUpdND51phhdph
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOUpdND51phhdph', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_tb' => $params['pMa_tb'] ?? null,
-            'pNgay_tb' => $params['pNgay_tb'] ?? null,
-            'pDonvi_ph' => $params['pDonvi_ph'] ?? null,
-            'pMa_thue' => $params['pMa_thue'] ?? null,
-            'pDia_chi' => $params['pDia_chi'] ?? null,
-            'pTel' => $params['pTel'] ?? null,
-            'pDonvi_cq' => $params['pDonvi_cq'] ?? null,
-            'pMa_thuedvcq' => $params['pMa_thuedvcq'] ?? null,
-            'pCq_thue' => $params['pCq_thue'] ?? null,
-            'pDai_dien' => $params['pDai_dien'] ?? null,
-            'pNgay_duyet' => $params['pNgay_duyet'] ?? null,
-            'pChap_nhan' => $params['pChap_nhan'] ?? null,
-            'pLdate' => $params['pLdate'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_tb' => $paramObj->pMa_tb ?? null,
+            'pNgay_tb' => $paramObj->pNgay_tb ?? null,
+            'pDonvi_ph' => $paramObj->pDonvi_ph ?? null,
+            'pMa_thue' => $paramObj->pMa_thue ?? null,
+            'pDia_chi' => $paramObj->pDia_chi ?? null,
+            'pTel' => $paramObj->pTel ?? null,
+            'pDonvi_cq' => $paramObj->pDonvi_cq ?? null,
+            'pMa_thuedvcq' => $paramObj->pMa_thuedvcq ?? null,
+            'pCq_thue' => $paramObj->pCq_thue ?? null,
+            'pDai_dien' => $paramObj->pDai_dien ?? null,
+            'pNgay_duyet' => $paramObj->pNgay_duyet ?? null,
+            'pChap_nhan' => $paramObj->pChap_nhan ?? null,
+            'pLdate' => $paramObj->pLdate ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsSOUpdND51phhdph
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

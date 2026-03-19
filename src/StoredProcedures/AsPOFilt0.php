@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsPoFilt0.
  *
@@ -59,8 +59,8 @@ class AsPOFilt0 extends StoredProcedure
     public static function call(array $params = []): Collection
     {
         return parent::call(array_merge([
-            'pKeyPh' => $params['pKeyPh'] ?? null,
-            'pKeyCt' => $params['pKeyCt'] ?? null,
+            'pKeyPh' => $paramObj->pKeyPh ?? null,
+            'pKeyCt' => $paramObj->pKeyCt ?? null,
         ], $params));
     }
 

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdGroupInfo.
  *
@@ -70,14 +70,15 @@ class AsUpdGroupInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdGroupInfo', [
-            'pGroupname' => $params['pGroupname'] ?? null,
-            'pFullname'  => $params['pFullname'] ?? null,
-            'pGrand'     => $params['pGrand'] ?? null,
-            'pKSD'       => $params['pKSD'] ?? null,
-            'pUser'      => $params['pUser'] ?? null,
+            'pGroupname' => $paramObj->pGroupname ?? null,
+            'pFullname'  => $paramObj->pFullname ?? null,
+            'pGrand'     => $paramObj->pGrand ?? null,
+            'pKSD'       => $paramObj->pKSD ?? null,
+            'pUser'      => $paramObj->pUser ?? null,
         ], $connection);
     }
 

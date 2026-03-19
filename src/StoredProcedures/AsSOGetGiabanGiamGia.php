@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSOGetGiabanGiamGia
 {
@@ -26,6 +27,7 @@ class AsSOGetGiabanGiamGia
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOGetGiabanGiamGia', $params, $connection);
@@ -54,7 +56,7 @@ class AsSOGetGiabanGiamGia
             'pTl_gt' => $Tl_gt,
             'pGg' => $Gg
         ];
-        
+
         return self::call($params);
     }
 }

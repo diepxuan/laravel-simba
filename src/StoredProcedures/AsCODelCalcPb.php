@@ -15,20 +15,22 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsCODelCalcPb
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCODelCalcPb', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pNgay1' => $params['pNgay1'] ?? '',
-            'pNgay2' => $params['pNgay2'] ?? '',
-            'pId' => $params['pId'] ?? '',
-            'pMa_ct' => $params['pMa_ct'] ?? '',
-            'pUser' => $params['pUser'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pNgay1' => $paramObj->pNgay1 ?? '',
+            'pNgay2' => $paramObj->pNgay2 ?? '',
+            'pId' => $paramObj->pId ?? '',
+            'pMa_ct' => $paramObj->pMa_ct ?? '',
+            'pUser' => $paramObj->pUser ?? ''
         ], $connection);
     }
 }

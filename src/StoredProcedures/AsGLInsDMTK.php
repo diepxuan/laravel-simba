@@ -15,32 +15,34 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLInsDMTK
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLInsDMTK', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pTk' => $params['pTk'] ?? null,
-            'pTen_tk' => $params['pTen_tk'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pChi_tiet' => $params['pChi_tiet'] ?? null,
-            'pTk_me' => $params['pTk_me'] ?? null,
-            'pBac_tk' => $params['pBac_tk'] ?? null,
-            'pTk_sc' => $params['pTk_sc'] ?? null,
-            'pTk_cn' => $params['pTk_cn'] ?? null,
-            'pPp_tinh_tggs_no' => $params['pPp_tinh_tggs_no'] ?? null,
-            'pPp_tinh_tggs_co' => $params['pPp_tinh_tggs_co'] ?? null,
-            'pKieu_sd' => $params['pKieu_sd'] ?? null,
-            'pKsd' => $params['pKsd'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
-            'pMa_ngh' => $params['pMa_ngh'] ?? null,
-            'pSo_tk' => $params['pSo_tk'] ?? null,
-            'pTen_ngh' => $params['pTen_ngh'] ?? null,
-            'pTinh_tp' => $params['pTinh_tp'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pTen_tk' => $paramObj->pTen_tk ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pChi_tiet' => $paramObj->pChi_tiet ?? null,
+            'pTk_me' => $paramObj->pTk_me ?? null,
+            'pBac_tk' => $paramObj->pBac_tk ?? null,
+            'pTk_sc' => $paramObj->pTk_sc ?? null,
+            'pTk_cn' => $paramObj->pTk_cn ?? null,
+            'pPp_tinh_tggs_no' => $paramObj->pPp_tinh_tggs_no ?? null,
+            'pPp_tinh_tggs_co' => $paramObj->pPp_tinh_tggs_co ?? null,
+            'pKieu_sd' => $paramObj->pKieu_sd ?? null,
+            'pKsd' => $paramObj->pKsd ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pMa_ngh' => $paramObj->pMa_ngh ?? null,
+            'pSo_tk' => $paramObj->pSo_tk ?? null,
+            'pTen_ngh' => $paramObj->pTen_ngh ?? null,
+            'pTinh_tp' => $paramObj->pTinh_tp ?? null,
         ], $connection);
     }
 }

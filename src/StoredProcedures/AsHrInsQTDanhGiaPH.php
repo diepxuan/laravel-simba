@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsQTDanhGiaPH
 {
@@ -26,23 +27,24 @@ class AsHrInsQTDanhGiaPH
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsQTDanhGiaPH', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtdg' => $params['pId_qtdg'] ?? null,
-            'pNgay_dg' => $params['pNgay_dg'] ?? null,
-            'pNgay_bd' => $params['pNgay_bd'] ?? null,
-            'pNgay_kt' => $params['pNgay_kt'] ?? null,
-            'pMa_nvdg' => $params['pMa_nvdg'] ?? null,
-            'pMa_nhdg' => $params['pMa_nhdg'] ?? null,
-            'pTrang_thai' => $params['pTrang_thai'] ?? null,
-            'pKet_luan' => $params['pKet_luan'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pCuser' => $params['pCuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtdg' => $paramObj->pId_qtdg ?? null,
+            'pNgay_dg' => $paramObj->pNgay_dg ?? null,
+            'pNgay_bd' => $paramObj->pNgay_bd ?? null,
+            'pNgay_kt' => $paramObj->pNgay_kt ?? null,
+            'pMa_nvdg' => $paramObj->pMa_nvdg ?? null,
+            'pMa_nhdg' => $paramObj->pMa_nhdg ?? null,
+            'pTrang_thai' => $paramObj->pTrang_thai ?? null,
+            'pKet_luan' => $paramObj->pKet_luan ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pCuser' => $paramObj->pCuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsHrInsQTDanhGiaPH
             'pCuser' => $Cuser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsTAGETTNDN01A
 {
@@ -26,11 +27,12 @@ class AsTAGETTNDN01A
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asTAGETTNDN01A', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pmau' => $params['pmau'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pmau' => $paramObj->pmau ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsTAGETTNDN01A
             'pMa_cty' => $Ma_cty,
             'pmau' => $mau
         ];
-        
+
         return self::call($params);
     }
 }

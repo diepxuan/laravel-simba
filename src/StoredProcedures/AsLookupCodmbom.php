@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsLookupCodmbom
 {
@@ -26,12 +27,13 @@ class AsLookupCodmbom
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asLookupCodmbom', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pNgay' => $params['pNgay'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pNgay' => $paramObj->pNgay ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsLookupCodmbom
             'pMa_vt' => $Ma_vt,
             'pNgay' => $Ngay
         ];
-        
+
         return self::call($params);
     }
 }

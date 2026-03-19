@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsInsDictionaryResx.
  *
@@ -81,14 +81,15 @@ class AsInsDictionaryResx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsDictionaryResx', [
-            'pCode_name'         => $params['pCode_name'] ?? null,
-            'pLanguage'          => $params['pLanguage'] ?? null,
-            'pFormated_col_list' => $params['pFormated_col_list'] ?? null,
-            'pViewform_size'     => $params['pViewform_size'] ?? null,
-            'pRet'               => $params['pRet'] ?? null,
+            'pCode_name'         => $paramObj->pCode_name ?? null,
+            'pLanguage'          => $paramObj->pLanguage ?? null,
+            'pFormated_col_list' => $paramObj->pFormated_col_list ?? null,
+            'pViewform_size'     => $paramObj->pViewform_size ?? null,
+            'pRet'               => $paramObj->pRet ?? null,
         ], $connection);
     }
 

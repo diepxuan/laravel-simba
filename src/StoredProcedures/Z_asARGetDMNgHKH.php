@@ -15,19 +15,21 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class Z_asARGetDMNgHKH
 {
     public static function call(array $params = []): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('z_asARGetDMNgHKH', [
-            'pId_cn'   => $params['pId_cn'] ?? null,
-            'pMa_cty'  => $params['pMa_cty'] ?? null,
-            'pMa_kh'   => $params['pMa_kh'] ?? null,
-            'pMa_nh'   => $params['pMa_nh'] ?? null,
-            'pStruct'  => $params['pStruct'] ?? '0',
+            'pId_cn'   => $paramObj->pId_cn ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_kh'   => $paramObj->pMa_kh ?? null,
+            'pMa_nh'   => $paramObj->pMa_nh ?? null,
+            'pStruct'  => $paramObj->pStruct ?? '0',
         ], $connection);
     }
 }

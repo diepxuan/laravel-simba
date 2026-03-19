@@ -15,27 +15,27 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGetDMHTTT
- * 
+ *
  * Stored procedure: asSIGetDMHTTT
  * Purpose: Lấy danh sách hình thức thanh toán (danh mục hình thức thanh toán) trong module Sales & Inventory.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty (có thể null để lấy tất cả). Mặc định null.
  * - @pMa_httt (nvarchar(20)): Mã hình thức thanh toán cần tìm (có thể null để lấy tất cả). Mặc định null.
  * - @pModuleid (nvarchar(2)): Mã module (ví dụ: 'SI'). Có thể null để lấy tất cả. Mặc định null.
  * - @pStruct (nvarchar(1)): Cấu trúc dữ liệu (0: danh sách). Mặc định '0'.
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: null (lấy tất cả công ty).
  * - pMa_httt: null (lấy tất cả hình thức thanh toán).
  * - pModuleid: null (lấy tất cả module).
  * - pStruct: '0'.
- * 
+ *
  * Kết quả trả về: Collection các hình thức thanh toán với các cột: ma_cty, ma_httt, moduleid, ten_httt, tk, tk_thue_gtgt_mua, tk_thue_gtgt_ban, tk_thue_nk, tk_thue_xk, tk_gtgt_nk_no, tk_gtgt_nk_co, tk_thue_gtgt_xk, tk_thue_ttdb, tk_ck, ksd, cdate, cuser, ldate, luser.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -50,13 +50,14 @@ class AsGetDMHTTT
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSIGetDMHTTT', [
-            'pMa_cty'    => $params['pMa_cty'] ?? null,
-            'pMa_httt'   => $params['pMa_httt'] ?? null,
-            'pModuleid'  => $params['pModuleid'] ?? null,
-            'pStruct'    => $params['pStruct'] ?? '0',
+            'pMa_cty'    => $paramObj->pMa_cty ?? null,
+            'pMa_httt'   => $paramObj->pMa_httt ?? null,
+            'pModuleid'  => $paramObj->pModuleid ?? null,
+            'pStruct'    => $paramObj->pStruct ?? '0',
         ], $connection);
     }
 }

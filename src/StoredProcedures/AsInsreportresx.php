@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInsreportresx
 {
@@ -26,25 +27,26 @@ class AsInsreportresx
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsreportresx', [
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null,
-            'pTen_mau' => $params['pTen_mau'] ?? null,
-            'pTitle' => $params['pTitle'] ?? null,
-            'pFormated_col_list' => $params['pFormated_col_list'] ?? null,
-            'pCt_formated_col_list' => $params['pCt_formated_col_list'] ?? null,
-            'pFormated_col_list_nt' => $params['pFormated_col_list_nt'] ?? null,
-            'pCt_formated_col_list_nt' => $params['pCt_formated_col_list_nt'] ?? null,
-            'pDescription' => $params['pDescription'] ?? null,
-            'pMau_so_qd15' => $params['pMau_so_qd15'] ?? null,
-            'pMau_so_qd48' => $params['pMau_so_qd48'] ?? null,
-            'pAuto_format' => $params['pAuto_format'] ?? null,
-            'pHide_col_list' => $params['pHide_col_list'] ?? null,
-            'pHide_col_list_nt' => $params['pHide_col_list_nt'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null,
+            'pLanguage' => $paramObj->pLanguage ?? null,
+            'pTen_mau' => $paramObj->pTen_mau ?? null,
+            'pTitle' => $paramObj->pTitle ?? null,
+            'pFormated_col_list' => $paramObj->pFormated_col_list ?? null,
+            'pCt_formated_col_list' => $paramObj->pCt_formated_col_list ?? null,
+            'pFormated_col_list_nt' => $paramObj->pFormated_col_list_nt ?? null,
+            'pCt_formated_col_list_nt' => $paramObj->pCt_formated_col_list_nt ?? null,
+            'pDescription' => $paramObj->pDescription ?? null,
+            'pMau_so_qd15' => $paramObj->pMau_so_qd15 ?? null,
+            'pMau_so_qd48' => $paramObj->pMau_so_qd48 ?? null,
+            'pAuto_format' => $paramObj->pAuto_format ?? null,
+            'pHide_col_list' => $paramObj->pHide_col_list ?? null,
+            'pHide_col_list_nt' => $paramObj->pHide_col_list_nt ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -89,7 +91,7 @@ class AsInsreportresx
             'pHide_col_list_nt' => $Hide_col_list_nt,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

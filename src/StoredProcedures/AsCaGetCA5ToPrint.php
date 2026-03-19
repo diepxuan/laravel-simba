@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsCaGetCA5ToPrint
 {
@@ -23,9 +24,9 @@ class AsCaGetCA5ToPrint
         \$connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCaGetCA5ToPrint', [
-            'pMa_Cty'      => $params['pMa_Cty'] ?? null,
-            'pStt_rec_pc'  => $params['pStt_rec_pc'] ?? null,
-            'pNgay_ct'     => $params['pNgay_ct'] ?? null,
+            'pMa_Cty'      => $params->pMa_Cty ?? null,
+            'pStt_rec_pc'  => $params->pStt_rec_pc ?? null,
+            'pNgay_ct'     => $params->pNgay_ct ?? null,
         ], $connection);
     }
 }

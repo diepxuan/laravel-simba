@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsFAChkThoiKHTS.
  *
@@ -67,12 +67,13 @@ class AsFAChkThoiKHTS
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asFAChkThoiKHTS', [
-            'pma_cty'       => $params['pma_cty'] ?? null,
-            'pma_ts'        => $params['pma_ts'] ?? null,
-            'pNgay_dung_kh' => $params['pNgay_dung_kh'] ?? null,
+            'pma_cty'       => $paramObj->pma_cty ?? null,
+            'pma_ts'        => $paramObj->pma_ts ?? null,
+            'pNgay_dung_kh' => $paramObj->pNgay_dung_kh ?? null,
         ], $connection);
     }
 }

@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInCalGiaBQDD
 {
@@ -26,23 +27,24 @@ class AsInCalGiaBQDD
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInCalGiaBQDD', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pTk_vt' => $params['pTk_vt'] ?? null,
-            'pNhom_vt' => $params['pNhom_vt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pTk_cl' => $params['pTk_cl'] ?? null,
-            'pDk_cl' => $params['pDk_cl'] ?? null,
-            'pma_ct_cl' => $params['pma_ct_cl'] ?? null,
-            'pMa_ct_cl' => $params['pMa_ct_cl'] ?? null,
-            'pnhom_vt' => $params['pnhom_vt'] ?? null,
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pTk_vt' => $paramObj->pTk_vt ?? null,
+            'pNhom_vt' => $paramObj->pNhom_vt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pTk_cl' => $paramObj->pTk_cl ?? null,
+            'pDk_cl' => $paramObj->pDk_cl ?? null,
+            'pma_ct_cl' => $paramObj->pma_ct_cl ?? null,
+            'pMa_ct_cl' => $paramObj->pMa_ct_cl ?? null,
+            'pnhom_vt' => $paramObj->pnhom_vt ?? null,
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsInCalGiaBQDD
             'pma_cty' => $ma_cty,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

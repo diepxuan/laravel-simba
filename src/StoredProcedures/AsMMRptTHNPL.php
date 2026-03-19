@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsMMRptTHNPL
 {
@@ -26,11 +27,12 @@ class AsMMRptTHNPL
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asMMRptTHNPL', [
-            'pSo_lsx_dk' => $params['pSo_lsx_dk'] ?? null,
-            'pNgay' => $params['pNgay'] ?? null
+            'pSo_lsx_dk' => $paramObj->pSo_lsx_dk ?? null,
+            'pNgay' => $paramObj->pNgay ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsMMRptTHNPL
             'pSo_lsx_dk' => $So_lsx_dk,
             'pNgay' => $Ngay
         ];
-        
+
         return self::call($params);
     }
 }

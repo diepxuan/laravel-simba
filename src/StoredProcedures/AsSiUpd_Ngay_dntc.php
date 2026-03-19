@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiUpd_Ngay_dntc
 {
@@ -26,11 +27,12 @@ class AsSiUpd_Ngay_dntc
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiUpd_Ngay_dntc', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_dntc' => $params['pNgay_dntc'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_dntc' => $paramObj->pNgay_dntc ?? null
         ], $connection);
     }
 
@@ -47,7 +49,7 @@ class AsSiUpd_Ngay_dntc
             'pMa_cty' => $Ma_cty,
             'pNgay_dntc' => $Ngay_dntc
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLGetCdTk
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLGetCdTk', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pNam' => $params['pNam'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pNam' => $paramObj->pNam ?? ''
         ], $connection);
     }
 }

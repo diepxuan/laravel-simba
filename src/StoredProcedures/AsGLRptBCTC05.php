@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLRptBCTC05
- * 
+ *
  * Stored procedure: asGLRptBCTC05
  * Purpose: =======================================================
- * 
+ *
  * Tham số:
  * - @pMa_Cty (nvarchar): Mô tả tham số
  * - @pNgay_Ct1 (nvarchar): Mô tả tham số
@@ -31,7 +31,7 @@ use Illuminate\Support\Collection;
  * - @pMau (nvarchar): Mô tả tham số
  * - @pMa_bp (nvarchar): Mô tả tham số
  * - @pMa_Nt (nvarchar): Mô tả tham số
- * 
+ *
  * Giá trị mặc định:
  * - @pMa_Cty: null
  * - @pNgay_Ct1: null
@@ -41,9 +41,9 @@ use Illuminate\Support\Collection;
  * - @pMau: null
  * - @pMa_bp: null
  * - @pMa_Nt: null
- * 
+ *
  * Kết quả trả về: Collection kết quả truy vấn.
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -63,17 +63,18 @@ class AsGLRptBCTC05
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTC05', [
-            'pMa_Cty' => $params['pMa_Cty'] ?? null,
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? null,
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? null,
-            'pNgay_Ct01' => $params['pNgay_Ct01'] ?? null,
-            'pNgay_Ct02' => $params['pNgay_Ct02'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_bp' => $params['pMa_bp'] ?? null,
-            'pMa_Nt' => $params['pMa_Nt'] ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? null,
+            'pNgay_Ct2' => $paramObj->pNgay_Ct2 ?? null,
+            'pNgay_Ct01' => $paramObj->pNgay_Ct01 ?? null,
+            'pNgay_Ct02' => $paramObj->pNgay_Ct02 ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_bp' => $paramObj->pMa_bp ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
         ], $connection);
     }
 }

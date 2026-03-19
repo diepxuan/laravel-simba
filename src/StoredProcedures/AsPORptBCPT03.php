@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPORptBCPT03
 {
@@ -26,41 +27,42 @@ class AsPORptBCPT03
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPORptBCPT03', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_nhkh' => $params['pMa_nhkh'] ?? null,
-            'pMa_plkh1' => $params['pMa_plkh1'] ?? null,
-            'pMa_plkh2' => $params['pMa_plkh2'] ?? null,
-            'pMa_plkh3' => $params['pMa_plkh3'] ?? null,
-            'pMa_hd' => $params['pMa_hd'] ?? null,
-            'pMa_nhhd' => $params['pMa_nhhd'] ?? null,
-            'pMa_HTTT' => $params['pMa_HTTT'] ?? null,
-            'pMa_tt' => $params['pMa_tt'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pMa_lo' => $params['pMa_lo'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_vt' => $params['pMa_vt'] ?? null,
-            'pMa_nhvt' => $params['pMa_nhvt'] ?? null,
-            'pMa_plvt1' => $params['pMa_plvt1'] ?? null,
-            'pMa_plvt2' => $params['pMa_plvt2'] ?? null,
-            'pMa_plvt3' => $params['pMa_plvt3'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pTra_lai' => $params['pTra_lai'] ?? null,
-            'pMa_NT' => $params['pMa_NT'] ?? null,
-            'pGroup' => $params['pGroup'] ?? null,
-            'pDetail' => $params['pDetail'] ?? null,
-            'pSysMsg1' => $params['pSysMsg1'] ?? null,
-            'pMa_httt' => $params['pMa_httt'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pStrTL' => $params['pStrTL'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
+            'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
+            'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
+            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
+            'pMa_hd' => $paramObj->pMa_hd ?? null,
+            'pMa_nhhd' => $paramObj->pMa_nhhd ?? null,
+            'pMa_HTTT' => $paramObj->pMa_HTTT ?? null,
+            'pMa_tt' => $paramObj->pMa_tt ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pMa_lo' => $paramObj->pMa_lo ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_vt' => $paramObj->pMa_vt ?? null,
+            'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
+            'pMa_plvt1' => $paramObj->pMa_plvt1 ?? null,
+            'pMa_plvt2' => $paramObj->pMa_plvt2 ?? null,
+            'pMa_plvt3' => $paramObj->pMa_plvt3 ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pTra_lai' => $paramObj->pTra_lai ?? null,
+            'pMa_NT' => $paramObj->pMa_NT ?? null,
+            'pGroup' => $paramObj->pGroup ?? null,
+            'pDetail' => $paramObj->pDetail ?? null,
+            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
+            'pMa_httt' => $paramObj->pMa_httt ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pStrTL' => $paramObj->pStrTL ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -137,7 +139,7 @@ class AsPORptBCPT03
             'ParamDefines' => $ParamDefines,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

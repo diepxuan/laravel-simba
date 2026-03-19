@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPreChkUserLogin
 {
@@ -26,12 +27,13 @@ class AsPreChkUserLogin
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPreChkUserLogin', [
-            'pUserName' => $params['pUserName'] ?? null,
-            'pPassword' => $params['pPassword'] ?? null,
-            'pOk' => $params['pOk'] ?? null
+            'pUserName' => $paramObj->pUserName ?? null,
+            'pPassword' => $paramObj->pPassword ?? null,
+            'pOk' => $paramObj->pOk ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsPreChkUserLogin
             'pPassword' => $Password,
             'pOk' => $Ok
         ];
-        
+
         return self::call($params);
     }
 }

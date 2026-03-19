@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsSiGetAllGroupRights
 {
@@ -26,10 +27,11 @@ class AsSiGetAllGroupRights
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSiGetAllGroupRights', [
-            'pGroupName' => $params['pGroupName'] ?? null
+            'pGroupName' => $paramObj->pGroupName ?? null
         ], $connection);
     }
 
@@ -44,7 +46,7 @@ class AsSiGetAllGroupRights
         $params = [
             'pGroupName' => $GroupName
         ];
-        
+
         return self::call($params);
     }
 }

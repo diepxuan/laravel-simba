@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdQTDanhGiaCT
 {
@@ -26,17 +27,18 @@ class AsHrUpdQTDanhGiaCT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdQTDanhGiaCT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qtdg' => $params['pId_qtdg'] ?? null,
-            'pMa_tcdg' => $params['pMa_tcdg'] ?? null,
-            'pDiem_dg' => $params['pDiem_dg'] ?? null,
-            'pDiem_toi_da' => $params['pDiem_toi_da'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qtdg' => $paramObj->pId_qtdg ?? null,
+            'pMa_tcdg' => $paramObj->pMa_tcdg ?? null,
+            'pDiem_dg' => $paramObj->pDiem_dg ?? null,
+            'pDiem_toi_da' => $paramObj->pDiem_toi_da ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsHrUpdQTDanhGiaCT
             'pGhi_chu' => $Ghi_chu,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

@@ -15,31 +15,33 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLUpdMAUBctcTmVI211
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdMAUBctcTmVI211', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pMau' => $params['pMau'] ?? null,
-            'pMa_so' => $params['pMa_so'] ?? null,
-            'pChi_tieu' => $params['pChi_tieu'] ?? null,
-            'pNd_chtieu' => $params['pNd_chtieu'] ?? null,
-            'pCach_tinh' => $params['pCach_tinh'] ?? null,
-            'pTk_01' => $params['pTk_01'] ?? null,
-            'pgia_tri_dk' => $params['pgia_tri_dk'] ?? null,
-            'plai_suat_dk' => $params['plai_suat_dk'] ?? null,
-            'pky_han_dk' => $params['pky_han_dk'] ?? null,
-            'pgia_tri_ck' => $params['pgia_tri_ck'] ?? null,
-            'plai_suat_ck' => $params['plai_suat_ck'] ?? null,
-            'pky_han_ck' => $params['pky_han_ck'] ?? null,
-            'pIsprint' => $params['pIsprint'] ?? null,
-            'pIsitalic' => $params['pIsitalic'] ?? null,
-            'pBold' => $params['pBold'] ?? null,
-            'pModify' => $params['pModify'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMau' => $paramObj->pMau ?? null,
+            'pMa_so' => $paramObj->pMa_so ?? null,
+            'pChi_tieu' => $paramObj->pChi_tieu ?? null,
+            'pNd_chtieu' => $paramObj->pNd_chtieu ?? null,
+            'pCach_tinh' => $paramObj->pCach_tinh ?? null,
+            'pTk_01' => $paramObj->pTk_01 ?? null,
+            'pgia_tri_dk' => $paramObj->pgia_tri_dk ?? null,
+            'plai_suat_dk' => $paramObj->plai_suat_dk ?? null,
+            'pky_han_dk' => $paramObj->pky_han_dk ?? null,
+            'pgia_tri_ck' => $paramObj->pgia_tri_ck ?? null,
+            'plai_suat_ck' => $paramObj->plai_suat_ck ?? null,
+            'pky_han_ck' => $paramObj->pky_han_ck ?? null,
+            'pIsprint' => $paramObj->pIsprint ?? null,
+            'pIsitalic' => $paramObj->pIsitalic ?? null,
+            'pBold' => $paramObj->pBold ?? null,
+            'pModify' => $paramObj->pModify ?? null
         ], $connection);
     }
 }

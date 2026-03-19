@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class ZAsAddYear2NgayCt
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('zAsAddYear2NgayCt', [
-            'pMa_cty'   => $params['pMa_cty'] ?? '',
-            'increment' => $params['increment'] ?? 0,
+            'pMa_cty'   => $paramObj->pMa_cty ?? '',
+            'increment' => $paramObj->increment ?? 0,
         ], $connection);
     }
 }

@@ -15,7 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsUpdSysVar.
  *
@@ -70,14 +70,15 @@ class AsUpdSysVar
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asUpdSysVar', [
-            'pMa_cty'    => $params['pMa_cty'] ?? null,
-            'pPhan_he'   => $params['pPhan_he'] ?? null,
-            'pFieldName' => $params['pFieldName'] ?? null,
-            'pValue'     => $params['pValue'] ?? null,
-            'params'     => $params['params'] ?? null,
+            'pMa_cty'    => $paramObj->pMa_cty ?? null,
+            'pPhan_he'   => $paramObj->pPhan_he ?? null,
+            'pFieldName' => $paramObj->pFieldName ?? null,
+            'pValue'     => $paramObj->pValue ?? null,
+            'params'     => $paramObj->params ?? null,
         ], $connection);
     }
 }

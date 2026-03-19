@@ -15,24 +15,26 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrInsQTKhenThuong
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrInsQTKhenThuong', [
-            'pMa_cty' => $params['pMa_cty'] ?? '',
-            'pId' => $params['pId'] ?? '',
-            'pId_qtktkl' => $params['pId_qtktkl'] ?? '',
-            'pLoai_ktkl' => $params['pLoai_ktkl'] ?? '',
-            'pMa_ktkl' => $params['pMa_ktkl'] ?? '',
-            'pNoi_dung' => $params['pNoi_dung'] ?? '',
-            'pGhi_chu' => $params['pGhi_chu'] ?? '',
-            'pTai_lieu' => $params['pTai_lieu'] ?? '',
-            'pCuser' => $params['pCuser'] ?? '',
-            'pRet' => $params['pRet'] ?? ''
+            'pMa_cty' => $paramObj->pMa_cty ?? '',
+            'pId' => $paramObj->pId ?? '',
+            'pId_qtktkl' => $paramObj->pId_qtktkl ?? '',
+            'pLoai_ktkl' => $paramObj->pLoai_ktkl ?? '',
+            'pMa_ktkl' => $paramObj->pMa_ktkl ?? '',
+            'pNoi_dung' => $paramObj->pNoi_dung ?? '',
+            'pGhi_chu' => $paramObj->pGhi_chu ?? '',
+            'pTai_lieu' => $paramObj->pTai_lieu ?? '',
+            'pCuser' => $paramObj->pCuser ?? '',
+            'pRet' => $paramObj->pRet ?? ''
         ], $connection);
     }
 }

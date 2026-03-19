@@ -15,35 +15,37 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGLUpdMauBs
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLUpdMauBs', [
-            'pma_cty'  => $params['pma_cty'] ?? null,
-            'pQd_cdkt'  => $params['pQd_cdkt'] ?? null,
-            'pmau'  => $params['pmau'] ?? null,
-            'pma_so'  => $params['pma_so'] ?? null,
-            'pchi_tieu'  => $params['pchi_tieu'] ?? null,
-            'pcach_tinh'  => $params['pcach_tinh'] ?? null,
-            'ptk'  => $params['ptk'] ?? null,
-            'ptien0'  => $params['ptien0'] ?? null,
-            'ptien'  => $params['ptien'] ?? null,
-            'ptien_nt0'  => $params['ptien_nt0'] ?? null,
-            'ptien_nt'  => $params['ptien_nt'] ?? null,
-            'pstt'  => $params['pstt'] ?? null,
-            'pbold'  => $params['pbold'] ?? null,
-            'pin_ck'  => $params['pin_ck'] ?? null,
-            'pts_nv'  => $params['pts_nv'] ?? null,
-            'pcong_no'  => $params['pcong_no'] ?? null,
-            'pngoai_bang'  => $params['pngoai_bang'] ?? null,
-            'psodu_duong'  => $params['psodu_duong'] ?? null,
-            'pxtag'  => $params['pxtag'] ?? null,
-            'pxstt'  => $params['pxstt'] ?? null,
-            'ptm'  => $params['ptm'] ?? null,
+            'pma_cty'  => $paramObj->pma_cty ?? null,
+            'pQd_cdkt'  => $paramObj->pQd_cdkt ?? null,
+            'pmau'  => $paramObj->pmau ?? null,
+            'pma_so'  => $paramObj->pma_so ?? null,
+            'pchi_tieu'  => $paramObj->pchi_tieu ?? null,
+            'pcach_tinh'  => $paramObj->pcach_tinh ?? null,
+            'ptk'  => $paramObj->ptk ?? null,
+            'ptien0'  => $paramObj->ptien0 ?? null,
+            'ptien'  => $paramObj->ptien ?? null,
+            'ptien_nt0'  => $paramObj->ptien_nt0 ?? null,
+            'ptien_nt'  => $paramObj->ptien_nt ?? null,
+            'pstt'  => $paramObj->pstt ?? null,
+            'pbold'  => $paramObj->pbold ?? null,
+            'pin_ck'  => $paramObj->pin_ck ?? null,
+            'pts_nv'  => $paramObj->pts_nv ?? null,
+            'pcong_no'  => $paramObj->pcong_no ?? null,
+            'pngoai_bang'  => $paramObj->pngoai_bang ?? null,
+            'psodu_duong'  => $paramObj->psodu_duong ?? null,
+            'pxtag'  => $paramObj->pxtag ?? null,
+            'pxstt'  => $paramObj->pxstt ?? null,
+            'ptm'  => $paramObj->ptm ?? null,
         ], $connection);
     }
 }

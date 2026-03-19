@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPostGetAR
 {
@@ -26,17 +27,18 @@ class AsPostGetAR
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPostGetAR', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pSo_ct1' => $params['pSo_ct1'] ?? null,
-            'pSo_ct2' => $params['pSo_ct2'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pPost2gl' => $params['pPost2gl'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pSo_ct1' => $paramObj->pSo_ct1 ?? null,
+            'pSo_ct2' => $paramObj->pSo_ct2 ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pPost2gl' => $paramObj->pPost2gl ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsPostGetAR
             'pMa_ct' => $Ma_ct,
             'pPost2gl' => $Post2gl
         ];
-        
+
         return self::call($params);
     }
 }

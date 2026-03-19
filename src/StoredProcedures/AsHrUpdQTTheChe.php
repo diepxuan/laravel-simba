@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsHrUpdQTTheChe
 {
@@ -26,22 +27,23 @@ class AsHrUpdQTTheChe
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asHrUpdQTTheChe', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pId' => $params['pId'] ?? null,
-            'pId_qttc' => $params['pId_qttc'] ?? null,
-            'pMa_the_che' => $params['pMa_the_che'] ?? null,
-            'pNgay_vao' => $params['pNgay_vao'] ?? null,
-            'pNgay_chinh_thuc' => $params['pNgay_chinh_thuc'] ?? null,
-            'pNgay_ra' => $params['pNgay_ra'] ?? null,
-            'pNoi_ket_nap' => $params['pNoi_ket_nap'] ?? null,
-            'pChuc_vu' => $params['pChuc_vu'] ?? null,
-            'pGhi_chu' => $params['pGhi_chu'] ?? null,
-            'pTai_lieu' => $params['pTai_lieu'] ?? null,
-            'pLuser' => $params['pLuser'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pId' => $paramObj->pId ?? null,
+            'pId_qttc' => $paramObj->pId_qttc ?? null,
+            'pMa_the_che' => $paramObj->pMa_the_che ?? null,
+            'pNgay_vao' => $paramObj->pNgay_vao ?? null,
+            'pNgay_chinh_thuc' => $paramObj->pNgay_chinh_thuc ?? null,
+            'pNgay_ra' => $paramObj->pNgay_ra ?? null,
+            'pNoi_ket_nap' => $paramObj->pNoi_ket_nap ?? null,
+            'pChuc_vu' => $paramObj->pChuc_vu ?? null,
+            'pGhi_chu' => $paramObj->pGhi_chu ?? null,
+            'pTai_lieu' => $paramObj->pTai_lieu ?? null,
+            'pLuser' => $paramObj->pLuser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -80,7 +82,7 @@ class AsHrUpdQTTheChe
             'pLuser' => $Luser,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

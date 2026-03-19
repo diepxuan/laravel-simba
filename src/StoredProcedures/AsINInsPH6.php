@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsINInsPH6
- * 
+ *
  * Stored procedure: asINInsPH6
  * Purpose: ================================================
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Tham số đầu vào.
  * - @pStt_rec (nvarchar(20)): Tham số đầu vào.
@@ -48,11 +48,11 @@ use Illuminate\Support\Collection;
  * - @pPost2in (bit): Tham số đầu vào.
  * - @pLUser (nvarchar(20)): Tham số đầu vào.
  * - @pRet (int OUTPUT): Tham số output (không được xử lý bởi ProcedureCaller hiện tại).
- * 
+ *
  * Giá trị mặc định: Không có.
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện insert).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -88,33 +88,34 @@ class AsINInsPH6
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asINInsPH6', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pMa_gd' => $params['pMa_gd'] ?? null,
-            'pNgay_ct' => $params['pNgay_ct'] ?? null,
-            'pNgay_lct' => $params['pNgay_lct'] ?? null,
-            'pSo_ct' => $params['pSo_ct'] ?? null,
-            'pNgay_ctn' => $params['pNgay_ctn'] ?? null,
-            'pSo_ctn' => $params['pSo_ctn'] ?? null,
-            'pMa_kh' => $params['pMa_kh'] ?? null,
-            'pNguoi_gd' => $params['pNguoi_gd'] ?? null,
-            'pDien_giai' => $params['pDien_giai'] ?? null,
-            'pPN_GTB' => $params['pPN_GTB'] ?? null,
-            'pPX_GDD' => $params['pPX_GDD'] ?? null,
-            'pTk_vt_lrtd' => $params['pTk_vt_lrtd'] ?? null,
-            'pTk_lrtd' => $params['pTk_lrtd'] ?? null,
-            'pT_so_luong' => $params['pT_so_luong'] ?? null,
-            'pMa_nt' => $params['pMa_nt'] ?? null,
-            'pTy_gia' => $params['pTy_gia'] ?? null,
-            'pT_tien_nt' => $params['pT_tien_nt'] ?? null,
-            'pT_tien' => $params['pT_tien'] ?? null,
-            'pPost2gl' => $params['pPost2gl'] ?? null,
-            'pPost2in' => $params['pPost2in'] ?? null,
-            'pLUser' => $params['pLUser'] ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pMa_gd' => $paramObj->pMa_gd ?? null,
+            'pNgay_ct' => $paramObj->pNgay_ct ?? null,
+            'pNgay_lct' => $paramObj->pNgay_lct ?? null,
+            'pSo_ct' => $paramObj->pSo_ct ?? null,
+            'pNgay_ctn' => $paramObj->pNgay_ctn ?? null,
+            'pSo_ctn' => $paramObj->pSo_ctn ?? null,
+            'pMa_kh' => $paramObj->pMa_kh ?? null,
+            'pNguoi_gd' => $paramObj->pNguoi_gd ?? null,
+            'pDien_giai' => $paramObj->pDien_giai ?? null,
+            'pPN_GTB' => $paramObj->pPN_GTB ?? null,
+            'pPX_GDD' => $paramObj->pPX_GDD ?? null,
+            'pTk_vt_lrtd' => $paramObj->pTk_vt_lrtd ?? null,
+            'pTk_lrtd' => $paramObj->pTk_lrtd ?? null,
+            'pT_so_luong' => $paramObj->pT_so_luong ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pTy_gia' => $paramObj->pTy_gia ?? null,
+            'pT_tien_nt' => $paramObj->pT_tien_nt ?? null,
+            'pT_tien' => $paramObj->pT_tien ?? null,
+            'pPost2gl' => $paramObj->pPost2gl ?? null,
+            'pPost2in' => $paramObj->pPost2in ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
         ], $connection);
     }
 }

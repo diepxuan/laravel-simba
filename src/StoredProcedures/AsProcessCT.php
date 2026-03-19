@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsProcessCT
 {
@@ -26,17 +27,18 @@ class AsProcessCT
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asProcessCT', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMa_ct' => $params['pMa_ct'] ?? null,
-            'pMode' => $params['pMode'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'prefix' => $params['prefix'] ?? null,
-            'pma_cty' => $params['pma_cty'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pMode' => $paramObj->pMode ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'prefix' => $paramObj->prefix ?? null,
+            'pma_cty' => $paramObj->pma_cty ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -65,7 +67,7 @@ class AsProcessCT
             'pma_cty' => $ma_cty,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

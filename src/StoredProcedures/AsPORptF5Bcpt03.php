@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsPORptF5Bcpt03
 {
@@ -26,23 +27,24 @@ class AsPORptF5Bcpt03
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asPORptF5Bcpt03', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay1' => $params['pNgay1'] ?? null,
-            'pNgay2' => $params['pNgay2'] ?? null,
-            'pMa_kho' => $params['pMa_kho'] ?? null,
-            'pMa_vitri' => $params['pMa_vitri'] ?? null,
-            'pMa_phi' => $params['pMa_phi'] ?? null,
-            'pMa_spct' => $params['pMa_spct'] ?? null,
-            'pMa_Group' => $params['pMa_Group'] ?? null,
-            'pMa_Detail' => $params['pMa_Detail'] ?? null,
-            'pGroup' => $params['pGroup'] ?? null,
-            'pDetail' => $params['pDetail'] ?? null,
-            'pTra_lai' => $params['pTra_lai'] ?? null,
-            'ParamDefines' => $params['ParamDefines'] ?? null,
-            'pMa_Cty' => $params['pMa_Cty'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_kho' => $paramObj->pMa_kho ?? null,
+            'pMa_vitri' => $paramObj->pMa_vitri ?? null,
+            'pMa_phi' => $paramObj->pMa_phi ?? null,
+            'pMa_spct' => $paramObj->pMa_spct ?? null,
+            'pMa_Group' => $paramObj->pMa_Group ?? null,
+            'pMa_Detail' => $paramObj->pMa_Detail ?? null,
+            'pGroup' => $paramObj->pGroup ?? null,
+            'pDetail' => $paramObj->pDetail ?? null,
+            'pTra_lai' => $paramObj->pTra_lai ?? null,
+            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null
         ], $connection);
     }
 
@@ -83,7 +85,7 @@ class AsPORptF5Bcpt03
             'ParamDefines' => $ParamDefines,
             'pMa_Cty' => $Ma_Cty
         ];
-        
+
         return self::call($params);
     }
 }

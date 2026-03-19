@@ -15,16 +15,18 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsGetDashParameter
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGetDashParameter', [
-            'pDashID' => $params['pDashID'] ?? null,
-            'pUsername' => $params['pUsername'] ?? null
+            'pDashID' => $paramObj->pDashID ?? null,
+            'pUsername' => $paramObj->pUsername ?? null
         ], $connection);
     }
 }

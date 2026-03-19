@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AssiUpd_ks
 {
@@ -26,12 +27,13 @@ class AssiUpd_ks
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('assiUpd_ks', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pNgay_ks' => $params['pNgay_ks'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AssiUpd_ks
             'pNgay_ks' => $Ngay_ks,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

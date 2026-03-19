@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsInsreportDrilldownInfo
 {
@@ -26,21 +27,22 @@ class AsInsreportDrilldownInfo
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsreportDrilldownInfo', [
-            'pMenuid' => $params['pMenuid'] ?? null,
-            'pMa_mau' => $params['pMa_mau'] ?? null,
-            'pPress_key_name' => $params['pPress_key_name'] ?? null,
-            'pDrilldown_menuid' => $params['pDrilldown_menuid'] ?? null,
-            'pDrilldown_menuid1' => $params['pDrilldown_menuid1'] ?? null,
-            'pDrilldown_menuid2' => $params['pDrilldown_menuid2'] ?? null,
-            'pDrilldown_menuid3' => $params['pDrilldown_menuid3'] ?? null,
-            'pDrilldown_menuid4' => $params['pDrilldown_menuid4'] ?? null,
-            'pDllname' => $params['pDllname'] ?? null,
-            'pCommand' => $params['pCommand'] ?? null,
-            'pDescription' => $params['pDescription'] ?? null,
-            'pRet' => $params['pRet'] ?? null
+            'pMenuid' => $paramObj->pMenuid ?? null,
+            'pMa_mau' => $paramObj->pMa_mau ?? null,
+            'pPress_key_name' => $paramObj->pPress_key_name ?? null,
+            'pDrilldown_menuid' => $paramObj->pDrilldown_menuid ?? null,
+            'pDrilldown_menuid1' => $paramObj->pDrilldown_menuid1 ?? null,
+            'pDrilldown_menuid2' => $paramObj->pDrilldown_menuid2 ?? null,
+            'pDrilldown_menuid3' => $paramObj->pDrilldown_menuid3 ?? null,
+            'pDrilldown_menuid4' => $paramObj->pDrilldown_menuid4 ?? null,
+            'pDllname' => $paramObj->pDllname ?? null,
+            'pCommand' => $paramObj->pCommand ?? null,
+            'pDescription' => $paramObj->pDescription ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 
@@ -77,7 +79,7 @@ class AsInsreportDrilldownInfo
             'pDescription' => $Description,
             'pRet' => $Ret
         ];
-        
+
         return self::call($params);
     }
 }

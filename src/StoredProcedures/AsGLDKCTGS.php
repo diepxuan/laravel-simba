@@ -15,13 +15,13 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-
+use Diepxuan\Simba\Helper\ParamHelper;
 /**
  * Class AsGLDKCTGS
- * 
+ *
  * Stored procedure: asGLDKCTGS
  * Purpose: Đăng ký chứng từ ghi sổ.
- * 
+ *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Mã công ty. Bắt buộc.
  * - @pThang (int): Tháng đăng ký. Bắt buộc.
@@ -32,15 +32,15 @@ use Illuminate\Support\Collection;
  * - @pSo_hieu (nvarchar(3)): Số hiệu. Bắt buộc.
  * - @pNgay (int): Số ngày tập hợp (ví dụ: 30 = theo tháng). Bắt buộc.
  * - @pRet (int output): Tham số output trả về mã lỗi (0 nếu thành công, @@error nếu có lỗi).
- * 
+ *
  * Giá trị mặc định:
  * - pMa_cty: mã công ty mặc định (SModel::CTY).
  * - pThang: tháng hiện tại.
  * - pNam: năm hiện tại.
  * - pNgay: 30 (tập hợp theo tháng).
- * 
+ *
  * Kết quả trả về: Không có result set (chỉ thực hiện đăng ký).
- * 
+ *
  * Example call:
  * ```php
  * $params = [
@@ -60,17 +60,18 @@ class AsGLDKCTGS
 {
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLDKCTGS', [
-            'pMa_cty'    => $params['pMa_cty'] ?? SModel::CTY,
-            'pThang'     => $params['pThang'] ?? (int) date('m'),
-            'pNam'       => $params['pNam'] ?? (int) date('Y'),
-            'pMa_ct'     => $params['pMa_ct'] ?? null,
-            'pTk'        => $params['pTk'] ?? null,
-            'pTen_ctgs'  => $params['pTen_ctgs'] ?? null,
-            'pSo_hieu'   => $params['pSo_hieu'] ?? null,
-            'pNgay'      => $params['pNgay'] ?? 30,
+            'pMa_cty'    => $paramObj->pMa_cty ?? SModel::CTY,
+            'pThang'     => $paramObj->pThang ?? (int) date('m'),
+            'pNam'       => $paramObj->pNam ?? (int) date('Y'),
+            'pMa_ct'     => $paramObj->pMa_ct ?? null,
+            'pTk'        => $paramObj->pTk ?? null,
+            'pTen_ctgs'  => $paramObj->pTen_ctgs ?? null,
+            'pSo_hieu'   => $paramObj->pSo_hieu ?? null,
+            'pNgay'      => $paramObj->pNgay ?? 30,
             // pRet là output parameter, không truyền vào.
         ], $connection);
     }

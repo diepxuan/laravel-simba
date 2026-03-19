@@ -15,6 +15,7 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Diepxuan\Simba\Helper\ParamHelper;
 
 class AsProcessCaPh3
 {
@@ -26,12 +27,13 @@ class AsProcessCaPh3
      */
     public static function call(array $params): Collection
     {
+        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asProcessCaPh3', [
-            'pMa_cty' => $params['pMa_cty'] ?? null,
-            'pStt_rec' => $params['pStt_rec'] ?? null,
-            'pMode' => $params['pMode'] ?? null
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMode' => $paramObj->pMode ?? null
         ], $connection);
     }
 
@@ -50,7 +52,7 @@ class AsProcessCaPh3
             'pStt_rec' => $Stt_rec,
             'pMode' => $Mode
         ];
-        
+
         return self::call($params);
     }
 }
