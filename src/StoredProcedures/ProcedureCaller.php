@@ -8,14 +8,14 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-27 22:02:42
+ * @lastupdate 2026-03-26 15:57:16
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Diepxuan\Simba\Helper\ParamHelper;
+
 /**
  * Class ProcedureCaller.
  *
@@ -34,17 +34,19 @@ class ProcedureCaller
      */
     public static function call(string $name, array $params = [], ?string $connection = null)
     {
-        $declareSql = [];
-        $execParts  = [];
-        $bindings   = [];
-        $selectOut  = [];
-        $hasOutput  = false;
+        $declareSql  = [];
+        $execParts   = [];
+        $bindings    = [];
+        $selectOut   = [];
+        $hasOutput   = false;
+        $outputTypes = [];
 
         foreach ($params as $key => $value) {
             // Nếu là OUTPUT param
             if (\is_array($value) && ($value['output'] ?? false)) {
-                $type = $value['type'] ?? 'INT';
-                $hasOutput = true;
+                $type              = $value['type'] ?? 'INT';
+                $hasOutput         = true;
+                $outputTypes[$key] = strtoupper($type);
 
                 $declareSql[] = "DECLARE @{$key} {$type}";
                 $execParts[]  = "@{$key} = @{$key} OUTPUT";
@@ -66,11 +68,26 @@ class ProcedureCaller
         if (!empty($selectOut)) {
             $sql .= ";\nSELECT " . implode(', ', $selectOut);
         }
-        
+
         $conn = $connection ? DB::connection($connection) : DB::connection();
 
         // Dùng select() để execute toàn bộ batch và fetch kết quả
         $rows = $conn->select($sql, $bindings);
+
+        // Tự động ép kiểu các giá trị output trả về dựa trên type đã khai báo
+        if ($hasOutput && !empty($rows)) {
+            foreach ($rows as $row) {
+                foreach ($outputTypes as $col => $type) {
+                    if (property_exists($row, $col)) {
+                        if (str_contains($type, 'INT')) {
+                            $row->{$col} = (int) $row->{$col};
+                        } elseif (str_contains($type, 'DECIMAL') || str_contains($type, 'FLOAT') || str_contains($type, 'NUMERIC')) {
+                            $row->{$col} = (float) $row->{$col};
+                        }
+                    }
+                }
+            }
+        }
 
         \Debugbar::info('ProcedureCaller result:', $rows);
 
