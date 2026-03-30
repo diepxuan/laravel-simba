@@ -2,6 +2,11 @@
 
 Tích hợp Laravel với Simba (phần mềm kế toán).
 
+## 📚 Documentation
+
+- **Project Docs:** [Model Architecture](../../docs/project/model-architecture.md) - 3-layer Model pattern (SModel → Simba\Models → Catalog\Models)
+- **Project Docs:** [Package Namespace Conventions](../../docs/project/package-namespace-conventions.md)
+
 ## Mô tả ngắn gọn
 
 Laravel Integration With Simba. Package cung cấp các model và stored procedure caller để tương tác với cơ sở dữ liệu Simba (ERP/kế toán), hỗ trợ composite primary key và xử lý charset.
@@ -9,6 +14,18 @@ Laravel Integration With Simba. Package cung cấp các model và stored procedu
 > ⚠️ **NGUYÊN TẮC BẤT BIẾN:** Package chỉ hỗ trợ **READ** trực tiếp qua Models. Mọi thao tác **INSERT/UPDATE/DELETE** phải thực hiện thông qua **Stored Procedures**. Không thao tác trực tiếp trên bảng.
 
 Xem chi tiết: [Database Access Policy](./docs/DATABASE_ACCESS_POLICY.md)
+
+## Kiến trúc Model 3 lớp
+
+Package sử dụng kiến trúc Model 3 lớp để phân chia trách nhiệm rõ ràng:
+
+```
+Diepxuan\Catalog\Models\<Model>
+    extends Diepxuan\Simba\Models\<Model>
+        extends Diepxuan\Simba\SModel\<Model>Model
+```
+
+**Xem chi tiết:** [Model Architecture](./docs/MODEL-ARCHITECTURE.md)
 
 ## Chức năng chính
 
@@ -111,6 +128,15 @@ laravel-simba/
 - diepxuan/php-charset (xử lý charset)
 - diepxuan/laravel-core (core chung)
 - diepxuan/laravel-eloquent-composite (hỗ trợ composite primary key)
+- diepxuan/laravel-catalog (package sử dụng chính)
+
+## Tài liệu
+
+- [Model Architecture](docs/MODEL-ARCHITECTURE.md) - Kiến trúc Model 3 lớp
+- [Configuration](docs/CONFIGURATION.md) - Cấu hình package
+- [Database Access Policy](docs/DATABASE_ACCESS_POLICY.md) - Chính sách truy cập database
+- [Stored Procedures](docs/README.md) - Danh sách stored procedures
+- [Troubleshooting](docs/TROUBLESHOOTING.md) - Xử lý sự cố
 
 ## Ghi chú
 
