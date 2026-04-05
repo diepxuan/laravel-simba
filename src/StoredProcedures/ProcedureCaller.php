@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-03-26 15:57:16
+ * @lastupdate 2026-04-05 22:42:17
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -67,6 +67,10 @@ class ProcedureCaller
         // Thêm SELECT để fetch output values (phải cùng batch với DECLARE)
         if (!empty($selectOut)) {
             $sql .= ";\nSELECT " . implode(', ', $selectOut);
+        } else {
+            // Thêm dummy SELECT để tránh lỗi "The active result for the query contains no fields"
+            // khi stored procedure không trả về result set
+            $sql .= ";\nSELECT 1 AS [dummy]";
         }
 
         $conn = $connection ? DB::connection($connection) : DB::connection();
