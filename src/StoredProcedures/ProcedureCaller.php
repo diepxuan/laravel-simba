@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-06 23:10:14
+ * @lastupdate 2026-04-06 23:16:34
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -62,9 +62,14 @@ class ProcedureCaller
                 // FIX UTF-8: Cast string parameters thành NVARCHAR để hỗ trợ tiếng Việt
                 // Nguyên nhân: PDO SQLSRV không tự động thêm N'...' prefix cho parameter binding
                 // Khi không có N'...', SQL Server treat parameter như VARCHAR → mất dấu tiếng Việt
-                if (\is_string($value)) {
+                //
+                // LƯU Ý: Chỉ CAST khi value là string thuần (không phải date, numeric, null)
+                // Date/datetime/numeric đã được PDO xử lý đúng kiểu
+                if (\is_string($value) && !empty($value) && !self::isDateOrDatetime($value)) {
+                    // String thuần → CAST thành NVARCHAR để giữ dấu tiếng Việt
                     $execParts[] = "@{$key} = CAST(:{$key} AS NVARCHAR(500))";
                 } else {
+                    // Null, int, float, bool, date, datetime, empty string → không CAST
                     $execParts[] = "@{$key} = :{$key}";
                 }
                 $bindings[$key] = $value;
@@ -110,5 +115,29 @@ class ProcedureCaller
         \Debugbar::info('ProcedureCaller result:', $rows);
 
         return collect($rows);
+    }
+
+    /**
+     * Kiểm tra xem value có phải là date/datetime format không.
+     */
+    private static function isDateOrDatetime(string $value): bool
+    {
+        // Check các format date/datetime phổ biến
+        // YYYY-MM-DD, YYYY-MM-DD HH:MM:SS, DD/MM/YYYY, v.v.
+        $datePatterns = [
+            '/^\d{4}-\d{2}-\d{2}$/',                    // 2026-04-06
+            '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/',  // 2026-04-06 12:30:45
+            '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/',  // 2026-04-06T12:30:45 (ISO 8601)
+            '/^\d{2}\/\d{2}\/\d{4}$/',                  // 06/04/2026
+            '/^\d{2}-\d{2}-\d{4}$/',                    // 06-04-2026
+        ];
+
+        foreach ($datePatterns as $pattern) {
+            if (preg_match($pattern, $value)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
