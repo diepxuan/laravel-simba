@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-06 08:36:15
+ * @lastupdate 2026-04-06 08:36:56
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
