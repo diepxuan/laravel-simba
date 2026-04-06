@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-06 23:16:34
+ * @lastupdate 2026-04-06 23:23:01
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\DB;
  *
  * Cung cấp phương thức tĩnh để gọi stored procedures của Simba SQL Server.
  * Sử dụng Laravel DB facade để thực thi câu lệnh SQL.
+ *
+ * @note FIX UTF-8: Tự động CAST string parameters thành NVARCHAR để hỗ trợ tiếng Việt có dấu
+ *       Vấn đề: PDO SQLSRV không tự động thêm N'...' prefix cho parameter binding
+ *       Giải pháp: Dùng positional parameters (?) với CAST thay vì named parameters (:)
+ *       Tham khảo: docs/SQLSRV-UTF8-ROOT-CAUSE.md
  */
 class ProcedureCaller
 {
@@ -31,11 +36,6 @@ class ProcedureCaller
      * @param null|string $connection Optional connection name
      *
      * @return mixed kết quả trả về từ procedure (tùy thuộc vào procedure)
-     *
-     * @note TỰ ĐỘNG CAST string parameters thành NVARCHAR để hỗ trợ tiếng Việt có dấu
-     *       Vấn đề: PDO SQLSRV không tự động thêm N'...' prefix cho parameter binding
-     *       Giải pháp: CAST(? AS NVARCHAR(500)) để đảm bảo encoding đúng
-     *       Tham khảo: docs/SQLSRV-UTF8-ROOT-CAUSE.md
      */
     public static function call(string $name, array $params = [], ?string $connection = null)
     {
@@ -59,22 +59,19 @@ class ProcedureCaller
                 $execParts[]  = "@{$key} = @{$key} OUTPUT";
                 $selectOut[]  = "@{$key} as {$key}";
             } else {
-                // FIX UTF-8: Cast string parameters thành NVARCHAR để hỗ trợ tiếng Việt
-                // Nguyên nhân: PDO SQLSRV không tự động thêm N'...' prefix cho parameter binding
-                // Khi không có N'...', SQL Server treat parameter như VARCHAR → mất dấu tiếng Việt
-                //
-                // LƯU Ý: Chỉ CAST khi value là string thuần (không phải date, numeric, null)
-                // Date/datetime/numeric đã được PDO xử lý đúng kiểu
+                // FIX UTF-8: Dùng positional parameter (?) với CAST cho string thuần
+                // Lý do: PDO không hỗ trợ CAST(:named_param AS TYPE), phải dùng CAST(? AS TYPE)
                 if (\is_string($value) && !empty($value) && !self::isDateOrDatetime($value)) {
                     // String thuần → CAST thành NVARCHAR để giữ dấu tiếng Việt
-                    $execParts[] = "@{$key} = CAST(:{$key} AS NVARCHAR(500))";
+                    $execParts[] = "@{$key} = CAST(? AS NVARCHAR(500))";
                 } else {
-                    // Null, int, float, bool, date, datetime, empty string → không CAST
-                    $execParts[] = "@{$key} = :{$key}";
+                    // Date, datetime, int, float, null, empty string → không CAST
+                    $execParts[] = "@{$key} = ?";
                 }
-                $bindings[$key] = $value;
+                $bindings[] = $value;
             }
         }
+
         $sql = '';
         // Thêm SET NOCOUNT ON để tránh multiple result sets từ procedure
         $sql .= "SET NOCOUNT ON;\n";
