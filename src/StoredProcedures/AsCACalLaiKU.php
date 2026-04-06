@@ -8,14 +8,15 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-02-25 15:28:16
+ * @lastupdate 2026-04-06 08:36:15
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-use Diepxuan\Simba\Helper\ParamHelper;
+
 /**
  * Class AsCACalLaiKU.
  *
@@ -75,11 +76,11 @@ class AsCACalLaiKU
      *
      * @param array $params mảng tham số với các khóa tương ứng tên tham số (có thể có tiền tố '@' hoặc không)
      *
-     * @return mixed kết quả trả về từ procedure (có thể chứa output parameter)
+     * @return Collection kết quả từ procedure (chứa output parameter pRet)
      */
     public static function call(array $params): Collection
     {
-        $paramObj = ParamHelper::fromArray($params);
+        $paramObj   = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCACalLaiKU', [
@@ -89,6 +90,37 @@ class AsCACalLaiKU
             'pMa_ct'  => $paramObj->pMa_ct ?? null,
             'pMa_ku'  => $paramObj->pMa_ku ?? null,
             'pUser'   => $paramObj->pUser ?? null,
+            'pRet'    => ['type' => 'INT', 'output' => true],
         ], $connection);
+    }
+
+    /**
+     * Call stored procedure asCACalLaiKU with named parameters (helper method).
+     *
+     * @param null|string $Ma_cty Mã công ty
+     * @param null|int    $Thang  Tháng tính lãi
+     * @param null|int    $Nam    Năm tính lãi
+     * @param null|string $Ma_ct  Mã chứng từ
+     * @param null|string $Ma_ku  Mã khế ước
+     * @param null|string $User   Người dùng
+     *
+     * @return Collection Kết quả từ procedure
+     */
+    public static function callWithParams(
+        ?string $Ma_cty = null,
+        ?int $Thang = null,
+        ?int $Nam = null,
+        ?string $Ma_ct = null,
+        ?string $Ma_ku = null,
+        ?string $User = null,
+    ): Collection {
+        return self::call([
+            'pMa_cty' => $Ma_cty,
+            'pThang'  => $Thang,
+            'pNam'    => $Nam,
+            'pMa_ct'  => $Ma_ct,
+            'pMa_ku'  => $Ma_ku,
+            'pUser'   => $User,
+        ]);
     }
 }
