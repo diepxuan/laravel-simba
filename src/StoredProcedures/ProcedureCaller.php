@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-05 22:42:17
+ * @lastupdate 2026-04-06 23:10:14
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -31,6 +31,11 @@ class ProcedureCaller
      * @param null|string $connection Optional connection name
      *
      * @return mixed kết quả trả về từ procedure (tùy thuộc vào procedure)
+     *
+     * @note TỰ ĐỘNG CAST string parameters thành NVARCHAR để hỗ trợ tiếng Việt có dấu
+     *       Vấn đề: PDO SQLSRV không tự động thêm N'...' prefix cho parameter binding
+     *       Giải pháp: CAST(? AS NVARCHAR(500)) để đảm bảo encoding đúng
+     *       Tham khảo: docs/SQLSRV-UTF8-ROOT-CAUSE.md
      */
     public static function call(string $name, array $params = [], ?string $connection = null)
     {
@@ -40,6 +45,8 @@ class ProcedureCaller
         $selectOut   = [];
         $hasOutput   = false;
         $outputTypes = [];
+
+        \Debugbar::info("ProcedureCaller {$name} params: ", $params);
 
         foreach ($params as $key => $value) {
             // Nếu là OUTPUT param
@@ -52,7 +59,14 @@ class ProcedureCaller
                 $execParts[]  = "@{$key} = @{$key} OUTPUT";
                 $selectOut[]  = "@{$key} as {$key}";
             } else {
-                $execParts[]    = "@{$key} = :{$key}";
+                // FIX UTF-8: Cast string parameters thành NVARCHAR để hỗ trợ tiếng Việt
+                // Nguyên nhân: PDO SQLSRV không tự động thêm N'...' prefix cho parameter binding
+                // Khi không có N'...', SQL Server treat parameter như VARCHAR → mất dấu tiếng Việt
+                if (\is_string($value)) {
+                    $execParts[] = "@{$key} = CAST(:{$key} AS NVARCHAR(500))";
+                } else {
+                    $execParts[] = "@{$key} = :{$key}";
+                }
                 $bindings[$key] = $value;
             }
         }
