@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-07 13:04:50
+ * @lastupdate 2026-04-07 13:49:23
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -36,12 +36,15 @@ class ProcedureCaller
      * @param null|string $connection Optional connection name
      *
      * @return mixed kết quả trả về từ procedure (tùy thuộc vào procedure)
+     *
+     * @note UTF-8 Support: Build trực tiếp Unicode literals (N'...') vào SQL
+     *       Tránh lỗi partial match khi replace placeholders
+     *       Tham khảo: docs/SQLSRV-UTF8-ROOT-CAUSE.md
      */
     public static function call(string $name, array $params = [], ?string $connection = null)
     {
         $declareSql  = [];
         $execParts   = [];
-        $bindings    = [];
         $selectOut   = [];
         $hasOutput   = false;
         $outputTypes = [];
@@ -59,8 +62,9 @@ class ProcedureCaller
                 $execParts[]  = "@{$key} = @{$key} OUTPUT";
                 $selectOut[]  = "@{$key} as {$key}";
             } else {
-                $execParts[]    = "@{$key} = :{$key}";
-                $bindings[$key] = $value;
+                // INPUT param - Build trực tiếp Unicode literal vào SQL (không dùng placeholder)
+                $literal     = self::toUnicodeLiteral($value);
+                $execParts[] = "@{$key} = {$literal}";
             }
         }
 
@@ -83,14 +87,8 @@ class ProcedureCaller
 
         $conn = $connection ? DB::connection($connection) : DB::connection();
 
-        // Dùng select() để execute toàn bộ batch và fetch kết quả
-        if (empty($bindings)) {
-            $rows = $conn->select($sql);
-        } else {
-            // Replace :placeholder với Unicode literal (fix UTF-8 cho SQL Server)
-            $processedQuery = self::replacePlaceholders($sql, $bindings);
-            $rows           = $conn->select($processedQuery);
-        }
+        // Execute trực tiếp (không cần bindings vì đã build Unicode literal vào SQL)
+        $rows = $conn->select($sql);
 
         // Tự động ép kiểu các giá trị output trả về dựa trên type đã khai báo
         if ($hasOutput && !empty($rows)) {
@@ -122,7 +120,11 @@ class ProcedureCaller
 
     /**
      * Chuyển giá trị sang dạng Unicode literal (N'...')
-     * Dùng cho parameter binding bị lỗi UTF-8.
+     * Build trực tiếp vào SQL, không qua parameter binding.
+     *
+     * @param mixed $value Giá trị cần convert
+     *
+     * @return string Unicode literal (N'...' cho strings, NULL cho null, v.v.)
      */
     public static function toUnicodeLiteral(mixed $value): string
     {
@@ -143,23 +145,5 @@ class ProcedureCaller
         }
 
         return "N'" . self::escape((string) $value) . "'";
-    }
-
-    /**
-     * Replace :placeholder với Unicode literals (N'...')
-     * Fix UTF-8 cho SQL Server parameter binding trên Linux.
-     *
-     * @param string $query    SQL query với :named placeholders
-     * @param array  $bindings Associative array [paramName => value]
-     */
-    private static function replacePlaceholders(string $query, array $bindings): string
-    {
-        foreach ($bindings as $key => $value) {
-            $literal = self::toUnicodeLiteral($value);
-            $pattern = '/:' . preg_quote($key, '/') . '/';
-            $query   = preg_replace($pattern, $literal, $query);
-        }
-
-        return $query;
     }
 }
