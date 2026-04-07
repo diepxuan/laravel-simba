@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-06 23:23:01
+ * @lastupdate 2026-04-07 12:39:39
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -59,16 +59,8 @@ class ProcedureCaller
                 $execParts[]  = "@{$key} = @{$key} OUTPUT";
                 $selectOut[]  = "@{$key} as {$key}";
             } else {
-                // FIX UTF-8: Dùng positional parameter (?) với CAST cho string thuần
-                // Lý do: PDO không hỗ trợ CAST(:named_param AS TYPE), phải dùng CAST(? AS TYPE)
-                if (\is_string($value) && !empty($value) && !self::isDateOrDatetime($value)) {
-                    // String thuần → CAST thành NVARCHAR để giữ dấu tiếng Việt
-                    $execParts[] = "@{$key} = CAST(? AS NVARCHAR(500))";
-                } else {
-                    // Date, datetime, int, float, null, empty string → không CAST
-                    $execParts[] = "@{$key} = ?";
-                }
-                $bindings[] = $value;
+                $execParts[]    = "@{$key} = :{$key}";
+                $bindings[$key] = $value;
             }
         }
 
@@ -92,7 +84,13 @@ class ProcedureCaller
         $conn = $connection ? DB::connection($connection) : DB::connection();
 
         // Dùng select() để execute toàn bộ batch và fetch kết quả
-        $rows = $conn->select($sql, $bindings);
+        if (empty($bindings)) {
+            $rows = $conn->select($sql);
+        } else {
+            // Replace ? với Unicode literal
+            $processedQuery = self::replacePlaceholders($sql, $bindings);
+            $rows           = $conn->select($processedQuery);
+        }
 
         // Tự động ép kiểu các giá trị output trả về dựa trên type đã khai báo
         if ($hasOutput && !empty($rows)) {
@@ -112,6 +110,54 @@ class ProcedureCaller
         \Debugbar::info('ProcedureCaller result:', $rows);
 
         return collect($rows);
+    }
+
+    /**
+     * Escape single quote cho SQL Server.
+     */
+    public static function escape(string $value): string
+    {
+        return str_replace("'", "''", $value);
+    }
+
+    /**
+     * Chuyển giá trị sang dạng Unicode literal (N'...')
+     * Dùng cho parameter binding bị lỗi UTF-8.
+     */
+    public static function toUnicodeLiteral(mixed $value): string
+    {
+        if (null === $value) {
+            return 'NULL';
+        }
+
+        if (\is_bool($value)) {
+            return $value ? '1' : '0';
+        }
+
+        if (\is_int($value) || \is_float($value)) {
+            return (string) $value;
+        }
+
+        if ($value instanceof \DateTimeInterface) {
+            return "N'" . self::escape($value->format('Y-m-d H:i:s')) . "'";
+        }
+
+        return "N'" . self::escape((string) $value) . "'";
+    }
+
+    /**
+     * Replace ? placeholders với Unicode literals.
+     */
+    private static function replacePlaceholders(string $query, array $bindings): string
+    {
+        $count = 0;
+
+        return preg_replace_callback('/\?/', static function () use ($bindings, &$count) {
+            $value = $bindings[$count] ?? null;
+            ++$count;
+
+            return self::toUnicodeLiteral($value);
+        }, $query);
     }
 
     /**
