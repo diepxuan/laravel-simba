@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-07 13:49:23
+ * @lastupdate 2026-04-12 16:59:27
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -105,7 +105,7 @@ class ProcedureCaller
             }
         }
 
-        \Debugbar::info('ProcedureCaller result:', $rows);
+        \Debugbar::info("ProcedureCaller {$name} result: ", $rows);
 
         return collect($rows);
     }
