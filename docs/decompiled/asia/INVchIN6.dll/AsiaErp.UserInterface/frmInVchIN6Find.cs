@@ -1,0 +1,1420 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using AsiaErp.Business;
+using AsiaErp.Framework;
+using Microsoft.VisualBasic.CompilerServices;
+
+namespace AsiaErp.UserInterface;
+
+[DesignerGenerated]
+public class frmInVchIN6Find : frmVoucherFind
+{
+	private static List<WeakReference> __ENCList = new List<WeakReference>();
+
+	private IContainer components;
+
+	[AccessedThroughProperty("lblTen_Kh")]
+	private Label _lblTen_Kh;
+
+	[AccessedThroughProperty("txtMa_Kh")]
+	private AsTextBox _txtMa_Kh;
+
+	[AccessedThroughProperty("lblMa_Kh")]
+	private Label _lblMa_Kh;
+
+	[AccessedThroughProperty("lblNguoi_Gd")]
+	private Label _lblNguoi_Gd;
+
+	[AccessedThroughProperty("txtNguoi_Gd")]
+	private TextBox _txtNguoi_Gd;
+
+	[AccessedThroughProperty("lblTen_Tk_vt")]
+	private Label _lblTen_Tk_vt;
+
+	[AccessedThroughProperty("txtTk_vt")]
+	private AsTextBox _txtTk_vt;
+
+	[AccessedThroughProperty("lblTk_vt")]
+	private Label _lblTk_vt;
+
+	[AccessedThroughProperty("lblTen_vt")]
+	private Label _lblTen_vt;
+
+	[AccessedThroughProperty("txtMa_vt")]
+	private AsTextBox _txtMa_vt;
+
+	[AccessedThroughProperty("lblMa_vt")]
+	private Label _lblMa_vt;
+
+	[AccessedThroughProperty("lblTen_kho")]
+	private Label _lblTen_kho;
+
+	[AccessedThroughProperty("txtMa_Kho")]
+	private AsTextBox _txtMa_Kho;
+
+	[AccessedThroughProperty("lblMa_kho")]
+	private Label _lblMa_kho;
+
+	[AccessedThroughProperty("txtDien_giai")]
+	private TextBox _txtDien_giai;
+
+	[AccessedThroughProperty("lblDien_giai")]
+	private Label _lblDien_giai;
+
+	[AccessedThroughProperty("lblTen_tk_co")]
+	private Label _lblTen_tk_co;
+
+	[AccessedThroughProperty("txtTk_co")]
+	private AsTextBox _txtTk_co;
+
+	[AccessedThroughProperty("lblTk_no")]
+	private Label _lblTk_no;
+
+	[AccessedThroughProperty("lblMa_gd")]
+	private Label _lblMa_gd;
+
+	[AccessedThroughProperty("cboMa_gd")]
+	private ComboBox _cboMa_gd;
+
+	[AccessedThroughProperty("lblTen_Spct")]
+	private Label _lblTen_Spct;
+
+	[AccessedThroughProperty("txtMa_Spct")]
+	private AsTextBox _txtMa_Spct;
+
+	[AccessedThroughProperty("lblMa_Spct")]
+	private Label _lblMa_Spct;
+
+	[AccessedThroughProperty("lblTen_Hd")]
+	private Label _lblTen_Hd;
+
+	[AccessedThroughProperty("txtMa_Hd")]
+	private AsTextBox _txtMa_Hd;
+
+	[AccessedThroughProperty("lblMa_Hd")]
+	private Label _lblMa_Hd;
+
+	[AccessedThroughProperty("lblTen_Phi")]
+	private Label _lblTen_Phi;
+
+	[AccessedThroughProperty("txtMa_Phi")]
+	private AsTextBox _txtMa_Phi;
+
+	[AccessedThroughProperty("lblMa_Phi")]
+	private Label _lblMa_Phi;
+
+	[AccessedThroughProperty("lblTen_Bp")]
+	private Label _lblTen_Bp;
+
+	[AccessedThroughProperty("txtMa_Bp")]
+	private AsTextBox _txtMa_Bp;
+
+	[AccessedThroughProperty("lblMa_Bp")]
+	private Label _lblMa_Bp;
+
+	private DmMaGd oAll;
+
+	private ArrayList _datasource;
+
+	private INVchIN6Controller f_controller;
+
+	private string f_sWherePh_;
+
+	private string f_sWhereCtM;
+
+	private string f_sWhereCtD;
+
+	internal object is_ok;
+
+	internal DataTable f_oTblPh_;
+
+	internal DataTable f_oTblCtM;
+
+	internal DataTable f_oTblCtD;
+
+	internal string voucher_code;
+
+	internal virtual Label lblTen_Kh
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_Kh;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_Kh = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_Kh
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_Kh;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_Kh = value;
+		}
+	}
+
+	internal virtual Label lblMa_Kh
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_Kh;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_Kh = value;
+		}
+	}
+
+	internal virtual Label lblNguoi_Gd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblNguoi_Gd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblNguoi_Gd = value;
+		}
+	}
+
+	internal virtual TextBox txtNguoi_Gd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtNguoi_Gd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtNguoi_Gd = value;
+		}
+	}
+
+	internal virtual Label lblTen_Tk_vt
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_Tk_vt;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_Tk_vt = value;
+		}
+	}
+
+	internal virtual AsTextBox txtTk_vt
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtTk_vt;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtTk_vt = value;
+		}
+	}
+
+	internal virtual Label lblTk_vt
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTk_vt;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTk_vt = value;
+		}
+	}
+
+	internal virtual Label lblTen_vt
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_vt;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_vt = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_vt
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_vt;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_vt = value;
+		}
+	}
+
+	internal virtual Label lblMa_vt
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_vt;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_vt = value;
+		}
+	}
+
+	internal virtual Label lblTen_kho
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_kho;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_kho = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_Kho
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_Kho;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_Kho = value;
+		}
+	}
+
+	internal virtual Label lblMa_kho
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_kho;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_kho = value;
+		}
+	}
+
+	internal virtual TextBox txtDien_giai
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtDien_giai;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtDien_giai = value;
+		}
+	}
+
+	internal virtual Label lblDien_giai
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblDien_giai;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblDien_giai = value;
+		}
+	}
+
+	internal virtual Label lblTen_tk_co
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_tk_co;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_tk_co = value;
+		}
+	}
+
+	internal virtual AsTextBox txtTk_co
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtTk_co;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtTk_co = value;
+		}
+	}
+
+	internal virtual Label lblTk_no
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTk_no;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTk_no = value;
+		}
+	}
+
+	internal virtual Label lblMa_gd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_gd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_gd = value;
+		}
+	}
+
+	internal virtual ComboBox cboMa_gd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _cboMa_gd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_cboMa_gd = value;
+		}
+	}
+
+	internal virtual Label lblTen_Spct
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_Spct;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_Spct = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_Spct
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_Spct;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_Spct = value;
+		}
+	}
+
+	internal virtual Label lblMa_Spct
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_Spct;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_Spct = value;
+		}
+	}
+
+	internal virtual Label lblTen_Hd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_Hd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_Hd = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_Hd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_Hd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_Hd = value;
+		}
+	}
+
+	internal virtual Label lblMa_Hd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_Hd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_Hd = value;
+		}
+	}
+
+	internal virtual Label lblTen_Phi
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_Phi;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_Phi = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_Phi
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_Phi;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_Phi = value;
+		}
+	}
+
+	internal virtual Label lblMa_Phi
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_Phi;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_Phi = value;
+		}
+	}
+
+	internal virtual Label lblTen_Bp
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_Bp;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_Bp = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_Bp
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_Bp;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_Bp = value;
+		}
+	}
+
+	internal virtual Label lblMa_Bp
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_Bp;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_Bp = value;
+		}
+	}
+
+	protected new INVchIN6Controller MyController
+	{
+		get
+		{
+			if (((Component)(object)this).DesignMode)
+			{
+				return null;
+			}
+			if (f_controller == null)
+			{
+				f_controller = new INVchIN6Controller(ControllerFactory.GetVoucherControllerByVouchercode(voucher_code).MyVoucherInfo);
+			}
+			return f_controller;
+		}
+	}
+
+	public frmInVchIN6Find()
+	{
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Expected O, but got Unknown
+		((Form)this).FormClosing += new FormClosingEventHandler(frmInVchIN2Find_FormClosing);
+		((Form)this).Load += frmInVchIN2Find_Load;
+		__ENCAddToList(this);
+		oAll = new DmMaGd();
+		f_controller = null;
+		f_sWherePh_ = "";
+		f_sWhereCtM = "";
+		f_sWhereCtD = "";
+		is_ok = false;
+		voucher_code = "";
+		InitializeComponent();
+	}
+
+	[DebuggerNonUserCode]
+	private static void __ENCAddToList(object value)
+	{
+		checked
+		{
+			lock (__ENCList)
+			{
+				if (__ENCList.Count == __ENCList.Capacity)
+				{
+					int num = 0;
+					int num2 = __ENCList.Count - 1;
+					int num3 = 0;
+					while (true)
+					{
+						int num4 = num3;
+						int num5 = num2;
+						if (num4 > num5)
+						{
+							break;
+						}
+						WeakReference weakReference = __ENCList[num3];
+						if (weakReference.IsAlive)
+						{
+							if (num3 != num)
+							{
+								__ENCList[num] = __ENCList[num3];
+							}
+							num++;
+						}
+						num3++;
+					}
+					__ENCList.RemoveRange(num, __ENCList.Count - num);
+					__ENCList.Capacity = __ENCList.Count;
+				}
+				__ENCList.Add(new WeakReference(RuntimeHelpers.GetObjectValue(value)));
+			}
+		}
+	}
+
+	[DebuggerNonUserCode]
+	protected override void Dispose(bool disposing)
+	{
+		if ((disposing && components != null) ? true : false)
+		{
+			components.Dispose();
+		}
+		base.Dispose(disposing);
+	}
+
+	[DebuggerStepThrough]
+	private void InitializeComponent()
+	{
+		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Expected O, but got Unknown
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Expected O, but got Unknown
+		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0030: Expected O, but got Unknown
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Expected O, but got Unknown
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Expected O, but got Unknown
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Expected O, but got Unknown
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Expected O, but got Unknown
+		//IL_007a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0084: Expected O, but got Unknown
+		//IL_0086: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0090: Expected O, but got Unknown
+		//IL_009e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00a8: Expected O, but got Unknown
+		//IL_00aa: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00b4: Expected O, but got Unknown
+		//IL_00b6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00c0: Expected O, but got Unknown
+		//IL_00c2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00cc: Expected O, but got Unknown
+		//IL_00da: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00e4: Expected O, but got Unknown
+		//IL_00e6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f0: Expected O, but got Unknown
+		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Expected O, but got Unknown
+		//IL_00fe: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0108: Expected O, but got Unknown
+		//IL_0116: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0120: Expected O, but got Unknown
+		//IL_0122: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012c: Expected O, but got Unknown
+		//IL_013a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0144: Expected O, but got Unknown
+		//IL_0146: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0150: Expected O, but got Unknown
+		//IL_015e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0168: Expected O, but got Unknown
+		//IL_016a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0174: Expected O, but got Unknown
+		//IL_0182: Unknown result type (might be due to invalid IL or missing references)
+		//IL_018c: Expected O, but got Unknown
+		lblTen_Kh = new Label();
+		txtMa_Kh = new AsTextBox();
+		lblMa_Kh = new Label();
+		lblNguoi_Gd = new Label();
+		txtNguoi_Gd = new TextBox();
+		lblTen_Tk_vt = new Label();
+		txtTk_vt = new AsTextBox();
+		lblTk_vt = new Label();
+		lblTen_kho = new Label();
+		txtMa_Kho = new AsTextBox();
+		lblMa_kho = new Label();
+		lblTen_vt = new Label();
+		txtMa_vt = new AsTextBox();
+		lblMa_vt = new Label();
+		txtDien_giai = new TextBox();
+		lblDien_giai = new Label();
+		lblTen_tk_co = new Label();
+		txtTk_co = new AsTextBox();
+		lblTk_no = new Label();
+		lblMa_gd = new Label();
+		cboMa_gd = new ComboBox();
+		lblTen_Spct = new Label();
+		txtMa_Spct = new AsTextBox();
+		lblMa_Spct = new Label();
+		lblTen_Hd = new Label();
+		txtMa_Hd = new AsTextBox();
+		lblMa_Hd = new Label();
+		lblTen_Phi = new Label();
+		txtMa_Phi = new AsTextBox();
+		lblMa_Phi = new Label();
+		lblTen_Bp = new Label();
+		txtMa_Bp = new AsTextBox();
+		lblMa_Bp = new Label();
+		((Control)gbPh).SuspendLayout();
+		((Control)gbCt).SuspendLayout();
+		((Control)this).SuspendLayout();
+		Button obj = cmdCancel;
+		Point location = new Point(93, 460);
+		((Control)obj).Location = location;
+		Button obj2 = cmdOk;
+		location = new Point(12, 460);
+		((Control)obj2).Location = location;
+		((Control)gbPh).Controls.Add((Control)(object)lblMa_gd);
+		((Control)gbPh).Controls.Add((Control)(object)cboMa_gd);
+		((Control)gbPh).Controls.Add((Control)(object)lblNguoi_Gd);
+		((Control)gbPh).Controls.Add((Control)(object)txtNguoi_Gd);
+		((Control)gbPh).Controls.Add((Control)(object)lblTen_Kh);
+		((Control)gbPh).Controls.Add((Control)(object)txtMa_Kh);
+		((Control)gbPh).Controls.Add((Control)(object)txtDien_giai);
+		((Control)gbPh).Controls.Add((Control)(object)lblDien_giai);
+		((Control)gbPh).Controls.Add((Control)(object)lblMa_Kh);
+		GroupBox obj3 = gbPh;
+		Size size = new Size(727, 211);
+		((Control)obj3).Size = size;
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblNgay_Ct1, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtNgay_Ct1, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblNgay_Ct2, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtNgay_Ct2, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblSo_tien1, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtSo_tien1, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblSo_Ct1, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblSo_Ct2, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblSo_tien2, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtSo_Ct1, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtSo_Ct2, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtSo_tien2, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblMa_Kh, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblDien_giai, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtDien_giai, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtMa_Kh, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblTen_Kh, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)txtNguoi_Gd, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblNguoi_Gd, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)cboMa_gd, 0);
+		((Control)gbPh).Controls.SetChildIndex((Control)(object)lblMa_gd, 0);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_Spct);
+		((Control)gbCt).Controls.Add((Control)(object)txtMa_Spct);
+		((Control)gbCt).Controls.Add((Control)(object)lblMa_Spct);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_Hd);
+		((Control)gbCt).Controls.Add((Control)(object)txtMa_Hd);
+		((Control)gbCt).Controls.Add((Control)(object)lblMa_Hd);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_Phi);
+		((Control)gbCt).Controls.Add((Control)(object)txtMa_Phi);
+		((Control)gbCt).Controls.Add((Control)(object)lblMa_Phi);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_Bp);
+		((Control)gbCt).Controls.Add((Control)(object)txtMa_Bp);
+		((Control)gbCt).Controls.Add((Control)(object)lblMa_Bp);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_tk_co);
+		((Control)gbCt).Controls.Add((Control)(object)txtTk_co);
+		((Control)gbCt).Controls.Add((Control)(object)lblTk_no);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_vt);
+		((Control)gbCt).Controls.Add((Control)(object)txtMa_vt);
+		((Control)gbCt).Controls.Add((Control)(object)lblMa_vt);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_kho);
+		((Control)gbCt).Controls.Add((Control)(object)txtMa_Kho);
+		((Control)gbCt).Controls.Add((Control)(object)lblMa_kho);
+		((Control)gbCt).Controls.Add((Control)(object)lblTen_Tk_vt);
+		((Control)gbCt).Controls.Add((Control)(object)txtTk_vt);
+		((Control)gbCt).Controls.Add((Control)(object)lblTk_vt);
+		GroupBox obj4 = gbCt;
+		location = new Point(12, 221);
+		((Control)obj4).Location = location;
+		GroupBox obj5 = gbCt;
+		size = new Size(727, 233);
+		((Control)obj5).Size = size;
+		TextBox obj6 = txtSo_Ct1;
+		location = new Point(162, 46);
+		((Control)obj6).Location = location;
+		AsMaskedTextBox asMaskedTextBox = txtNgay_Ct2;
+		location = new Point(342, 22);
+		((Control)asMaskedTextBox).Location = location;
+		AsMaskedTextBox asMaskedTextBox2 = txtNgay_Ct1;
+		location = new Point(162, 20);
+		((Control)asMaskedTextBox2).Location = location;
+		TextBox obj7 = txtSo_Ct2;
+		location = new Point(342, 47);
+		((Control)obj7).Location = location;
+		Label obj8 = lblSo_Ct2;
+		location = new Point(275, 51);
+		((Control)obj8).Location = location;
+		Label obj9 = lblNgay_Ct2;
+		location = new Point(275, 24);
+		((Control)obj9).Location = location;
+		txtSo_tien2.HotKey = (Keys)13;
+		AsTextNumeric asTextNumeric = txtSo_tien2;
+		location = new Point(342, 72);
+		((Control)asTextNumeric).Location = location;
+		txtSo_tien2.SpecialType = Commons.NumericSpecialType.Other;
+		txtSo_tien2.Type = Commons.NumericType.ORTHER_;
+		Label obj10 = lblSo_tien2;
+		location = new Point(275, 75);
+		((Control)obj10).Location = location;
+		txtSo_tien1.HotKey = (Keys)13;
+		AsTextNumeric asTextNumeric2 = txtSo_tien1;
+		location = new Point(162, 72);
+		((Control)asTextNumeric2).Location = location;
+		txtSo_tien1.SpecialType = Commons.NumericSpecialType.Other;
+		((Control)txtSo_tien1).Tag = "t_tien_nt";
+		txtSo_tien1.Type = Commons.NumericType.ORTHER_;
+		lblTen_Kh.ImeMode = (ImeMode)0;
+		Label obj11 = lblTen_Kh;
+		location = new Point(263, 128);
+		((Control)obj11).Location = location;
+		((Control)lblTen_Kh).Name = "lblTen_Kh";
+		Label obj12 = lblTen_Kh;
+		size = new Size(450, 13);
+		((Control)obj12).Size = size;
+		((Control)lblTen_Kh).TabIndex = 137;
+		((TextBox)txtMa_Kh).AutoCompleteSource = (AutoCompleteSource)64;
+		txtMa_Kh.AutoLookup = true;
+		txtMa_Kh.AutoValid = false;
+		((TextBoxBase)txtMa_Kh).BackColor = SystemColors.Info;
+		((TextBox)txtMa_Kh).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox = txtMa_Kh;
+		location = new Point(162, 125);
+		((Control)asTextBox).Location = location;
+		txtMa_Kh.LookupCodeName = "MA_KH";
+		((Control)txtMa_Kh).Name = "txtMa_Kh";
+		txtMa_Kh.NameControl = lblTen_Kh;
+		AsTextBox asTextBox2 = txtMa_Kh;
+		size = new Size(95, 20);
+		((Control)asTextBox2).Size = size;
+		((Control)txtMa_Kh).TabIndex = 7;
+		txtMa_Kh.UseAutoCompleteSource = true;
+		lblMa_Kh.AutoSize = true;
+		lblMa_Kh.ImeMode = (ImeMode)0;
+		Label obj13 = lblMa_Kh;
+		location = new Point(6, 128);
+		((Control)obj13).Location = location;
+		((Control)lblMa_Kh).Name = "lblMa_Kh";
+		Label obj14 = lblMa_Kh;
+		size = new Size(82, 13);
+		((Control)obj14).Size = size;
+		((Control)lblMa_Kh).TabIndex = 136;
+		lblMa_Kh.Text = "Mã khách hàng";
+		lblMa_Kh.TextAlign = (ContentAlignment)16;
+		lblNguoi_Gd.ImeMode = (ImeMode)0;
+		Label obj15 = lblNguoi_Gd;
+		location = new Point(6, 153);
+		((Control)obj15).Location = location;
+		((Control)lblNguoi_Gd).Name = "lblNguoi_Gd";
+		Label obj16 = lblNguoi_Gd;
+		size = new Size(98, 14);
+		((Control)obj16).Size = size;
+		((Control)lblNguoi_Gd).TabIndex = 222;
+		lblNguoi_Gd.Text = "Người giao dịch";
+		TextBox obj17 = txtNguoi_Gd;
+		location = new Point(162, 151);
+		((Control)obj17).Location = location;
+		((TextBoxBase)txtNguoi_Gd).MaxLength = 30;
+		((Control)txtNguoi_Gd).Name = "txtNguoi_Gd";
+		TextBox obj18 = txtNguoi_Gd;
+		size = new Size(128, 20);
+		((Control)obj18).Size = size;
+		((Control)txtNguoi_Gd).TabIndex = 8;
+		lblTen_Tk_vt.ImeMode = (ImeMode)0;
+		Label obj19 = lblTen_Tk_vt;
+		location = new Point(263, 75);
+		((Control)obj19).Location = location;
+		((Control)lblTen_Tk_vt).Name = "lblTen_Tk_vt";
+		Label obj20 = lblTen_Tk_vt;
+		size = new Size(450, 13);
+		((Control)obj20).Size = size;
+		((Control)lblTen_Tk_vt).TabIndex = 218;
+		lblTen_Tk_vt.TextAlign = (ContentAlignment)16;
+		((TextBox)txtTk_vt).AutoCompleteSource = (AutoCompleteSource)64;
+		txtTk_vt.AutoLookup = true;
+		txtTk_vt.AutoValid = false;
+		((TextBoxBase)txtTk_vt).BackColor = SystemColors.Info;
+		((TextBox)txtTk_vt).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox3 = txtTk_vt;
+		location = new Point(162, 72);
+		((Control)asTextBox3).Location = location;
+		txtTk_vt.LookupCodeName = "TK";
+		((Control)txtTk_vt).Name = "txtTk_vt";
+		txtTk_vt.NameControl = lblTen_Tk_vt;
+		AsTextBox asTextBox4 = txtTk_vt;
+		size = new Size(95, 20);
+		((Control)asTextBox4).Size = size;
+		((Control)txtTk_vt).TabIndex = 2;
+		txtTk_vt.UseAutoCompleteSource = true;
+		lblTk_vt.AutoSize = true;
+		lblTk_vt.ImeMode = (ImeMode)0;
+		Label obj21 = lblTk_vt;
+		location = new Point(6, 75);
+		((Control)obj21).Location = location;
+		((Control)lblTk_vt).Name = "lblTk_vt";
+		Label obj22 = lblTk_vt;
+		size = new Size(36, 13);
+		((Control)obj22).Size = size;
+		((Control)lblTk_vt).TabIndex = 217;
+		lblTk_vt.Text = "TK nợ";
+		lblTen_kho.ImeMode = (ImeMode)0;
+		Label obj23 = lblTen_kho;
+		location = new Point(263, 23);
+		((Control)obj23).Location = location;
+		((Control)lblTen_kho).Name = "lblTen_kho";
+		Label obj24 = lblTen_kho;
+		size = new Size(450, 13);
+		((Control)obj24).Size = size;
+		((Control)lblTen_kho).TabIndex = 224;
+		lblTen_kho.TextAlign = (ContentAlignment)16;
+		txtMa_Kho.AutoLookup = true;
+		txtMa_Kho.AutoValid = false;
+		((TextBoxBase)txtMa_Kho).BackColor = SystemColors.Info;
+		((TextBox)txtMa_Kho).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox5 = txtMa_Kho;
+		location = new Point(162, 20);
+		((Control)asTextBox5).Location = location;
+		txtMa_Kho.LookupCodeName = "MA_KHO";
+		((Control)txtMa_Kho).Name = "txtMa_Kho";
+		txtMa_Kho.NameControl = lblTen_kho;
+		AsTextBox asTextBox6 = txtMa_Kho;
+		size = new Size(95, 20);
+		((Control)asTextBox6).Size = size;
+		((Control)txtMa_Kho).TabIndex = 0;
+		txtMa_Kho.UseAutoCompleteSource = true;
+		lblMa_kho.AutoSize = true;
+		lblMa_kho.ImeMode = (ImeMode)0;
+		Label obj25 = lblMa_kho;
+		location = new Point(6, 23);
+		((Control)obj25).Location = location;
+		((Control)lblMa_kho).Name = "lblMa_kho";
+		Label obj26 = lblMa_kho;
+		size = new Size(43, 13);
+		((Control)obj26).Size = size;
+		((Control)lblMa_kho).TabIndex = 223;
+		lblMa_kho.Text = "Mã kho";
+		lblTen_vt.ImeMode = (ImeMode)0;
+		Label obj27 = lblTen_vt;
+		location = new Point(263, 49);
+		((Control)obj27).Location = location;
+		((Control)lblTen_vt).Name = "lblTen_vt";
+		Label obj28 = lblTen_vt;
+		size = new Size(450, 13);
+		((Control)obj28).Size = size;
+		((Control)lblTen_vt).TabIndex = 230;
+		lblTen_vt.TextAlign = (ContentAlignment)16;
+		txtMa_vt.AutoLookup = true;
+		txtMa_vt.AutoValid = false;
+		((TextBoxBase)txtMa_vt).BackColor = SystemColors.Info;
+		((TextBox)txtMa_vt).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox7 = txtMa_vt;
+		location = new Point(162, 46);
+		((Control)asTextBox7).Location = location;
+		txtMa_vt.LookupCodeName = "MA_VT";
+		((Control)txtMa_vt).Name = "txtMa_vt";
+		txtMa_vt.NameControl = lblTen_vt;
+		AsTextBox asTextBox8 = txtMa_vt;
+		size = new Size(95, 20);
+		((Control)asTextBox8).Size = size;
+		((Control)txtMa_vt).TabIndex = 1;
+		txtMa_vt.UseAutoCompleteSource = true;
+		lblMa_vt.AutoSize = true;
+		lblMa_vt.ImeMode = (ImeMode)0;
+		Label obj29 = lblMa_vt;
+		location = new Point(6, 49);
+		((Control)obj29).Location = location;
+		((Control)lblMa_vt).Name = "lblMa_vt";
+		Label obj30 = lblMa_vt;
+		size = new Size(52, 13);
+		((Control)obj30).Size = size;
+		((Control)lblMa_vt).TabIndex = 229;
+		lblMa_vt.Text = "Mã vật tư";
+		txtDien_giai.AutoCompleteMode = (AutoCompleteMode)1;
+		txtDien_giai.AutoCompleteSource = (AutoCompleteSource)7;
+		TextBox obj31 = txtDien_giai;
+		location = new Point(162, 177);
+		((Control)obj31).Location = location;
+		((Control)txtDien_giai).Name = "txtDien_giai";
+		TextBox obj32 = txtDien_giai;
+		size = new Size(551, 20);
+		((Control)obj32).Size = size;
+		((Control)txtDien_giai).TabIndex = 9;
+		lblDien_giai.AutoSize = true;
+		lblDien_giai.ImeMode = (ImeMode)0;
+		Label obj33 = lblDien_giai;
+		location = new Point(6, 180);
+		((Control)obj33).Location = location;
+		((Control)lblDien_giai).Name = "lblDien_giai";
+		Label obj34 = lblDien_giai;
+		size = new Size(48, 13);
+		((Control)obj34).Size = size;
+		((Control)lblDien_giai).TabIndex = 235;
+		lblDien_giai.Text = "Diễn giải";
+		lblTen_tk_co.ImeMode = (ImeMode)0;
+		Label obj35 = lblTen_tk_co;
+		location = new Point(263, 101);
+		((Control)obj35).Location = location;
+		((Control)lblTen_tk_co).Name = "lblTen_tk_co";
+		Label obj36 = lblTen_tk_co;
+		size = new Size(450, 13);
+		((Control)obj36).Size = size;
+		((Control)lblTen_tk_co).TabIndex = 233;
+		lblTen_tk_co.TextAlign = (ContentAlignment)16;
+		((TextBox)txtTk_co).AutoCompleteSource = (AutoCompleteSource)64;
+		txtTk_co.AutoLookup = true;
+		txtTk_co.AutoValid = false;
+		((TextBoxBase)txtTk_co).BackColor = SystemColors.Info;
+		((TextBox)txtTk_co).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox9 = txtTk_co;
+		location = new Point(162, 98);
+		((Control)asTextBox9).Location = location;
+		txtTk_co.LookupCodeName = "TK";
+		((Control)txtTk_co).Name = "txtTk_co";
+		txtTk_co.NameControl = lblTen_tk_co;
+		AsTextBox asTextBox10 = txtTk_co;
+		size = new Size(95, 20);
+		((Control)asTextBox10).Size = size;
+		((Control)txtTk_co).TabIndex = 3;
+		txtTk_co.UseAutoCompleteSource = true;
+		lblTk_no.AutoSize = true;
+		lblTk_no.ImeMode = (ImeMode)0;
+		Label obj37 = lblTk_no;
+		location = new Point(6, 101);
+		((Control)obj37).Location = location;
+		((Control)lblTk_no).Name = "lblTk_no";
+		Label obj38 = lblTk_no;
+		size = new Size(36, 13);
+		((Control)obj38).Size = size;
+		((Control)lblTk_no).TabIndex = 232;
+		lblTk_no.Text = "TK có";
+		lblMa_gd.AutoSize = true;
+		lblMa_gd.ImeMode = (ImeMode)0;
+		Label obj39 = lblMa_gd;
+		location = new Point(5, 100);
+		((Control)obj39).Location = location;
+		((Control)lblMa_gd).Name = "lblMa_gd";
+		Label obj40 = lblMa_gd;
+		size = new Size(56, 13);
+		((Control)obj40).Size = size;
+		((Control)lblMa_gd).TabIndex = 241;
+		lblMa_gd.Text = "Loại phiếu";
+		lblMa_gd.TextAlign = (ContentAlignment)16;
+		cboMa_gd.DropDownStyle = (ComboBoxStyle)2;
+		((ListControl)cboMa_gd).FormattingEnabled = true;
+		ComboBox obj41 = cboMa_gd;
+		location = new Point(162, 98);
+		((Control)obj41).Location = location;
+		((Control)cboMa_gd).Name = "cboMa_gd";
+		ComboBox obj42 = cboMa_gd;
+		size = new Size(128, 21);
+		((Control)obj42).Size = size;
+		((Control)cboMa_gd).TabIndex = 6;
+		lblTen_Spct.ImeMode = (ImeMode)0;
+		Label obj43 = lblTen_Spct;
+		location = new Point(263, 179);
+		((Control)obj43).Location = location;
+		((Control)lblTen_Spct).Name = "lblTen_Spct";
+		Label obj44 = lblTen_Spct;
+		size = new Size(450, 13);
+		((Control)obj44).Size = size;
+		((Control)lblTen_Spct).TabIndex = 245;
+		lblTen_Spct.TextAlign = (ContentAlignment)16;
+		txtMa_Spct.AutoLookup = true;
+		txtMa_Spct.AutoValid = false;
+		((TextBoxBase)txtMa_Spct).BackColor = SystemColors.Info;
+		((TextBox)txtMa_Spct).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox11 = txtMa_Spct;
+		location = new Point(162, 176);
+		((Control)asTextBox11).Location = location;
+		txtMa_Spct.LookupCodeName = "MA_SPCT";
+		((Control)txtMa_Spct).Name = "txtMa_Spct";
+		txtMa_Spct.NameControl = lblTen_Spct;
+		AsTextBox asTextBox12 = txtMa_Spct;
+		size = new Size(95, 20);
+		((Control)asTextBox12).Size = size;
+		((Control)txtMa_Spct).TabIndex = 6;
+		txtMa_Spct.UseAutoCompleteSource = true;
+		lblMa_Spct.AutoSize = true;
+		lblMa_Spct.ImeMode = (ImeMode)0;
+		Label obj45 = lblMa_Spct;
+		location = new Point(6, 179);
+		((Control)obj45).Location = location;
+		((Control)lblMa_Spct).Name = "lblMa_Spct";
+		Label obj46 = lblMa_Spct;
+		size = new Size(53, 13);
+		((Control)obj46).Size = size;
+		((Control)lblMa_Spct).TabIndex = 244;
+		lblMa_Spct.Text = "Mã SPCT";
+		lblTen_Hd.ImeMode = (ImeMode)0;
+		Label obj47 = lblTen_Hd;
+		location = new Point(263, 153);
+		((Control)obj47).Location = location;
+		((Control)lblTen_Hd).Name = "lblTen_Hd";
+		Label obj48 = lblTen_Hd;
+		size = new Size(450, 13);
+		((Control)obj48).Size = size;
+		((Control)lblTen_Hd).TabIndex = 243;
+		lblTen_Hd.TextAlign = (ContentAlignment)16;
+		txtMa_Hd.AutoLookup = true;
+		txtMa_Hd.AutoValid = false;
+		((TextBoxBase)txtMa_Hd).BackColor = SystemColors.Info;
+		((TextBox)txtMa_Hd).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox13 = txtMa_Hd;
+		location = new Point(162, 150);
+		((Control)asTextBox13).Location = location;
+		txtMa_Hd.LookupCodeName = "MA_HD";
+		((Control)txtMa_Hd).Name = "txtMa_Hd";
+		txtMa_Hd.NameControl = lblTen_Hd;
+		AsTextBox asTextBox14 = txtMa_Hd;
+		size = new Size(95, 20);
+		((Control)asTextBox14).Size = size;
+		((Control)txtMa_Hd).TabIndex = 5;
+		txtMa_Hd.UseAutoCompleteSource = true;
+		lblMa_Hd.AutoSize = true;
+		lblMa_Hd.ImeMode = (ImeMode)0;
+		Label obj49 = lblMa_Hd;
+		location = new Point(6, 153);
+		((Control)obj49).Location = location;
+		((Control)lblMa_Hd).Name = "lblMa_Hd";
+		Label obj50 = lblMa_Hd;
+		size = new Size(71, 13);
+		((Control)obj50).Size = size;
+		((Control)lblMa_Hd).TabIndex = 242;
+		lblMa_Hd.Text = "Mã hợp đồng";
+		lblTen_Phi.ImeMode = (ImeMode)0;
+		Label obj51 = lblTen_Phi;
+		location = new Point(263, 127);
+		((Control)obj51).Location = location;
+		((Control)lblTen_Phi).Name = "lblTen_Phi";
+		Label obj52 = lblTen_Phi;
+		size = new Size(450, 13);
+		((Control)obj52).Size = size;
+		((Control)lblTen_Phi).TabIndex = 241;
+		lblTen_Phi.TextAlign = (ContentAlignment)16;
+		txtMa_Phi.AutoLookup = true;
+		txtMa_Phi.AutoValid = false;
+		((TextBoxBase)txtMa_Phi).BackColor = SystemColors.Info;
+		((TextBox)txtMa_Phi).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox15 = txtMa_Phi;
+		location = new Point(162, 124);
+		((Control)asTextBox15).Location = location;
+		txtMa_Phi.LookupCodeName = "MA_PHI";
+		((Control)txtMa_Phi).Name = "txtMa_Phi";
+		txtMa_Phi.NameControl = lblTen_Phi;
+		AsTextBox asTextBox16 = txtMa_Phi;
+		size = new Size(95, 20);
+		((Control)asTextBox16).Size = size;
+		((Control)txtMa_Phi).TabIndex = 4;
+		txtMa_Phi.UseAutoCompleteSource = true;
+		lblMa_Phi.AutoSize = true;
+		lblMa_Phi.ImeMode = (ImeMode)0;
+		Label obj53 = lblMa_Phi;
+		location = new Point(6, 127);
+		((Control)obj53).Location = location;
+		((Control)lblMa_Phi).Name = "lblMa_Phi";
+		Label obj54 = lblMa_Phi;
+		size = new Size(41, 13);
+		((Control)obj54).Size = size;
+		((Control)lblMa_Phi).TabIndex = 240;
+		lblMa_Phi.Text = "Mã phí";
+		lblTen_Bp.ImeMode = (ImeMode)0;
+		Label obj55 = lblTen_Bp;
+		location = new Point(263, 205);
+		((Control)obj55).Location = location;
+		((Control)lblTen_Bp).Name = "lblTen_Bp";
+		Label obj56 = lblTen_Bp;
+		size = new Size(450, 13);
+		((Control)obj56).Size = size;
+		((Control)lblTen_Bp).TabIndex = 239;
+		lblTen_Bp.TextAlign = (ContentAlignment)16;
+		((TextBox)txtMa_Bp).AutoCompleteSource = (AutoCompleteSource)64;
+		txtMa_Bp.AutoLookup = true;
+		txtMa_Bp.AutoValid = false;
+		((TextBoxBase)txtMa_Bp).BackColor = SystemColors.Info;
+		((TextBox)txtMa_Bp).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox17 = txtMa_Bp;
+		location = new Point(162, 202);
+		((Control)asTextBox17).Location = location;
+		txtMa_Bp.LookupCodeName = "MA_BP";
+		((Control)txtMa_Bp).Name = "txtMa_Bp";
+		txtMa_Bp.NameControl = lblTen_Bp;
+		AsTextBox asTextBox18 = txtMa_Bp;
+		size = new Size(95, 20);
+		((Control)asTextBox18).Size = size;
+		((Control)txtMa_Bp).TabIndex = 7;
+		txtMa_Bp.UseAutoCompleteSource = true;
+		lblMa_Bp.AutoSize = true;
+		lblMa_Bp.ImeMode = (ImeMode)0;
+		Label obj57 = lblMa_Bp;
+		location = new Point(6, 205);
+		((Control)obj57).Location = location;
+		((Control)lblMa_Bp).Name = "lblMa_Bp";
+		Label obj58 = lblMa_Bp;
+		size = new Size(64, 13);
+		((Control)obj58).Size = size;
+		((Control)lblMa_Bp).TabIndex = 238;
+		lblMa_Bp.Text = "Mã bộ phận";
+		SizeF autoScaleDimensions = new SizeF(6f, 13f);
+		((ContainerControl)this).AutoScaleDimensions = autoScaleDimensions;
+		((Form)this).BackColor = SystemColors.Control;
+		size = new Size(751, 495);
+		((Form)this).ClientSize = size;
+		((Control)this).Name = "frmInVchIN6Find";
+		((Form)this).Text = "Tìm kiếm";
+		((Control)gbPh).ResumeLayout(false);
+		((Control)gbPh).PerformLayout();
+		((Control)gbCt).ResumeLayout(false);
+		((Control)gbCt).PerformLayout();
+		((Control)this).ResumeLayout(false);
+	}
+
+	private void frmInVchIN2Find_Load(object sender, EventArgs e)
+	{
+		_datasource = AsiaErp.Framework.Environment.GetDmMagd(voucher_code);
+		if (_datasource != null && _datasource.Count != 0 && 0 == 0)
+		{
+			oAll.ma_ct = voucher_code;
+			oAll.ma_gd = "";
+			oAll.mo_ta = "Tất cả";
+			if (!_datasource.Contains(oAll))
+			{
+				_datasource.Insert(0, oAll);
+			}
+			cboMa_gd.DataSource = _datasource;
+			((ListControl)cboMa_gd).ValueMember = "ma_gd";
+			((ListControl)cboMa_gd).DisplayMember = "mo_ta";
+			cboMa_gd.SelectedIndex = 0;
+		}
+	}
+
+	private void frmInVchIN2Find_FormClosing(object sender, FormClosingEventArgs e)
+	{
+		if ((_datasource != null && _datasource.Contains(oAll)) ? true : false)
+		{
+			_datasource.Remove(oAll);
+		}
+	}
+
+	protected override void Search()
+	{
+		CollectSearchConditional();
+		MyController.SearchBOM(f_sWherePh_, f_sWhereCtM, f_sWhereCtD, ref f_oTblPh_, ref f_oTblCtM, ref f_oTblCtD);
+		if (f_oTblPh_.Rows.Count > 0)
+		{
+			is_ok = true;
+		}
+		else
+		{
+			is_ok = false;
+		}
+		((Component)(object)this).Dispose();
+	}
+
+	protected override void CollectSearchConditional()
+	{
+		//IL_04d7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_04dd: Expected O, but got Unknown
+		f_sWherePh_ = "Ma_Cty='" + CompanyInformations.CompanyID + "' and Ma_Ct='" + voucher_code + "'";
+		if (Operators.CompareString(Conversions.ToDate(txtNgay_Ct1.Value).ToString("MM/dd/yyyy"), "1/1/1900", false) != 0)
+		{
+			DateTime dateTime = Conversions.ToDate(txtNgay_Ct1.Value);
+			f_sWherePh_ = f_sWherePh_ + " and Ngay_Ct >= '" + dateTime.ToString("MM/dd/yyyy") + "'";
+		}
+		if (Operators.CompareString(Conversions.ToDate(txtNgay_Ct2.Value).ToString("MM/dd/yyyy"), "1/1/1900", false) != 0)
+		{
+			DateTime dateTime2 = Conversions.ToDate(txtNgay_Ct2.Value);
+			f_sWherePh_ = f_sWherePh_ + " and Ngay_Ct <= '" + Conversions.ToDate(txtNgay_Ct2.Value).ToString("MM/dd/yyyy") + "'";
+		}
+		if (Operators.CompareString(txtSo_Ct1.Text, "", false) != 0)
+		{
+			f_sWherePh_ = f_sWherePh_ + " and So_Ct>= '" + txtSo_Ct1.Text + "'";
+		}
+		if (Operators.CompareString(txtSo_Ct2.Text, "", false) != 0)
+		{
+			f_sWherePh_ = f_sWherePh_ + " and So_Ct<= '" + txtSo_Ct2.Text + "'";
+		}
+		f_sWherePh_ = Conversions.ToString(Operators.ConcatenateObject(Operators.ConcatenateObject((object)(f_sWherePh_ + " and ma_gd like '"), ((ListControl)cboMa_gd).SelectedValue), (object)"'+ '%' "));
+		if (Operators.CompareString(((TextBox)txtMa_Kh).Text, "", false) != 0)
+		{
+			f_sWherePh_ = f_sWherePh_ + " and Ma_Kh like '" + ((TextBox)txtMa_Kh).Text + "'+ '%'";
+		}
+		if (Operators.CompareString(txtNguoi_Gd.Text, "", false) != 0)
+		{
+			f_sWherePh_ = f_sWherePh_ + " and nguoi_gd like '" + txtNguoi_Gd.Text + "'+ '%'";
+		}
+		if (Operators.CompareString(txtDien_giai.Text, "", false) != 0)
+		{
+			f_sWherePh_ = f_sWherePh_ + " and dien_giai like '" + txtDien_giai.Text + "'+ '%'";
+		}
+		if ((Operators.ConditionalCompareObjectNotEqual(txtSo_tien1.Value, (object)0, false) && Operators.ConditionalCompareObjectNotEqual(txtSo_tien2.Value, (object)0, false)) ? true : false)
+		{
+			f_sWherePh_ = f_sWherePh_ + " and " + ((Control)txtSo_tien1).Tag.ToString() + " between '" + txtSo_tien1.Value.ToString() + "' and '" + txtSo_tien2.Value.ToString() + "'";
+		}
+		else if (Operators.ConditionalCompareObjectNotEqual(txtSo_tien1.Value, (object)0, false))
+		{
+			f_sWherePh_ = f_sWherePh_ + " and " + ((Control)txtSo_tien1).Tag.ToString() + ">=" + txtSo_tien1.Value.ToString();
+		}
+		else if (Operators.ConditionalCompareObjectNotEqual(txtSo_tien2.Value, (object)0, false))
+		{
+			f_sWherePh_ = f_sWherePh_ + " and " + ((Control)txtSo_tien1).Tag.ToString() + "<=" + txtSo_tien2.Value.ToString();
+		}
+		f_sWhereCtM = "Ma_Cty='" + CompanyInformations.CompanyID + "'";
+		foreach (Control control in ((Control)gbCt).Controls)
+		{
+			Control val = control;
+			if (val is AsTextBox)
+			{
+				AsTextBox asTextBox = (AsTextBox)(object)val;
+				if (Operators.CompareString(((TextBox)asTextBox).Text, "", false) != 0)
+				{
+					f_sWhereCtM = f_sWhereCtM + " and " + ((Control)asTextBox).Name.Substring(3, checked(((Control)asTextBox).Name.Length - 3)) + " like '" + ((TextBox)asTextBox).Text + "' + '%'";
+				}
+			}
+		}
+		f_sWhereCtD = "Ma_Cty='" + CompanyInformations.CompanyID + "'";
+	}
+}

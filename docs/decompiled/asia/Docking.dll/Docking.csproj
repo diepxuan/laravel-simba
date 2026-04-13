@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>Docking</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net20</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>12.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="AsiaErp.Framework.Docking.DockPanel.bmp" />
+    <EmbeddedResource Include="AsiaErp.Framework.Docking.DockPanel.bmp" LogicalName="AsiaErp.Framework.Docking.DockPanel.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Xml">
+      <HintPath>../../../../../../../usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.25/System.Xml.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

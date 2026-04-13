@@ -1,0 +1,523 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using AsiaErp.Framework;
+using Microsoft.VisualBasic;
+using Microsoft.VisualBasic.CompilerServices;
+
+namespace AsiaErp.UserInterface;
+
+[DesignerGenerated]
+public class frmFARptBCTS08 : frmReport
+{
+	private static List<WeakReference> __ENCList = new List<WeakReference>();
+
+	private IContainer components;
+
+	[AccessedThroughProperty("txtMa_ts")]
+	private AsTextBox _txtMa_ts;
+
+	[AccessedThroughProperty("lblTen_ts")]
+	private Label _lblTen_ts;
+
+	[AccessedThroughProperty("lblMa_tS")]
+	private Label _lblMa_tS;
+
+	[AccessedThroughProperty("txtMa_bpsd")]
+	private AsTextBox _txtMa_bpsd;
+
+	[AccessedThroughProperty("lblTen_bpsd")]
+	private Label _lblTen_bpsd;
+
+	[AccessedThroughProperty("lblMa_BPSD")]
+	private Label _lblMa_BPSD;
+
+	[AccessedThroughProperty("txtMa_nhts")]
+	private AsTextBox _txtMa_nhts;
+
+	[AccessedThroughProperty("lblTen_nhts")]
+	private Label _lblTen_nhts;
+
+	[AccessedThroughProperty("lblMa_nhts")]
+	private Label _lblMa_nhts;
+
+	private string sTabName;
+
+	private string sMenuID;
+
+	private bool DataLoading;
+
+	internal virtual AsTextBox txtMa_ts
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_ts;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_ts = value;
+		}
+	}
+
+	internal virtual Label lblTen_ts
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_ts;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_ts = value;
+		}
+	}
+
+	internal virtual Label lblMa_tS
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_tS;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_tS = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_bpsd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_bpsd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_bpsd = value;
+		}
+	}
+
+	internal virtual Label lblTen_bpsd
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_bpsd;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_bpsd = value;
+		}
+	}
+
+	internal virtual Label lblMa_BPSD
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_BPSD;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_BPSD = value;
+		}
+	}
+
+	internal virtual AsTextBox txtMa_nhts
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _txtMa_nhts;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_txtMa_nhts = value;
+		}
+	}
+
+	internal virtual Label lblTen_nhts
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblTen_nhts;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblTen_nhts = value;
+		}
+	}
+
+	internal virtual Label lblMa_nhts
+	{
+		[DebuggerNonUserCode]
+		get
+		{
+			return _lblMa_nhts;
+		}
+		[MethodImpl(MethodImplOptions.Synchronized)]
+		[DebuggerNonUserCode]
+		set
+		{
+			_lblMa_nhts = value;
+		}
+	}
+
+	public frmFARptBCTS08(string MenuID)
+		: base(MenuID)
+	{
+		lock (__ENCList)
+		{
+			__ENCList.Add(new WeakReference(this));
+		}
+		DataLoading = true;
+		InitializeComponent();
+	}
+
+	[DebuggerNonUserCode]
+	protected override void Dispose(bool disposing)
+	{
+		if ((disposing && components != null) ? true : false)
+		{
+			components.Dispose();
+		}
+		base.Dispose(disposing);
+	}
+
+	[DebuggerStepThrough]
+	private void InitializeComponent()
+	{
+		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0018: Expected O, but got Unknown
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0024: Expected O, but got Unknown
+		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
+		//IL_003c: Expected O, but got Unknown
+		//IL_003e: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0048: Expected O, but got Unknown
+		//IL_0056: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Expected O, but got Unknown
+		//IL_0062: Unknown result type (might be due to invalid IL or missing references)
+		//IL_006c: Expected O, but got Unknown
+		txtMa_ts = new AsTextBox();
+		lblTen_ts = new Label();
+		lblMa_tS = new Label();
+		txtMa_nhts = new AsTextBox();
+		lblTen_nhts = new Label();
+		lblMa_nhts = new Label();
+		txtMa_bpsd = new AsTextBox();
+		lblTen_bpsd = new Label();
+		lblMa_BPSD = new Label();
+		((ISupportInitialize)epNotice).BeginInit();
+		((Control)AsTabControl).SuspendLayout();
+		((Control)tabFilter).SuspendLayout();
+		((Control)this).SuspendLayout();
+		AsTabControl asTabControl = AsTabControl;
+		Point location = new Point(0, 1);
+		((Control)asTabControl).Location = location;
+		AsTabControl asTabControl2 = AsTabControl;
+		Size size = new Size(821, 553);
+		((Control)asTabControl2).Size = size;
+		((Control)AsTabControl).TabIndex = 0;
+		((Control)tabFilter).Controls.Add((Control)(object)txtMa_bpsd);
+		((Control)tabFilter).Controls.Add((Control)(object)lblTen_bpsd);
+		((Control)tabFilter).Controls.Add((Control)(object)lblMa_BPSD);
+		((Control)tabFilter).Controls.Add((Control)(object)txtMa_nhts);
+		((Control)tabFilter).Controls.Add((Control)(object)lblTen_nhts);
+		((Control)tabFilter).Controls.Add((Control)(object)lblMa_nhts);
+		((Control)tabFilter).Controls.Add((Control)(object)txtMa_ts);
+		((Control)tabFilter).Controls.Add((Control)(object)lblTen_ts);
+		((Control)tabFilter).Controls.Add((Control)(object)lblMa_tS);
+		TabPage obj = tabFilter;
+		size = new Size(813, 524);
+		((Control)obj).Size = size;
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblMa_tS, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblTen_ts, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtMa_ts, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)cmdOk, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtTieu_De, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblTieu_de, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblMau_bc, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblKyBc, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)cboKyBc, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtNgay1, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)cmdModifyReport, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtNgay2, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)cboMau_bc, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblMa_nt, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)optNt, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)optVND, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblMauBC, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtMa_Nt, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)cmdCancel, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)cmdExcel, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lbl2, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblMa_nhts, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblTen_nhts, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtMa_nhts, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblMa_BPSD, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)lblTen_bpsd, 0);
+		((Control)tabFilter).Controls.SetChildIndex((Control)(object)txtMa_bpsd, 0);
+		Label obj2 = lbl2;
+		location = new Point(277, 378);
+		((Control)obj2).Location = location;
+		((Control)lbl2).Visible = false;
+		Button obj3 = cmdExcel;
+		location = new Point(609, 357);
+		((Control)obj3).Location = location;
+		((Control)cmdExcel).TabIndex = 11;
+		AsMaskedTextBox asMaskedTextBox = txtNgay2;
+		location = new Point(315, 82);
+		((Control)asMaskedTextBox).Location = location;
+		((Control)txtNgay2).TabIndex = 6;
+		Button obj4 = cmdCancel;
+		location = new Point(528, 357);
+		((Control)obj4).Location = location;
+		((Control)cmdCancel).TabIndex = 10;
+		Button obj5 = cmdModifyReport;
+		location = new Point(474, 27);
+		((Control)obj5).Location = location;
+		((Control)cmdModifyReport).TabIndex = 51;
+		AsMaskedTextBox asMaskedTextBox2 = txtNgay1;
+		location = new Point(225, 82);
+		((Control)asMaskedTextBox2).Location = location;
+		((Control)txtNgay1).TabIndex = 5;
+		ComboBox obj6 = cboKyBc;
+		location = new Point(129, 82);
+		((Control)obj6).Location = location;
+		((Control)cboKyBc).TabIndex = 4;
+		Label obj7 = lblKyBc;
+		location = new Point(18, 86);
+		((Control)obj7).Location = location;
+		ComboBox obj8 = cboMau_bc;
+		location = new Point(129, 29);
+		((Control)obj8).Location = location;
+		Label obj9 = lblMau_bc;
+		location = new Point(18, 33);
+		((Control)obj9).Location = location;
+		Label obj10 = lblMau_bc;
+		size = new Size(47, 13);
+		((Control)obj10).Size = size;
+		lblMau_bc.Text = "Báo cáo";
+		AsTextBox asTextBox = txtMa_Nt;
+		location = new Point(110, 348);
+		((Control)asTextBox).Location = location;
+		((Control)txtMa_Nt).TabIndex = 8;
+		((Control)txtMa_Nt).Visible = false;
+		Label obj11 = lblMauBC;
+		location = new Point(158, 347);
+		((Control)obj11).Location = location;
+		((Control)lblMauBC).Visible = false;
+		RadioButton obj12 = optVND;
+		location = new Point(233, 346);
+		((Control)obj12).Location = location;
+		((Control)optVND).TabIndex = 14;
+		optVND.TabStop = false;
+		((Control)optVND).Visible = false;
+		RadioButton obj13 = optNt;
+		location = new Point(286, 347);
+		((Control)obj13).Location = location;
+		((Control)optNt).TabIndex = 15;
+		((Control)optNt).Visible = false;
+		Label obj14 = lblMa_nt;
+		location = new Point(23, 350);
+		((Control)obj14).Location = location;
+		((Control)lblMa_nt).Visible = false;
+		Button obj15 = cmdOk;
+		location = new Point(21, 207);
+		((Control)obj15).Location = location;
+		((Control)cmdOk).TabIndex = 50;
+		Label obj16 = lblTieu_de;
+		location = new Point(18, 60);
+		((Control)obj16).Location = location;
+		TextBox obj17 = txtTieu_De;
+		location = new Point(129, 56);
+		((Control)obj17).Location = location;
+		((Control)txtTieu_De).TabIndex = 2;
+		TabPage obj18 = tabGrid;
+		size = new Size(813, 524);
+		((Control)obj18).Size = size;
+		txtMa_ts.AutoLookup = true;
+		txtMa_ts.AutoValid = true;
+		((TextBoxBase)txtMa_ts).BackColor = SystemColors.Info;
+		((TextBox)txtMa_ts).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox2 = txtMa_ts;
+		location = new Point(129, 109);
+		((Control)asTextBox2).Location = location;
+		txtMa_ts.LookupCodeName = "MA_TS";
+		((Control)txtMa_ts).Name = "txtMa_ts";
+		txtMa_ts.NameControl = lblTen_ts;
+		AsTextBox asTextBox3 = txtMa_ts;
+		size = new Size(90, 20);
+		((Control)asTextBox3).Size = size;
+		((Control)txtMa_ts).TabIndex = 8;
+		txtMa_ts.UseAutoCompleteSource = true;
+		Label obj19 = lblTen_ts;
+		location = new Point(225, 111);
+		((Control)obj19).Location = location;
+		((Control)lblTen_ts).Name = "lblTen_ts";
+		Label obj20 = lblTen_ts;
+		size = new Size(324, 17);
+		((Control)obj20).Size = size;
+		((Control)lblTen_ts).TabIndex = 1017;
+		lblMa_tS.AutoSize = true;
+		Label obj21 = lblMa_tS;
+		location = new Point(16, 112);
+		((Control)obj21).Location = location;
+		((Control)lblMa_tS).Name = "lblMa_tS";
+		Label obj22 = lblMa_tS;
+		size = new Size(56, 13);
+		((Control)obj22).Size = size;
+		((Control)lblMa_tS).TabIndex = 1018;
+		lblMa_tS.Text = "Mã tài sản";
+		txtMa_nhts.AutoLookup = true;
+		txtMa_nhts.AutoValid = true;
+		((TextBoxBase)txtMa_nhts).BackColor = SystemColors.Info;
+		((TextBox)txtMa_nhts).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox4 = txtMa_nhts;
+		location = new Point(129, 135);
+		((Control)asTextBox4).Location = location;
+		txtMa_nhts.LookupCodeName = "MA_NHTS";
+		((Control)txtMa_nhts).Name = "txtMa_nhts";
+		txtMa_nhts.NameControl = lblTen_nhts;
+		AsTextBox asTextBox5 = txtMa_nhts;
+		size = new Size(90, 20);
+		((Control)asTextBox5).Size = size;
+		((Control)txtMa_nhts).TabIndex = 10;
+		txtMa_nhts.UseAutoCompleteSource = true;
+		Label obj23 = lblTen_nhts;
+		location = new Point(225, 137);
+		((Control)obj23).Location = location;
+		((Control)lblTen_nhts).Name = "lblTen_nhts";
+		Label obj24 = lblTen_nhts;
+		size = new Size(324, 17);
+		((Control)obj24).Size = size;
+		((Control)lblTen_nhts).TabIndex = 1020;
+		lblMa_nhts.AutoSize = true;
+		Label obj25 = lblMa_nhts;
+		location = new Point(16, 138);
+		((Control)obj25).Location = location;
+		((Control)lblMa_nhts).Name = "lblMa_nhts";
+		Label obj26 = lblMa_nhts;
+		size = new Size(85, 13);
+		((Control)obj26).Size = size;
+		((Control)lblMa_nhts).TabIndex = 1021;
+		lblMa_nhts.Text = "Mã nhóm tài sản";
+		txtMa_bpsd.AutoLookup = true;
+		txtMa_bpsd.AutoValid = true;
+		((TextBoxBase)txtMa_bpsd).BackColor = SystemColors.Info;
+		((TextBox)txtMa_bpsd).CharacterCasing = (CharacterCasing)1;
+		AsTextBox asTextBox6 = txtMa_bpsd;
+		location = new Point(129, 161);
+		((Control)asTextBox6).Location = location;
+		txtMa_bpsd.LookupCodeName = "MA_BPSD";
+		((Control)txtMa_bpsd).Name = "txtMa_bpsd";
+		txtMa_bpsd.NameControl = lblTen_bpsd;
+		AsTextBox asTextBox7 = txtMa_bpsd;
+		size = new Size(90, 20);
+		((Control)asTextBox7).Size = size;
+		((Control)txtMa_bpsd).TabIndex = 12;
+		txtMa_bpsd.UseAutoCompleteSource = true;
+		Label obj27 = lblTen_bpsd;
+		location = new Point(225, 163);
+		((Control)obj27).Location = location;
+		((Control)lblTen_bpsd).Name = "lblTen_bpsd";
+		Label obj28 = lblTen_bpsd;
+		size = new Size(324, 17);
+		((Control)obj28).Size = size;
+		((Control)lblTen_bpsd).TabIndex = 1023;
+		lblMa_BPSD.AutoSize = true;
+		Label obj29 = lblMa_BPSD;
+		location = new Point(16, 164);
+		((Control)obj29).Location = location;
+		((Control)lblMa_BPSD).Name = "lblMa_BPSD";
+		Label obj30 = lblMa_BPSD;
+		size = new Size(105, 13);
+		((Control)obj30).Size = size;
+		((Control)lblMa_BPSD).TabIndex = 1024;
+		lblMa_BPSD.Text = "Mã bộ phận sử dụng";
+		SizeF autoScaleDimensions = new SizeF(6f, 13f);
+		((ContainerControl)this).AutoScaleDimensions = autoScaleDimensions;
+		size = new Size(821, 579);
+		((Form)this).ClientSize = size;
+		((Control)this).Name = "frmFARptBCTS08";
+		((ISupportInitialize)epNotice).EndInit();
+		((Control)AsTabControl).ResumeLayout(false);
+		((Control)tabFilter).ResumeLayout(false);
+		((Control)tabFilter).PerformLayout();
+		((Control)this).ResumeLayout(false);
+		((Control)this).PerformLayout();
+	}
+
+	protected override bool LoadData()
+	{
+		//IL_00e9: Unknown result type (might be due to invalid IL or missing references)
+		try
+		{
+			ArrayList arrayList = new ArrayList();
+			arrayList.Add(CompanyInformations.CompanyID);
+			arrayList.Add(DateAndTime.DateValue(Conversions.ToString(txtNgay1.Value)));
+			arrayList.Add(DateAndTime.DateValue(Conversions.ToString(txtNgay2.Value)));
+			arrayList.Add(((TextBox)txtMa_ts).Text);
+			arrayList.Add(((TextBox)txtMa_nhts).Text);
+			arrayList.Add(((TextBox)txtMa_bpsd).Text);
+			set_MyDGVSource(isSet2Print: true, base.MyController.GetData(arrayList.ToArray()));
+			base.MyFomularFields.Clear();
+			base.MyFomularFields.Add("strSubTitle1", GetFilterTitle());
+		}
+		catch (Exception ex)
+		{
+			ProjectData.SetProjectError(ex);
+			Exception ex2 = ex;
+			Interaction.MsgBox((object)("Lỗi lọc  dữ liệu: " + ex2.Message), (MsgBoxStyle)48, (object)"Thông báo");
+			ProjectData.ClearProjectError();
+		}
+		return true;
+	}
+
+	private string GetFilterTitle()
+	{
+		string text = "";
+		if (Operators.CompareString(((TextBox)txtMa_ts).Text.Trim(), "", false) != 0)
+		{
+			text = text + "Tên tài sản: " + lblTen_ts.Text + ";";
+		}
+		if (Operators.CompareString(((TextBox)txtMa_nhts).Text.Trim(), "", false) != 0)
+		{
+			text = text + "Nhóm tài sản: " + lblTen_nhts.Text + ";";
+		}
+		if (Operators.CompareString(((TextBox)txtMa_bpsd).Text.Trim(), "", false) != 0)
+		{
+			text = text + "Bộ phận sử dụng: " + lblTen_bpsd.Text + ";";
+		}
+		if (Operators.CompareString(text, "", false) != 0)
+		{
+			text = Strings.Mid(text, 1, checked(text.Length - 1));
+		}
+		return text;
+	}
+}

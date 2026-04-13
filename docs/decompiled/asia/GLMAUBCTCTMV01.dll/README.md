@@ -1,0 +1,176 @@
+# Báo cáo Phân tích DLL: GLMAUBCTCTMV01.dll
+
+## Tổng quan
+
+| Thuộc tính | Giá trị |
+|------------|---------|
+| Loại file | .NET Assembly (Windows Forms) |
+| Ngôn ngữ | C# |
+| Framework | .NET Framework 3.5 |
+| Output type | Class Library (DLL) |
+| AllowUnsafeBlocks | True |
+
+---
+
+## Metadata
+
+| Thuộc tính | Giá trị |
+|------------|---------|
+| Assembly Name | GLMAUBCTCTMV01 |
+| Assembly Title | GLBCTC07V01 |
+| Assembly Company | |
+| Assembly Product | GLBCTC07V01 |
+| Assembly Copyright | Copyright © 2012 |
+| Assembly Trademark | |
+| Assembly Version | 1.0.0.0 |
+| Assembly File Version | 1.0.0.0 |
+| GUID | d1d47aa9-6ed0-4228-910f-bff2ecd3ebeb |
+| ComVisible | false |
+
+---
+
+## Cấu trúc File
+
+```
+GLMAUBCTCTMV01.dll/
+├── GLMAUBCTCTMV01.csproj        # Project file
+├── app.ico                        # Application icon
+├── Properties/
+│   └── AssemblyInfo.cs            # Assembly metadata
+├── AsiaErp.UserInterface/
+│   ├── frmGLMAUBCTCTMV01.cs         # Main view form
+│   └── frmGLMAUBCTCTMV01Edit.cs     # Edit form
+└── AsiaErp.UserInterface.My/
+    ├── MySettings.cs
+    ├── MyProject.cs
+    ├── MySettingsProperty.cs
+    ├── MyComputer.cs
+    └── MyApplication.cs
+└── AsiaErp.UserInterface.My.Resources/
+    └── Resources.cs               # Resource manager
+```
+
+---
+
+## Dependencies
+
+### External References
+
+| Assembly | Mục đích |
+|----------|----------|
+| Microsoft.VisualBasic | Visual Basic runtime support |
+| Framework | Asia ERP Framework (native-apps/ASIA/Framework.dll) |
+| Helper | Asia ERP Helper (native-apps/ASIA/Helper.dll) |
+
+### Namespaces sử dụng
+
+- `AsiaErp.Framework`
+- `System`, `System.ComponentModel`, `System.Diagnostics`, `System.Drawing`, `System.Runtime.CompilerServices`, `System.Windows.Forms`
+- `Microsoft.VisualBasic.CompilerServices`
+
+---
+
+## Classes và Components
+
+| Class | Kế thừa | Mục đích |
+|-------|---------|----------|
+| `frmGLMAUBCTCTMV01` | `frmDMComplexView` | Form xem danh sách mẫu báo cáo tài chính V01 |
+| `frmGLMAUBCTCTMV01Edit` | `frmDMComplexEdit` | Form chỉnh sửa chỉ tiêu báo cáo tài chính V01 |
+| `Resources` | - | Resource manager cho localization |
+
+---
+
+## Controls và UI Components
+
+### frmGLMAUBCTCTMV01Edit
+
+| Control | Loại | Mục đích |
+|---------|------|----------|
+| txtMa_chtieu | AsTextBox | Mã chỉ tiêu (Uppercase, AutoComplete) |
+| txtChi_tieu | TextBox | Tên chỉ tiêu |
+| txtNd_chtieu | TextBox (Multiline) | Nội dung chỉ tiêu |
+| txtCong_thuc | TextBox | Công thức tính toán |
+| txtTaikhoan | AsTextBox | Tài khoản (Lookup Code: TK) |
+| lblTK | Label | Hiển thị tên tài khoản |
+| txtMauQD | AsTextBox | Mẫu quyết định |
+| ChkIs_print | CheckBox | Có in hay không |
+| ChkIs_italic | CheckBox | In nghiêng |
+| chkKsd | AsCheckBox | In đậm (bold) |
+
+---
+
+## Business Logic
+
+### Data Binding
+
+| Field | Control | Property |
+|-------|---------|----------|
+| mau | txtMauQD | Text |
+| ma_so | txtMa_chtieu | Text |
+| chi_tieu | txtChi_tieu | Text |
+| nd_chtieu | txtNd_chtieu | Text |
+| cach_tinh | txtCong_thuc | Text |
+| tk_01 | txtTaikhoan | Text |
+| IsItalic | ChkIs_italic | Checked |
+| IsPrint | ChkIs_print | Checked |
+| bold | chkKsd | Checked |
+
+### Validation
+
+- **Mã chỉ tiêu**: Bắt buộc nhập (không được để trống)
+- **Chỉ tiêu**: Bắt buộc nhập (không được để trống)
+- **Mẫu QĐ**: Tự động lấy từ `CompanyInformations.Qd_cdkt` nếu để trống
+
+### Events
+
+| Event | Handler | Mô tả |
+|-------|---------|---------|
+| Load | frmGLMAUBCTCTMV01Edit_Load | Set default IsPrint = true khi thêm mới |
+
+---
+
+## Mục đích sử dụng
+
+**GLMAUBCTCTMV01.dll là module quản lý Mẫu báo cáo tài chính V01** trong hệ thống ERP của Asia Software Development JSC.
+
+### Chức năng chính
+
+#### 1. Quản lý chỉ tiêu báo cáo tài chính V01
+- Định nghĩa mã chỉ tiêu và tên chỉ tiêu
+- Nhập nội dung chi tiết cho từng chỉ tiêu
+- Cấu hình công thức tính toán cho chỉ tiêu
+- Gắn tài khoản kế toán liên quan (tk_01)
+- Gán mẫu quyết định (theo quy định của Bộ Tài chính)
+
+#### 2. Định dạng in ấn
+- Tùy chọn in đậm (bold)
+- Tùy chọn in nghiêng (italic)
+- Tùy chọn có in hay không (IsPrint)
+
+#### 3. Quản lý dữ liệu
+- Thêm mới chỉ tiêu
+- Sửa đổi thông tin chỉ tiêu
+- Xóa chỉ tiêu (nếu được phép)
+- Xem danh sách chỉ tiêu
+
+### Đặc điểm kỹ thuật
+
+- Sử dụng DataBinding với DataTable
+- Kế thừa từ `frmDMComplexEdit` và `frmDMComplexView` của Framework
+- Hỗ trợ AutoComplete cho các trường lookup
+- Validation dữ liệu đầu vào với ErrorProvider
+- Lookup tài khoản (TK) với hiển thị tên tài khoản
+
+### Mã báo cáo
+
+**BCTC V01** - Báo cáo tài chính V01 (theo Thông tư 200/2014/TT-BTC hoặc QĐ 15/2006/QĐ-BTC)
+
+---
+
+## Kết luận
+
+Đây là một module Windows Forms của hệ thống ERP Asia Enterprise, phục vụ cho việc cấu hình và quản lý mẫu báo cáo tài chính V01 - một báo cáo tài chính quan trọng trong kế toán doanh nghiệp Việt Nam. Module này hỗ trợ cấu hình công thức tính toán và liên kết với tài khoản kế toán.
+
+---
+
+*Ngày phân tích: 2026-03-29*

@@ -1,537 +1,177 @@
-# Laravel Simba - Documentation
+# SimbaSql Documentation Index
 
-Tài liệu đầy đủ cho package `diepxuan/laravel-simba` - Laravel Integration With Simba (phần mềm kế toán).
-
----
-
-## Mục lục
-
-1. [Giới thiệu](#giới-thiệu)
-2. [Cài đặt](#cài-đặt)
-3. [Cấu hình](#cấu-hình)
-4. [Sử dụng](#sử-dụng)
-5. [Database Access Policy](#database-access-policy)
-6. [Stored Procedures](#stored-procedures)
-7. [Models](#models)
-8. [API Reference](#api-reference)
-9. [Examples](#examples)
-10. [Troubleshooting](#troubleshooting)
+Tổng hợp toàn bộ tài liệu dự án SimbaSql.
 
 ---
 
-## Giới thiệu
+## Quick Navigation
 
-Laravel Simba là package tích hợp Laravel với hệ thống ERP Simba (phần mềm kế toán). Package cung cấp:
-
-- **Eloquent Models** tương ứng với các bảng dữ liệu Simba
-- **Stored Procedure Classes** để gọi các thủ tục lưu trữ từ Simba
-- **Hỗ trợ composite primary key** thông qua package `eloquent-composite`
-- **Xử lý charset** (encoding) tự động
-
-### Nguyên tắc thiết kế
-
-> **CHỈ ĐỌC (READ-ONLY)** - Mọi thao tác **INSERT/UPDATE/DELETE** phải thực hiện thông qua **Stored Procedures**.
-
-Xem chi tiết: [Database Access Policy](./DATABASE_ACCESS_POLICY.md)
-
----
-
-## Cài đặt
-
-### Yêu cầu hệ thống
-
-- PHP >= 8.1
-- Laravel >= 10.0
-- SQL Server (sqlsrv driver)
-- Extension: `pdo_sqlsrv`, `sqlsrv`
-
-### Cài đặt qua Composer
-
-```bash
-composer require diepxuan/laravel-simba
-```
-
-### Dependencies
-
-Package phụ thuộc vào:
-
-```json
-{
-  "diepxuan/php-charset": "*",
-  "diepxuan/laravel-core": "*",
-  "diepxuan/laravel-eloquent-composite": "*"
-}
-```
+| Category | Path | Description |
+|----------|------|-------------|
+| **Core Docs** | [docs/](./) | Tài liệu chính |
+| **Asia Guides** | [docs/asia/guides/](./asia/guides/) | Tài liệu Asia ERP App |
+| **SQL Guides** | [docs/procedures/guides/](./procedures/guides/) | Tài liệu SQL Simba |
+| **Reference** | [docs/reference/](./reference/) | Tài liệu tra cứu kỹ thuật |
+| **Flows** | [docs/flows/](./flows/) | Luồng xử lý công việc (đang cập nhật) |
+| **Modules** | [docs/modules/](./modules/) | Tài liệu theo module |
+| **Asia App** | [docs/asia/](./asia/) | Phân tích Asia ERP App |
+| **Tasks** | [docs/tasks/](./tasks/) | Task tracking và kế hoạch |
+| **Database** | [dbo/](../dbo/) | Cấu trúc database |
+| **RAG** | [rag/](../rag/) | AI search & query |
 
 ---
 
-## Cấu hình
+## Core Documentation
 
-### Environment Variables
+### Getting Started
+- [AI_AGENT_CONTRACT.md](./AI_AGENT_CONTRACT.md) - Hợp đồng cho AI agent
+- [API_CONTRACT.md](./API_CONTRACT.md) - API contracts
+- [DATA_DICTIONARY.md](./DATA_DICTIONARY.md) - Từ điển dữ liệu
 
-Thêm vào file `.env`:
+### Architecture & Design
+- [01_ARCHITECTURE.md](./01_ARCHITECTURE.md) - Kiến trúc hệ thống
+- [02_DATA_MODEL.md](./02_DATA_MODEL.md) - Mô hình dữ liệu
+- [03_MULTI_TENANCY_MODEL.md](./03_MULTI_TENANCY_MODEL.md) - Multi-tenancy
+- [04_SECURITY_MODEL.md](./04_SECURITY_MODEL.md) - Mô hình bảo mật
+- [05_PERFORMANCE_OPTIMIZATION.md](./05_PERFORMANCE_OPTIMIZATION.md) - Tối ưu hiệu suất
+- [06_MONITORING_AND_MAINTENANCE.md](./06_MONITORING_AND_MAINTENANCE.md) - Giám sát & bảo trì
+- [07_DEPLOYMENT_MODEL.md](./07_DEPLOYMENT_MODEL.md) - Triển khai
 
-```env
-# Simba Connection
-SIMBA_CONNECTION=sqlsrv
+### Asia App Guides
+- [asia/guides/PROJECT_GUIDE.md](./asia/guides/PROJECT_GUIDE.md) - Tổng quan dự án và mapping Asia App
+- [asia/guides/MODULES.md](./asia/guides/MODULES.md) - Chi tiết các module Asia
+- [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md) - Luồng nghiệp vụ chi tiết
 
-# SQL Server Configuration (nếu dùng connection riêng)
-DB_CONNECTION_SIMBA=sqlsrv
-DB_HOST_SIMBA=127.0.0.1
-DB_PORT_SIMBA=1433
-DB_DATABASE_SIMBA=simba_db
-DB_USERNAME_SIMBA=username
-DB_PASSWORD_SIMBA=password
-```
+### SQL Simba Guides
+- [procedures/guides/CORE.md](./procedures/guides/CORE.md) - Kiến trúc core và naming convention
 
-### Config File
+### Reference
+- [reference/ASIA_SIMBA_MAPPING.md](./reference/ASIA_SIMBA_MAPPING.md) - Liên kết Asia App và Simba SQL
+- [reference/QUICK_REFERENCE.md](./reference/QUICK_REFERENCE.md) - Tham khảo nhanh SP theo nghiệp vụ
+- [reference/CODE_MAPPING.md](./reference/CODE_MAPPING.md) - Mapping code decompiled sang SP
+- [reference/FUNCTIONS.md](./reference/FUNCTIONS.md) - Danh sách functions theo module
+- [reference/FILE_INDEX.md](./reference/FILE_INDEX.md) - Index file nhanh
 
-Package sử dụng config từ `config/simba.php` (nếu có) hoặc default:
+### Tasks
+- [tasks/ASIA_APP_ANALYSIS_REPORT.md](./tasks/ASIA_APP_ANALYSIS_REPORT.md) - Báo cáo phân tích Asia App
+- [tasks/ASIA_DECOMPILE_TASKS.md](./tasks/ASIA_DECOMPILE_TASKS.md) - Task decompile tracking
+- [tasks/ASIA_DOC_RESTRUCTURE_PLAN.md](./tasks/ASIA_DOC_RESTRUCTURE_PLAN.md) - Kế hoạch tái cấu trúc
 
-```php
-// config/simba.php
-return [
-    'connection' => env('SIMBA_CONNECTION', 'sqlsrv'),
-];
-```
+### Catalogs
+- [catalog/PROCEDURES.md](./catalog/PROCEDURES.md) - Danh mục 2031 stored procedures
+- [catalog/procedures/](./catalog/procedures/) - Chi tiết từng procedure
 
 ---
 
-## Sử dụng
+## Business Workflows (Luồng xử lý)
 
-### Đọc dữ liệu (READ)
+### Core Business Flows
+| Flow | File | Modules |
+|------|------|---------|
+| **Mua hàng** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-mua-hàng) | PO, AP, CA, IN, GL |
+| **Bán hàng** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-bán-hàng) | SO, SI, AR, CA, IN, GL |
+| **Thu chi tiền** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-thu-chi) | CA, GL |
+| **Nhập xuất kho** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-kho) | IN, PO, SO, GL |
+| **Tài sản cố định** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-tài-sản) | FA, GL |
+| **Công nợ phải thu** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-công-nợ-thu) | AR, SI, CA, GL |
+| **Công nợ phải trả** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-công-nợ-trả) | AP, PO, CA, GL |
+| **Sổ cái** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-sổ-cái) | GL |
 
-```php
-use Diepxuan\Simba\Models\ArDmKh;
-use Diepxuan\Simba\Models\GlCt;
+---
 
-// Lấy tất cả khách hàng
-$customers = ArDmKh::all();
+## Module Documentation
 
-// Tìm khách hàng theo mã
-$customer = ArDmKh::where('ma_kh', 'KH001')->first();
+### Financial Modules
+| Module | Path | Procedures |
+|--------|------|------------|
+| **GL** - General Ledger | [modules/GL/](./modules/GL/) | 313 procedures |
+| **AR** - Accounts Receivable | [modules/AR/](./modules/AR/) | 94 procedures |
+| **AP** - Accounts Payable | [modules/AP/](./modules/AP/) | 41 procedures |
+| **CA** - Cash & Banking | [modules/CA/](./modules/CA/) | 55 procedures |
 
-// Query phức tạp
-$transactions = GlCt::where('ma_cty', '001')
-    ->where('ngay_ct', '>=', '2024-01-01')
-    ->where('tk', '131')
-    ->get();
+### Operations Modules
+| Module | Path | Procedures |
+|--------|------|------------|
+| **SO** - Sales Order | [modules/SO/](./modules/SO/) | 171 procedures |
+| **PO** - Purchase Order | [modules/PO/](./modules/PO/) | 127 procedures |
+| **SI** - Sales Invoice | [modules/SI/](./modules/SI/) | ~50 procedures |
+| **IN** - Inventory | [modules/IN/](./modules/IN/) | 146 procedures |
+
+### Asset & HR Modules
+| Module | Path | Procedures |
+|--------|------|------------|
+| **FA** - Fixed Assets | [modules/FA/](./modules/FA/) | 58 procedures |
+| **CO** - Manufacturing | [modules/CO/](./modules/CO/) | 65 procedures |
+| **HR** - Human Resources | [modules/HR/](./modules/HR/) | 172 procedures |
+
+---
+
+## Database Objects
+
+### Stored Procedures
+- [dbo/StoredProcedures/README.md](../dbo/StoredProcedures/README.md) - 2031 procedures
+- [dbo/StoredProcedures/](../dbo/StoredProcedures/) - Source files
+
+### Other Objects
+- [dbo/Functions/README.md](../dbo/Functions/README.md) - 89 functions
+- [dbo/Tables/README.md](../dbo/Tables/README.md) - 440 tables
+- [dbo/Views/README.md](../dbo/Views/README.md) - 4 views
+
+---
+
+## Tools & Scripts
+
+- [tools/README.md](../tools/README.md) - SQL tools
+- [tools/generate_docs.sh](../tools/generate_docs.sh) - Generate documentation
+- [examples/README.md](../examples/README.md) - SQL examples
+- [Follow/](../Follow/) - Maintenance scripts
+
+---
+
+## RAG Pipeline
+
+- [rag/README.md](../rag/README.md) - AI search documentation
+- [rag/index.py](../rag/index.py) - Index documents
+- [rag/query.py](../rag/query.py) - Query interface
+- [rag/api.py](../rag/api.py) - API server
+
+---
+
+## Cross-References
+
+### Module → Flow Mapping
+```
+GL:  [general_ledger_workflow.md](./flows/general_ledger_workflow.md)
+AR:  [accounts_receivable_workflow.md](./flows/accounts_receivable_workflow.md)
+AP:  [accounts_payable_workflow.md](./flows/accounts_payable_workflow.md)
+CA:  [cash_banking_workflow.md](./flows/cash_banking_workflow.md)
+SO:  [sales_order_workflow.md](./flows/sales_order_workflow.md)
+PO:  [purchase_order_workflow.md](./flows/purchase_order_workflow.md)
+SI:  [sales_order_workflow.md](./flows/sales_order_workflow.md)
+IN:  [inventory_workflow.md](./flows/inventory_workflow.md)
+FA:  [fixed_assets_workflow.md](./flows/fixed_assets_workflow.md)
 ```
 
-### Gọi Stored Procedures (WRITE)
-
-```php
-use Diepxuan\Simba\StoredProcedures\AsGetSoCt;
-use Diepxuan\Simba\StoredProcedures\AsCAInsPH2;
-use Diepxuan\Simba\StoredProcedures\ProcedureCaller;
-
-// Lấy số chứng từ tiếp theo
-$stt_rec = AsGetSoCt::call([
-    'pMa_Cty' => '001',
-    'pMa_Ct'  => 'CA4',
-]);
-
-// Insert phiếu thu qua Stored Procedure
-$result = AsCAInsPH2::call([
-    'pMa_cty'   => '001',
-    'pStt_rec'  => $stt_rec,
-    'pMa_ct'    => 'CA4',
-    'pSo_ct'    => 'PT001',
-    'pNgay_ct'  => '2024-03-06',
-    'pMa_kh'    => 'KH001',
-    'pPs_no'    => 1000000,
-    'pDien_giai'=> 'Thu tien ban hang',
-    'pUser'     => 'admin',
-]);
+### Flow → Module Dependencies
 ```
-
-### Sử dụng trong Transaction
-
-```php
-use Illuminate\Support\Facades\DB;
-use Diepxuan\Simba\StoredProcedures\AsCAInsPH2;
-use Diepxuan\Simba\StoredProcedures\AsCAInsCT2;
-use Diepxuan\Simba\StoredProcedures\AsProcessCt;
-
-DB::transaction(function () use ($data) {
-    // 1. Lấy số chứng từ
-    $stt_rec = AsGetSoCt::call([
-        'pMa_Cty' => '001',
-        'pMa_Ct'  => 'CA4',
-    ]);
-    
-    // 2. Insert Header
-    AsCAInsPH2::call([
-        'pMa_cty'  => '001',
-        'pStt_rec' => $stt_rec,
-        // ... parameters
-    ]);
-    
-    // 3. Insert Details
-    foreach ($data['details'] as $detail) {
-        AsCAInsCT2::call([
-            'pMa_cty'  => '001',
-            'pStt_rec' => $stt_rec,
-            // ... parameters
-        ]);
-    }
-    
-    // 4. Process chứng từ
-    AsProcessCt::call([
-        'pMa_Cty'  => '001',
-        'pMa_Ct'   => 'CA4',
-        'pStt_rec' => $stt_rec,
-        'pMode'    => '1',
-    ]);
-});
+purchase_order_workflow:  PO → AP → CA → IN → GL
+sales_order_workflow:     SO → SI → AR → CA → IN → GL
+accounts_receivable:      AR → SI → CA → GL
+accounts_payable:         AP → PO → CA → GL
+cash_banking:             CA → GL
+inventory:                IN → PO → SO → GL
+fixed_assets:             FA → GL
+general_ledger:           GL (all modules)
 ```
 
 ---
 
-## Database Access Policy
+## External Links
 
-Package tuân thủ nguyên tắc bảo mật nghiêm ngặt:
-
-| Thao tác | Được phép | Cách thực hiện |
-|----------|-----------|----------------|
-| **SELECT** | ✅ | Eloquent Models, Query Builder |
-| **INSERT** | ❌ | Chỉ qua Stored Procedures |
-| **UPDATE** | ❌ | Chỉ qua Stored Procedures |
-| **DELETE** | ❌ | Chỉ qua Stored Procedures |
-
-Xem chi tiết: [DATABASE_ACCESS_POLICY.md](./DATABASE_ACCESS_POLICY.md)
+- Repository: https://github.com/diepxuan/SimbaSql
+- Issues: https://github.com/diepxuan/SimbaSql/issues
+- PRs: https://github.com/diepxuan/SimbaSql/pulls
 
 ---
 
-## Stored Procedures
-
-### Categories
-
-Stored procedures được phân loại theo module:
-
-| Category | Prefix | Mô tả |
-|----------|--------|-------|
-| **Access Control** | `AsCA*` | Chứng từ tiền mặt, ngân hàng |
-| **Accounts Receivable** | `AsAR*` | Nghiệp vụ phải thu |
-| **Accounts Payable** | `AsAP*` | Nghiệp vụ phải trả |
-| **General Ledger** | `AsGL*` | Kế toán tổng hợp |
-| **Inventory** | `AsIN*` | Quản lý kho |
-| **Purchase Order** | `AsPO*` | Mua hàng |
-| **Sales Order** | `AsSO*` | Bán hàng |
-| **System** | `AsSys*` | Nghiệp vụ hệ thống |
-| **Fixed Assets** | `AsFA*` | Tài sản cố định |
-| **Costing** | `AsCO*` | Tính giá thành |
-| **HR & Payroll** | `AsHr*` | Nhân sự, lương |
-| **Tax** | `AsTa*` | Thuế, báo cáo thuế |
-
-### Danh sách đầy đủ
-
-Xem chi tiết từng category:
-
-- [Stored Procedures Overview](./STORED_PROCEDURES/overview.md)
-- [Access Control (CA)](./STORED_PROCEDURES/ca.md)
-- [Accounts Receivable (AR)](./STORED_PROCEDURES/ar.md)
-- [Accounts Payable (AP)](./STORED_PROCEDURES/ap.md)
-- [General Ledger (GL)](./STORED_PROCEDURES/gl.md)
-- [Inventory (IN)](./STORED_PROCEDURES/in.md)
-- [Purchase Order (PO)](./STORED_PROCEDURES/po.md)
-- [Sales Order (SO)](./STORED_PROCEDURES/so.md)
-
----
-
-## Models
-
-### SModel (Base Model)
-
-Tất cả models kế thừa từ `SModel`:
-
-```php
-namespace Diepxuan\Simba\SModel;
-
-class ArDmKh extends SModel
-{
-    protected $table = 'ARDMKH';
-    protected $primaryKey = 'ma_kh';
-    public $incrementing = false;
-    protected $keyType = 'string';
-}
-```
-
-### Models phổ biến
-
-| Model | Table | Mô tả |
-|-------|-------|-------|
-| `ArDmKh` | ARDMKH | Danh mục khách hàng |
-| `InDmVt` | INDMVT | Danh mục vật tư |
-| `InDmKho` | INDMKHO | Danh mục kho |
-| `GlCt` | GLCT | Chứng từ kế toán |
-| `GlDmTk` | GLDMTK | Danh mục tài khoản |
-| `SysCompany` | SYSCOMPANY | Thông tin công ty |
-| `SysUserInfo` | SYSUSERINFO | Thông tin người dùng |
-
-### Models mở rộng (Models/)
-
-Package cung cấp 2 lớp models:
-
-1. **SModel/** - Models cơ bản (auto-generated)
-2. **Models/** - Models mở rộng (có thể thêm scope, logic)
-
-```php
-// Sử dụng models mở rộng
-use Diepxuan\Simba\Models\ArDmKh;
-
-$customer = ArDmKh::withActive()->find('KH001');
-```
-
----
-
-## API Reference
-
-### ProcedureCaller
-
-Class cơ bản để gọi stored procedures:
-
-```php
-use Diepxuan\Simba\StoredProcedures\ProcedureCaller;
-
-// Gọi procedure cơ bản
-$result = ProcedureCaller::call('asGetSoCt', [
-    'pMa_Cty' => '001',
-    'pMa_Ct'  => 'CA4',
-]);
-
-// Gọi với OUTPUT parameter
-$result = ProcedureCaller::call('asChkUserLogin', [
-    'pUserName' => 'admin',
-    'pPassword' => 'password',
-    'pRet'      => ['type' => 'INT', 'output' => true],
-]);
-
-// Lấy giá trị output
-$ret = $result->first()->Ret ?? 0;
-```
-
-### StoredProcedure Base Class
-
-```php
-namespace Diepxuan\Simba\StoredProcedures;
-
-abstract class StoredProcedure
-{
-    protected static string $name = '';
-    protected static array $params = [];
-    
-    public static function call(array $params = [])
-    {
-        // Implementation
-    }
-}
-```
-
----
-
-## Examples
-
-### 1. Tạo phiếu thu mới
-
-```php
-use Diepxuan\Simba\StoredProcedures\AsGetSoCt;
-use Diepxuan\Simba\StoredProcedures\AsCAInsPH2;
-use Diepxuan\Simba\StoredProcedures\AsCAInsCT2;
-use Diepxuan\Simba\StoredProcedures\AsProcessCt;
-
-function createReceipt(array $data): string
-{
-    return DB::transaction(function () use ($data) {
-        $maCty = '001';
-        $maCt = 'CA4';
-        
-        // Lấy số chứng từ
-        $stt_rec = AsGetSoCt::call([
-            'pMa_Cty' => $maCty,
-            'pMa_Ct'  => $maCt,
-        ]);
-        
-        // Insert header
-        AsCAInsPH2::call([
-            'pMa_cty'   => $maCty,
-            'pStt_rec'  => $stt_rec,
-            'pMa_ct'    => $maCt,
-            'pSo_ct'    => $data['so_ct'],
-            'pNgay_ct'  => $data['ngay_ct'],
-            'pMa_kh'    => $data['ma_kh'],
-            'pPs_no'    => $data['so_tien'],
-            'pDien_giai'=> $data['dien_giai'],
-            'pUser'     => auth()->user()->username,
-        ]);
-        
-        // Insert details (nếu có)
-        foreach ($data['details'] ?? [] as $detail) {
-            AsCAInsCT2::call([
-                'pMa_cty'  => $maCty,
-                'pStt_rec' => $stt_rec,
-                'pTk'      => $detail['tk'],
-                'pPs_no'   => $detail['ps_no'],
-                'pPs_co'   => $detail['ps_co'],
-            ]);
-        }
-        
-        // Process chứng từ
-        AsProcessCt::call([
-            'pMa_Cty'  => $maCty,
-            'pMa_Ct'   => $maCt,
-            'pStt_rec' => $stt_rec,
-            'pMode'    => '1',
-        ]);
-        
-        return $stt_rec;
-    });
-}
-```
-
-### 2. Lấy số dư khách hàng
-
-```php
-use Diepxuan\Simba\StoredProcedures\AsGetSoDuKh;
-use Diepxuan\Simba\Models\ArDmKh;
-
-function getCustomerBalance(string $maKh, string $ngay): array
-{
-    $customer = ArDmKh::find($maKh);
-    
-    $balance = AsGetSoDuKh::call([
-        'pMa_Cty' => '001',
-        'pMa_kh'  => $maKh,
-        'pTk'     => '131',
-        'pNgay'   => $ngay,
-    ]);
-    
-    return [
-        'customer' => $customer,
-        'balance'  => $balance->first(),
-    ];
-}
-```
-
-### 3. Query dữ liệu kho
-
-```php
-use Diepxuan\Simba\Models\InDmVt;
-use Diepxuan\Simba\Models\InDmKho;
-use Diepxuan\Simba\Models\InCt3;
-
-function getInventoryReport(string $maKho, string $tuNgay, string $denNgay)
-{
-    $kho = InDmKho::find($maKho);
-    
-    $transactions = InCt3::where('ma_kho', $maKho)
-        ->whereBetween('ngay_ct', [$tuNgay, $denNgay])
-        ->with(['vatTu', 'phieu'])
-        ->get();
-    
-    $tonKho = $transactions->groupBy('ma_vt')->map(function ($items) {
-        return [
-            'ma_vt' => $items->first()->ma_vt,
-            'ten_vt' => $items->first()->vatTu->ten_vt,
-            'nhap' => $items->sum('sl_nhap'),
-            'xuat' => $items->sum('sl_xuat'),
-            'ton' => $items->sum('sl_nhap') - $items->sum('sl_xuat'),
-        ];
-    });
-    
-    return [
-        'kho' => $kho,
-        'period' => [$tuNgay, $denNgay],
-        'inventory' => $tonKho,
-    ];
-}
-```
-
----
-
-## Troubleshooting
-
-### Lỗi thường gặp
-
-#### 1. Connection Error
-
-```
-SQLSTATE[08001]: [SQL Server] SQL Server does not exist
-```
-
-**Giải pháp:**
-- Kiểm tra `SIMBA_CONNECTION` trong `.env`
-- Verify SQL Server driver: `php -m | grep sqlsrv`
-- Kiểm tra connection string
-
-#### 2. Stored Procedure Not Found
-
-```
-Could not find stored procedure 'asGetSoCt'
-```
-
-**Giải pháp:**
-- Verify procedure exists in database
-- Check user permissions
-- Ensure correct database selected
-
-#### 3. Charset Issues
-
-```
-Invalid character encoding
-```
-
-**Giải pháp:**
-- Install `diepxuan/php-charset` package
-- Configure charset in config
-- Use `mb_convert_encoding` if needed
-
-#### 4. Composite Key Error
-
-```
-Primary key must be an array for composite keys
-```
-
-**Giải pháp:**
-- Install `diepxuan/laravel-eloquent-composite`
-- Use array for find: `Model::find(['key1', 'key2'])`
-
-### Debug Mode
-
-Enable query logging:
-
-```php
-DB::enableQueryLog();
-
-// Execute queries
-
-dd(DB::getQueryLog());
-```
-
-### Performance Tips
-
-1. **Use indexes** on frequently queried columns
-2. **Batch operations** with stored procedures
-3. **Cache** reference data (danh mục)
-4. **Limit result sets** with pagination
-
----
-
-## Tài liệu liên quan
-
-- [DATABASE_ACCESS_POLICY.md](./DATABASE_ACCESS_POLICY.md) - Chính sách truy cập database
-- [STORED_PROCEDURES/](./STORED_PROCEDURES/) - Chi tiết stored procedures
-- [PROCEDURES_OPTIMIZED.md](./PROCEDURES_OPTIMIZED.md) - Procedures đã optimize
-
----
-
-## Liên hệ
-
-- **Author**: Tran Ngoc Duc
-- **Email**: ductn@diepxuan.com
-- **Repository**: `diepxuan/laravel-simba`
-
----
-
-**Cập nhật lần cuối:** 2026-03-06
-**Version:** 1.0
+*Last updated: 2026-03-28*

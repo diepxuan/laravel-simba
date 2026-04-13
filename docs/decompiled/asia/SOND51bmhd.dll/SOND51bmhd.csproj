@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>SOND51bmhd</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net35</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>12.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Framework">
+      <HintPath>../../../../projects/SimbaSql/native-apps/ASIA/Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>../../../../../../../usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.25/System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Helper">
+      <HintPath>../../../../projects/SimbaSql/native-apps/ASIA/Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="Docking">
+      <HintPath>../../../../projects/SimbaSql/native-apps/ASIA/Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

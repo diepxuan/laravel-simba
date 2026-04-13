@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>POVchPO3</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net35</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>12.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System.Xml.Linq">
+      <HintPath>../../../../../../../../../usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.25/System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Framework">
+      <HintPath>native-apps/ASIA/Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>../../../../../../../../../usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.25/System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>../../../../../../../../../usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.25/System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Helper">
+      <HintPath>native-apps/ASIA/Helper.dll</HintPath>
+    </Reference>
+    <Reference Include="POUtilities">
+      <HintPath>native-apps/ASIA/POUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath>../../../../../../../../../usr/share/dotnet/shared/Microsoft.NETCore.App/8.0.25/System.Data.DataSetExtensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
