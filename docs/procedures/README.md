@@ -8,7 +8,7 @@ Tài liệu chi tiết cho tất cả Stored Procedures trong hệ thống Simba
 |--------|----------|------------|-------------|
 | [AP](./AP/) | [README](./AP/README.md) | [procedures.md](./AP/procedures.md) | Accounts Payable - Công nợ phải trả |
 | [AR](./AR/) | [README](./AR/README.md) | [procedures.md](./AR/procedures.md) | Accounts Receivable - Công nợ phải thu |
-| [CA](./CA/) | [README](./CA/README.md) | [procedures.md](./CA/procedures.md) | Cash - Tiền mặt/Ngân hàng |
+| [CA](./CA/) | [README](./CA/README.md) | - | Cash - Tiền mặt/Ngân hàng |
 | [CO](./CO/) | [README](./CO/README.md) | [procedures.md](./CO/procedures.md) | Manufacturing - Sản xuất |
 | [Dash](./Dash/) | [README](./Dash/README.md) | - | Dashboard - Bảng điều khiển |
 | [FA](./FA/) | [README](./FA/README.md) | [procedures.md](./FA/procedures.md) | Fixed Assets - Tài sản cố định |
@@ -43,7 +43,7 @@ docs/procedures/{MODULE}/
 
 ### Ví dụ:
 
-- Tìm procedure thêm phiếu thu: Xem trong `CA/procedures.md`
+- Tìm procedure thêm phiếu thu: Xem trong `CA/README.md`
 - Tìm procedure báo cáo tồn kho: Xem trong `IN/procedures.md`
 
 ## Quy ước đặt tên
@@ -57,7 +57,6 @@ docs/procedures/{MODULE}/
 
 ## Liên quan
 
-- [Database Schema](../DATABASE_SCHEMA.md)
-- [Code Mapping](../CODE_MAPPING.md)
-- [API Documentation](../API.md)
-- [Module Index](../catalog/PROCEDURES.md)
+- [docs/asia/SP_INDEX.md](../asia/SP_INDEX.md) - SP Index theo DLL
+- [dbo/StoredProcedures/README.md](../../dbo/StoredProcedures/README.md) - Database SP files
+- [docs/asia/CROSS_MODULE_INTERACTIONS.md](../asia/CROSS_MODULE_INTERACTIONS.md) - Cross-module

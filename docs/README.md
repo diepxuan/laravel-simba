@@ -8,58 +8,141 @@ Tổng hợp toàn bộ tài liệu dự án SimbaSql.
 
 | Category | Path | Description |
 |----------|------|-------------|
-| **Core Docs** | [docs/](./) | Tài liệu chính |
+| **Asia App** | [docs/asia/](./asia/) | Phân tích Asia ERP App |
 | **Asia Guides** | [docs/asia/guides/](./asia/guides/) | Tài liệu Asia ERP App |
 | **SQL Guides** | [docs/procedures/guides/](./procedures/guides/) | Tài liệu SQL Simba |
 | **Reference** | [docs/reference/](./reference/) | Tài liệu tra cứu kỹ thuật |
-| **Flows** | [docs/flows/](./flows/) | Luồng xử lý công việc (đang cập nhật) |
-| **Modules** | [docs/modules/](./modules/) | Tài liệu theo module |
-| **Asia App** | [docs/asia/](./asia/) | Phân tích Asia ERP App |
+| **Data** | [docs/data/](./data/) | System tables documentation |
+| **Procedures** | [docs/procedures/](./procedures/) | Stored Procedures documentation |
+| **Decompiled** | [docs/decompiled/](./decompiled/) | Decompiled DLL analysis |
 | **Tasks** | [docs/tasks/](./tasks/) | Task tracking và kế hoạch |
 | **Database** | [dbo/](../dbo/) | Cấu trúc database |
-| **RAG** | [rag/](../rag/) | AI search & query |
+| **Scripts** | [scripts/](../scripts/) | Scripts & tools |
 
 ---
 
-## Core Documentation
+## Asia App Documentation
 
-### Getting Started
-- [AI_AGENT_CONTRACT.md](./AI_AGENT_CONTRACT.md) - Hợp đồng cho AI agent
-- [API_CONTRACT.md](./API_CONTRACT.md) - API contracts
-- [DATA_DICTIONARY.md](./DATA_DICTIONARY.md) - Từ điển dữ liệu
+### Tổng quan Module
+| Module | File | Mô tả |
+|--------|------|-------|
+| **GL** | [asia/GL_SUMMARY.md](./asia/GL_SUMMARY.md) | Kế toán tổng hợp |
+| **AR** | [asia/AR_SUMMARY.md](./asia/AR_SUMMARY.md) | Công nợ phải thu |
+| **AP** | [asia/AP_SUMMARY.md](./asia/AP_SUMMARY.md) | Công nợ phải trả |
+| **CA** | [asia/CA_SUMMARY.md](./asia/CA_SUMMARY.md) | Tiền mặt/ngân hàng |
+| **SO** | [asia/SO_SUMMARY.md](./asia/SO_SUMMARY.md) | Bán hàng |
+| **PO** | [asia/PO_SUMMARY.md](./asia/PO_SUMMARY.md) | Mua hàng |
+| **IN** | [asia/IN_SUMMARY.md](./asia/IN_SUMMARY.md) | Quản lý kho |
+| **CO** | [asia/CO_SUMMARY.md](./asia/CO_SUMMARY.md) | Sản xuất/giá thành |
+| **FA** | [asia/FA_SUMMARY.md](./asia/FA_SUMMARY.md) | Tài sản cố định |
+| **SI** | [asia/SI_SUMMARY.md](./asia/SI_SUMMARY.md) | Hệ thống |
 
-### Architecture & Design
-- [01_ARCHITECTURE.md](./01_ARCHITECTURE.md) - Kiến trúc hệ thống
-- [02_DATA_MODEL.md](./02_DATA_MODEL.md) - Mô hình dữ liệu
-- [03_MULTI_TENANCY_MODEL.md](./03_MULTI_TENANCY_MODEL.md) - Multi-tenancy
-- [04_SECURITY_MODEL.md](./04_SECURITY_MODEL.md) - Mô hình bảo mật
-- [05_PERFORMANCE_OPTIMIZATION.md](./05_PERFORMANCE_OPTIMIZATION.md) - Tối ưu hiệu suất
-- [06_MONITORING_AND_MAINTENANCE.md](./06_MONITORING_AND_MAINTENANCE.md) - Giám sát & bảo trì
-- [07_DEPLOYMENT_MODEL.md](./07_DEPLOYMENT_MODEL.md) - Triển khai
+### Tài liệu tham chiếu Asia
+| File | Mô tả |
+|------|-------|
+| [asia/CROSS_MODULE_INTERACTIONS.md](./asia/CROSS_MODULE_INTERACTIONS.md) | Luồng dữ liệu giữa các module |
+| [asia/SP_INDEX.md](./asia/SP_INDEX.md) | Danh sách Stored Procedures |
+| [asia/TABLES_INDEX.md](./asia/TABLES_INDEX.md) | Danh sách Database Tables |
 
-### Asia App Guides
-- [asia/guides/PROJECT_GUIDE.md](./asia/guides/PROJECT_GUIDE.md) - Tổng quan dự án và mapping Asia App
-- [asia/guides/MODULES.md](./asia/guides/MODULES.md) - Chi tiết các module Asia
-- [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md) - Luồng nghiệp vụ chi tiết
+### Chi tiết Module
+- [asia/gl/](./asia/gl/) - Vouchers, Reports, Masters, Financial Statements
+- [asia/ar/](./asia/ar/) - Vouchers, Reports
+- [asia/ap/](./asia/ap/) - Vouchers, Reports
+- [asia/ca/](./asia/ca/) - Vouchers, Masters, Reports
+- [asia/so/](./asia/so/) - Vouchers, Reports
+- [asia/po/](./asia/po/) - Vouchers, Reports
+- [asia/in/](./asia/in/) - Vouchers, Masters, Reports
+- [asia/co/](./asia/co/) - Vouchers, Reports
+- [asia/fa/](./asia/fa/) - Vouchers, Masters, Reports
+- [asia/si/](./asia/si/) - Vouchers, Masters
 
-### SQL Simba Guides
+---
+
+## Stored Procedures Documentation
+
+### Main
+- [procedures/README.md](./procedures/README.md) - Tổng quan
+
+### Theo Module
+| Module | README | Procedures |
+|--------|--------|------------|
+| GL | [procedures/GL/README.md](./procedures/GL/README.md) | [procedures.md](./procedures/GL/procedures.md) |
+| AR | [procedures/AR/README.md](./procedures/AR/README.md) | [procedures.md](./procedures/AR/procedures.md) |
+| AP | [procedures/AP/README.md](./procedures/AP/README.md) | [procedures.md](./procedures/AP/procedures.md) |
+| CA | [procedures/CA/README.md](./procedures/CA/README.md) | - |
+| SO | [procedures/SO/README.md](./procedures/SO/README.md) | [procedures.md](./procedures/SO/procedures.md) |
+| PO | [procedures/PO/README.md](./procedures/PO/README.md) | [procedures.md](./procedures/PO/procedures.md) |
+| IN | [procedures/IN/README.md](./procedures/IN/README.md) | [procedures.md](./procedures/IN/procedures.md) |
+| CO | [procedures/CO/README.md](./procedures/CO/README.md) | [procedures.md](./procedures/CO/procedures.md) |
+| FA | [procedures/FA/README.md](./procedures/FA/README.md) | [procedures.md](./procedures/FA/procedures.md) |
+| SI | [procedures/SI/README.md](./procedures/SI/README.md) | [procedures.md](./procedures/SI/procedures.md) |
+| System | [procedures/System/README.md](./procedures/System/README.md) | [procedures.md](./procedures/System/procedures.md) |
+
+### Guides
 - [procedures/guides/CORE.md](./procedures/guides/CORE.md) - Kiến trúc core và naming convention
 
-### Reference
-- [reference/ASIA_SIMBA_MAPPING.md](./reference/ASIA_SIMBA_MAPPING.md) - Liên kết Asia App và Simba SQL
-- [reference/QUICK_REFERENCE.md](./reference/QUICK_REFERENCE.md) - Tham khảo nhanh SP theo nghiệp vụ
-- [reference/CODE_MAPPING.md](./reference/CODE_MAPPING.md) - Mapping code decompiled sang SP
-- [reference/FUNCTIONS.md](./reference/FUNCTIONS.md) - Danh sách functions theo module
-- [reference/FILE_INDEX.md](./reference/FILE_INDEX.md) - Index file nhanh
+---
 
-### Tasks
-- [tasks/ASIA_APP_ANALYSIS_REPORT.md](./tasks/ASIA_APP_ANALYSIS_REPORT.md) - Báo cáo phân tích Asia App
-- [tasks/ASIA_DECOMPILE_TASKS.md](./tasks/ASIA_DECOMPILE_TASKS.md) - Task decompile tracking
-- [tasks/ASIA_DOC_RESTRUCTURE_PLAN.md](./tasks/ASIA_DOC_RESTRUCTURE_PLAN.md) - Kế hoạch tái cấu trúc
+## System Data Documentation
 
-### Catalogs
-- [catalog/PROCEDURES.md](./catalog/PROCEDURES.md) - Danh mục 2031 stored procedures
-- [catalog/procedures/](./catalog/procedures/) - Chi tiết từng procedure
+| File | Mô tả |
+|------|-------|
+| [data/sysMenu.md](./data/sysMenu.md) | Hệ thống menu |
+| [data/sysVoucherInfo.md](./data/sysVoucherInfo.md) | Thông tin chứng từ |
+| [data/sysVoucherResx.md](./data/sysVoucherResx.md) | Resource chứng từ |
+| [data/sysDictionaryInfo.md](./data/sysDictionaryInfo.md) | Từ điển dữ liệu |
+| [data/sysDictionaryResx.md](./data/sysDictionaryResx.md) | Resource từ điển |
+| [data/sysReportInfo.md](./data/sysReportInfo.md) | Thông tin báo cáo |
+| [data/sysReportDrillDownInfo.md](./data/sysReportDrillDownInfo.md) | Drill-down báo cáo |
+| [data/sysOpeningBalanceInfo.md](./data/sysOpeningBalanceInfo.md) | Số dư đầu kỳ |
+| [data/sysSetupModule.md](./data/sysSetupModule.md) | Cấu hình module |
+| [data/sysDAOInfo.md](./data/sysDAOInfo.md) | DAO information |
+| [data/sysDmMagd.md](./data/sysDmMagd.md) | Danh mục nhóm người dùng |
+| [data/SiDmCt.md](./data/SiDmCt.md) | Danh mục chứng từ |
+| [data/SiDmCtResx.md](./data/SiDmCtResx.md) | Resource danh mục CT |
+| [data/SiDmExcProc.md](./data/SiDmExcProc.md) | Exception procedures |
+
+---
+
+## Reference Documentation
+
+| File | Mô tả |
+|------|-------|
+| [reference/ASIA_SIMBA_MAPPING.md](./reference/ASIA_SIMBA_MAPPING.md) | Liên kết Asia App và Simba SQL |
+| [reference/QUICK_REFERENCE.md](./reference/QUICK_REFERENCE.md) | Tham khảo nhanh SP theo nghiệp vụ |
+| [reference/CODE_REFERENCE.md](./reference/CODE_REFERENCE.md) | Reference code |
+| [reference/FILE_INDEX.md](./reference/FILE_INDEX.md) | Index file nhanh |
+
+---
+
+## Decompiled DLL Analysis
+
+338 DLL đã được phân tích, nằm trong [docs/decompiled/asia/](./decompiled/asia/).
+
+Mỗi DLL có README.md riêng chứa thông tin về forms, methods, SP calls, và business logic.
+
+---
+
+## Tasks
+
+| File | Mô tả |
+|------|-------|
+| [tasks/001-in-danhmuc-vattu-bom.md](./tasks/001-in-danhmuc-vattu-bom.md) | Task IN: Danh mục vật tư BOM |
+| [tasks/002-si-simba-login-entrypoint.md](./tasks/002-si-simba-login-entrypoint.md) | Task SI: Login entrypoint |
+| [tasks/ASIA_APP_ANALYSIS_REPORT.md](./tasks/ASIA_APP_ANALYSIS_REPORT.md) | Báo cáo phân tích Asia App |
+| [tasks/ASIA_DECOMPILE_TASKS.md](./tasks/ASIA_DECOMPILE_TASKS.md) | Task decompile tracking |
+| [tasks/ASIA_DOC_RESTRUCTURE_PLAN.md](./tasks/ASIA_DOC_RESTRUCTURE_PLAN.md) | Kế hoạch tái cấu trúc docs |
+
+---
+
+## Database Objects
+
+| Object Type | Path | Count |
+|-------------|------|-------|
+| Tables | [dbo/Tables/README.md](../dbo/Tables/README.md) | 440 |
+| StoredProcedures | [dbo/StoredProcedures/README.md](../dbo/StoredProcedures/README.md) | 2,031 |
+| Functions | [dbo/Functions/README.md](../dbo/Functions/README.md) | 89 |
+| Views | [dbo/Views/README.md](../dbo/Views/README.md) | 4 |
 
 ---
 
@@ -68,101 +151,11 @@ Tổng hợp toàn bộ tài liệu dự án SimbaSql.
 ### Core Business Flows
 | Flow | File | Modules |
 |------|------|---------|
-| **Mua hàng** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-mua-hàng) | PO, AP, CA, IN, GL |
-| **Bán hàng** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-bán-hàng) | SO, SI, AR, CA, IN, GL |
-| **Thu chi tiền** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-thu-chi) | CA, GL |
-| **Nhập xuất kho** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-kho) | IN, PO, SO, GL |
-| **Tài sản cố định** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-tài-sản) | FA, GL |
-| **Công nợ phải thu** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-công-nợ-thu) | AR, SI, CA, GL |
-| **Công nợ phải trả** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-công-nợ-trả) | AP, PO, CA, GL |
-| **Sổ cái** | [asia/guides/WORKFLOWS.md](./asia/guides/WORKFLOWS.md#luồng-sổ-cái) | GL |
-
----
-
-## Module Documentation
-
-### Financial Modules
-| Module | Path | Procedures |
-|--------|------|------------|
-| **GL** - General Ledger | [modules/GL/](./modules/GL/) | 313 procedures |
-| **AR** - Accounts Receivable | [modules/AR/](./modules/AR/) | 94 procedures |
-| **AP** - Accounts Payable | [modules/AP/](./modules/AP/) | 41 procedures |
-| **CA** - Cash & Banking | [modules/CA/](./modules/CA/) | 55 procedures |
-
-### Operations Modules
-| Module | Path | Procedures |
-|--------|------|------------|
-| **SO** - Sales Order | [modules/SO/](./modules/SO/) | 171 procedures |
-| **PO** - Purchase Order | [modules/PO/](./modules/PO/) | 127 procedures |
-| **SI** - Sales Invoice | [modules/SI/](./modules/SI/) | ~50 procedures |
-| **IN** - Inventory | [modules/IN/](./modules/IN/) | 146 procedures |
-
-### Asset & HR Modules
-| Module | Path | Procedures |
-|--------|------|------------|
-| **FA** - Fixed Assets | [modules/FA/](./modules/FA/) | 58 procedures |
-| **CO** - Manufacturing | [modules/CO/](./modules/CO/) | 65 procedures |
-| **HR** - Human Resources | [modules/HR/](./modules/HR/) | 172 procedures |
-
----
-
-## Database Objects
-
-### Stored Procedures
-- [dbo/StoredProcedures/README.md](../dbo/StoredProcedures/README.md) - 2031 procedures
-- [dbo/StoredProcedures/](../dbo/StoredProcedures/) - Source files
-
-### Other Objects
-- [dbo/Functions/README.md](../dbo/Functions/README.md) - 89 functions
-- [dbo/Tables/README.md](../dbo/Tables/README.md) - 440 tables
-- [dbo/Views/README.md](../dbo/Views/README.md) - 4 views
-
----
-
-## Tools & Scripts
-
-- [tools/README.md](../tools/README.md) - SQL tools
-- [tools/generate_docs.sh](../tools/generate_docs.sh) - Generate documentation
-- [examples/README.md](../examples/README.md) - SQL examples
-- [Follow/](../Follow/) - Maintenance scripts
-
----
-
-## RAG Pipeline
-
-- [rag/README.md](../rag/README.md) - AI search documentation
-- [rag/index.py](../rag/index.py) - Index documents
-- [rag/query.py](../rag/query.py) - Query interface
-- [rag/api.py](../rag/api.py) - API server
-
----
-
-## Cross-References
-
-### Module → Flow Mapping
-```
-GL:  [general_ledger_workflow.md](./flows/general_ledger_workflow.md)
-AR:  [accounts_receivable_workflow.md](./flows/accounts_receivable_workflow.md)
-AP:  [accounts_payable_workflow.md](./flows/accounts_payable_workflow.md)
-CA:  [cash_banking_workflow.md](./flows/cash_banking_workflow.md)
-SO:  [sales_order_workflow.md](./flows/sales_order_workflow.md)
-PO:  [purchase_order_workflow.md](./flows/purchase_order_workflow.md)
-SI:  [sales_order_workflow.md](./flows/sales_order_workflow.md)
-IN:  [inventory_workflow.md](./flows/inventory_workflow.md)
-FA:  [fixed_assets_workflow.md](./flows/fixed_assets_workflow.md)
-```
-
-### Flow → Module Dependencies
-```
-purchase_order_workflow:  PO → AP → CA → IN → GL
-sales_order_workflow:     SO → SI → AR → CA → IN → GL
-accounts_receivable:      AR → SI → CA → GL
-accounts_payable:         AP → PO → CA → GL
-cash_banking:             CA → GL
-inventory:                IN → PO → SO → GL
-fixed_assets:             FA → GL
-general_ledger:           GL (all modules)
-```
+| **Mua hàng** | [asia/CROSS_MODULE_INTERACTIONS.md](./asia/CROSS_MODULE_INTERACTIONS.md#2-mua-hàng-po--in--ap--gl) | PO, IN, AP, GL |
+| **Bán hàng** | [asia/CROSS_MODULE_INTERACTIONS.md](./asia/CROSS_MODULE_INTERACTIONS.md#1-bán-hàng-so--si--ar--gl) | SO, SI, AR, GL |
+| **Thu chi tiền** | [asia/CROSS_MODULE_INTERACTIONS.md](./asia/CROSS_MODULE_INTERACTIONS.md#3-thu-chi-ca--gl) | CA, GL |
+| **Tài sản cố định** | [asia/CROSS_MODULE_INTERACTIONS.md](./asia/CROSS_MODULE_INTERACTIONS.md#4-tài-sản-cố-định-fa--gl) | FA, GL |
+| **Tính giá thành** | [asia/CROSS_MODULE_INTERACTIONS.md](./asia/CROSS_MODULE_INTERACTIONS.md#5-tính-giá-thành-co--gl) | CO, GL |
 
 ---
 
@@ -174,4 +167,4 @@ general_ledger:           GL (all modules)
 
 ---
 
-*Last updated: 2026-03-28*
+*Last updated: 2026-05-05*
