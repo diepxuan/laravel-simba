@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-05-07 12:16:25
+ * @lastupdate 2026-05-16 00:28:22
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -55,6 +55,22 @@ class AsARGetDMKH
             'pMa_kh'    => $search,
             'pStruct'   => '0',
             'pModuleId' => 'AR',
+        ]);
+    }
+
+    /**
+     * Lấy danh sách nhà cung cấp (module AP).
+     *
+     * @param null|string $maCty  Mã công ty
+     * @param null|string $search Prefix search theo mã nhà cung cấp
+     */
+    public static function getSuppliers(?string $maCty = null, ?string $search = null): Collection
+    {
+        return self::call([
+            'pMa_cty'   => $maCty ?? SModel::CTY,
+            'pMa_kh'    => $search,
+            'pStruct'   => '0',
+            'pModuleId' => 'AP',
         ]);
     }
 }

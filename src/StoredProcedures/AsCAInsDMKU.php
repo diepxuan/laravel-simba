@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-04-06 08:32:16
+ * @lastupdate 2026-05-16 09:35:09
  */
 
 namespace Diepxuan\Simba\StoredProcedures;
@@ -99,24 +99,31 @@ class AsCAInsDMKU
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAInsDMKU', [
-            'pMa_cty'        => $paramObj->pMa_cty ?? null,
-            'pMa_tscd'       => $paramObj->pMa_tscd ?? null,
-            'pTen_tscd'      => $paramObj->pTen_tscd ?? null,
-            'pMa_nh'         => $paramObj->pMa_nh ?? '',
-            'pMa_loai'       => $paramObj->pMa_loai ?? '',
-            'pNguyen_gia'    => $paramObj->pNguyen_gia ?? 0.0,
-            'pGia_tri_ha'    => $paramObj->pGia_tri_ha ?? 0.0,
-            'pTy_le_kh'      => $paramObj->pTy_le_kh ?? 0.0,
-            'pSo_kh_thang'   => $paramObj->pSo_kh_thang ?? 0.0,
-            'pNgay_mua'      => $paramObj->pNgay_mua ?? null,
-            'pNgay_sd'       => $paramObj->pNgay_sd ?? null,
-            'pNgay_ngung'    => $paramObj->pNgay_ngung ?? null,
-            'pTk_nguyen_gia' => $paramObj->pTk_nguyen_gia ?? '',
-            'pTk_kh'         => $paramObj->pTk_kh ?? '',
-            'pTk_cp'         => $paramObj->pTk_cp ?? '',
-            'pDien_giai'     => $paramObj->pDien_giai ?? '',
-            'pLUser'         => $paramObj->pLUser ?? null,
-            'pRet'           => ['type' => 'INT', 'output' => true],
+            'pMa_cty'      => $paramObj->pMa_cty ?? null,
+            'pMa_ku'       => $paramObj->pMa_ku ?? null,
+            'pTen_ku'      => $paramObj->pTen_ku ?? null,
+            'pSo_ku'       => $paramObj->pSo_ku ?? null,
+            'pNgay_vay'    => $paramObj->pNgay_vay ?? null,
+            'pNgay_ky'     => $paramObj->pNgay_ky ?? null,
+            'pThoi_han'    => $paramObj->pThoi_han ?? null,
+            'pTinh_theo'   => $paramObj->pTinh_theo ?? null,
+            'pPhuong_phap' => $paramObj->pPhuong_phap ?? null,
+            'pKy_tt_goc'   => $paramObj->pKy_tt_goc ?? null,
+            'pKy_tt_lai'   => $paramObj->pKy_tt_lai ?? null,
+            'pNgay_dh'     => $paramObj->pNgay_dh ?? null,
+            'pMa_hd'       => $paramObj->pMa_hd ?? null,
+            'pMa_nt'       => $paramObj->pMa_nt ?? null,
+            'pTien_nt'     => $paramObj->pTien_nt ?? null,
+            'pTien'        => $paramObj->pTien ?? null,
+            'pLai_suat'    => $paramObj->pLai_suat ?? null,
+            'pLs_qh'       => $paramObj->pLs_qh ?? null,
+            'pTk_vay'      => $paramObj->pTk_vay ?? null,
+            'pTk_cp'       => $paramObj->pTk_cp ?? null,
+            'pTk_cp_pt'    => $paramObj->pTk_cp_pt ?? null,
+            'pGhi_chu'     => $paramObj->pGhi_chu ?? null,
+            'pKsd'         => $paramObj->pKsd ?? null,
+            'pLUser'       => $paramObj->pLUser ?? null,
+            'pRet'         => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 

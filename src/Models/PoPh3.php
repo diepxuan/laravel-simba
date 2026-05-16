@@ -8,12 +8,13 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-05-14 09:12:27
+ * @lastupdate 2026-05-16 00:28:19
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\SModel\PoPh3Model as Model;
+use Diepxuan\Simba\Traits\HasPoVoucherFilters;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -23,6 +24,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class PoPh3 extends Model
 {
+    use HasPoVoucherFilters;
+
     /** Filter theo tìm kiếm (số hóa đơn, số chứng từ, diễn giải) */
     public function scopeFilterBySearch(Builder $query, ?string $search): Builder
     {

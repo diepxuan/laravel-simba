@@ -8,17 +8,17 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-20 13:08:16
+ * @lastupdate 2026-05-16 00:28:18
  */
 
 namespace Diepxuan\Simba\Models;
 
 use Diepxuan\Simba\SModel\GlCtModel as Model;
 use Diepxuan\Simba\StoredProcedures\AsCARptTMNH01;
+use Diepxuan\Simba\StoredProcedures\AsCARptTMNH02;
 use Diepxuan\Simba\StoredProcedures\AsGLRptNKC03;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class GlCt.
@@ -78,6 +78,17 @@ class GlCt extends Model
             'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '',
             'pNgay_ct2' => $params['pNgay_Ct2'] ?? '',
             'pMa_Nt'    => $params['ma_Nt'] ?? 'VND',
+        ]);
+    }
+
+    public static function getCARptTMNH02(array $params): Collection
+    {
+        return AsCARptTMNH02::call([
+            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
+            'pTk'       => $params['pTk'] ?? '',
+            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '',
+            'pNgay_ct2' => $params['pNgay_Ct2'] ?? '',
+            'pMa_Nt'    => $params['pMa_Nt'] ?? 'VND',
         ]);
     }
 
