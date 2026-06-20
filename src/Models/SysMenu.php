@@ -8,19 +8,19 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-06-06 08:25:00
+ * @lastupdate 2026-06-20 13:02:00
  */
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SModel;
+use Diepxuan\Simba\SModel\SysMenuModel as Model;
 
 /**
  * Model sysMenu - SimbaERP menu metadata.
  *
- * Source: simba-docs/data/sysMenu.md.
+ * Mở rộng từ SysMenuModel với helper methods.
  */
-class SysMenu extends SModel
+class SysMenu extends Model
 {
     public const TYPE_MODULE_ROOT = '5';
     public const TYPE_GROUP       = '';
@@ -29,55 +29,6 @@ class SysMenu extends SModel
     public const TYPE_REPORT      = '4';
     public const TYPE_UTILITY     = '3';
     public const TYPE_SETUP       = '6';
-
-    public $incrementing  = false;
-    public $timestamps    = false;
-    protected $table      = 'sysMenu';
-    protected $primaryKey = 'menuid';
-    protected $keyType    = 'string';
-
-    protected $fillable = [
-        'menuid',
-        'stt',
-        'type',
-        'moduleid',
-        'bar',
-        'short_name',
-        'dllName',
-        'command',
-        'code_name',
-        'report',
-        'basicright',
-        'form',
-        'form_show_type',
-        'opt',
-        'par1',
-        'par2',
-        'par3',
-        'par4',
-        'par5',
-        'par6',
-        'par7',
-        'par8',
-        'picture1',
-        'picture2',
-        'rowid',
-        'developer',
-        'maintainer',
-        'used',
-        'active',
-        'zmenuid',
-    ];
-
-    protected $casts = [
-        'report'         => 'boolean',
-        'basicright'     => 'boolean',
-        'form'           => 'boolean',
-        'form_show_type' => 'integer',
-        'rowid'          => 'integer',
-        'used'           => 'boolean',
-        'active'         => 'boolean',
-    ];
 
     public function getDisplayName(): string
     {
