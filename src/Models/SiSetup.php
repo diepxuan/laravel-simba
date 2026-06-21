@@ -13,6 +13,6 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SiSetup as Model;
+use Diepxuan\Simba\SModel\SiSetupModel as Model;
 
 class SiSetup extends Model {}

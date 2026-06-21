@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysDmTrangThaiResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_ct',
+        'trang_thai',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

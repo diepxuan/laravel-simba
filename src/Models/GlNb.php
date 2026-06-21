@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\GlNbModel as Model;
 
-class GlNb extends Model {}
+class GlNb extends Model
+{
+    use HasSimbaCompositeKey;
+}

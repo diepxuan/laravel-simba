@@ -7,6 +7,14 @@ use Diepxuan\Simba\SModel\SModel;
 
 class ApCt1Model extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'stt_rec',
+        'stt_rec0',
+        'stt_rec_hd',
+        'stt_rec_dh',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +27,7 @@ class ApCt1Model extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

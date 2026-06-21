@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SiUpdateLogCtModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Item_ID',
+        'ID',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +24,7 @@ class SiUpdateLogCtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'Item_ID';
+    protected $primaryKey = 'ID';
 
     /**
      * Indicates if the model should be timestamped.

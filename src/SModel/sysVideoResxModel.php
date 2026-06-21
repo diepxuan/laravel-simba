@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysVideoResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'stt',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

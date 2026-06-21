@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\PoPh3Model as Model;
 use Diepxuan\Simba\Traits\HasPoVoucherFilters;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class PoPh3 extends Model
 {
+    use HasSimbaCompositeKey;
+
     use HasPoVoucherFilters;
 
     /** Filter theo tìm kiếm (số hóa đơn, số chứng từ, diễn giải) */

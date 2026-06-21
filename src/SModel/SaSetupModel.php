@@ -19,7 +19,7 @@ class SaSetupModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'Ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

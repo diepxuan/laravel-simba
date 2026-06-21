@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysDmMagdModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_ct',
+        'ma_gd',
+    ];
+
     /**
      * The table associated with the model.
      *

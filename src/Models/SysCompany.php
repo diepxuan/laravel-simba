@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SysCompany as Model;
+use Diepxuan\Simba\SModel\sysCompanyModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class SysCompany extends Model

@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class GlDmDgtgModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'loai_dg',
+        'tk_dgtg',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class GlDmDgtgModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'loai_dg';
 
     /**
      * Indicates if the model should be timestamped.

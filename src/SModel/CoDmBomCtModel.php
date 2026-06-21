@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class CoDmBomCtModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'ma_spct',
+        'ma_vt',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class CoDmBomCtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'ma_spct';
 
     /**
      * Indicates if the model should be timestamped.

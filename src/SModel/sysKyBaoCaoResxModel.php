@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysKyBaoCaoResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

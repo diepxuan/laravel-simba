@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\PoPh2Model as Model;
 use Diepxuan\Simba\Traits\HasPoVoucherFilters;
 
 class PoPh2 extends Model
 {
+    use HasSimbaCompositeKey;
+
     use HasPoVoucherFilters;
 }

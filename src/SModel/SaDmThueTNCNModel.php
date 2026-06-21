@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SaDmThueTNCNModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Ma_cty',
+        'Bac_thue',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +24,7 @@ class SaDmThueTNCNModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'Ma_cty';
+    protected $primaryKey = 'Bac_thue';
 
     /**
      * Indicates if the model should be timestamped.

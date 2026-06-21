@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysOpeningBalanceResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'code_name',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

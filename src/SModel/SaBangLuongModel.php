@@ -7,6 +7,15 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SaBangLuongModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'thang',
+        'nam',
+        'ma_bp',
+        'id_nv',
+        'ma_nv',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +28,7 @@ class SaBangLuongModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

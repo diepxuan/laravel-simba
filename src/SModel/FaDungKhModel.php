@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class FaDungKhModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'ma_ts',
+        'ngay_dung_kh',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class FaDungKhModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'ma_ts';
 
     /**
      * Indicates if the model should be timestamped.

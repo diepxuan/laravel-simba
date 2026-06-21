@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysReportInfoModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'menuid',
+        'ma_mau',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\SiDmNtModel as Model;
 
 /**
@@ -19,4 +20,6 @@ use Diepxuan\Simba\SModel\SiDmNtModel as Model;
  */
 class SiDmNt extends Model
 {
+    use HasSimbaCompositeKey;
+
 }

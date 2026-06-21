@@ -13,11 +13,14 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\GlDmTk as Model;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\GlDmTkModel as Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class GlDmTk extends Model
 {
+    use HasSimbaCompositeKey;
+
     protected function tenTk(): Attribute
     {
         return Attribute::make(

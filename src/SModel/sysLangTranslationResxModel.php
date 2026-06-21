@@ -7,6 +7,14 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysLangTranslationResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'dllFullName',
+        'UserControlName',
+        'controlName',
+        'propertyName',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +27,7 @@ class sysLangTranslationResxModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'dllFullName';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

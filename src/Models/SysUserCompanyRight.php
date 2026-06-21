@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SysUserCompanyRight as Model;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\sysUserCompanyRightModel as Model;
 
 class SysUserCompanyRight extends Model
 {
+    use HasSimbaCompositeKey;
+
     public function user()
     {
         return $this->belongsTo(SysUserInfo::class, 'Username', 'username');

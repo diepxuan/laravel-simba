@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SiDmMaModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'code_name',
+        'ftable_name',
+        'fcolumn_name',
+    ];
+
     /**
      * The table associated with the model.
      *

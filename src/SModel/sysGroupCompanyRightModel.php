@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysGroupCompanyRightModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'GroupName',
+        'Ma_cty',
+    ];
+
     /**
      * The table associated with the model.
      *

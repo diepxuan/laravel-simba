@@ -7,6 +7,14 @@ use Diepxuan\Simba\SModel\SModel;
 
 class HrTDDeThiModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Ma_cty',
+        'Ma_yctd',
+        'Vong_so',
+        'Ma_mon_thi',
+        'De_so',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +27,7 @@ class HrTDDeThiModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'Ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

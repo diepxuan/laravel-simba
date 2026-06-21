@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class PoPh8Model extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'stt_rec',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +24,7 @@ class PoPh8Model extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'stt_rec';
 
     /**
      * Indicates if the model should be timestamped.

@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysVoucherResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'voucher_code',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

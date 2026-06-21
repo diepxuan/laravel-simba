@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysMenuResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'menuid',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

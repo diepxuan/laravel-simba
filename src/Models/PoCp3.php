@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\PoCp3Model as Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -23,6 +24,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class PoCp3 extends Model
 {
+    use HasSimbaCompositeKey;
+
     /** Filter theo mã chi phí */
     public function scopeFilterByMaCp(Builder $query, ?string $maCp): Builder
     {

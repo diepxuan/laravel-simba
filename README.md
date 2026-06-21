@@ -53,9 +53,9 @@ DB_CONNECTION_SIMBA=... (nếu dùng connection riêng)
 Sử dụng model:
 
 ```php
-use Diepxuan\Simba\SModel\InDmVt;
+use Diepxuan\Simba\SModel\InDmVtModel;
 
-$items = InDmVt::all();
+$items = InDmVtModel::all();
 ```
 
 Sử dụng stored procedure caller:
@@ -81,35 +81,11 @@ laravel-simba/
 ├── config/
 │   └── config.php                 # Cấu hình package (connection)
 ├── src/
-│   ├── SModel/                    # Các model Simba (bảng dữ liệu)
+│   ├── SModel/                    # Raw/table schema của SimbaERP (1:1 với bảng vật lý)
 │   │   ├── SModel.php (base)
-│   │   ├── SysLanguage.php
-│   │   ├── InCT3.php
-│   │   ├── SoPh3.php
-│   │   ├── GlDmTk.php
-│   │   ├── GlCt.php
-│   │   ├── GlCdTk.php
-│   │   ├── SysCompany.php
-│   │   ├── SysCompanyResx.php
-│   │   ├── InDmVt.php
-│   │   ├── InPH3.php
-│   │   ├── SiSetup.php
-│   │   ├── SysUserCompanyRight.php
-│   │   ├── ArDmKh.php
-│   │   ├── InDmKho.php
-│   │   ├── SysUserInfo.php
-│   │   └── InDmNhvt.php
-│   ├── Models/                    # Các model mở rộng (có thể thêm scope)
-│   │   ├── SysCompany.php
-│   │   ├── SysUserCompanyRight.php
-│   │   ├── InDmVt.php
-│   │   ├── InDmKho.php
-│   │   ├── SysUserInfo.php
-│   │   ├── ArDmKh.php
-│   │   ├── SoPh3.php
-│   │   ├── InDmNhvt.php
-│   │   ├── SiSetup.php
-│   │   └── GlCt.php
+│   │   └── *Model.php             # Mỗi file tương ứng một bảng, tên theo chuẩn <Table>Model
+│   ├── Models/                    # Model Simba có behavior/query helper trực tiếp dùng trong code
+│   │   └── <Table>.php            # Extend từ <Table>Model tương ứng ở SModel
 │   ├── StoredProcedures/          # Các class gọi stored procedure
 │   │   ├── ProcedureCaller.php
 │   │   ├── AsGetSoCt.php

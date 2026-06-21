@@ -7,6 +7,18 @@ use Diepxuan\Simba\SModel\SModel;
 
 class GlBudgetModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'stt_rec',
+        'ma_cty',
+        'nam',
+        'tk',
+        'ttps_no_co',
+        'ma_bp',
+        'ma_phi',
+        'ma_spct',
+        'tk_du',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +31,7 @@ class GlBudgetModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'stt_rec';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\ArDmKhModel as Model;
 use Diepxuan\Simba\StoredProcedures\AsGetSoDuKh;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class ArDmKh extends Model
 {
+    use HasSimbaCompositeKey;
+
     /**
      * Boot model và thêm global scopes.
      */

@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class CaCdKuModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'nam',
+        'ma_ku',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class CaCdKuModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'nam';
 
     /**
      * Indicates if the model should be timestamped.

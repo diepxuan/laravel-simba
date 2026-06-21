@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysReportDrillDownInfoModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'menuid',
+        'ma_mau',
+        'press_key_name',
+    ];
+
     /**
      * The table associated with the model.
      *

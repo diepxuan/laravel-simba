@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class HrHSNSModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Ma_cty',
+        'Id',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +24,7 @@ class HrHSNSModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'Ma_cty';
+    protected $primaryKey = 'Id';
 
     /**
      * Indicates if the model should be timestamped.

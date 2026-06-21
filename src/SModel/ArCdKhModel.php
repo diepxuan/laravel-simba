@@ -7,6 +7,17 @@ use Diepxuan\Simba\SModel\SModel;
 
 class ArCdKhModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'nam',
+        'tk',
+        'ma_nt',
+        'ma_kh',
+        'ma_bp',
+        'ma_spct',
+        'ma_hd',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +30,7 @@ class ArCdKhModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

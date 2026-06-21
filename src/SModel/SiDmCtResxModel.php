@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SiDmCtResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_ct',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

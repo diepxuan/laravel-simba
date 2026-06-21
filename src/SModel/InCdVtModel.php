@@ -7,6 +7,17 @@ use Diepxuan\Simba\SModel\SModel;
 
 class InCdVtModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'nam',
+        'ma_vt',
+        'ma_kho',
+        'ma_vitri',
+        'ma_lo',
+        'tk_vt',
+        'ma_nt',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +30,7 @@ class InCdVtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

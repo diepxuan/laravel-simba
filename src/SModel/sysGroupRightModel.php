@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysGroupRightModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'groupname',
+        'menuid',
+    ];
+
     /**
      * The table associated with the model.
      *

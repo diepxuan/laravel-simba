@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysLangFrameworkResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ID',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

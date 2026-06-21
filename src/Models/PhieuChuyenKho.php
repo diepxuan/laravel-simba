@@ -13,12 +13,15 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Carbon\Carbon;
-use Diepxuan\Simba\SModel\InPH3;
+use Diepxuan\Simba\SModel\InPh3Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class PhieuChuyenKho extends InPH3
+class PhieuChuyenKho extends InPh3Model
 {
+    use HasSimbaCompositeKey;
+
     protected function ngayCt(): Attribute
     {
         return Attribute::make(

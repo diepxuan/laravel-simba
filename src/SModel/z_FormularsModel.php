@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class z_FormularsModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Field',
+        'PriorityID',
+    ];
+
     /**
      * The table associated with the model.
      *

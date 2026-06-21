@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class FaDmNhtsModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'ma_nhts',
+        'loai_nh',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class FaDmNhtsModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'ma_nhts';
 
     /**
      * Indicates if the model should be timestamped.

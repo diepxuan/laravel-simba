@@ -7,6 +7,20 @@ use Diepxuan\Simba\SModel\SModel;
 
 class PoCtModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'stt_rec',
+        'stt_rec0',
+        'stt_rec_pdn',
+        'stt_rec0_pdn',
+        'stt_rec_dh',
+        'stt_rec0_dh',
+        'stt_rec_pn',
+        'stt_rec0_pn',
+        'stt_rec_hd',
+        'stt_rec0_hd',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +33,7 @@ class PoCtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

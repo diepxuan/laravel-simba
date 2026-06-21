@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysDashFunctionResXModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'functionId',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

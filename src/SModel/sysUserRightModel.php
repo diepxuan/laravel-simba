@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysUserRightModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'username',
+        'menuid',
+    ];
+
     /**
      * The table associated with the model.
      *

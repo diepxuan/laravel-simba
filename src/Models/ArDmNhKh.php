@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\ArDmNhKhModel as BaseModel;
 
 /**
@@ -22,6 +23,8 @@ use Diepxuan\Simba\SModel\ArDmNhKhModel as BaseModel;
  */
 class ArDmNhKh extends BaseModel
 {
+    use HasSimbaCompositeKey;
+
     /**
      * Scope: Tìm kiếm theo mã hoặc tên nhóm.
      *

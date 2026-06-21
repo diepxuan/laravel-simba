@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysCompanyResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +24,7 @@ class sysCompanyResxModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'language';
 
     /**
      * Indicates if the model should be timestamped.

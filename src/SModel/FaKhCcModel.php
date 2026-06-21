@@ -7,6 +7,16 @@ use Diepxuan\Simba\SModel\SModel;
 
 class FaKhCcModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'stt_rec',
+        'stt_rec0',
+        'nam',
+        'thang',
+        'ma_cc',
+        'moduleid',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +29,7 @@ class FaKhCcModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

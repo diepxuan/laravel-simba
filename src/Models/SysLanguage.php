@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SysLanguage as Model;
+use Diepxuan\Simba\SModel\sysLanguageModel as Model;
 
 class SysLanguage extends Model
 {

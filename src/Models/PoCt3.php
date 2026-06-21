@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\PoCt3Model as Model;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -23,6 +24,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class PoCt3 extends Model
 {
+    use HasSimbaCompositeKey;
+
     /** Filter theo mã vật tư */
     public function scopeFilterByMaVt(Builder $query, ?string $maVt): Builder
     {

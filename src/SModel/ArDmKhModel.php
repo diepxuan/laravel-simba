@@ -22,6 +22,11 @@ use Diepxuan\Simba\SModel\SModel;
  */
 class ArDmKhModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'ma_kh',
+    ];
+
     /**
      * Indicates if the IDs are auto-incrementing.
      *

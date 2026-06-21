@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysReportResxModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'menuid',
+        'ma_mau',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

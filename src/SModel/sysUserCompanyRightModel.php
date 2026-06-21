@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysUserCompanyRightModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Username',
+        'Ma_cty',
+    ];
+
     /**
      * The table associated with the model.
      *

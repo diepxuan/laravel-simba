@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SysCompanyResx as Model;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\sysCompanyResxModel as Model;
 
 class SysCompanyResx extends Model
 {
+    use HasSimbaCompositeKey;
+
     public function language()
     {
         return $this->belongsTo(SysLanguage::class, 'language', 'Name');

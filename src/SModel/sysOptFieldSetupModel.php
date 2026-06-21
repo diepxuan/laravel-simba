@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysOptFieldSetupModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Voucher_code',
+        'Field',
+    ];
+
     /**
      * The table associated with the model.
      *

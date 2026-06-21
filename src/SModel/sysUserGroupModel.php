@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysUserGroupModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'groupname',
+        'username',
+    ];
+
     /**
      * The table associated with the model.
      *

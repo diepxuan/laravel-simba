@@ -7,6 +7,13 @@ use Diepxuan\Simba\SModel\SModel;
 
 class ArDmKhNghModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'stt',
+        'ma_cty',
+        'ma_kh',
+        'ma_ngh',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +26,7 @@ class ArDmKhNghModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'stt';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

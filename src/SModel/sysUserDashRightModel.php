@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysUserDashRightModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'username',
+        'functionid',
+    ];
+
     /**
      * The table associated with the model.
      *

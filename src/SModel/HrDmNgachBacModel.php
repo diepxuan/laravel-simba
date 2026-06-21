@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class HrDmNgachBacModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Ma_cty',
+        'Ma_tbl',
+        'Ma_nb',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class HrDmNgachBacModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'Ma_cty';
+    protected $primaryKey = 'Ma_tbl';
 
     /**
      * Indicates if the model should be timestamped.

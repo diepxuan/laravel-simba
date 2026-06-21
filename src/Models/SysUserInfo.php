@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SysUserInfo as Model;
+use Diepxuan\Simba\SModel\sysUserInfoModel as Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class SysUserInfo extends Model

@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysDashFrequentlyFunctionModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'username',
+        'menuid',
+        'dashid',
+    ];
+
     /**
      * The table associated with the model.
      *

@@ -7,6 +7,13 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SoDmGiaBanModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'ma_vt',
+        'ngay_ad',
+        'ma_nt',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +26,7 @@ class SoDmGiaBanModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = null;
 
     /**
      * Indicates if the model should be timestamped.

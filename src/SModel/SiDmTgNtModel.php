@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SiDmTgNtModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'ma_nt',
+        'ngay_tg',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class SiDmTgNtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'ma_nt';
 
     /**
      * Indicates if the model should be timestamped.

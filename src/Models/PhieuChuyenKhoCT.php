@@ -13,6 +13,10 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\InCT3;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\InCt3Model;
 
-class PhieuChuyenKhoCT extends InCT3 {}
+class PhieuChuyenKhoCT extends InCt3Model
+{
+    use HasSimbaCompositeKey;
+}

@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class SaBangLuongFieldsResXModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'Ten',
+        'language',
+    ];
+
     /**
      * The table associated with the model.
      *

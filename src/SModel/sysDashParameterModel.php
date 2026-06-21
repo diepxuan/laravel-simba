@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class sysDashParameterModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'dashid',
+        'username',
+        'stt',
+    ];
+
     /**
      * The table associated with the model.
      *

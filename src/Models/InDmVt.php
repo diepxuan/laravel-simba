@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\InDmVt as Model;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\InDmVtModel as Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Collection;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\DB;
 
 class InDmVt extends Model
 {
+    use HasSimbaCompositeKey;
+
     /**
      * The attributes that should be cast.
      *

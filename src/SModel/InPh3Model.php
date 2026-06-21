@@ -1,25 +1,36 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ * @author     Tran Ngoc Duc <caothu91@gmail.com>
+ *
+ * @lastupdate 2026-06-21 16:36:30
+ */
+
 namespace Diepxuan\Simba\SModel;
 
 use Illuminate\Database\Eloquent\Model;
-use Diepxuan\Simba\SModel\SModel;
 
 class InPh3Model extends SModel
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'InPh3';
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'stt_rec',
+    ];
+
+    public const CREATED_AT = 'cdate';
+    public const UPDATED_AT = 'ldate';
 
     /**
-     * The primary key for the model.
+     * Indicates if the IDs are auto-incrementing.
      *
-     * @var string
+     * @var bool
      */
-    protected $primaryKey = 'ma_cty';
+    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
@@ -27,6 +38,20 @@ class InPh3Model extends SModel
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'InPH3';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'stt_rec';
 
     /**
      * The attributes that are mass assignable.
@@ -60,7 +85,7 @@ class InPh3Model extends SModel
         'cdate',
         'cuser',
         'ldate',
-        'luser'
+        'luser',
     ];
 
     /**
@@ -69,16 +94,16 @@ class InPh3Model extends SModel
      * @var array
      */
     protected $casts = [
-        'ngay_ct' => 'datetime',
-        'ngay_lct' => 'datetime',
-        'ty_gia' => 'float',
-        't_tien_nt' => 'float',
-        't_tien' => 'float',
+        'ngay_ct'    => 'datetime',
+        'ngay_lct'   => 'datetime',
+        'ty_gia'     => 'float',
+        't_tien_nt'  => 'float',
+        't_tien'     => 'float',
         't_so_luong' => 'float',
-        'px_gdd' => 'boolean',
-        'post2gl' => 'boolean',
-        'post2in' => 'boolean',
-        'cdate' => 'datetime',
-        'ldate' => 'datetime',
+        'px_gdd'     => 'boolean',
+        'post2gl'    => 'boolean',
+        'post2in'    => 'boolean',
+        'cdate'      => 'datetime',
+        'ldate'      => 'datetime',
     ];
 }

@@ -7,6 +7,11 @@ use Diepxuan\Simba\SModel\SModel;
 
 class InDmLoaiVtModel extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'id',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +24,7 @@ class InDmLoaiVtModel extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'id';
 
     /**
      * Indicates if the model should be timestamped.

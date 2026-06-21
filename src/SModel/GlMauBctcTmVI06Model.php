@@ -7,6 +7,12 @@ use Diepxuan\Simba\SModel\SModel;
 
 class GlMauBctcTmVI06Model extends SModel
 {
+    public const PRIMARY_KEY_COLUMNS = [
+        'ma_cty',
+        'mau',
+        'ma_so',
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -19,7 +25,7 @@ class GlMauBctcTmVI06Model extends SModel
      *
      * @var string
      */
-    protected $primaryKey = 'ma_cty';
+    protected $primaryKey = 'mau';
 
     /**
      * Indicates if the model should be timestamped.

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\Models;
 
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\PoCt1Model as Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\DB;
  */
 class PoCt1 extends Model
 {
+    use HasSimbaCompositeKey;
+
     /** Filter theo mã công ty */
     public function scopeFilterByMaCty(Builder $query, ?string $maCty): Builder
     {
