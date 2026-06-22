@@ -2,17 +2,29 @@
 
 declare(strict_types=1);
 
+/*
+ * @copyright  © 2019 Dxvn, Inc.
+ *
+ * @author     Tran Ngoc Duc <ductn@diepxuan.com>
+ *
+ * @lastupdate 2026-06-21
+ */
+
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SModel;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\sysReportDrillDownInfoModel as SModel;
 
+/**
+ * SimbaERP sysReportDrillDownInfo model.
+ *
+ * Source: simba-docs/tables/sysReportDrillDownInfo.md.
+ *
+ * Schema nằm trọn ở `sysReportDrillDownInfoModel`. Model này chỉ bổ sung
+ * `HasSimbaCompositeKey` để thao tác theo composite primary key
+ * (menuid, ma_mau, press_key_name) an toàn.
+ */
 class SysReportDrillDownInfo extends SModel
 {
-    public $incrementing = false;
-    public $timestamps = false;
-    protected $table = 'sysReportDrillDownInfo';
-    protected $primaryKey = 'menuid';
-    protected $keyType = 'string';
-
-    protected $fillable = ['menuid','ma_mau','press_key_name','drilldown_menuid','drilldown_menuid1','drilldown_menuid2','drilldown_menuid3','drilldown_menuid4','dllName','command','description','par0','par1','par2','par3','par4','par5','par6','par7','par8','par9'];
+    use HasSimbaCompositeKey;
 }

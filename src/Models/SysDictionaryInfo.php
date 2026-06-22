@@ -8,64 +8,26 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-06-05 20:58:00
+ * @lastupdate 2026-06-21
  */
 
 namespace Diepxuan\Simba\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Diepxuan\Simba\SModel\sysDictionaryInfoModel as SModel;
 
 /**
- * SimbaERP sysDictionaryInfo table model.
+ * SimbaERP sysDictionaryInfo model.
  *
  * Source: simba-docs/tables/sysDictionaryInfo.md.
+ *
+ * Schema (table, primaryKey, keyType, fillable, casts, timestamps) is owned
+ * by `sysDictionaryInfoModel`; this class only adds Simba-level helpers.
  */
-class SysDictionaryInfo extends Model
+class SysDictionaryInfo extends SModel
 {
-    public $incrementing  = false;
-    public $timestamps    = false;
-    protected $connection = 'sqlsrv';
-    protected $table      = 'sysDictionaryInfo';
-    protected $primaryKey = 'code_name';
-    protected $keyType    = 'string';
-
-    protected $fillable = [
-        'code_name',
-        'PK',
-        'code_fname',
-        'code_length',
-        'name_fname',
-        'table_name',
-        'menuid',
-        'lookup_when_invalid',
-        'allow_merge_code',
-        'dllname',
-        'view_class_name',
-        'edit_class_name',
-        'carry_field_list',
-        'default_sort',
-        'copy_vaora',
-        'par0',
-        'par1',
-        'par2',
-        'par3',
-        'par4',
-        'par5',
-        'par6',
-        'par7',
-        'par8',
-        'par9',
-        'description',
-    ];
-
-    protected $casts = [
-        'code_length'         => 'integer',
-        'lookup_when_invalid' => 'boolean',
-        'allow_merge_code'    => 'boolean',
-        'copy_vaora'          => 'boolean',
-    ];
-
     /**
+     * Lấy danh sách cột khóa chính từ cột PK (chuỗi phân tách bằng dấu phẩy).
+     *
      * @return list<string>
      */
     public function primaryKeyFields(): array
@@ -74,6 +36,8 @@ class SysDictionaryInfo extends Model
     }
 
     /**
+     * Lấy danh sách cột carry từ cột carry_field_list.
+     *
      * @return list<string>
      */
     public function carryFields(): array
@@ -82,9 +46,10 @@ class SysDictionaryInfo extends Model
     }
 
     /**
-     * Scope: find dictionary metadata by Simba code_name.
+     * Scope: tìm dictionary metadata theo code_name.
      *
-     * @param mixed $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCodeName($query, string $codeName)
     {
@@ -92,9 +57,10 @@ class SysDictionaryInfo extends Model
     }
 
     /**
-     * Scope: find dictionary metadata by Simba menuid.
+     * Scope: tìm dictionary metadata theo menuid.
      *
-     * @param mixed $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeMenuId($query, string $menuId)
     {

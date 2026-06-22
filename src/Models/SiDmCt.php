@@ -8,85 +8,32 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2026-06-05 20:58:00
+ * @lastupdate 2026-06-21
  */
 
 namespace Diepxuan\Simba\Models;
 
-use Diepxuan\Simba\SModel\SModel;
+use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
+use Diepxuan\Simba\SModel\SiDmCtModel as SModel;
 
 /**
  * Model SiDmCt - Khai báo màn hình nhập chứng từ.
  *
  * Source: simba-docs/tables/SiDmCt.md.
+ *
+ * Schema nằm trọn ở `SiDmCtModel`. Model này chỉ giữ behavior Simba-level
+ * và `HasSimbaCompositeKey` để thao tác theo composite primary key
+ * (ma_cty, ma_ct) an toàn.
  */
 class SiDmCt extends SModel
 {
-    public $incrementing  = false;
-    public $timestamps    = false;
-    protected $table      = 'SiDmCt';
-    protected $primaryKey = 'ma_ct';
-    protected $keyType    = 'string';
-
-    protected $fillable = [
-        'ma_cty',
-        'ma_ct',
-        'phan_he',
-        'ma_ct_me',
-        'ten_ct',
-        'tk_no',
-        'tk_co',
-        'ma_nt',
-        'so_lien',
-        'stt_nkc',
-        'stt_ntxt',
-        'ct_dc',
-        'loc_nsd',
-        'vv',
-        'spct',
-        'phi',
-        'bp',
-        'lo',
-        'sp_post',
-        'sp_process',
-        'ph',
-        'ct',
-        'sd',
-        'nxt',
-        'menuid',
-        'vn_prefix',
-        'vn_postfix',
-        'vn_sequence',
-        'vn_pattern',
-        'vn_width',
-        'PhFieldlist2IN',
-        'CtFieldlist2IN',
-        'kieu_trung_so_ct',
-        'VoucherGetWhenOpenForm',
-    ];
-
-    protected $casts = [
-        'so_lien'         => 'integer',
-        'stt_nkc'         => 'integer',
-        'stt_ntxt'        => 'integer',
-        'ct_dc'           => 'boolean',
-        'loc_nsd'         => 'boolean',
-        'vv'              => 'boolean',
-        'spct'            => 'boolean',
-        'phi'             => 'boolean',
-        'bp'              => 'boolean',
-        'lo'              => 'boolean',
-        'sd'              => 'boolean',
-        'vn_sequence'            => 'integer',
-        'vn_width'               => 'integer',
-        'kieu_trung_so_ct'       => 'integer',
-        'VoucherGetWhenOpenForm' => 'boolean',
-    ];
+    use HasSimbaCompositeKey;
 
     /**
-     * Scope: find voucher metadata by company and voucher code.
+     * Scope: tìm voucher metadata theo mã công ty + mã chứng từ.
      *
-     * @param mixed $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeVoucher($query, string $maCt, string $maCty = SModel::CTY)
     {
@@ -94,9 +41,10 @@ class SiDmCt extends SModel
     }
 
     /**
-     * Scope: find voucher metadata by Simba menuid.
+     * Scope: tìm voucher metadata theo menuid.
      *
-     * @param mixed $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeMenuId($query, string $menuId)
     {
@@ -104,6 +52,8 @@ class SiDmCt extends SModel
     }
 
     /**
+     * Lấy danh sách cột header cho nhập kho từ cột PhFieldlist2IN.
+     *
      * @return list<string>
      */
     public function headerFieldsForInventory(): array
@@ -112,6 +62,8 @@ class SiDmCt extends SModel
     }
 
     /**
+     * Lấy danh sách cột detail cho nhập kho từ cột CtFieldlist2IN.
+     *
      * @return list<string>
      */
     public function detailFieldsForInventory(): array
