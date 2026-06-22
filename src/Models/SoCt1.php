@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-20 13:08:16
+ * @lastupdate 2026-06-22
  */
 
 namespace Diepxuan\Simba\Models;
@@ -16,13 +16,20 @@ namespace Diepxuan\Simba\Models;
 use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\SoCt1Model as Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class SoCt1.
  *
  * This class represents the model for sales order details.
+ *
+ * Behavior nghiệp vụ (tổng doanh thu / số lượng theo vật tư / nhân viên,
+ * các báo cáo bán hàng) đã được tách sang
+ * `Diepxuan\Catalog\Models\Concerns\HasSoCt1SalesMetrics`
+ * và gắn vào `Diepxuan\Catalog\Models\SoCt1`.
+ *
+ * Còn giữ ở đây:
+ * - Scope filter theo field Simba.
+ * - Quan hệ Simba-Simba: soPh3, inDmVt, inDmKho, inDmViTri, inDmLo, sysUserInfo, sysDepartment.
  */
 class SoCt1 extends Model
 {
@@ -62,7 +69,7 @@ class SoCt1 extends Model
     public function scopeFilterByMaKh(Builder $query, ?string $maKh): Builder
     {
         if (!empty($maKh)) {
-            return $query->whereHas('soPh3', function ($q) use ($maKh) {
+            return $query->whereHas('soPh3', function ($q) use ($maKh): void {
                 $q->where('ma_kh', $maKh);
             });
         }
@@ -94,12 +101,12 @@ class SoCt1 extends Model
     public function scopeFilterByNgayCt(Builder $query, ?string $fromDate, ?string $toDate): Builder
     {
         if (!empty($fromDate)) {
-            $query->whereHas('soPh3', function ($q) use ($fromDate) {
+            $query->whereHas('soPh3', function ($q) use ($fromDate): void {
                 $q->whereDate('ngay_ct', '>=', $fromDate);
             });
         }
         if (!empty($toDate)) {
-            $query->whereHas('soPh3', function ($q) use ($toDate) {
+            $query->whereHas('soPh3', function ($q) use ($toDate): void {
                 $q->whereDate('ngay_ct', '<=', $toDate);
             });
         }
@@ -147,147 +154,5 @@ class SoCt1 extends Model
     public function sysDepartment()
     {
         return $this->belongsTo(SysDepartment::class, 'ma_bp', 'ma_bp');
-    }
-
-    /**
-     * Tính tổng doanh thu theo vật tư
-     */
-    public static function getTotalRevenueByProduct(string $maCty, ?string $fromDate = null, ?string $toDate = null): Collection
-    {
-        $query = self::where('ma_cty', $maCty);
-        
-        if ($fromDate || $toDate) {
-            $query->whereHas('soPh3', function ($q) use ($fromDate, $toDate) {
-                if ($fromDate) {
-                    $q->whereDate('ngay_ct', '>=', $fromDate);
-                }
-                if ($toDate) {
-                    $q->whereDate('ngay_ct', '<=', $toDate);
-                }
-            });
-        }
-        
-        return $query->select('ma_vt', DB::raw('SUM(tien2) as tong_doanh_thu'), DB::raw('SUM(tien_nt2) as tong_doanh_thu_nt'))
-            ->groupBy('ma_vt')
-            ->get();
-    }
-
-    /**
-     * Tính tổng số lượng bán theo vật tư
-     */
-    public static function getTotalQuantityByProduct(string $maCty, ?string $fromDate = null, ?string $toDate = null): Collection
-    {
-        $query = self::where('ma_cty', $maCty);
-        
-        if ($fromDate || $toDate) {
-            $query->whereHas('soPh3', function ($q) use ($fromDate, $toDate) {
-                if ($fromDate) {
-                    $q->whereDate('ngay_ct', '>=', $fromDate);
-                }
-                if ($toDate) {
-                    $q->whereDate('ngay_ct', '<=', $toDate);
-                }
-            });
-        }
-        
-        return $query->select('ma_vt', DB::raw('SUM(so_luong) as tong_so_luong'), DB::raw('SUM(so_luong_qd) as tong_so_luong_qd'))
-            ->groupBy('ma_vt')
-            ->get();
-    }
-
-    /**
-     * Tính tổng doanh thu theo nhân viên kinh doanh
-     */
-    public static function getTotalRevenueBySalesperson(string $maCty, ?string $fromDate = null, ?string $toDate = null): Collection
-    {
-        $query = self::where('ma_cty', $maCty)
-            ->whereNotNull('ma_nvkd');
-        
-        if ($fromDate || $toDate) {
-            $query->whereHas('soPh3', function ($q) use ($fromDate, $toDate) {
-                if ($fromDate) {
-                    $q->whereDate('ngay_ct', '>=', $fromDate);
-                }
-                if ($toDate) {
-                    $q->whereDate('ngay_ct', '<=', $toDate);
-                }
-            });
-        }
-        
-        return $query->select('ma_nvkd', DB::raw('SUM(tien2) as tong_doanh_thu'), DB::raw('SUM(tien_nt2) as tong_doanh_thu_nt'))
-            ->groupBy('ma_nvkd')
-            ->get();
-    }
-
-    /**
-     * Gọi stored procedure asSORptBH01 để lấy báo cáo bán hàng
-     */
-    public static function getSORptBH01(array $params): Collection
-    {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asSORptBH01
-            @pMa_Cty = :pMa_Cty,
-            @pNgay_Ct1 = :pNgay_Ct1,
-            @pNgay_Ct2 = :pNgay_Ct2,
-            @pMa_Kh = :pMa_Kh,
-            @pMa_Vt = :pMa_Vt,
-            @pMa_Nvkd = :pMa_Nvkd,
-            @pMa_Bp = :pMa_Bp,
-            @pMa_Nt = :pMa_Nt
-        ', [
-            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '2025-01-01',
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? now(),
-            'pMa_Kh'    => $params['pMa_Kh'] ?? '',
-            'pMa_Vt'    => $params['pMa_Vt'] ?? '',
-            'pMa_Nvkd'  => $params['pMa_Nvkd'] ?? '',
-            'pMa_Bp'    => $params['pMa_Bp'] ?? '',
-            'pMa_Nt'    => $params['pMa_Nt'] ?? 'VND',
-        ]));
-    }
-
-    /**
-     * Gọi stored procedure asSORptDT01 để lấy báo cáo doanh thu
-     */
-    public static function getSORptDT01(array $params): Collection
-    {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asSORptDT01
-            @pMa_Cty = :pMa_Cty,
-            @pNgay_Ct1 = :pNgay_Ct1,
-            @pNgay_Ct2 = :pNgay_Ct2,
-            @pMa_Vt = :pMa_Vt,
-            @pMa_Nvkd = :pMa_Nvkd,
-            @pMa_Bp = :pMa_Bp,
-            @pMa_Nt = :pMa_Nt
-        ', [
-            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '2025-01-01',
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? now(),
-            'pMa_Vt'    => $params['pMa_Vt'] ?? '',
-            'pMa_Nvkd'  => $params['pMa_Nvkd'] ?? '',
-            'pMa_Bp'    => $params['pMa_Bp'] ?? '',
-            'pMa_Nt'    => $params['pMa_Nt'] ?? 'VND',
-        ]));
-    }
-
-    /**
-     * Gọi stored procedure asSORptSL01 để lấy báo cáo số lượng
-     */
-    public static function getSORptSL01(array $params): Collection
-    {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asSORptSL01
-            @pMa_Cty = :pMa_Cty,
-            @pNgay_Ct1 = :pNgay_Ct1,
-            @pNgay_Ct2 = :pNgay_Ct2,
-            @pMa_Vt = :pMa_Vt,
-            @pMa_Nvkd = :pMa_Nvkd,
-            @pMa_Bp = :pMa_Bp
-        ', [
-            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
-            'pNgay_Ct1' => $params['pNgay_Ct1'] ?? '2025-01-01',
-            'pNgay_Ct2' => $params['pNgay_Ct2'] ?? now(),
-            'pMa_Vt'    => $params['pMa_Vt'] ?? '',
-            'pMa_Nvkd'  => $params['pMa_Nvkd'] ?? '',
-            'pMa_Bp'    => $params['pMa_Bp'] ?? '',
-        ]));
     }
 }
