@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @author     Tran Ngoc Duc <ductn@diepxuan.com>
  * @author     Tran Ngoc Duc <caothu91@gmail.com>
  *
- * @lastupdate 2025-06-20 13:08:16
+ * @lastupdate 2026-06-22
  */
 
 namespace Diepxuan\Simba\Models;
@@ -17,12 +17,22 @@ use Diepxuan\Simba\Models\Concerns\HasSimbaCompositeKey;
 use Diepxuan\Simba\SModel\InDmKhoModel as Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class InDmKho.
  *
  * This class represents the model for warehouse master data.
+ *
+ * Behavior nghiệp vụ (tồn kho theo vật tư / giá trị tồn kho) đã được tách
+ * sang `Diepxuan\Catalog\Models\Concerns\HasInDmKhoInventoryOperations`
+ * và gắn vào `Diepxuan\Catalog\Models\InDmKho`.
+ *
+ * Còn giữ ở đây:
+ * - Global scope filter (ma_cty, ma_kho, ten_kho, kho_dl, ksd).
+ * - Scope `active`, `isAgency`.
+ * - Quan hệ Simba-Simba: glDmTk, inDmViTri, inCtNhap, inCtXuat.
+ * - Stored procedure wrapper: getAsINGetDMKHO, getAsINRptCD01
+ *   (Catalog\InDmKho::getAsINGetDMKHO gọi lại qua parent::).
  */
 class InDmKho extends Model
 {
@@ -115,121 +125,40 @@ class InDmKho extends Model
     }
 
     /**
-     * Tính tổng tồn kho theo vật tư
-     * Sử dụng class AsINRptCD02 thay vì gọi stored procedure trực tiếp
-     */
-    public function getInventoryByProduct(string $maVt, ?string $ngay = null): array
-    {
-        $params = [
-            'pMa_Cty' => $this->ma_cty,
-            'pMa_vt' => $maVt,
-            'pMa_kho' => $this->ma_kho,
-            'pNgay' => $ngay ?? date('Y-m-d'),
-        ];
-
-        $result = \Diepxuan\Simba\StoredProcedures\AsINRptCD02::call([
-            'pMa_Cty' => $this->ma_cty,
-            'pMa_vt' => $maVt,
-            'pMa_kho' => $this->ma_kho,
-            'pNgay' => $ngay ?? date('Y-m-d'),
-            // Các tham số khác để null
-            'pMa_vitri' => null,
-            'pTk_vt' => null,
-            'pMa_nhvt' => null,
-            'pDVT' => null,
-            'pNgoai_te' => null,
-            'pDk_Ck' => null,
-            'pMa_lo' => null,
-            'pQuaToiThieu' => null,
-            'pQuaToiDa' => null,
-            'pSysMsg1' => null,
-        ]);
-
-        return $result->isNotEmpty() ? (array) $result->first() : [];
-    }
-
-    /**
-     * Lấy danh sách vật tư tồn kho
-     * Sử dụng class AsINRptCD02 thay vì gọi stored procedure trực tiếp
-     */
-    public function getInventoryList(?string $maNhvt = null, ?string $ngay = null): Collection
-    {
-        return \Diepxuan\Simba\StoredProcedures\AsINRptCD02::call([
-            'pMa_Cty' => $this->ma_cty,
-            'pMa_kho' => $this->ma_kho,
-            'pMa_nhvt' => $maNhvt ?? '',
-            'pNgay' => $ngay ?? date('Y-m-d'),
-            // Các tham số khác để null
-            'pMa_vt' => null,
-            'pMa_vitri' => null,
-            'pTk_vt' => null,
-            'pDVT' => null,
-            'pNgoai_te' => null,
-            'pDk_Ck' => null,
-            'pMa_lo' => null,
-            'pQuaToiThieu' => null,
-            'pQuaToiDa' => null,
-            'pSysMsg1' => null,
-        ]);
-    }
-
-    /**
-     * Tính giá trị tồn kho
-     */
-    public function getInventoryValue(?string $ngay = null): float
-    {
-        $inventoryList = $this->getInventoryList(null, $ngay);
-        
-        $totalValue = 0;
-        foreach ($inventoryList as $item) {
-            $totalValue += ($item->sl_ton ?? 0) * ($item->gia_nt2 ?? 0);
-        }
-        
-        return $totalValue;
-    }
-
-    /**
-     * Gọi stored procedure asINGetDMKHO để lấy danh sách kho
-     * Sử dụng class AsINGetDMKHO thay vì gọi stored procedure trực tiếp
+     * Gọi stored procedure asINGetDMKHO để lấy danh sách kho.
      */
     public static function getAsINGetDMKHO(array $params): Collection
     {
-        // Sử dụng AsINGetDMKHO class để gọi stored procedure
-        // Class sẽ xử lý đúng số lượng tham số (3 tham số thực tế)
         return \Diepxuan\Simba\StoredProcedures\AsINGetDMKHO::call([
             'pMa_Cty'   => $params['pMa_Cty'] ?? '',
             'pMa_kho'   => $params['pMa_kho'] ?? null,
             'pStruct'   => $params['pStruct'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null, // Tham số này sẽ bị bỏ qua trong class
+            'pLanguage' => $params['pLanguage'] ?? null,
         ]);
     }
 
     /**
-     * Gọi stored procedure asINRptCD01 để lấy báo cáo tồn kho chi tiết
-     * Sử dụng class AsINRptCD01 thay vì gọi stored procedure trực tiếp
+     * Gọi stored procedure asINRptCD01 để lấy báo cáo tồn kho chi tiết.
      */
     public static function getAsINRptCD01(array $params): Collection
     {
-        // Sử dụng AsINRptCD01 class để gọi stored procedure
-        // Map pMa_Nt to pNgoai_te (foreign currency)
         return \Diepxuan\Simba\StoredProcedures\AsINRptCD01::call([
-            'pMa_Cty' => $params['pMa_Cty'] ?? '',
-            'pMa_kho' => $params['pMa_kho'] ?? '',
-            'pMa_vt'  => $params['pMa_vt'] ?? '',
-            'pNgay1'  => $params['pNgay'] ?? date('Y-m-d'), // Map pNgay to pNgay1
-            'pNgoai_te' => $params['pMa_Nt'] ?? 'VND', // Map pMa_Nt to pNgoai_te
-            // Các tham số khác để null
-            'pNgay2' => null,
-            'pLoai_bc' => null,
-            'pTk_vt' => null,
-            'pMa_nhvt' => null,
-            'pMa_vitri' => null,
-            'pma_plvt1' => null,
-            'pma_plvt2' => null,
-            'pma_plvt3' => null,
-            'pDVT' => null,
-            'pPSDC' => null,
-            'pSysMsg1' => null,
+            'pMa_Cty'    => $params['pMa_Cty'] ?? '',
+            'pMa_kho'    => $params['pMa_kho'] ?? '',
+            'pMa_vt'     => $params['pMa_vt'] ?? '',
+            'pNgay1'     => $params['pNgay'] ?? date('Y-m-d'),
+            'pNgoai_te'  => $params['pMa_Nt'] ?? 'VND',
+            'pNgay2'     => null,
+            'pLoai_bc'   => null,
+            'pTk_vt'     => null,
+            'pMa_nhvt'   => null,
+            'pMa_vitri'  => null,
+            'pma_plvt1'  => null,
+            'pma_plvt2'  => null,
+            'pma_plvt3'  => null,
+            'pDVT'       => null,
+            'pPSDC'      => null,
+            'pSysMsg1'   => null,
         ]);
     }
 }
