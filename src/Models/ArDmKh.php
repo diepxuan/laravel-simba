@@ -22,7 +22,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * Model ArDmKh - Danh mục khách hàng.
  *
- * Mở rộng từ ArDmKhModel với các scope và helper methods.
+ * Mở rộng từ ArDmKhModel với:
+ * - Global scope ksd.
+ * - Scope search/order theo field Simba.
+ * - Quan hệ glCts, stored procedure AsGetSoDuKh.
+ *
+ * Phân loại KH/NCC/NV đã được tách sang
+ * `Diepxuan\Catalog\Models\ArDmKh` (dùng `HasArDmKhCategories`).
  */
 class ArDmKh extends Model
 {
@@ -39,30 +45,6 @@ class ArDmKh extends Model
         static::addGlobalScope('ksd', static function (Builder $query): void {
             $query->where('ksd', true);
         });
-    }
-
-    /**
-     * Scope: Chỉ lấy khách hàng (isKh = true).
-     */
-    public function scopeLaKhachHang(Builder $query): Builder
-    {
-        return $query->where('isKh', true);
-    }
-
-    /**
-     * Scope: Chỉ lấy nhà cung cấp (isNcc = true).
-     */
-    public function scopeLaNhaCungCap(Builder $query): Builder
-    {
-        return $query->where('isNcc', true);
-    }
-
-    /**
-     * Scope: Chỉ lấy nhân viên (isNv = true).
-     */
-    public function scopeLaNhanVien(Builder $query): Builder
-    {
-        return $query->where('isNv', true);
     }
 
     /**
@@ -107,29 +89,5 @@ class ArDmKh extends Model
             'pNgay'   => $params['pNgay'] ?? null,
             'pTk'     => $params['pTk'] ?? null,
         ]);
-    }
-
-    /**
-     * Accessor: Kiểm tra có phải khách hàng không.
-     */
-    public function getIsKhachHangAttribute(): bool
-    {
-        return (bool) $this->isKh;
-    }
-
-    /**
-     * Accessor: Kiểm tra có phải nhà cung cấp không.
-     */
-    public function getIsNhaCungCapAttribute(): bool
-    {
-        return (bool) $this->isNcc;
-    }
-
-    /**
-     * Accessor: Kiểm tra có phải nhân viên không.
-     */
-    public function getIsNhanVienAttribute(): bool
-    {
-        return (bool) $this->isNv;
     }
 }
