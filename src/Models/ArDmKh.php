@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * - Quan hệ glCts, stored procedure AsGetSoDuKh.
  *
  * Phân loại KH/NCC/NV đã được tách sang
- * `Diepxuan\Catalog\Models\ArDmKh` (dùng `HasArDmKhCategories`).
+ * `Diepxuan\Catalog\Models\Simba\ArDmKh` (dùng `HasArDmKhCategories`).
  */
 class ArDmKh extends Model
 {

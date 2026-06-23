@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Behavior nghiệp vụ (tổng doanh thu / số lượng theo vật tư / nhân viên,
  * các báo cáo bán hàng) đã được tách sang
  * `Diepxuan\Catalog\Models\Concerns\HasSoCt1SalesMetrics`
- * và gắn vào `Diepxuan\Catalog\Models\SoCt1`.
+ * và gắn vào `Diepxuan\Catalog\Models\Simba\SoCt1`.
  *
  * Còn giữ ở đây:
  * - Scope filter theo field Simba.

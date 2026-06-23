@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Behavior nghiệp vụ (tổng giá trị / số lượng theo vật tư / nhà cung cấp,
  * tỷ lệ nhập, các báo cáo mua hàng) đã được tách sang
  * `Diepxuan\Catalog\Models\Concerns\HasPoCt1PurchaseMetrics`
- * và gắn vào `Diepxuan\Catalog\Models\PoCt1` (nếu có).
+ * và gắn vào `Diepxuan\Catalog\Models\Simba\PoCt1` (nếu có).
  *
  * Còn giữ ở đây:
  * - Scope filter theo field Simba.

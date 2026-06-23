@@ -25,7 +25,7 @@ use Illuminate\Support\Collection;
  *
  * Behavior nghiệp vụ (tồn kho theo vật tư / giá trị tồn kho) đã được tách
  * sang `Diepxuan\Catalog\Models\Concerns\HasInDmKhoInventoryOperations`
- * và gắn vào `Diepxuan\Catalog\Models\InDmKho`.
+ * và gắn vào `Diepxuan\Catalog\Models\Simba\InDmKho`.
  *
  * Còn giữ ở đây:
  * - Global scope filter (ma_cty, ma_kho, ten_kho, kho_dl, ksd).

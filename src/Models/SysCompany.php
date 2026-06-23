@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  *
  * Helper nghiệp vụ `resxByLanguage()` đã được tách sang
  * `Diepxuan\Catalog\Models\Concerns\HasSysCompanyLocalizedResx`
- * và gắn vào `Diepxuan\Catalog\Models\SysCompany`.
+ * và gắn vào `Diepxuan\Catalog\Models\Simba\SysCompany`.
  *
  * Còn giữ ở đây:
  * - Quan hệ Simba-Simba: userRights, resx, users.
