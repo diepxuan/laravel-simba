@@ -13,10 +13,16 @@ declare(strict_types=1);
 
 namespace Diepxuan\Simba\StoredProcedures;
 
+use Diepxuan\Simba\Helper\ParamHelper;
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
-use Diepxuan\Simba\Helper\ParamHelper;
 
+/**
+ * Stored procedure assiUpd_ks.
+ *
+ * SMKS.dll uses this procedure to update the data lock date for one Simba
+ * company. The output parameter @pRet returns 0 on success.
+ */
 class AssiUpd_ks
 {
     /**
@@ -27,32 +33,26 @@ class AssiUpd_ks
      */
     public static function call(array $params): Collection
     {
-        $paramObj = ParamHelper::fromArray($params);
+        $paramObj   = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('assiUpd_ks', [
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pRet' => $paramObj->pRet ?? null
+            'pRet'     => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 
     /**
      * Call stored procedure assiUpd_ks with named parameters
      *
-     * @param string $Ma_cty
-     * @param string $Ngay_ks
-     * @param int $Ret
      * @return Collection
      */
-    public static function callWithParams(string $Ma_cty = null, string $Ngay_ks = null, int $Ret = null): Collection
+    public static function callWithParams(?string $Ma_cty = null, \DateTimeInterface|string|null $Ngay_ks = null): Collection
     {
-        $params = [
+        return self::call([
             'pMa_cty' => $Ma_cty,
             'pNgay_ks' => $Ngay_ks,
-            'pRet' => $Ret
-        ];
-
-        return self::call($params);
+        ]);
     }
 }
