@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
-use Illuminate\Support\Collection;
 use Diepxuan\Simba\Helper\ParamHelper;
+use Illuminate\Support\Collection;
 
 class AsARRptBCCN01
 {
@@ -27,30 +27,55 @@ class AsARRptBCCN01
      */
     public static function call(array $params): Collection
     {
-        $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('asARRptBCCN01', [
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3' => $paramObj->pSysMsg3 ?? null
-        ], $connection);
+        return ProcedureCaller::call('asARRptBCCN01', self::procedureParams($params), $connection);
+    }
+
+    /**
+     * @return array<string,mixed>
+     */
+    public static function procedureParams(array $params): array
+    {
+        $paramObj = ParamHelper::fromArray($params);
+
+        return [
+            'ma_cty' => $paramObj->ma_cty ?? $paramObj->pMa_cty ?? $paramObj->pCompanyID ?? null,
+            'Ngay1'  => $paramObj->Ngay1 ?? $paramObj->pNgay1 ?? null,
+            'Ngay2'  => $paramObj->Ngay2 ?? $paramObj->pNgay2 ?? null,
+            'Tk'     => $paramObj->Tk ?? $paramObj->pTk ?? null,
+            'ma_kh'  => $paramObj->ma_kh ?? $paramObj->pMa_kh ?? null,
+            'ma_nt'  => $paramObj->ma_nt ?? $paramObj->pMa_nt ?? null,
+        ];
     }
 
     /**
      * Call stored procedure asARRptBCCN01 with named parameters
      *
-     * @param string $SysMsg1
-     * @param string $SysMsg2
-     * @param string $SysMsg3
+     * @param null|string $ma_cty
+     * @param null|string $Ngay1
+     * @param null|string $Ngay2
+     * @param null|string $Tk
+     * @param null|string $ma_kh
+     * @param null|string $ma_nt
      * @return Collection
      */
-    public static function callWithParams(string $SysMsg1 = null, string $SysMsg2 = null, string $SysMsg3 = null): Collection
+    public static function callWithParams(
+        ?string $ma_cty = null,
+        ?string $Ngay1 = null,
+        ?string $Ngay2 = null,
+        ?string $Tk = null,
+        ?string $ma_kh = null,
+        ?string $ma_nt = null,
+    ): Collection
     {
         $params = [
-            'pSysMsg1' => $SysMsg1,
-            'pSysMsg2' => $SysMsg2,
-            'pSysMsg3' => $SysMsg3
+            'ma_cty' => $ma_cty,
+            'Ngay1'  => $Ngay1,
+            'Ngay2'  => $Ngay2,
+            'Tk'     => $Tk,
+            'ma_kh'  => $ma_kh,
+            'ma_nt'  => $ma_nt,
         ];
 
         return self::call($params);
