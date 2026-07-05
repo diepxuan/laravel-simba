@@ -33,8 +33,7 @@ class AsINGetDMNHVT
         return ProcedureCaller::call('asINGetDMNHVT', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
-            'pStruct' => $paramObj->pStruct ?? null,
-            'pStt_nhom' => $paramObj->pStt_nhom ?? null
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 
@@ -44,16 +43,14 @@ class AsINGetDMNHVT
      * @param string $Ma_cty
      * @param string $Ma_nhvt
      * @param string $Struct
-     * @param mixed $Stt_nhom
      * @return Collection
      */
-    public static function callWithParams(string $Ma_cty = null, string $Ma_nhvt = null, string $Struct = null, mixed $Stt_nhom = null): Collection
+    public static function callWithParams(string $Ma_cty = null, string $Ma_nhvt = null, string $Struct = null): Collection
     {
         $params = [
             'pMa_cty' => $Ma_cty,
             'pMa_nhvt' => $Ma_nhvt,
-            'pStruct' => $Struct,
-            'pStt_nhom' => $Stt_nhom
+            'pStruct' => $Struct
         ];
 
         return self::call($params);

@@ -77,26 +77,6 @@ class InDmVt extends Model
     }
 
     /**
-     * Gọi stored procedure asINGetDMVT để lấy dữ Danh sách vật tư - hàng hóa.
-     *
-     * @return array
-     */
-    public static function getAsINGetDMVT(array $params): Collection
-    {
-        return collect(DB::connection((new static())->getConnectionName())->select('EXEC asINGetDMVT
-            @pMa_Cty = :pMa_Cty,
-            @pMa_vt = :pMa_vt,
-            @pStruct = :pStruct,
-            @pLanguage = :pLanguage
-        ', [
-            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
-            'pMa_vt'    => $params['pMa_vt'] ?? null,
-            'pStruct'   => $params['pStruct'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? SysLanguage::DEFAULT,
-        ]));
-    }
-
-    /**
      * Gọi stored procedure asINRptCD02 để lấy dữ Báo cáo tồn kho.
      *
      * @return array

@@ -31,8 +31,7 @@ use Illuminate\Support\Collection;
  * - Global scope filter (ma_cty, ma_kho, ten_kho, kho_dl, ksd).
  * - Scope `active`, `isAgency`.
  * - Quan hệ Simba-Simba: glDmTk, inDmViTri, inCtNhap, inCtXuat.
- * - Stored procedure wrapper: getAsINGetDMKHO, getAsINRptCD01
- *   (Catalog\InDmKho::getAsINGetDMKHO gọi lại qua parent::).
+ * - Stored procedure wrapper: getAsINRptCD01.
  */
 class InDmKho extends Model
 {
@@ -122,19 +121,6 @@ class InDmKho extends Model
     public function inCtXuat()
     {
         return $this->hasMany(InCt::class, 'ma_kho_xuat', 'ma_kho');
-    }
-
-    /**
-     * Gọi stored procedure asINGetDMKHO để lấy danh sách kho.
-     */
-    public static function getAsINGetDMKHO(array $params): Collection
-    {
-        return \Diepxuan\Simba\StoredProcedures\AsINGetDMKHO::call([
-            'pMa_Cty'   => $params['pMa_Cty'] ?? '',
-            'pMa_kho'   => $params['pMa_kho'] ?? null,
-            'pStruct'   => $params['pStruct'] ?? null,
-            'pLanguage' => $params['pLanguage'] ?? null,
-        ]);
     }
 
     /**
