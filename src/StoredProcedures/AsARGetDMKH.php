@@ -73,4 +73,20 @@ class AsARGetDMKH
             'pModuleId' => 'AP',
         ]);
     }
+
+    /**
+     * Lấy danh sách nhân viên (module CA).
+     *
+     * @param null|string $maCty  Mã công ty
+     * @param null|string $search Prefix search theo mã nhân viên
+     */
+    public static function getEmployees(?string $maCty = null, ?string $search = null): Collection
+    {
+        return self::call([
+            'pMa_cty'   => $maCty ?? SModel::CTY,
+            'pMa_kh'    => $search,
+            'pStruct'   => '0',
+            'pModuleId' => 'CA',
+        ]);
+    }
 }
