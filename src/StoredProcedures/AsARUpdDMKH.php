@@ -61,6 +61,7 @@ class AsARUpdDMKH
             'pIsnv' => $paramObj->pIsnv ?? null,
             'pKsd' => $paramObj->pKsd ?? null,
             'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 }

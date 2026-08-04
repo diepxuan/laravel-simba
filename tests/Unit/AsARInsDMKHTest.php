@@ -68,4 +68,12 @@ final class AsARInsDMKHTest extends TestCase
             self::assertArrayHasKey($key, self::$procParams ?: [], "Missing param: {$key}");
         }
     }
+
+    public function testCallDeclaresOutputPRet(): void
+    {
+        $file = file_get_contents((new \ReflectionMethod(\Diepxuan\Simba\StoredProcedures\AsARInsDMKH::class, 'call'))->getFileName());
+
+        self::assertStringContainsString("'pRet'", $file);
+        self::assertStringContainsString("'output' => true", $file);
+    }
 }
