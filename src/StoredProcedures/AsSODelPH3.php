@@ -31,10 +31,10 @@ class AsSODelPH3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSODelPH3', [
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pLUser' => $paramObj->pLUser ?? null,
-            'pRet' => $paramObj->pRet ?? null
+            'pLUser' => $paramObj->pLUser ?? (auth()->user()->name ?? 'system'),
+            'pRet' => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 

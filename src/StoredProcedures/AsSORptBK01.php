@@ -53,7 +53,9 @@ class AsSORptBK01
 
         $sets = [];
         do {
-            $sets[] = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+            if ($stmt->columnCount() > 0) {
+                $sets[] = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+            }
         } while ($stmt->nextRowset());
 
         try {

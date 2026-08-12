@@ -30,6 +30,8 @@ class AsSOInsPH3
         $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
+        $params['pRet'] = ['type' => 'INT', 'output' => true];
+
         return ProcedureCaller::call('asSOInsPH3', $params, $connection);
     }
 

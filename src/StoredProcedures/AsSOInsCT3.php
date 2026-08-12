@@ -31,7 +31,7 @@ class AsSOInsCT3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOInsCT3', [
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
             'pStt_rec_dh' => $paramObj->pStt_rec_dh ?? null,
@@ -82,7 +82,7 @@ class AsSOInsCT3
             'pMa_phi' => $paramObj->pMa_phi ?? null,
             'pMa_spct' => $paramObj->pMa_spct ?? null,
             'pMa_nvkd' => $paramObj->pMa_nvkd ?? null,
-            'pRet' => $paramObj->pRet ?? null
+            'pRet' => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 

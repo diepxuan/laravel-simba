@@ -31,9 +31,9 @@ class AsSODelCT3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSODelCT3', [
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pRet' => $paramObj->pRet ?? null
+            'pRet' => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 

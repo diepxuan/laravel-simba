@@ -25,7 +25,7 @@ class ZasSOUpdCT3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('zasSOUpdCT3', [
-            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
             'pStt_rec'  => $paramObj->pStt_rec ?? null,
             'pStt_rec0'  => $paramObj->pStt_rec0 ?? null,
             'pStt_rec_dh'  => $paramObj->pStt_rec_dh ?? null,
@@ -71,7 +71,7 @@ class ZasSOUpdCT3
             'pTra_ck'  => $paramObj->pTra_ck ?? null,
             'pSl_xuat'  => $paramObj->pSl_xuat ?? null,
             'pSl_xuat_qd'  => $paramObj->pSl_xuat_qd ?? null,
-            'pRet'  => $paramObj->pRet ?? null,
+            'pRet'  => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 }

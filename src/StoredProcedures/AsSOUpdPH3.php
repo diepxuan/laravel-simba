@@ -31,7 +31,7 @@ class AsSOUpdPH3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOUpdPH3', [
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? SModel::CTY,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pMa_ct' => $paramObj->pMa_ct ?? null,
             'pMa_gd' => $paramObj->pMa_gd ?? null,
@@ -99,7 +99,7 @@ class AsSOUpdPH3
             'pPost2gl' => $paramObj->pPost2gl ?? null,
             'pPost2in' => $paramObj->pPost2in ?? null,
             'pLUser' => $paramObj->pLUser ?? null,
-            'pRet' => $paramObj->pRet ?? null
+            'pRet' => ['type' => 'INT', 'output' => true],
         ], $connection);
     }
 
