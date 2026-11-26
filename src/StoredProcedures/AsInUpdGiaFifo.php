@@ -31,8 +31,7 @@ class AsInUpdGiaFifo
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInUpdGiaFifo', [
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null
+            'pma_cty' => $paramObj->pma_cty ?? null
         ], $connection);
     }
 

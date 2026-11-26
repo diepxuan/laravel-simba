@@ -40,12 +40,7 @@ class AsINRptF5CD01
             'pNgay1' => $paramObj->pNgay1 ?? null,
             'pNgay2' => $paramObj->pNgay2 ?? null,
             'pNxt' => $paramObj->pNxt ?? null,
-            'pPSDC' => $paramObj->pPSDC ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3' => $paramObj->pSysMsg3 ?? null,
-            'pSysMsg4' => $paramObj->pSysMsg4 ?? null,
-            'pSysMsg5' => $paramObj->pSysMsg5 ?? null
+            'pPSDC' => $paramObj->pPSDC ?? null
         ], $connection);
     }
 

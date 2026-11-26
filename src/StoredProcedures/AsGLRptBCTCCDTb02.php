@@ -23,8 +23,10 @@ use Diepxuan\Simba\Helper\ParamHelper;
  * Purpose: =======================================================
  *
  * Tham số:
- * - @pMa_cty (nvarchar(3)): Mô tả tham số
- * - @pTk (nvarchar(20)): Mô tả tham số
+ * - @pMa_cty (nvarchar(3)): Mã công ty.
+ * - @Ngay_ct1 (smalldatetime): Từ ngày. Default '2010-01-01'.
+ * - @Ngay_ct2 (smalldatetime): Đến ngày. Default '2010-10-31'.
+ * - @pTk (nvarchar(20)): Tài khoản. Default '441'.
  *
  * Giá trị mặc định:
  * - @pMa_cty: 'CDT'
@@ -50,6 +52,8 @@ class AsGLRptBCTCCDTb02
 
         return ProcedureCaller::call('asGLRptBCTCCDTb02', [
             'pMa_cty' => $paramObj->pMa_cty ?? 'CDT',
+            'Ngay_ct1' => $paramObj->Ngay_ct1 ?? '2010-01-01',
+            'Ngay_ct2' => $paramObj->Ngay_ct2 ?? '2010-10-31',
             'pTk' => $paramObj->pTk ?? '441',
         ], $connection);
     }

@@ -37,8 +37,7 @@ class AsSaRptTongQuyLuong
             'pMa_bp' => $paramObj->pMa_bp ?? null,
             'pMa_cv' => $paramObj->pMa_cv ?? null,
             'pBHXH' => $paramObj->pBHXH ?? null,
-            'pMa_mau' => $paramObj->pMa_mau ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pMa_mau' => $paramObj->pMa_mau ?? null
         ], $connection);
     }
 

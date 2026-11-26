@@ -74,8 +74,7 @@ class AsINUpdDMVT
             'pNuoc_sx' => $paramObj->pNuoc_sx ?? null,
             'pKsd' => $paramObj->pKsd ?? null,
             'pLUser' => $paramObj->pLUser ?? null,
-            'pRet' => $paramObj->pRet ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

@@ -45,9 +45,7 @@ class AsINRptCD01_4check
             'pma_plvt3' => $paramObj->pma_plvt3 ?? null,
             'pDVT' => $paramObj->pDVT ?? null,
             'pPSDC' => $paramObj->pPSDC ?? null,
-            'pNgoai_te' => $paramObj->pNgoai_te ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pNgoai_te' => $paramObj->pNgoai_te ?? null
         ], $connection);
     }
 

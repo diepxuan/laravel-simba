@@ -121,8 +121,10 @@ class AsCAGetPH2
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAGetPH2', [
-            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 

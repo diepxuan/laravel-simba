@@ -36,8 +36,7 @@ class AsPostSoPh1_SoCt
             'pNamTC' => $paramObj->pNamTC ?? null,
             'pThangTC' => $paramObj->pThangTC ?? null,
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
-            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null
         ], $connection);
     }
 

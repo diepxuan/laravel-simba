@@ -26,8 +26,7 @@ class AsINFilt3
 
         return ProcedureCaller::call('asINFilt3', [
             'pKeyPh'  => $paramObj->pKeyPh ?? null,
-            'pKeyCt'  => $paramObj->pKeyCt ?? null,
-            'pKeyct'  => $paramObj->pKeyct ?? null,
+            'pKeyCt'  => $paramObj->pKeyCt ?? null
         ], $connection);
     }
 }

@@ -37,8 +37,7 @@ class AsSaRptBangLuong02
             'pMa_bp' => $paramObj->pMa_bp ?? null,
             'pMa_cv' => $paramObj->pMa_cv ?? null,
             'pId_nv' => $paramObj->pId_nv ?? null,
-            'pBHXH' => $paramObj->pBHXH ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pBHXH' => $paramObj->pBHXH ?? null
         ], $connection);
     }
 

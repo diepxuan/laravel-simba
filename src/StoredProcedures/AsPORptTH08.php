@@ -45,12 +45,7 @@ class AsPORptTH08
             'pMa_vitri' => $paramObj->pMa_vitri ?? null,
             'pMa_vt' => $paramObj->pMa_vt ?? null,
             'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
-            'pMa_NT' => $paramObj->pMa_NT ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pMa_Hd' => $paramObj->pMa_Hd ?? null
+            'pMa_NT' => $paramObj->pMa_NT ?? null
         ], $connection);
     }
 

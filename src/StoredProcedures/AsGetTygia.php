@@ -28,8 +28,7 @@ class AsGetTygia
             'pMa_Cty'  => $paramObj->pMa_Cty ?? null,
             'pMa_nt'  => $paramObj->pMa_nt ?? null,
             'pNgay_ct'  => $paramObj->pNgay_ct ?? null,
-            'pTy_gia'  => $paramObj->pTy_gia ?? null,
-            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pTy_gia'  => $paramObj->pTy_gia ?? null
         ], $connection);
     }
 }

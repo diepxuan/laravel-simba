@@ -38,8 +38,7 @@ class AsMMRptBCPT01
             'pMa_nhvt' => $paramObj->pMa_nhvt ?? null,
             'pma_plvt1' => $paramObj->pma_plvt1 ?? null,
             'pma_plvt2' => $paramObj->pma_plvt2 ?? null,
-            'pma_plvt3' => $paramObj->pma_plvt3 ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pma_plvt3' => $paramObj->pma_plvt3 ?? null
         ], $connection);
     }
 

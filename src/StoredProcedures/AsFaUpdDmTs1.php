@@ -20,7 +20,7 @@ use Diepxuan\Simba\Helper\ParamHelper;
  * Class AsFaUpdDmTs1
  *
  * Stored procedure: asFaUpdDmTs1
- * Purpose: ----------------------------------------------------------------*/
+ * Purpose: ---------------------------------------------------------------- 
  *
  * Tham số:
  * - @pMa_cty (nvarchar(3)): Tham số đầu vào.

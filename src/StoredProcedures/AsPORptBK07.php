@@ -49,9 +49,7 @@ class AsPORptBK07
             'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
             'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
             'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
-            'pGroupType' => $paramObj->pGroupType ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pGroupType' => $paramObj->pGroupType ?? null
         ], $connection);
     }
 

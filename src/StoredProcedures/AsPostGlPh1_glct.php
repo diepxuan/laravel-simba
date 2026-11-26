@@ -38,9 +38,7 @@ class AsPostGlPh1_glct
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
             'pMa_nt0' => $paramObj->pMa_nt0 ?? null,
-            'pCountStt_rec0' => $paramObj->pCountStt_rec0 ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pSTT_rec' => $paramObj->pSTT_rec ?? null
+            'pCountStt_rec0' => $paramObj->pCountStt_rec0 ?? null
         ], $connection);
     }
 

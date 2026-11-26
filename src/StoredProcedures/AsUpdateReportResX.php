@@ -37,9 +37,7 @@ class AsUpdateReportResX
             'pformated_col_list' => $paramObj->pformated_col_list ?? null,
             'pvnd_nt' => $paramObj->pvnd_nt ?? null,
             'pPh_Ct' => $paramObj->pPh_Ct ?? null,
-            'pUser' => $paramObj->pUser ?? null,
-            'pMenuid' => $paramObj->pMenuid ?? null,
-            'pMa_mau' => $paramObj->pMa_mau ?? null
+            'pUser' => $paramObj->pUser ?? null
         ], $connection);
     }
 

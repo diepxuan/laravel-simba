@@ -83,6 +83,8 @@ class AsCAFilt3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAFilt3', [
+            'pKeyPh' => $paramObj->pKeyPh ?? null,
+            'pKeyCt' => $paramObj->pKeyCt ?? null
         ], $connection);
     }
 }

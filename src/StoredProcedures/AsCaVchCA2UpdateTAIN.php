@@ -25,7 +25,12 @@ class AsCaVchCA2UpdateTAIN
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCaVchCA2UpdateTAIN', [
-
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
+            'pNgay_pc' => $paramObj->pNgay_pc ?? null,
+            'pStt_rec_pc' => $paramObj->pStt_rec_pc ?? null,
+            'pVAT_NK' => $paramObj->pVAT_NK ?? null
         ], $connection);
     }
 }

@@ -34,9 +34,7 @@ class AsSODelPH2
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pLUser' => $paramObj->pLUser ?? null,
-            'pRet' => $paramObj->pRet ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pstt_rec' => $paramObj->pstt_rec ?? null
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

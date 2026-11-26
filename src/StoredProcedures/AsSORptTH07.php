@@ -56,10 +56,10 @@ class AsSORptTH07
      * @param string $Ma_nt
      * @param mixed $loai
      * @param string $ar
-     * @param string $2
+     * @param string $p2
      * @return Collection
      */
-    public static function callWithParams(string $ma_cty = null, int $Thang = null, int $Nam = null, int $So_ky = null, string $Loai = null, string $Loai_CT = null, string $Ma_nt = null, mixed $loai = null, string $ar = null, string $2 = null): Collection
+    public static function callWithParams(string $ma_cty = null, int $Thang = null, int $Nam = null, int $So_ky = null, string $Loai = null, string $Loai_CT = null, string $Ma_nt = null, mixed $loai = null, string $ar = null, string $p2 = null): Collection
     {
         $params = [
             'pma_cty' => $ma_cty,
@@ -71,7 +71,7 @@ class AsSORptTH07
             'pMa_nt' => $Ma_nt,
             'ploai' => $loai,
             'par' => $ar,
-            'p2' => $2
+            'p2' => $p2
         ];
 
         return self::call($params);

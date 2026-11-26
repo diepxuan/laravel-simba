@@ -31,11 +31,7 @@ class AsPostGlPh1_glct_1n
             'pNamTC'  => $paramObj->pNamTC ?? null,
             'pThangTC'  => $paramObj->pThangTC ?? null,
             'pNgay_ct'  => $paramObj->pNgay_ct ?? null,
-            'pMa_nt0'  => $paramObj->pMa_nt0 ?? null,
-            'pStt_rec'  => $paramObj->pStt_rec ?? null,
-            'pma_cty'  => $paramObj->pma_cty ?? null,
-            'pnh_dk'  => $paramObj->pnh_dk ?? null,
-            'pstt_rec'  => $paramObj->pstt_rec ?? null,
+            'pMa_nt0'  => $paramObj->pMa_nt0 ?? null
         ], $connection);
     }
 }

@@ -39,9 +39,7 @@ class AsSiRePostCt
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pProc' => $paramObj->pProc ?? null,
             'pQuerry' => $paramObj->pQuerry ?? null,
-            'pSTT_rec' => $paramObj->pSTT_rec ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'ParamDefines' => $paramObj->ParamDefines ?? null
         ], $connection);
     }
 

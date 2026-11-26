@@ -58,6 +58,7 @@ class AsCAGetLaiKu
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAGetLaiKu', [
+            'pMa_cty' => $paramObj->pMa_cty ?? null
         ], $connection);
     }
 

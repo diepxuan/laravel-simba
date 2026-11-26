@@ -34,10 +34,7 @@ class AsUpdArcdkh13
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pma_kh' => $paramObj->pma_kh ?? null,
-            'pnam' => $paramObj->pnam ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pMa_kh' => $paramObj->pMa_kh ?? null,
-            'pNam' => $paramObj->pNam ?? null
+            'pnam' => $paramObj->pnam ?? null
         ], $connection);
     }
 

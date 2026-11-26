@@ -40,9 +40,9 @@ class AsSOGetPH3
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asSOGetPH3', [
-            'pMa_cty'  => $paramObj->pMa_cty ?? SModel::CTY,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pMa_ct'   => $paramObj->pMa_ct ?? '',
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 

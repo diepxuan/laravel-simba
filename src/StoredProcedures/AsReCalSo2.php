@@ -73,9 +73,7 @@ class AsReCalSo2
 
         return ProcedureCaller::call('asReCalSo2', [
             'pMa_cty'     => $paramObj->pMa_cty ?? null,
-            'pStt_rec_px' => $paramObj->pStt_rec_px ?? null,
-            'pma_cty'     => $paramObj->pma_cty ?? null,
-            'pstt_rec_px' => $paramObj->pstt_rec_px ?? null,
+            'pStt_rec_px' => $paramObj->pStt_rec_px ?? null
         ], $connection);
     }
 

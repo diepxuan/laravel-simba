@@ -34,8 +34,7 @@ class AsProcessSoPh3
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pMode' => $paramObj->pMode ?? null,
-            'postAfSave' => $paramObj->postAfSave ?? null,
-            'pstt_rec' => $paramObj->pstt_rec ?? null
+            'postAfSave' => $paramObj->postAfSave ?? null
         ], $connection);
     }
 

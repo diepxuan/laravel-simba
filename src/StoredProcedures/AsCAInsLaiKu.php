@@ -99,25 +99,23 @@ class AsCAInsLaiKu
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAInsLaiKu', [
-            'pMa_cty'     => $paramObj->pMa_cty ?? null,
-            'pStt_rec'    => $paramObj->pStt_rec ?? null,
-            'pMa_ct'      => $paramObj->pMa_ct ?? null,
-            'pSo_ct'      => $paramObj->pSo_ct ?? null,
-            'pNgay_ct'    => $paramObj->pNgay_ct ?? null,
-            'pNgay_lct'   => $paramObj->pNgay_lct ?? null,
-            'pMa_tscd'    => $paramObj->pMa_tscd ?? null,
-            'pDien_giai'  => $paramObj->pDien_giai ?? null,
-            'pTk'         => $paramObj->pTk ?? null,
-            'pMa_kh'      => $paramObj->pMa_kh ?? '',
-            'pMa_bp'      => $paramObj->pMa_bp ?? '',
-            'pMa_dt'      => $paramObj->pMa_dt ?? '',
-            'pMa_cp'      => $paramObj->pMa_cp ?? '',
-            'pSo_tien'    => $paramObj->pSo_tien ?? 0.0,
-            'pSo_tien_nt' => $paramObj->pSo_tien_nt ?? 0.0,
-            'pTy_gia'     => $paramObj->pTy_gia ?? 1.0,
-            'pMa_nt'      => $paramObj->pMa_nt ?? 'VND',
-            'pLUser'      => $paramObj->pLUser ?? null,
-            'pRet'        => ['type' => 'INT', 'output' => true],
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay_tra' => $paramObj->pNgay_tra ?? null,
+            'pMa_ku' => $paramObj->pMa_ku ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pTien_lai_tk' => $paramObj->pTien_lai_tk ?? null,
+            'pTien_lai_tk_nt' => $paramObj->pTien_lai_tk_nt ?? null,
+            'pTien_goc_tk' => $paramObj->pTien_goc_tk ?? null,
+            'pTien_goc_tk_nt' => $paramObj->pTien_goc_tk_nt ?? null,
+            'pTien_lai_qh' => $paramObj->pTien_lai_qh ?? null,
+            'pTien_lai_qh_nt' => $paramObj->pTien_lai_qh_nt ?? null,
+            'pTien_goc_qh' => $paramObj->pTien_goc_qh ?? null,
+            'pTien_goc_qh_nt' => $paramObj->pTien_goc_qh_nt ?? null,
+            'pSua_lai' => $paramObj->pSua_lai ?? null,
+            'pSua_goc' => $paramObj->pSua_goc ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

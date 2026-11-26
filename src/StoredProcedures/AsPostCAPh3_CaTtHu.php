@@ -37,9 +37,7 @@ class AsPostCAPh3_CaTtHu
             'pThangTC' => $paramObj->pThangTC ?? null,
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pTk_tu' => $paramObj->pTk_tu ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pTk_tu' => $paramObj->pTk_tu ?? null
         ], $connection);
     }
 

@@ -38,9 +38,7 @@ class AsPostInPh6TD_GlCt
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
             'pMa_nt0' => $paramObj->pMa_nt0 ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
-            'pMa_Nt0' => $paramObj->pMa_Nt0 ?? null
+            'pMa_nt' => $paramObj->pMa_nt ?? null
         ], $connection);
     }
 

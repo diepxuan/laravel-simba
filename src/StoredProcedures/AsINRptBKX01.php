@@ -46,14 +46,7 @@ class AsINRptBKX01
             'pMa_vt'  => $paramObj->pMa_vt ?? null,
             'ptk_vt'  => $paramObj->ptk_vt ?? null,
             'pTk_Du'  => $paramObj->pTk_Du ?? null,
-            'pDVT'  => $paramObj->pDVT ?? null,
-            'pMa_Cty'  => $paramObj->pMa_Cty ?? null,
-            'pMa_nhkh'  => $paramObj->pMa_nhkh ?? null,
-            'pMa_plkh1'  => $paramObj->pMa_plkh1 ?? null,
-            'pMa_plkh2'  => $paramObj->pMa_plkh2 ?? null,
-            'pMa_plkh3'  => $paramObj->pMa_plkh3 ?? null,
-            'pMa_Kh'  => $paramObj->pMa_Kh ?? null,
-            'pMa_nt'  => $paramObj->pMa_nt ?? null,
+            'pDVT'  => $paramObj->pDVT ?? null
         ], $connection);
     }
 }

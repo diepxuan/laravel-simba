@@ -34,8 +34,7 @@ class AsSiGetCt4PostGL
             'pMa_Cty' => $paramObj->pMa_Cty ?? null,
             'pMa_ct' => $paramObj->pMa_ct ?? null,
             'pMa_ph' => $paramObj->pMa_ph ?? null,
-            'pLanguageId' => $paramObj->pLanguageId ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null
+            'pLanguageId' => $paramObj->pLanguageId ?? null
         ], $connection);
     }
 

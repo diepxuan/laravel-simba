@@ -51,12 +51,10 @@ class AsPORptBCPT012
             'pMa_plvt3' => $paramObj->pMa_plvt3 ?? null,
             'pma_tt_po' => $paramObj->pma_tt_po ?? null,
             'pStatus' => $paramObj->pStatus ?? null,
-            'pNgay1' => $paramObj->pNgay1 ?? null,
             'pStt' => $paramObj->pStt ?? null,
             'pStt_rec_dh' => $paramObj->pStt_rec_dh ?? null,
             'pStt_rec0_dh' => $paramObj->pStt_rec0_dh ?? null,
-            'pSl_cl' => $paramObj->pSl_cl ?? null,
-            'pMa_vt_' => $paramObj->pMa_vt_ ?? null
+            'pSl_cl' => $paramObj->pSl_cl ?? null
         ], $connection);
     }
 

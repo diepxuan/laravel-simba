@@ -25,7 +25,8 @@ class AsCaVchCA2GetVATNK_TAIN
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCaVchCA2GetVATNK_TAIN', [
-
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null
         ], $connection);
     }
 }

@@ -35,8 +35,7 @@ class AsSaChkExistQuyLuong
             'pThang' => $paramObj->pThang ?? null,
             'pNam' => $paramObj->pNam ?? null,
             'pMa_bp' => $paramObj->pMa_bp ?? null,
-            'pRet' => $paramObj->pRet ?? null,
-            'pMa_Bp' => $paramObj->pMa_Bp ?? null
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

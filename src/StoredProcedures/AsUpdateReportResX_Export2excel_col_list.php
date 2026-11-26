@@ -34,9 +34,7 @@ class AsUpdateReportResX_Export2excel_col_list
             'pmenuid' => $paramObj->pmenuid ?? null,
             'pma_mau' => $paramObj->pma_mau ?? null,
             'plang_id' => $paramObj->plang_id ?? null,
-            'pExport2excel_col_list' => $paramObj->pExport2excel_col_list ?? null,
-            'pMenuid' => $paramObj->pMenuid ?? null,
-            'pMa_mau' => $paramObj->pMa_mau ?? null
+            'pExport2excel_col_list' => $paramObj->pExport2excel_col_list ?? null
         ], $connection);
     }
 

@@ -33,11 +33,7 @@ class AsINRptCTVT02_crys
             'pMa_kho'  => $paramObj->pMa_kho ?? null,
             'pMa_vitri'  => $paramObj->pMa_vitri ?? null,
             'pMau_bc'  => $paramObj->pMau_bc ?? null,
-            'pMa_nt'  => $paramObj->pMa_nt ?? null,
-            'pSysMsg1'  => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2'  => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3'  => $paramObj->pSysMsg3 ?? null,
-            'pma_vt'  => $paramObj->pma_vt ?? null,
+            'pMa_nt'  => $paramObj->pMa_nt ?? null
         ], $connection);
     }
 }

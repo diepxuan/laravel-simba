@@ -38,8 +38,7 @@ class AsValid
             'pTableName' => $paramObj->pTableName ?? null,
             'pWhere' => $paramObj->pWhere ?? null,
             'paramDefs' => $paramObj->paramDefs ?? null,
-            'pRet' => $paramObj->pRet ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

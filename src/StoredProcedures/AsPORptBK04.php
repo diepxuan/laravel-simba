@@ -47,11 +47,7 @@ class AsPORptBK04
             'pSo_DH' => $paramObj->pSo_DH ?? null,
             'pMa_plkh1' => $paramObj->pMa_plkh1 ?? null,
             'pMa_plkh2' => $paramObj->pMa_plkh2 ?? null,
-            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pMa_Hd' => $paramObj->pMa_Hd ?? null,
-            'pso_DH' => $paramObj->pso_DH ?? null
+            'pMa_plkh3' => $paramObj->pMa_plkh3 ?? null
         ], $connection);
     }
 

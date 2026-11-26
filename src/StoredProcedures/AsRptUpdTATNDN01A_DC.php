@@ -88,8 +88,7 @@ class AsRptUpdTATNDN01A_DC
             'pMa_so'  => $paramObj->pMa_so ?? null,
             'pTien'   => $paramObj->pTien ?? null,
             'pStt'    => $paramObj->pStt ?? null,
-            'pRet'    => $paramObj->pRet ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pRet'    => $paramObj->pRet ?? null
         ], $connection);
     }
 

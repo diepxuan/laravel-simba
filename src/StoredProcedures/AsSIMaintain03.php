@@ -35,10 +35,7 @@ class AsSIMaintain03
             'pngay_ct1' => $paramObj->pngay_ct1 ?? null,
             'pngay_ct2' => $paramObj->pngay_ct2 ?? null,
             'ptk' => $paramObj->ptk ?? null,
-            'ptk_du' => $paramObj->ptk_du ?? null,
-            'pNgay_ct1' => $paramObj->pNgay_ct1 ?? null,
-            'pNgay_ct2' => $paramObj->pNgay_ct2 ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null
+            'ptk_du' => $paramObj->ptk_du ?? null
         ], $connection);
     }
 

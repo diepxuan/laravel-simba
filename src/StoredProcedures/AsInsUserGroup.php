@@ -102,8 +102,7 @@ class AsInsUserGroup
             'pGroupName' => $paramObj->pGroupName ?? null,
             'pUserName'  => $paramObj->pUserName ?? null,
             'pDel'       => $paramObj->pDel ?? null,
-            'pRet'       => $paramObj->pRet ?? null,
-            'pusername'  => $paramObj->pusername ?? null,
+            'pRet'       => $paramObj->pRet ?? null
         ], $connection);
     }
 

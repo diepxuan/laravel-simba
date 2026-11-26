@@ -58,6 +58,8 @@ class AsCAGetTTHU
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAGetTTHU', [
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null
         ], $connection);
     }
 

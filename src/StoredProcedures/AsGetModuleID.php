@@ -39,6 +39,9 @@ class AsGetModuleID
         $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('asSIGetModuleID', [], $connection);
+        return ProcedureCaller::call('asSIGetModuleID', [
+            'pmenuid' => $paramObj->pmenuid ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
+        ], $connection);
     }
 }

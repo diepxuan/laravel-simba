@@ -40,10 +40,7 @@ class AsSOPostTraTruoc_arTt
             'pThangTC' => $paramObj->pThangTC ?? null,
             'pNamTC' => $paramObj->pNamTC ?? null,
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
-            'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pstt_rec_dh' => $paramObj->pstt_rec_dh ?? null,
-            'pstt_rec_hd' => $paramObj->pstt_rec_hd ?? null,
-            'pstt_rec_pt' => $paramObj->pstt_rec_pt ?? null
+            'pNgay_ks' => $paramObj->pNgay_ks ?? null
         ], $connection);
     }
 

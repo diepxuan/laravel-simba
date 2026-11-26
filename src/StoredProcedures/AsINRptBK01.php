@@ -35,8 +35,7 @@ class AsINRptBK01
             'pNam' => $paramObj->pNam ?? null,
             'pThang' => $paramObj->pThang ?? null,
             'pMa_vt' => $paramObj->pMa_vt ?? null,
-            'pMa_kho' => $paramObj->pMa_kho ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null
+            'pMa_kho' => $paramObj->pMa_kho ?? null
         ], $connection);
     }
 

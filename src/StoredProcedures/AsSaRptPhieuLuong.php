@@ -35,8 +35,7 @@ class AsSaRptPhieuLuong
             'pThang' => $paramObj->pThang ?? null,
             'pNam' => $paramObj->pNam ?? null,
             'pMa_bp' => $paramObj->pMa_bp ?? null,
-            'pMa_nv' => $paramObj->pMa_nv ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pMa_nv' => $paramObj->pMa_nv ?? null
         ], $connection);
     }
 

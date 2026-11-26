@@ -43,11 +43,12 @@ class AsINRptCD01
             'pma_plvt1' => $paramObj->pma_plvt1 ?? null,
             'pma_plvt2' => $paramObj->pma_plvt2 ?? null,
             'pma_plvt3' => $paramObj->pma_plvt3 ?? null,
+            'group1' => $paramObj->group1 ?? null,
+            'group2' => $paramObj->group2 ?? null,
+            'group3' => $paramObj->group3 ?? null,
             'pDVT' => $paramObj->pDVT ?? null,
             'pPSDC' => $paramObj->pPSDC ?? null,
-            'pNgoai_te' => $paramObj->pNgoai_te ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pNgoai_te' => $paramObj->pNgoai_te ?? null
         ], $connection);
     }
 

@@ -47,9 +47,7 @@ class AsINRptCD01_Lo
             'pPSDC' => $paramObj->pPSDC ?? null,
             'pNgoai_te' => $paramObj->pNgoai_te ?? null,
             'pDk_nhom' => $paramObj->pDk_nhom ?? null,
-            'pNam' => $paramObj->pNam ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pDvt' => $paramObj->pDvt ?? null
+            'pNam' => $paramObj->pNam ?? null
         ], $connection);
     }
 

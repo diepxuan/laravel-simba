@@ -41,7 +41,6 @@ class AsLookup
             'pPage_num' => $paramObj->pPage_num ?? null,
             'pLanguage' => $paramObj->pLanguage ?? null,
             'paramDefs' => $paramObj->paramDefs ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
             'pageSize' => $paramObj->pageSize ?? null
         ], $connection);
     }

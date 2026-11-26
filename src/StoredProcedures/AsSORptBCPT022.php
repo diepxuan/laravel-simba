@@ -53,12 +53,10 @@ class AsSORptBCPT022
             'pMa_nvkd' => $paramObj->pMa_nvkd ?? null,
             'pMa_TT' => $paramObj->pMa_TT ?? null,
             'pStatus' => $paramObj->pStatus ?? null,
-            'pNgay1' => $paramObj->pNgay1 ?? null,
             'pStt' => $paramObj->pStt ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
             'pStt_rec0' => $paramObj->pStt_rec0 ?? null,
-            'pSl_cl' => $paramObj->pSl_cl ?? null,
-            'pMa_vt_' => $paramObj->pMa_vt_ ?? null
+            'pSl_cl' => $paramObj->pSl_cl ?? null
         ], $connection);
     }
 

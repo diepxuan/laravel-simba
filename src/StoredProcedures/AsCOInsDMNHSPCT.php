@@ -33,8 +33,7 @@ class AsCOInsDMNHSPCT
             'pGhi_chu' => $paramObj->pGhi_chu ?? null,
             'pCong_sl' => $paramObj->pCong_sl ?? null,
             'pKsd' => $paramObj->pKsd ?? null,
-            'pLUser' => $paramObj->pLUser ?? null,
-            'pLUser' => $paramObj->pLUser ?? null,
+            'pLUser' => $paramObj->pLUser ?? null
         ], $connection);
     }
 }

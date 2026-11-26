@@ -31,7 +31,6 @@ class AsARRptBCCN03
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asARRptBCCN03', [
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null
         ], $connection);
     }
 

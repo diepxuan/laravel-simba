@@ -32,9 +32,7 @@ class AsPOReCalPO54Relate
 
         return ProcedureCaller::call('asPOReCalPO54Relate', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
-            'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pstt_rec' => $paramObj->pstt_rec ?? null
+            'pStt_rec' => $paramObj->pStt_rec ?? null
         ], $connection);
     }
 

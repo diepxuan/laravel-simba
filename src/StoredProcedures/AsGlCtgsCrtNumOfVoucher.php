@@ -99,9 +99,7 @@ class AsGlCtgsCrtNumOfVoucher
             'pSo_hieu'   => $paramObj->pSo_hieu ?? null,
             'pNgay_lo'   => $paramObj->pNgay_lo ?? null,
             'pNgay1'     => $paramObj->pNgay1 ?? null,
-            'pma_ct'     => $paramObj->pma_ct ?? null,
-            'prevLen'    => $paramObj->prevLen ?? null,
-            'pMa_Ct'     => $paramObj->pMa_Ct ?? null,
+            'prevLen'    => $paramObj->prevLen ?? null
         ], $connection);
     }
 

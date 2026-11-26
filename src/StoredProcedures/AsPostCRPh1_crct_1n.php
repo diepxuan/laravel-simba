@@ -33,11 +33,7 @@ class AsPostCRPh1_crct_1n
         return ProcedureCaller::call('asPostCRPh1_crct_1n', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pSTT_rec' => $paramObj->pSTT_rec ?? null,
-            'pNh_dk' => $paramObj->pNh_dk ?? null,
-            'pstt_rec' => $paramObj->pstt_rec ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pnh_dk' => $paramObj->pnh_dk ?? null,
-            'pStt_rec' => $paramObj->pStt_rec ?? null
+            'pNh_dk' => $paramObj->pNh_dk ?? null
         ], $connection);
     }
 

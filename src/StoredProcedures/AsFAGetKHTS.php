@@ -20,7 +20,7 @@ use Diepxuan\Simba\Helper\ParamHelper;
  * Class AsFAGetKHTS
  *
  * Stored procedure: asFAGetKHTS
- * Purpose: ----------------------------------------------------------------*/
+ * Purpose: ---------------------------------------------------------------- 
  *
  * Tham số:
  * - @pMa_cty (NVARCHAR(3)): Tham số đầu vào.

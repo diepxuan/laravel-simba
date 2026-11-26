@@ -61,7 +61,7 @@ class AsGLRptBCTCCR02
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTCCR02', [
-            'pma_cty' => $paramObj->pma_cty ?? ''CR' ',
+            'pma_cty' => $paramObj->pma_cty ?? 'CR',
             'pNam' => $paramObj->pNam ?? 2013,
             'pNgay' => $paramObj->pNgay ?? '08/23/2013',
             'pChiTieuCoSoLieu' => $paramObj->pChiTieuCoSoLieu ?? 0,

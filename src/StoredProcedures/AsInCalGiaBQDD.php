@@ -40,11 +40,7 @@ class AsInCalGiaBQDD
             'pMa_kho' => $paramObj->pMa_kho ?? null,
             'pTk_cl' => $paramObj->pTk_cl ?? null,
             'pDk_cl' => $paramObj->pDk_cl ?? null,
-            'pma_ct_cl' => $paramObj->pma_ct_cl ?? null,
-            'pMa_ct_cl' => $paramObj->pMa_ct_cl ?? null,
-            'pnhom_vt' => $paramObj->pnhom_vt ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pma_ct_cl' => $paramObj->pma_ct_cl ?? null
         ], $connection);
     }
 

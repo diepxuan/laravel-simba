@@ -104,9 +104,7 @@ class AsInsLogPrint
             'pma_mau'       => $paramObj->pma_mau ?? null,
             'pdate'         => $paramObj->pdate ?? null,
             'pCountPrinted' => $paramObj->pCountPrinted ?? null,
-            'pIs_Frist'     => $paramObj->pIs_Frist ?? null,
-            'pSo_ct'        => $paramObj->pSo_ct ?? null,
-            'pSo_seri'      => $paramObj->pSo_seri ?? null,
+            'pIs_Frist'     => $paramObj->pIs_Frist ?? null
         ], $connection);
     }
 

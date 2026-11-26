@@ -40,10 +40,7 @@ class AsINRptCTVT01
             'pMau_bc' => $paramObj->pMau_bc ?? null,
             'pDVT' => $paramObj->pDVT ?? null,
             'pTK_vt' => $paramObj->pTK_vt ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3' => $paramObj->pSysMsg3 ?? null
+            'pMa_nt' => $paramObj->pMa_nt ?? null
         ], $connection);
     }
 

@@ -27,9 +27,7 @@ class AsCoCpCalDepreciation
         return ProcedureCaller::call('asCoCpCalDepreciation', [
             'pDateFormat' => $paramObj->pDateFormat ?? null,
             'pThang' => $paramObj->pThang ?? null,
-            'pNam' => $paramObj->pNam ?? null,
-            'pThang' => $paramObj->pThang ?? null,
-            'pNam' => $paramObj->pNam ?? null,
+            'pNam' => $paramObj->pNam ?? null
         ], $connection);
     }
 }

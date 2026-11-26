@@ -55,9 +55,9 @@ class AsGLRptBCTCTMVI02c
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCTCTMVI02c', [
-            'pMa_cty' => $paramObj->pMa_cty ?? '999' ',
-            'pMau' => $paramObj->pMau ?? 'N'15' ',
-            'pNgay1' => $paramObj->pNgay1 ?? ''2014-01-01 00:00:00' ',
+            'pMa_cty' => $paramObj->pMa_cty ?? '999',
+            'pMau' => $paramObj->pMau ?? '15',
+            'pNgay1' => $paramObj->pNgay1 ?? '2014-01-01 00:00:00',
             'pNgay2' => $paramObj->pNgay2 ?? '2014-12-31 00:00:00',
         ], $connection);
     }

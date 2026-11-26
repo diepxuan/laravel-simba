@@ -37,7 +37,6 @@ class AsPostSoPh5_taOut
             'pNamTC' => $paramObj->pNamTC ?? null,
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pLen_tenVT' => $paramObj->pLen_tenVT ?? null
         ], $connection);
     }

@@ -54,7 +54,8 @@ class AsGLRptBCTCCR01F5
         return ProcedureCaller::call('asGLRptBCTCCR01F5', [
             'pMa_Cty' => $paramObj->pMa_Cty ?? null,
             'pTk' => $paramObj->pTk ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pNhom_tk' => $paramObj->pNhom_tk ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null
         ], $connection);
     }
 }

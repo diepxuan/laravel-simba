@@ -43,8 +43,7 @@ class AsINUpdCDVT
             'pTien_nt' => $paramObj->pTien_nt ?? null,
             'pTien' => $paramObj->pTien ?? null,
             'pLUser' => $paramObj->pLUser ?? null,
-            'pRet' => $paramObj->pRet ?? null,
-            'pMa_Nt' => $paramObj->pMa_Nt ?? null
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

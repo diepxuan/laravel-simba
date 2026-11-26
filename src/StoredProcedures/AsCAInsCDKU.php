@@ -103,23 +103,19 @@ class AsCAInsCDKU
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAInsCDKU', [
-            'pMa_cty'       => $paramObj->pMa_cty ?? null,
-            'pStt_rec'      => $paramObj->pStt_rec ?? null,
-            'pMa_ct'        => $paramObj->pMa_ct ?? null,
-            'pSo_ct'        => $paramObj->pSo_ct ?? null,
-            'pNgay_ct'      => $paramObj->pNgay_ct ?? null,
-            'pNgay_lct'     => $paramObj->pNgay_lct ?? null,
-            'pMa_tscd'      => $paramObj->pMa_tscd ?? null,
-            'pDien_giai'    => $paramObj->pDien_giai ?? null,
-            'pTk_cp'        => $paramObj->pTk_cp ?? null,
-            'pTk_kh'        => $paramObj->pTk_kh ?? null,
-            'pNguyen_gia'   => $paramObj->pNguyen_gia ?? 0.0,
-            'pTy_le_kh'     => $paramObj->pTy_le_kh ?? 0.0,
-            'pSo_kh'        => $paramObj->pSo_kh ?? 0.0,
-            'pSo_kh_luy_ke' => $paramObj->pSo_kh_luy_ke ?? 0.0,
-            'pSo_kh_cn'     => $paramObj->pSo_kh_cn ?? 0.0,
-            'pLUser'        => $paramObj->pLUser ?? null,
-            'pRet'          => ['type' => 'INT', 'output' => true],
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_ku' => $paramObj->pMa_ku ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pMa_nt' => $paramObj->pMa_nt ?? null,
+            'pNgay_ku' => $paramObj->pNgay_ku ?? null,
+            'pNgay_tt' => $paramObj->pNgay_tt ?? null,
+            'pDa_vay' => $paramObj->pDa_vay ?? null,
+            'pDa_vay_nt' => $paramObj->pDa_vay_nt ?? null,
+            'pDa_tt' => $paramObj->pDa_tt ?? null,
+            'pDa_tt_nt' => $paramObj->pDa_tt_nt ?? null,
+            'pLUser' => $paramObj->pLUser ?? null,
+            'pRet' => $paramObj->pRet ?? null
         ], $connection);
     }
 

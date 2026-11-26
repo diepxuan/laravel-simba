@@ -32,8 +32,7 @@ class AsSoLookupDhHd
 
         return ProcedureCaller::call('asSoLookupDhHd', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
-            'pKey' => $paramObj->pKey ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pKey' => $paramObj->pKey ?? null
         ], $connection);
     }
 

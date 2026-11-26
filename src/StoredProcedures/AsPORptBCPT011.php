@@ -50,8 +50,7 @@ class AsPORptBCPT011
             'pMa_plvt2' => $paramObj->pMa_plvt2 ?? null,
             'pMa_plvt3' => $paramObj->pMa_plvt3 ?? null,
             'pma_tt_po' => $paramObj->pma_tt_po ?? null,
-            'pStatus' => $paramObj->pStatus ?? null,
-            'pNgay1' => $paramObj->pNgay1 ?? null
+            'pStatus' => $paramObj->pStatus ?? null
         ], $connection);
     }
 

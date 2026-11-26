@@ -62,8 +62,7 @@ class AsReCalCA54Relate
 
         return ProcedureCaller::call('asReCalCA54Relate', [
             'pMa_cty'  => $paramObj->pMa_cty ?? null,
-            'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pMa_Cty'  => $paramObj->pMa_Cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null
         ], $connection);
     }
 

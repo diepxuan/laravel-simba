@@ -58,6 +58,9 @@ class AsCAGetDMKU
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAGetDMKU', [
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pMa_ku' => $paramObj->pMa_ku ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 

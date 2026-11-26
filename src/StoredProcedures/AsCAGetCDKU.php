@@ -58,6 +58,10 @@ class AsCAGetCDKU
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCAGetCDKU', [
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pMa_ku' => $paramObj->pMa_ku ?? null,
+            'pStruct' => $paramObj->pStruct ?? null
         ], $connection);
     }
 

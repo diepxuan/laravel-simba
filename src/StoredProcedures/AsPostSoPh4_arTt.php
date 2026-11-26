@@ -37,8 +37,7 @@ class AsPostSoPh4_arTt
             'pNamTC' => $paramObj->pNamTC ?? null,
             'pNgay_ct' => $paramObj->pNgay_ct ?? null,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pMa_gd' => $paramObj->pMa_gd ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pMa_gd' => $paramObj->pMa_gd ?? null
         ], $connection);
     }
 

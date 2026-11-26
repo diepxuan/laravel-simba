@@ -40,9 +40,7 @@ class AsProcessCalLaiKU
             'pUser' => $paramObj->pUser ?? null,
             'pRet' => $paramObj->pRet ?? null,
             'pNgay_ks' => $paramObj->pNgay_ks ?? null,
-            'pNgay' => $paramObj->pNgay ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pMa_KU' => $paramObj->pMa_KU ?? null
+            'pNgay' => $paramObj->pNgay ?? null
         ], $connection);
     }
 

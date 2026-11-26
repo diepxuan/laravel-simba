@@ -33,8 +33,7 @@ class AsSaRptPhiBHXH
         return ProcedureCaller::call('asSaRptPhiBHXH', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pNam' => $paramObj->pNam ?? null,
-            'pMa_bp' => $paramObj->pMa_bp ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pMa_bp' => $paramObj->pMa_bp ?? null
         ], $connection);
     }
 

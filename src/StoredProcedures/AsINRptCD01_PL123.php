@@ -47,12 +47,7 @@ class AsINRptCD01_PL123
             'pPSDC' => $paramObj->pPSDC ?? null,
             'pNgoai_te' => $paramObj->pNgoai_te ?? null,
             'pNam' => $paramObj->pNam ?? null,
-            'pDk_nhom' => $paramObj->pDk_nhom ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3' => $paramObj->pSysMsg3 ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pDvt' => $paramObj->pDvt ?? null
+            'pDk_nhom' => $paramObj->pDk_nhom ?? null
         ], $connection);
     }
 

@@ -64,9 +64,7 @@ class AsGLRptBCTCCDTf03D
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pNgay1' => $paramObj->pNgay1 ?? null,
             'pNgay2' => $paramObj->pNgay2 ?? null,
-            'pTk' => $paramObj->pTk ?? null,
-            'pMa_cty' => $paramObj->pMa_cty ?? null,
-            'pTk' => $paramObj->pTk ?? null,
+            'pTk' => $paramObj->pTk ?? null
         ], $connection);
     }
 }

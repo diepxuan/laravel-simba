@@ -27,8 +27,7 @@ class AsProcessSoPh5
         return ProcedureCaller::call('asProcessSoPh5', [
             'pMa_cty'  => $paramObj->pMa_cty ?? null,
             'pStt_rec'  => $paramObj->pStt_rec ?? null,
-            'pMode'  => $paramObj->pMode ?? null,
-            'pstt_rec'  => $paramObj->pstt_rec ?? null,
+            'pMode'  => $paramObj->pMode ?? null
         ], $connection);
     }
 }

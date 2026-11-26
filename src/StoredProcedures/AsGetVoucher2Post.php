@@ -37,8 +37,7 @@ class AsGetVoucher2Post
             'pSo_ct1' => $paramObj->pSo_ct1 ?? null,
             'pSo_ct2' => $paramObj->pSo_ct2 ?? null,
             'pMa_CtLst' => $paramObj->pMa_CtLst ?? null,
-            'pPost2gl' => $paramObj->pPost2gl ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pPost2gl' => $paramObj->pPost2gl ?? null
         ], $connection);
     }
 

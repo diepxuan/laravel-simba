@@ -42,8 +42,7 @@ class AsSORptBCPT10
             'pSoct1' => $paramObj->pSoct1 ?? null,
             'pSoct2' => $paramObj->pSoct2 ?? null,
             'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'ParamDefines' => $paramObj->ParamDefines ?? null
         ], $connection);
     }
 

@@ -39,9 +39,7 @@ class AsInPostCDVT2CDFIFO
             'pSo_luong' => $paramObj->pSo_luong ?? null,
             'pTien_nt' => $paramObj->pTien_nt ?? null,
             'pTien' => $paramObj->pTien ?? null,
-            'pAcction' => $paramObj->pAcction ?? null,
-            'pma_vt' => $paramObj->pma_vt ?? null,
-            'pma_kho' => $paramObj->pma_kho ?? null
+            'pAcction' => $paramObj->pAcction ?? null
         ], $connection);
     }
 

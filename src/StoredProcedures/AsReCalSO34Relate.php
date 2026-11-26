@@ -76,9 +76,7 @@ class AsReCalSO34Relate
 
         return ProcedureCaller::call('asReCalSO34Relate', [
             'pMa_cty'  => $paramObj->pMa_cty ?? null,
-            'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pma_cty'  => $paramObj->pma_cty ?? null,
-            'pstt_rec' => $paramObj->pstt_rec ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null
         ], $connection);
     }
 

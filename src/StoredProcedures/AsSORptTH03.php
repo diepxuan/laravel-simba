@@ -54,12 +54,7 @@ class AsSORptTH03
             'pkhuyen_mai' => $paramObj->pkhuyen_mai ?? null,
             'pTra_ck' => $paramObj->pTra_ck ?? null,
             'pTra_lai' => $paramObj->pTra_lai ?? null,
-            'pMa_NT' => $paramObj->pMa_NT ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pMa_Tkvt' => $paramObj->pMa_Tkvt ?? null
+            'pMa_NT' => $paramObj->pMa_NT ?? null
         ], $connection);
     }
 

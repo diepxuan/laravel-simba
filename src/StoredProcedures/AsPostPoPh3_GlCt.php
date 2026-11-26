@@ -43,10 +43,8 @@ class AsPostPoPh3_GlCt
             'pTk_pt' => $paramObj->pTk_pt ?? null,
             'pDs_tk_kt' => $paramObj->pDs_tk_kt ?? null,
             'pluser' => $paramObj->pluser ?? null,
-            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
             'pPO3' => $paramObj->pPO3 ?? null,
-            'pMa_ct' => $paramObj->pMa_ct ?? null,
-            'pMa_Nt0' => $paramObj->pMa_Nt0 ?? null
+            'pMa_ct' => $paramObj->pMa_ct ?? null
         ], $connection);
     }
 

@@ -71,8 +71,7 @@ class AsReCalPO0
 
         return ProcedureCaller::call('asReCalPO0', [
             'pMa_cty'      => $paramObj->pMa_cty ?? null,
-            'pstt_rec_pdn' => $paramObj->pstt_rec_pdn ?? null,
-            'pma_cty'      => $paramObj->pma_cty ?? null,
+            'pstt_rec_pdn' => $paramObj->pstt_rec_pdn ?? null
         ], $connection);
     }
 

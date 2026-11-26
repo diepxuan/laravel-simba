@@ -33,8 +33,7 @@ class AsCoRptKHCPTT
             'pTk_pb'  => $paramObj->pTk_pb ?? null,
             'pTk_cp'  => $paramObj->pTk_cp ?? null,
             'pMa_phi'  => $paramObj->pMa_phi ?? null,
-            'pMa_spct'  => $paramObj->pMa_spct ?? null,
-            'pMa_cty'  => $paramObj->pMa_cty ?? null,
+            'pMa_spct'  => $paramObj->pMa_spct ?? null
         ], $connection);
     }
 }

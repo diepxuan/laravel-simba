@@ -41,8 +41,7 @@ class AsSiReOrderVoucherNumber
             'prefix' => $paramObj->prefix ?? null,
             'pattern' => $paramObj->pattern ?? null,
             'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pWidth' => $paramObj->pWidth ?? null,
-            'pma_cty' => $paramObj->pma_cty ?? null
+            'pWidth' => $paramObj->pWidth ?? null
         ], $connection);
     }
 

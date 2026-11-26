@@ -69,8 +69,7 @@ class AsHrGetChamCongKhac
             'pNam'    => $paramObj->pNam ?? null,
             'pThang'  => $paramObj->pThang ?? null,
             'pNgay'   => $paramObj->pNgay ?? null,
-            'pId'     => $paramObj->pId ?? null,
-            'pngay'   => $paramObj->pngay ?? null,
+            'pId'     => $paramObj->pId ?? null
         ], $connection);
     }
 

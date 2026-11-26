@@ -65,11 +65,11 @@ class AsCARptTMNH02
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCARptTMNH02', [
-            'pMa_Cty'   => $paramObj->pMa_Cty ?? SModel::CTY,
-            'pTk'       => $paramObj->pTk ?? '112',
-            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? '2015-10-01',
-            'pNgay_ct2' => $paramObj->pNgay_ct2 ?? '2015-10-31',
-            'pMa_Nt'    => $paramObj->pMa_Nt ?? '',
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pTk' => $paramObj->pTk ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMaNt' => $paramObj->pMaNt ?? null
         ], $connection);
     }
 
