@@ -41,8 +41,7 @@ class AsSOGetPH3
 
         return ProcedureCaller::call('asSOGetPH3', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
-            'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pStruct' => $paramObj->pStruct ?? null
+            'pStt_rec' => $paramObj->pStt_rec ?? null
         ], $connection);
     }
 
