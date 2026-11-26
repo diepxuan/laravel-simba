@@ -42,7 +42,6 @@ class AsPORptBCPT03
             'pMa_hd' => $paramObj->pMa_hd ?? null,
             'pMa_nhhd' => $paramObj->pMa_nhhd ?? null,
             'pMa_HTTT' => $paramObj->pMa_HTTT ?? null,
-            'pMa_tt' => $paramObj->pMa_tt ?? null,
             'pMa_kho' => $paramObj->pMa_kho ?? null,
             'pMa_vitri' => $paramObj->pMa_vitri ?? null,
             'pMa_lo' => $paramObj->pMa_lo ?? null,
@@ -54,15 +53,9 @@ class AsPORptBCPT03
             'pMa_plvt3' => $paramObj->pMa_plvt3 ?? null,
             'pMa_spct' => $paramObj->pMa_spct ?? null,
             'pTra_lai' => $paramObj->pTra_lai ?? null,
-            'pMa_NT' => $paramObj->pMa_NT ?? null,
+            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
             'pGroup' => $paramObj->pGroup ?? null,
-            'pDetail' => $paramObj->pDetail ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pMa_httt' => $paramObj->pMa_httt ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pStrTL' => $paramObj->pStrTL ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null
+            'pDetail' => $paramObj->pDetail ?? null
         ], $connection);
     }
 
