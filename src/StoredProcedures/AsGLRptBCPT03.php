@@ -25,7 +25,12 @@ class AsGLRptBCPT03
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asGLRptBCPT03', [
-
+            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
+            'pLoai' => $paramObj->pLoai ?? null,
+            'pThang' => $paramObj->pThang ?? null,
+            'pNam' => $paramObj->pNam ?? null,
+            'pSo_ky' => $paramObj->pSo_ky ?? null,
+            'pMau' => $paramObj->pMau ?? null
         ], $connection);
     }
 }
