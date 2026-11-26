@@ -112,17 +112,7 @@ class AsGLRptBCTC03
             'pMau' => $paramObj->pMau ?? null,
             'pMa_bp' => $paramObj->pMa_bp ?? null,
             'pMa_Nt' => $paramObj->pMa_Nt ?? null,
-            'pDest' => $paramObj->pDest ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'pQd_cdkt' => $paramObj->pQd_cdkt ?? null,
-            'pNgay_Ct1' => $paramObj->pNgay_Ct1 ?? null,
-            'pNgay_Ct2' => $paramObj->pNgay_Ct2 ?? null,
-            'pNgay_Ct01' => $paramObj->pNgay_Ct01 ?? null,
-            'pNgay_Ct02' => $paramObj->pNgay_Ct02 ?? null,
-            'pMau' => $paramObj->pMau ?? null,
-            'pMa_bp' => $paramObj->pMa_bp ?? null,
-            'pMa_Nt' => $paramObj->pMa_Nt ?? null,
-            'pDest' => $paramObj->pDest ?? null,
-        ], $connection);
+            'pDest' => $paramObj->pDest ?? null
+                ], $connection);
     }
 }
