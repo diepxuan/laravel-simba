@@ -38,11 +38,7 @@ class AsPORptTH02
             'pNam' => $paramObj->pNam ?? null,
             'pSo_ky' => $paramObj->pSo_ky ?? null,
             'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pIs_nt' => $paramObj->pIs_nt ?? null,
-            'par' => $paramObj->par ?? null,
-            'par1' => $paramObj->par1 ?? null,
-            'pSoLoai' => $paramObj->pSoLoai ?? null,
-            'pSoQuy' => $paramObj->pSoQuy ?? null
+            'pIs_nt' => $paramObj->pIs_nt ?? null
         ], $connection);
     }
 
