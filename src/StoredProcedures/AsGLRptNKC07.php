@@ -29,7 +29,6 @@ class AsGLRptNKC07
             'Ngay_ct1' => $paramObj->Ngay_ct1 ?? null,
             'Ngay_ct2' => $paramObj->Ngay_ct2 ?? null,
             'pTk' => $paramObj->pTk ?? null,
-            'pNhom_tk' => $paramObj->pNhom_tk ?? null,
             'pMa_nt' => $paramObj->pMa_nt ?? null
         ], $connection);
     }
