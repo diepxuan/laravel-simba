@@ -28,9 +28,7 @@ class AsGLRptCTGS02
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pNgay_ct1' => $paramObj->pNgay_ct1 ?? null,
             'pNgay_ct2' => $paramObj->pNgay_ct2 ?? null,
-            'pCtu1' => $paramObj->pCtu1 ?? null,
-            'pCtu2' => $paramObj->pCtu2 ?? null,
-            'pMa_Nt' => $paramObj->pMa_Nt ?? null
+            'pCtu1' => $paramObj->pCtu1 ?? null
         ], $connection);
     }
 }
