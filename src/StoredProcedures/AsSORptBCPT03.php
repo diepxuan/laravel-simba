@@ -54,20 +54,7 @@ class AsSORptBCPT03
             'pHang_ban' => $paramObj->pHang_ban ?? null,
             'pTra_lai' => $paramObj->pTra_lai ?? null,
             'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pTkCP_BH' => $paramObj->pTkCP_BH ?? null,
-            'pTkCP_QL' => $paramObj->pTkCP_QL ?? null,
-            'pPsNc_BH' => $paramObj->pPsNc_BH ?? null,
-            'pPsNc_QL' => $paramObj->pPsNc_QL ?? null,
-            'pTKCP_BH_DU' => $paramObj->pTKCP_BH_DU ?? null,
-            'pTKCP_QL_DU' => $paramObj->pTKCP_QL_DU ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pMa_Cty' => $paramObj->pMa_Cty ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pKhuyen_mai' => $paramObj->pKhuyen_mai ?? null,
-            'pTong_Dt' => $paramObj->pTong_Dt ?? null,
-            'p641' => $paramObj->p641 ?? null,
-            'p642' => $paramObj->p642 ?? null
+            'pTkCP_BH' => $paramObj->pTkCP_BH ?? null
         ], $connection);
     }
 
@@ -109,11 +96,11 @@ class AsSORptBCPT03
      * @param string $ParamDefines
      * @param mixed $Khuyen_mai
      * @param float $Tong_Dt
-     * @param float $641
-     * @param float $642
+     * @param float $p641
+     * @param float $p642
      * @return Collection
      */
-    public static function callWithParams(string $Ma_cty = null, string $Ngay1 = null, string $Ngay2 = null, string $Ma_kh = null, string $Ma_nhkh = null, string $Ma_vt = null, string $Ma_nhvt = null, string $Ma_kho = null, string $Ma_bp = null, string $Ma_nvkd = null, string $Ma_hd = null, string $Ma_nhhd = null, string $Ma_plkh1 = null, string $Ma_plkh2 = null, string $Ma_plkh3 = null, string $Ma_plvt1 = null, string $Ma_plvt2 = null, string $Ma_plvt3 = null, bool $khuyen_mai = null, bool $Tra_ck = null, bool $Hang_ban = null, bool $Tra_lai = null, string $Ma_nt = null, string $TkCP_BH = null, string $TkCP_QL = null, bool $PsNc_BH = null, bool $PsNc_QL = null, string $TKCP_BH_DU = null, string $TKCP_QL_DU = null, string $SysMsg1 = null, string $SysMsg2 = null, mixed $Ma_Cty = null, string $ParamDefines = null, mixed $Khuyen_mai = null, float $Tong_Dt = null, float $641 = null, float $642 = null): Collection
+    public static function callWithParams(string $Ma_cty = null, string $Ngay1 = null, string $Ngay2 = null, string $Ma_kh = null, string $Ma_nhkh = null, string $Ma_vt = null, string $Ma_nhvt = null, string $Ma_kho = null, string $Ma_bp = null, string $Ma_nvkd = null, string $Ma_hd = null, string $Ma_nhhd = null, string $Ma_plkh1 = null, string $Ma_plkh2 = null, string $Ma_plkh3 = null, string $Ma_plvt1 = null, string $Ma_plvt2 = null, string $Ma_plvt3 = null, bool $khuyen_mai = null, bool $Tra_ck = null, bool $Hang_ban = null, bool $Tra_lai = null, string $Ma_nt = null, string $TkCP_BH = null, string $TkCP_QL = null, bool $PsNc_BH = null, bool $PsNc_QL = null, string $TKCP_BH_DU = null, string $TKCP_QL_DU = null, string $SysMsg1 = null, string $SysMsg2 = null, mixed $Ma_Cty = null, string $ParamDefines = null, mixed $Khuyen_mai = null, float $Tong_Dt = null, float $p641 = null, float $p642 = null): Collection
     {
         $params = [
             'pMa_cty' => $Ma_cty,
@@ -151,8 +138,8 @@ class AsSORptBCPT03
             'ParamDefines' => $ParamDefines,
             'pKhuyen_mai' => $Khuyen_mai,
             'pTong_Dt' => $Tong_Dt,
-            'p641' => $641,
-            'p642' => $642
+            'p641' => $p641,
+            'p642' => $p642
         ];
 
         return self::call($params);

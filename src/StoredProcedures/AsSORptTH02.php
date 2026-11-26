@@ -38,12 +38,7 @@ class AsSORptTH02
             'pLoai' => $paramObj->pLoai ?? null,
             'pLoai_CT' => $paramObj->pLoai_CT ?? null,
             'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'pIs_NT' => $paramObj->pIs_NT ?? null,
-            'ploai' => $paramObj->ploai ?? null,
-            'par' => $paramObj->par ?? null,
-            'p2' => $paramObj->p2 ?? null,
-            'pSoLoai' => $paramObj->pSoLoai ?? null,
-            'pSoQuy' => $paramObj->pSoQuy ?? null
+            'pIs_NT' => $paramObj->pIs_NT ?? null
         ], $connection);
     }
 
@@ -60,12 +55,12 @@ class AsSORptTH02
      * @param bool $Is_NT
      * @param mixed $loai
      * @param string $ar
-     * @param string $2
+     * @param string $p2
      * @param string $SoLoai
      * @param string $SoQuy
      * @return Collection
      */
-    public static function callWithParams(string $ma_cty = null, int $Thang = null, int $Nam = null, int $So_ky = null, string $Loai = null, string $Loai_CT = null, string $Ma_nt = null, bool $Is_NT = null, mixed $loai = null, string $ar = null, string $2 = null, string $SoLoai = null, string $SoQuy = null): Collection
+    public static function callWithParams(string $ma_cty = null, int $Thang = null, int $Nam = null, int $So_ky = null, string $Loai = null, string $Loai_CT = null, string $Ma_nt = null, bool $Is_NT = null, mixed $loai = null, string $ar = null, string $p2 = null, string $SoLoai = null, string $SoQuy = null): Collection
     {
         $params = [
             'pma_cty' => $ma_cty,
@@ -78,7 +73,7 @@ class AsSORptTH02
             'pIs_NT' => $Is_NT,
             'ploai' => $loai,
             'par' => $ar,
-            'p2' => $2,
+            'p2' => $p2,
             'pSoLoai' => $SoLoai,
             'pSoQuy' => $SoQuy
         ];
