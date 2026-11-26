@@ -25,7 +25,11 @@ class AsCORptGt01
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asCORptGt01', [
-
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pNgay1' => $paramObj->pNgay1 ?? null,
+            'pNgay2' => $paramObj->pNgay2 ?? null,
+            'pMa_SPCT' => $paramObj->pMa_SPCT ?? null,
+            'pCt_vt' => $paramObj->pCt_vt ?? null
         ], $connection);
     }
 }
