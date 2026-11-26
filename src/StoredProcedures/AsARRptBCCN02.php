@@ -42,9 +42,7 @@ class AsARRptBCCN02
             'pMa_nt' => $paramObj->pMa_nt ?? null,
             'pGroup1' => $paramObj->pGroup1 ?? null,
             'pGroup2' => $paramObj->pGroup2 ?? null,
-            'pGroup3' => $paramObj->pGroup3 ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null
+            'pGroup3' => $paramObj->pGroup3 ?? null
         ], $connection);
     }
 
