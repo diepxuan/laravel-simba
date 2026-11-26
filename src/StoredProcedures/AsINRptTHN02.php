@@ -60,7 +60,6 @@ class AsINRptTHN02
             'pMa_phi' => $paramObj->pMa_phi ?? null,
             'pMa_NT' => $paramObj->pMa_NT ?? null,
             'pDVT' => $paramObj->pDVT ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null
         ], $connection);
     }
 
