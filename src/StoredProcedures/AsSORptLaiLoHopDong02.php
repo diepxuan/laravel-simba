@@ -41,8 +41,7 @@ class AsSORptLaiLoHopDong02
             'pPsNc_DT' => $paramObj->pPsNc_DT ?? null,
             'pTk_CP' => $paramObj->pTk_CP ?? null,
             'pTkDu_CP' => $paramObj->pTkDu_CP ?? null,
-            'pPsNc_CP' => $paramObj->pPsNc_CP ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null
+            'pPsNc_CP' => $paramObj->pPsNc_CP ?? null
         ], $connection);
     }
 

@@ -39,14 +39,7 @@ class AsSiInsertImExData
             'pProc' => $paramObj->pProc ?? null,
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pDel' => $paramObj->pDel ?? null,
-            'pMa_ct' => $paramObj->pMa_ct ?? null,
-            'pDropTable' => $paramObj->pDropTable ?? null,
-            'pColumnType' => $paramObj->pColumnType ?? null,
-            'pComlumName' => $paramObj->pComlumName ?? null,
-            'pStr' => $paramObj->pStr ?? null,
-            'pCodeName' => $paramObj->pCodeName ?? null,
-            'pSTT_rec' => $paramObj->pSTT_rec ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null
+            'pMa_ct' => $paramObj->pMa_ct ?? null
         ], $connection);
     }
 

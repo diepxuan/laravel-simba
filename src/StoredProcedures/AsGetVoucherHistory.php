@@ -33,10 +33,7 @@ class AsGetVoucherHistory
         return ProcedureCaller::call('asGetVoucherHistory', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pMa_ct' => $paramObj->pMa_ct ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3' => $paramObj->pSysMsg3 ?? null
+            'pMa_ct' => $paramObj->pMa_ct ?? null
         ], $connection);
     }
 

@@ -33,8 +33,7 @@ class AsInTaoCayVt
         return ProcedureCaller::call('asInTaoCayVt', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pTblName' => $paramObj->pTblName ?? null,
-            'pSumFList' => $paramObj->pSumFList ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null
+            'pSumFList' => $paramObj->pSumFList ?? null
         ], $connection);
     }
 

@@ -34,10 +34,7 @@ class AsSiGetCodeNested
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pTableName' => $paramObj->pTableName ?? null,
             'pCode_fName' => $paramObj->pCode_fName ?? null,
-            'pName_fName' => $paramObj->pName_fName ?? null,
-            'pMa' => $paramObj->pMa ?? null,
-            'pQuerry' => $paramObj->pQuerry ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null
+            'pName_fName' => $paramObj->pName_fName ?? null
         ], $connection);
     }
 

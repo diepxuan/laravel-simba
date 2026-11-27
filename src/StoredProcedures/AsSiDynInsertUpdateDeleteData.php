@@ -34,14 +34,7 @@ class AsSiDynInsertUpdateDeleteData
             'pXmlData' => $paramObj->pXmlData ?? null,
             'pTable_name' => $paramObj->pTable_name ?? null,
             'pMode' => $paramObj->pMode ?? null,
-            'pKeyColumns' => $paramObj->pKeyColumns ?? null,
-            'pColumnType' => $paramObj->pColumnType ?? null,
-            'pComlumName' => $paramObj->pComlumName ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pStr' => $paramObj->pStr ?? null,
-            'psWhere' => $paramObj->psWhere ?? null,
-            'pCl_Udp' => $paramObj->pCl_Udp ?? null,
-            'pStrOn' => $paramObj->pStrOn ?? null
+            'pKeyColumns' => $paramObj->pKeyColumns ?? null
         ], $connection);
     }
 

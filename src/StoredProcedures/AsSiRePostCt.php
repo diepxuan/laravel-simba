@@ -34,12 +34,7 @@ class AsSiRePostCt
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pNgay1' => $paramObj->pNgay1 ?? null,
             'pNgay2' => $paramObj->pNgay2 ?? null,
-            'pMa_ct' => $paramObj->pMa_ct ?? null,
-            'pTable' => $paramObj->pTable ?? null,
-            'pStt_rec' => $paramObj->pStt_rec ?? null,
-            'pProc' => $paramObj->pProc ?? null,
-            'pQuerry' => $paramObj->pQuerry ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null
+            'pMa_ct' => $paramObj->pMa_ct ?? null
         ], $connection);
     }
 

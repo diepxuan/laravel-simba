@@ -37,8 +37,7 @@ class AsSaRptDynBangLuong
             'pMa_bp' => $paramObj->pMa_bp ?? null,
             'pLuyKe' => $paramObj->pLuyKe ?? null,
             'pSelectStr' => $paramObj->pSelectStr ?? null,
-            'pSumStr' => $paramObj->pSumStr ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null
+            'pSumStr' => $paramObj->pSumStr ?? null
         ], $connection);
     }
 

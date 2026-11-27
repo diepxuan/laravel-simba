@@ -37,10 +37,7 @@ class AsSORptTH07
             'pSo_ky' => $paramObj->pSo_ky ?? null,
             'pLoai' => $paramObj->pLoai ?? null,
             'pLoai_CT' => $paramObj->pLoai_CT ?? null,
-            'pMa_nt' => $paramObj->pMa_nt ?? null,
-            'ploai' => $paramObj->ploai ?? null,
-            'par' => $paramObj->par ?? null,
-            'p2' => $paramObj->p2 ?? null
+            'pMa_nt' => $paramObj->pMa_nt ?? null
         ], $connection);
     }
 

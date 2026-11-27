@@ -88,12 +88,11 @@ class AsInsLogCT4Delete
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsLogCT4Delete', [
-            'pMa_cty'      => $paramObj->pMa_cty ?? null,
-            'pStt_rec'     => $paramObj->pStt_rec ?? null,
-            'pUser'        => $paramObj->pUser ?? null,
-            'pTable'       => $paramObj->pTable ?? null,
-            'pAction'      => $paramObj->pAction ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'pTable' => $paramObj->pTable ?? null,
+            'pAction' => $paramObj->pAction ?? null
         ], $connection);
     }
 

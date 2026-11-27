@@ -34,11 +34,7 @@ class AsSoRptDMKM
             'pma_cty' => $paramObj->pma_cty ?? null,
             'pMa_km' => $paramObj->pMa_km ?? null,
             'pNgayBD' => $paramObj->pNgayBD ?? null,
-            'pNgayKT' => $paramObj->pNgayKT ?? null,
-            'pSysMsg1' => $paramObj->pSysMsg1 ?? null,
-            'pSysMsg2' => $paramObj->pSysMsg2 ?? null,
-            'pSysMsg3' => $paramObj->pSysMsg3 ?? null,
-            'pSysMsg4' => $paramObj->pSysMsg4 ?? null
+            'pNgayKT' => $paramObj->pNgayKT ?? null
         ], $connection);
     }
 

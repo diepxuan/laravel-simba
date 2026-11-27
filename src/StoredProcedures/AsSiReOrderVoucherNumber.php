@@ -33,15 +33,10 @@ class AsSiReOrderVoucherNumber
         return ProcedureCaller::call('asSiReOrderVoucherNumber', [
             'pMa_cty' => $paramObj->pMa_cty ?? null,
             'pMa_ct' => $paramObj->pMa_ct ?? null,
-            'pSo_ct' => $paramObj->pSo_ct ?? null,
-            'pNgay1' => $paramObj->pNgay1 ?? null,
-            'pNgay2' => $paramObj->pNgay2 ?? null,
-            'pUser' => $paramObj->pUser ?? null,
-            'ph' => $paramObj->ph ?? null,
-            'prefix' => $paramObj->prefix ?? null,
-            'pattern' => $paramObj->pattern ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pWidth' => $paramObj->pWidth ?? null
+            'pSo_Ct' => $paramObj->pSo_Ct ?? null,
+            'pngay1' => $paramObj->pngay1 ?? null,
+            'pngay2' => $paramObj->pngay2 ?? null,
+            'pUser' => $paramObj->pUser ?? null
         ], $connection);
     }
 

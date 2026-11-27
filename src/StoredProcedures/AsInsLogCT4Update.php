@@ -87,12 +87,11 @@ class AsInsLogCT4Update
         $connection = (new SModel())->getConnectionName();
 
         return ProcedureCaller::call('asInsLogCT4Update', [
-            'pMa_cty'      => $paramObj->pMa_cty ?? null,
-            'pStt_rec'     => $paramObj->pStt_rec ?? null,
-            'pMa_ct'       => $paramObj->pMa_ct ?? null,
-            'pUser'        => $paramObj->pUser ?? null,
-            'pAction'      => $paramObj->pAction ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
+            'pMa_cty' => $paramObj->pMa_cty ?? null,
+            'pStt_rec' => $paramObj->pStt_rec ?? null,
+            'pMa_ct' => $paramObj->pMa_ct ?? null,
+            'pUser' => $paramObj->pUser ?? null,
+            'pAction' => $paramObj->pAction ?? null
         ], $connection);
     }
 

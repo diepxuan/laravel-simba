@@ -41,13 +41,7 @@ class AsSORptBCPT09
             'pMa_nhkh' => $paramObj->pMa_nhkh ?? null,
             'pSL_DS' => $paramObj->pSL_DS ?? null,
             'pTl_sl_ds' => $paramObj->pTl_sl_ds ?? null,
-            'pTl_gt' => $paramObj->pTl_gt ?? null,
-            'pGT_tu' => $paramObj->pGT_tu ?? null,
-            'pGT_den' => $paramObj->pGT_den ?? null,
-            'pCK' => $paramObj->pCK ?? null,
-            'pSql' => $paramObj->pSql ?? null,
-            'ParamDefines' => $paramObj->ParamDefines ?? null,
-            'pWhere' => $paramObj->pWhere ?? null
+            'pTl_gt' => $paramObj->pTl_gt ?? null
         ], $connection);
     }
 
