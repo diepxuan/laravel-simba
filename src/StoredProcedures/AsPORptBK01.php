@@ -15,7 +15,9 @@ namespace Diepxuan\Simba\StoredProcedures;
 
 use Diepxuan\Simba\SModel\SModel;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Diepxuan\Simba\Helper\ParamHelper;
+use PDO;
 
 class AsPORptBK01
 {
@@ -61,6 +63,109 @@ class AsPORptBK01
             'pMa_nhhd' => $paramObj->pMa_nhhd ?? null,
             'pMa_Phi' => $paramObj->pMa_Phi ?? null
                 ], $connection);
+    }
+
+    /**
+     * Call stored procedure asPORptBK01 and return BOTH report result sets.
+     *
+     * SP asPORptBK01 tra 2 result set (da kiem chung tren DB that, ky 2025):
+     *   RS1 = chi tiet  (1.371 dong / 40 cot, co ma_vt/so_luong/gia/tien...)
+     *   RS2 = danh sach phieu (366 dong / 27 cot, moi stt_rec 1 dong)
+     *
+     * Lien ket: RS1.stt_rec = RS2.stt_rec (366/366 stt_rec cua RS2 co trong RS1).
+     *
+     * Dung cho bang ke Master-Detail giong SimbaERP: bang tren = danh sach phieu,
+     * bang duoi = chi tiet cua phieu duoc chon.
+     *
+     * @return array{ph: Collection<int, array<string, mixed>>, ct: Collection<int, array<string, mixed>>}
+     */
+    public static function callWithDataSets(array $params): array
+    {
+        $connection = (new SModel())->getConnectionName();
+        $pdo        = DB::connection($connection)->getPdo();
+
+        $stmt = $pdo->prepare(self::callSql(self::procedureParams($params)));
+        $stmt->execute();
+
+        $sets = [];
+        do {
+            if ($stmt->columnCount() > 0) {
+                $sets[] = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+            }
+        } while ($stmt->nextRowset());
+
+        try {
+            $stmt->closeCursor();
+        } catch (\Throwable) {
+            // Ignore cursor cleanup failures after all rowsets have been read.
+        }
+
+        // RS1 = chi tiet, RS2 = danh sach phieu (theo thu tu SP tra ve).
+        return [
+            'ct' => collect($sets[0] ?? []),
+            'ph' => collect($sets[1] ?? []),
+        ];
+    }
+
+    /**
+     * Build EXEC statement cho ca 2 result set.
+     *
+     * Dung Unicode literal giong ProcedureCaller de tranh loi binding
+     * tieng Viet qua PDO SQLSRV.
+     *
+     * @param array<string, mixed> $procedureParams
+     */
+    public static function callSql(array $procedureParams): string
+    {
+        $execParts = [];
+
+        foreach ($procedureParams as $key => $value) {
+            $execParts[] = '@' . $key . ' = ' . ProcedureCaller::toUnicodeLiteral($value);
+        }
+
+        return "SET NOCOUNT ON;\nEXECUTE [dbo].[asPORptBK01]\n    " . implode(",\n    ", $execParts);
+    }
+
+    /**
+     * Map tham so dau vao -> ten tham so SP.
+     *
+     * @return array<string, mixed>
+     */
+    public static function procedureParams(array $params): array
+    {
+        $p = ParamHelper::fromArray($params);
+
+        return [
+            'pMa_cty'    => $p->pMa_cty ?? $p->ma_cty ?? null,
+            'pNgay1'     => $p->pNgay1 ?? $p->ngay1 ?? null,
+            'pNgay2'     => $p->pNgay2 ?? $p->ngay2 ?? null,
+            'pTrang_thai' => $p->pTrang_thai ?? $p->trang_thai ?? null,
+            'pSoct1'     => $p->pSoct1 ?? $p->soct1 ?? null,
+            'pSoct2'     => $p->pSoct2 ?? $p->soct2 ?? null,
+            'pMa_kh'     => $p->pMa_kh ?? $p->ma_kh ?? null,
+            'pMa_nhkh'   => $p->pMa_nhkh ?? $p->ma_nhkh ?? null,
+            'pMa_vt'     => $p->pMa_vt ?? $p->ma_vt ?? null,
+            'pMa_nhvt'   => $p->pMa_nhvt ?? $p->ma_nhvt ?? null,
+            'pMa_kho'    => $p->pMa_kho ?? $p->ma_kho ?? null,
+            'pMa_vitri'  => $p->pMa_vitri ?? $p->ma_vitri ?? null,
+            'pMa_nvkd'   => $p->pMa_nvkd ?? $p->ma_nvkd ?? null,
+            'pMa_nt'     => $p->pMa_nt ?? $p->ma_nt ?? null,
+            'pMa_hd'     => $p->pMa_hd ?? $p->ma_hd ?? null,
+            'pMa_plkh1'  => $p->pMa_plkh1 ?? $p->ma_plkh1 ?? null,
+            'pMa_plkh2'  => $p->pMa_plkh2 ?? $p->ma_plkh2 ?? null,
+            'pMa_plkh3'  => $p->pMa_plkh3 ?? $p->ma_plkh3 ?? null,
+            'pMa_ct'     => $p->pMa_ct ?? $p->ma_ct ?? null,
+            'pMa_lo'     => $p->pMa_lo ?? $p->ma_lo ?? null,
+            'pMa_httt'   => $p->pMa_httt ?? $p->ma_httt ?? null,
+            'pMa_TT'     => $p->pMa_TT ?? $p->ma_TT ?? null,
+            'pMa_bp'     => $p->pMa_bp ?? $p->ma_bp ?? null,
+            'pMa_spct'   => $p->pMa_spct ?? $p->ma_spct ?? null,
+            'pMa_plvt1'  => $p->pMa_plvt1 ?? $p->ma_plvt1 ?? null,
+            'pMa_plvt2'  => $p->pMa_plvt2 ?? $p->ma_plvt2 ?? null,
+            'pMa_plvt3'  => $p->pMa_plvt3 ?? $p->ma_plvt3 ?? null,
+            'pMa_nhhd'   => $p->pMa_nhhd ?? $p->ma_nhhd ?? null,
+            'pMa_Phi'    => $p->pMa_Phi ?? $p->ma_Phi ?? null,
+        ];
     }
 
     /**
