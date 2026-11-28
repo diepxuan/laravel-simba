@@ -32,7 +32,6 @@ class AsGroupCheckGrand
 
         return ProcedureCaller::call('asGroupCheckGrand', [
             'pUserName' => $paramObj->pUserName ?? null,
-            'pCheck' => $paramObj->pCheck ?? null
         ], $connection);
     }
 

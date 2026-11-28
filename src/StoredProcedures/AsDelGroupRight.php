@@ -105,10 +105,12 @@ class AsDelGroupRight
         $paramObj = ParamHelper::fromArray($params);
         $connection = (new SModel())->getConnectionName();
 
-        return ProcedureCaller::call('asSIDelGroupRight', [
+        return ProcedureCaller::call('asDelGroupRight', [
             'pGroupName' => $paramObj->pGroupName ?? null,
             'pMenuID'    => $paramObj->pMenuID ?? null,
-            // pRet là output parameter, không truyền vào.
+            // pRet la OUTPUT nhung SP VAN YEU CAU truyen vao (da kiem chung:
+            // bo di -> "expects parameter '@pRet', which was not supplied").
+            'pRet'       => $paramObj->pRet ?? null,
         ], $connection);
     }
 }
